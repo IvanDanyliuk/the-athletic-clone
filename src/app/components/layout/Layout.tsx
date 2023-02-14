@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import { styled } from '@mui/material/styles';
 import { Box, Container } from '@mui/material';
+import Header from './Header';
 
 
 interface ILayout {
@@ -8,17 +9,17 @@ interface ILayout {
 }
 
 const Wrapper = styled(Box)`
-  background: #bdbdbd;
+  min-height: 100vh;
 `;
 
 const Content = styled(Container)`
-  background: #d6d4d4;
+  
 `;
 
 const Layout: React.FC<ILayout> = ({ children }) => {
   return (
     <Wrapper>
-      
+      <Header />
       <Content maxWidth='xl'>
         {children}
       </Content>
