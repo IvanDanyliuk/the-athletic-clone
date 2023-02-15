@@ -5,7 +5,9 @@ import {styled} from '@mui/material/styles';
 import { v4 as uuid } from 'uuid';
 import { CompetitionModel } from '../../models/components';
 import { setUrl } from '../../utils/helpers';
-import { Box, Container, Divider, Typography } from '@mui/material';
+import { Box, Button, Container, Divider, Typography } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 
 interface INavigationProps {
@@ -21,6 +23,10 @@ const Content = styled(Container)`
 const Navbar = sc.nav`
   display: flex;
   align-items: center;
+`;
+
+const NavbarButton = styled(Button)`
+
 `;
 
 const Logo = styled(NavLink)`
@@ -114,6 +120,9 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
   return (
     <Content maxWidth={'xl'}>
       <Navbar>
+        <NavbarButton>
+          <FontAwesomeIcon icon={faBars} />
+        </NavbarButton>
         <Logo to={'/'}>The Athletic</Logo>
         <NavList>
           {links.map(link => (
