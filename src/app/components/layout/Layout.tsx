@@ -13,7 +13,7 @@ const Wrapper = styled(Box)`
 `;
 
 const Content = styled(Container)`
-  
+  padding-top: 7vh;
 `;
 
 const Layout: React.FC<ILayout> = ({ children }) => {

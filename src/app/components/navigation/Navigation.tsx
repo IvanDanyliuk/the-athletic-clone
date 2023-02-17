@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import sc from 'styled-components';
 import {styled} from '@mui/material/styles';
-import { v4 as uuid } from 'uuid';
-import { CompetitionModel } from '../../models/components';
-import { setUrl } from '../../utils/helpers';
-import { Box, Button, Container, Divider, Typography } from '@mui/material';
+import { Button, Container } from '@mui/material';
+import useMediaQuery from '@mui/material/useMediaQuery';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-import DropDownMenu from './DropDownMenu';
+import { CompetitionModel } from '../../models/components';
+import NavPanel from './NavPanel';
 
 
 interface INavigationProps {
@@ -38,38 +37,9 @@ const Logo = styled(NavLink)`
   text-decoration: none;
 `;
 
-const NavList = sc.ul`
-  display: flex;
-  list-style: none;
-`;
-
-const NavListItem = sc.li`
-  margin-right: 20px;
-`;
-
-const MenuLink = styled(NavLink)`
-  font-size: 1.1em;
-  text-decoration: none;
-  color: #ffffff;
-`;
-
-
-
 
 const Navigation: React.FC<INavigationProps> = ({ links }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [currentLink, setCurrentLink] = useState('');
-
-  const handleMenuOpen = (e: any) => {
-    setIsMenuOpen(true);
-    setCurrentLink(e.target.innerText)
-  };
-
-  const handleMenuClose = () => {
-    setIsMenuOpen(false);
-    setCurrentLink('');
-  };
-
+  const isMobile = useMediaQuery('(max-width:600px)');
   return (
     <Content maxWidth={'xl'}>
       <Navbar>
@@ -77,30 +47,8 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
           <FontAwesomeIcon icon={faBars} />
         </NavbarButton>
         <Logo to={'/'}>The Athletic</Logo>
-        <NavList>
-          {links.map(link => (
-            <NavListItem 
-              key={uuid()} 
-              id={link.fullName}
-              onMouseEnter={handleMenuOpen} 
-            >
-              <MenuLink 
-                to={setUrl(link.fullName)}
-                onClick={handleMenuClose}
-              >
-                {link.fullName}
-              </MenuLink>
-            </NavListItem>
-          ))}
-        </NavList>
         {
-          isMenuOpen && (
-            <DropDownMenu 
-              links={links} 
-              currentLink={currentLink} 
-              onClose={handleMenuClose} 
-            />
-          )
+          !isMobile && <NavPanel links={links} />
         }
       </Navbar>
     </Content>
