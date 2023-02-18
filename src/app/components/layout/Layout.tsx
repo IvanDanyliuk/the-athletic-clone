@@ -2,6 +2,7 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import { Box, Container } from '@mui/material';
 import Header from './Header';
+import Footer from './Footer';
 
 
 interface ILayout {
@@ -10,10 +11,15 @@ interface ILayout {
 
 const Wrapper = styled(Box)`
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Content = styled(Container)`
   padding-top: 7vh;
+  display: flex;
+  flex: 1;
 `;
 
 const Layout: React.FC<ILayout> = ({ children }) => {
@@ -23,7 +29,7 @@ const Layout: React.FC<ILayout> = ({ children }) => {
       <Content maxWidth='xl'>
         {children}
       </Content>
-
+      <Footer />
     </Wrapper>
   )
 }

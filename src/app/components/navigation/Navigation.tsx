@@ -39,7 +39,7 @@ const Logo = styled(NavLink)`
 
 
 const Navigation: React.FC<INavigationProps> = ({ links }) => {
-  const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useMediaQuery('(max-width:640px)');
   return (
     <Content maxWidth={'xl'}>
       <Navbar>
