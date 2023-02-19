@@ -14,12 +14,15 @@ const Wrapper = styled(Box)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: #ffffff;
 `;
 
 const Content = styled(Container)`
   padding-top: 7vh;
   display: flex;
   flex: 1;
+
+  background: #cacaca;
 `;
 
 const Layout: React.FC<ILayout> = ({ children }) => {
