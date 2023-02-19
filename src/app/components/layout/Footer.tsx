@@ -1,48 +1,26 @@
 import React from 'react';
-import { Box, Container, styled, Typography } from '@mui/material';
-import sc from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { Box, Container, Grid, List, ListItem, styled, Typography, useMediaQuery } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { v4 as uuid } from 'uuid';
-import { competitions } from '../../../data';
 import { setUrl } from '../../utils/helpers';
+import { competitions } from '../../../data';
 
 
 
-const Wrapper = sc.footer`
+const Wrapper = styled(Box)`
   width: 100%;
   background: #181818;
   color: #7b7b7b;
 `;
 
 const Content = styled(Container)`
-  padding: 2em 0;
+  padding: 2em;
 `;
 
-const TopSection = styled(Box)`
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  div:nth-child(1) {
-    width: 50%;
-  }
-  div ul {
-    height: 20vh;
-    flex-direction: column;
-    li {
-      margin: 0 4em 1em 0;
-    }
-  }
-`;
-
-const BottomSection = styled(Box)`
-  display: flex;
-  align-items: center;
-`;
-
-const LinkGroup = styled(Box)`
-  
+const LinkGroup = styled(Grid)`
+  position: relative;
 `;
 
 const LinkGroupTitle = styled(Typography)`
@@ -50,25 +28,27 @@ const LinkGroupTitle = styled(Typography)`
   font-weight: 500;
 `;
 
-const Logo = styled(Typography)`
-  font-family: 'Arvo';
-  font-size: 2em;
-  font-weight: 700;
-`;
-
-const Copyright = styled(Typography)`
-  margin-right: 30px;
-`;
-
-const LinkList = sc.ul`
-  padding: 0;
+const LinkList = styled(List)`
+  width: 100%;
+  max-height: 25vh;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  list-style: none;
+
+  @media(max-width: 640px) {
+    max-height: fit-content;
+  }
 `;
 
-const LinkListItem = sc.li`
-  margin-right: 30px;
+const BottomLinkList = styled(List)`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+`;
+
+const LinkListItem = styled(ListItem)`
+  padding: .5em 0;
+  width: fit-content;
 `;
 
 const Link = styled(NavLink)`
@@ -82,26 +62,38 @@ const Link = styled(NavLink)`
   }
 `;
 
+const Logo = styled(Typography)`
+  margin: 1em 0;
+  font-family: 'Arvo';
+  font-size: 2em;
+  font-weight: 700;
+`;
+
+const Copyright = styled(Typography)`
+  
+`;
+
+
 const Footer: React.FC = () => {
   const links = competitions;
 
+  const isMobile = useMediaQuery('(max-width: 640px)'); 
+
   return (
-    <Wrapper>
+    <Wrapper component='footer'>
       <Content maxWidth={'xl'}>
-        <TopSection>
-          <LinkGroup>
-            <LinkGroupTitle variant='inherit'>Competitions</LinkGroupTitle>
+        <Grid container spacing={3}>
+          <LinkGroup item sm={12} md={6}>
+            <LinkGroupTitle>Competitions</LinkGroupTitle>
             <LinkList>
-              {links.map(link => (
+              {links.map(link=> (
                 <LinkListItem key={uuid()}>
-                  <Link to={setUrl(link.fullName)}>
-                    {link.fullName}
-                  </Link>
+                  <Link to={setUrl(link.fullName)}>{link.fullName}</Link>
                 </LinkListItem>
               ))}
             </LinkList>
           </LinkGroup>
-          <LinkGroup>
+          <LinkGroup item sm={12} md={2}>
             <LinkGroupTitle variant='inherit'>Subscribe</LinkGroupTitle>
             <LinkList>
               <LinkListItem>
@@ -121,8 +113,8 @@ const Footer: React.FC = () => {
               </LinkListItem>
             </LinkList>
           </LinkGroup>
-          <LinkGroup>
-            <LinkGroupTitle variant='inherit'>HQ</LinkGroupTitle>
+          <LinkGroup item sm={12} md={2}>
+          <LinkGroupTitle variant='inherit'>HQ</LinkGroupTitle>
             <LinkList>
               <LinkListItem>
                 <Link to={'/about'}>About Us</Link>
@@ -144,7 +136,7 @@ const Footer: React.FC = () => {
               </LinkListItem>
             </LinkList>
           </LinkGroup>
-          <LinkGroup>
+          <LinkGroup item sm={12} md={2}>
             <LinkGroupTitle variant='inherit'>Support</LinkGroupTitle>
             <LinkList>
               <LinkListItem>
@@ -161,42 +153,48 @@ const Footer: React.FC = () => {
               </LinkListItem>
             </LinkList>
           </LinkGroup>
-        </TopSection>
-        <Logo variant='inherit'>The Athletic</Logo>
-        <BottomSection>
-          <Copyright>2023. The Athletic Media Company. All rights reserved</Copyright>
-          <LinkList>
-            <LinkListItem>
-              <Link to='policy-center'>Policy Center</Link>
-            </LinkListItem>
-            <LinkListItem>
-              <Link to='support'>Support</Link>
-            </LinkListItem>
-            <LinkListItem>
-              <Link to='rss'>RSS</Link>
-            </LinkListItem>
-            <LinkListItem>
-              <Link to='sitemap'>Sitemap</Link>
-            </LinkListItem>
-          </LinkList>
-          <LinkList>
-            <LinkListItem>
-              <Link to='/' target='_blank'>
-                <FontAwesomeIcon icon={faSquareFacebook} />
-              </Link>
-            </LinkListItem>
-            <LinkListItem>
-              <Link to='/' target='_blank'>
-                <FontAwesomeIcon icon={faInstagram} />
-              </Link>
-            </LinkListItem>
-            <LinkListItem>
-              <Link to='/' target='_blank'>
-                <FontAwesomeIcon icon={faTwitter} />
-              </Link>
-            </LinkListItem>
-          </LinkList>
-        </BottomSection>
+        </Grid>
+        <Logo>The Athletic</Logo>
+        <Grid container spacing={isMobile ? 2 : 6}>
+          <LinkGroup item sm={12} md={4}>
+            <Copyright>2023. The Athletic Media Company. All rights reserved</Copyright>
+          </LinkGroup>
+          <LinkGroup item xs={12} sm={6} md={3}>
+            <BottomLinkList>
+              <LinkListItem>
+                <Link to='policy-center'>Policy Center</Link>
+              </LinkListItem>
+              <LinkListItem>
+                <Link to='support'>Support</Link>
+              </LinkListItem>
+              <LinkListItem>
+                <Link to='rss'>RSS</Link>
+              </LinkListItem>
+              <LinkListItem>
+                <Link to='sitemap'>Sitemap</Link>
+              </LinkListItem>
+            </BottomLinkList>
+          </LinkGroup>
+          <LinkGroup item xs={12} sm={6} md={2}>
+            <BottomLinkList>
+              <LinkListItem>
+                <Link to='/' target='_blank'>
+                  <FontAwesomeIcon icon={faSquareFacebook} />
+                </Link>
+              </LinkListItem>
+              <LinkListItem>
+                <Link to='/' target='_blank'>
+                  <FontAwesomeIcon icon={faInstagram} />
+                </Link>
+              </LinkListItem>
+              <LinkListItem>
+                <Link to='/' target='_blank'>
+                  <FontAwesomeIcon icon={faTwitter} />
+                </Link>
+              </LinkListItem>
+            </BottomLinkList>
+            </LinkGroup>
+        </Grid>
       </Content>
     </Wrapper>
   );
