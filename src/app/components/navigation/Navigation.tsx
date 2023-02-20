@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { Box, Button, Container, Divider, List, ListItem, styled, Typography } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { v4 as uuid } from 'uuid';
@@ -13,16 +13,18 @@ interface INavPanelProps {
 }
 
 const NavPanelContainer = styled(Box)`
-  
+  flex: 1;
 `;
 
 const NavList = styled(List)`
+  position: relative;
+  width: 100%;
   display: flex;
   list-style: none;
 `;
 
 const NavListItem = styled(ListItem)`
-  width: fit-content;
+  width: max-content;
   display: flex;
   align-items: center;
 `;
@@ -65,6 +67,8 @@ const TopLink = styled(NavLink)`
 `;
 
 const BottomLinks = styled(List)`
+  position: relative;
+  width: 100%;
   height: 24vh;
   display: flex;
   flex-direction: column;
@@ -96,8 +100,12 @@ const OtherLinksButton = styled(Button)`
 
 
 const NavPanel: React.FC<INavPanelProps> = ({ links }) => {
+  const ref = useRef<HTMLElement | null>(null);
+
   const [activeLink, setActiveLink] = useState<CompetitionModel | null>(null);
   const [otherLinks, setOtherLinks] = useState<CompetitionModel[] | null>(null);
+  const [width, setWidth] = useState(0);
+  const [visibleLinks, setVisibleLinks] = useState<number>(5);
 
   const handleActiveLink = (e: any) => {
     setOtherLinks(null);
@@ -111,7 +119,7 @@ const NavPanel: React.FC<INavPanelProps> = ({ links }) => {
   const handleOtherLinks = () => {
     setActiveLink(null);
     if(links.length > 6) {
-      setOtherLinks(links.slice(6));
+      setOtherLinks(links.slice(visibleLinks));
     }
   };
 
@@ -119,10 +127,26 @@ const NavPanel: React.FC<INavPanelProps> = ({ links }) => {
     setOtherLinks(null);
   };
 
+  useLayoutEffect(() => {
+    setVisibleLinks(Math.round(ref.current?.clientWidth! / 170));
+  }, [width])
+
+  useEffect(() => {
+    
+    const handleWindowResize = () => {
+      setWidth(ref.current?.clientWidth!)
+    };
+
+    window.addEventListener('resize', handleWindowResize);
+    return () => {
+      window.removeEventListener('resize', handleWindowResize);
+    }
+  }, [width]);
+
   return (
-    <NavPanelContainer>
+    <NavPanelContainer ref={ref}>
       <NavList>
-        {links.slice(0, 6).map(link => (
+        {links.slice(0, visibleLinks).map(link => (
           <NavListItem key={uuid()}>
             <MenuLink 
               to={setUrl(link.fullName)}

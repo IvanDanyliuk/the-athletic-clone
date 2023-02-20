@@ -39,8 +39,9 @@ const Logo = styled(NavLink)`
   font-family: 'Arvo';
   font-size: 2em;
   font-weight: 700;
-  color: #ffffff;
+  white-space: nowrap;
   text-decoration: none;
+  color: #ffffff;
 `;
 
 
