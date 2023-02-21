@@ -18,7 +18,6 @@ const NavPanelContainer = styled(Box)`
 
 const NavList = styled(List)`
   position: relative;
-  width: 100%;
   display: flex;
   list-style: none;
 `;
@@ -132,16 +131,16 @@ const NavPanel: React.FC<INavPanelProps> = ({ links }) => {
   }, [width])
 
   useEffect(() => {
-    
+    setWidth(ref.current?.clientWidth!);
     const handleWindowResize = () => {
-      setWidth(ref.current?.clientWidth!)
+      setWidth(ref.current?.clientWidth!);
     };
 
     window.addEventListener('resize', handleWindowResize);
     return () => {
       window.removeEventListener('resize', handleWindowResize);
     }
-  }, [width]);
+  }, []);
 
   return (
     <NavPanelContainer ref={ref}>

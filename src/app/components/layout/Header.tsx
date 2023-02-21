@@ -6,12 +6,14 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
 import MainMenu from '../navigation/MainMenu';
 import NavPanel from '../navigation/Navigation';
 import { competitions } from '../../../data';
+import BtnMenu from '../navigation/BtnMenu';
 
 
 const Wrapper = styled(Box)`
   position: fixed;
   width: 100%;
   background: #181818;
+  z-index: 1000;
 `;
 
 const Content = styled(Container)`
@@ -62,18 +64,7 @@ const Header: React.FC = () => {
   return (
     <Wrapper component='header'>
       <Content maxWidth={'xl'}>
-        <NavbarButton onClick={handleMenuOpen}>
-          <FontAwesomeIcon icon={faBars} />
-        </NavbarButton>
-        {
-          isOpen && (
-            <MainMenu 
-              links={data} 
-              isMobile={isMobile} 
-              onClose={handleMenuClose} 
-            />
-          )
-        }
+        <BtnMenu links={data} />
         <Logo to={'/'}>The Athletic</Logo>
         {
           !isMobile && <NavPanel links={data} />
