@@ -73,8 +73,12 @@ const BtnMenu: React.FC<IMainMenuProps> = ({ links }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleMenuOpen = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(true);
+  };
+
+  const handleMenuClose = () => {
+    setIsOpen(false);
+  };
 
   return (
     <Wrapper>
@@ -90,12 +94,11 @@ const BtnMenu: React.FC<IMainMenuProps> = ({ links }) => {
             top: '7vh'
           }
         }}
-        transitionDuration={{
-          appear: 0
-        }}
-        onClose={handleMenuOpen}
+        hideBackdrop={true}
+        transitionDuration={0}
+        onClose={handleMenuClose}
       >
-        <NavSection>
+        <NavSection onMouseLeave={handleMenuClose}>
           <Container maxWidth='xl'>
             <Grid container spacing={2}>
               <Grid item sm={12} md={8}>

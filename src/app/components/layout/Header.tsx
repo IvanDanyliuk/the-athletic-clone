@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Box, Button, Container, styled, useMediaQuery } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import MainMenu from '../navigation/MainMenu';
 import NavPanel from '../navigation/Navigation';
 import { competitions } from '../../../data';
 import BtnMenu from '../navigation/BtnMenu';
@@ -13,7 +10,7 @@ const Wrapper = styled(Box)`
   position: fixed;
   width: 100%;
   background: #181818;
-  z-index: 1000;
+  /* z-index: 1000; */
 `;
 
 const Content = styled(Container)`
