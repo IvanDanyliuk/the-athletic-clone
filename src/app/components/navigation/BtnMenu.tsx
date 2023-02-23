@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Box, Button, Container, Divider, Drawer, Grid, List, ListItem, styled, Typography } from '@mui/material';
-import { CompetitionModel } from '../../models/components';
-import { v4 as uuid } from 'uuid';
 import { NavLink } from 'react-router-dom';
-import { setUrl } from '../../utils/helpers';
+import { Box, Button, Container, Divider, Drawer, Grid, List, ListItem, styled, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { v4 as uuid } from 'uuid';
+import { CompetitionModel } from '../../models/components';
+import { setUrl } from '../../utils/helpers';
+
 
 
 interface IMainMenuProps {

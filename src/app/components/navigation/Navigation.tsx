@@ -86,9 +86,7 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
 
   const handleMenuOpen = (value: string) => {
     setIsOpen(true);
-
     const linkToRender = links.find(link => link.fullName === value);
-
     if(linkToRender) setActiveLink(linkToRender);
   };
 
@@ -102,11 +100,15 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
       <NavLinkList>
         {links.slice(0, 6).map(link => (
           <NavLinkListItem key={uuid()}>
-            <Link to={setUrl(link.fullName)} onMouseEnter={() => handleMenuOpen(link.fullName)}>
+            <Link 
+              to={setUrl(link.fullName)} 
+              onMouseEnter={() => handleMenuOpen(link.fullName)}
+            >
               {link.fullName}
             </Link>
           </NavLinkListItem>
         ))}
+        
       </NavLinkList>
       <Drawer
         anchor='top'
@@ -155,7 +157,7 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
               <BottomLinkList>
                 {activeLink.clubs.map(club => (
                   <BottomLinkListItem key={uuid()}>
-                    <BottomLink to={`${setUrl(activeLink.fullName)}/${club.commonName}`}>
+                    <BottomLink to={`${setUrl(activeLink.fullName)}/${setUrl(club.commonName)}`}>
                       <img src={club.clubLogoUrl} alt={club.commonName} />
                       <Typography variant='inherit'>
                         {club.commonName}
