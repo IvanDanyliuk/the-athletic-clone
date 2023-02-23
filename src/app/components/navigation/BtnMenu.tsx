@@ -13,10 +13,6 @@ interface IMainMenuProps {
   links: CompetitionModel[],
 }
 
-const Wrapper = styled(Box)`
-  
-`;
-
 const NavbarButton = styled(Button)`
   width: auto;
   svg {
@@ -82,7 +78,7 @@ const BtnMenu: React.FC<IMainMenuProps> = ({ links }) => {
   };
 
   return (
-    <Wrapper>
+    <Box>
       <NavbarButton onClick={handleMenuOpen}>
         <FontAwesomeIcon icon={faBars} />
       </NavbarButton>
@@ -145,7 +141,7 @@ const BtnMenu: React.FC<IMainMenuProps> = ({ links }) => {
           </Container>
         </NavSection>
       </Drawer>
-    </Wrapper>
+    </Box>
   );
 };
 

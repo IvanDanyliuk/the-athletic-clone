@@ -54,6 +54,7 @@ const LinkListItem = styled(ListItem)`
 const Link = styled(NavLink)`
   text-decoration: none;
   color: #7b7b7b;
+  font-size: .7em;
   z-index: 0;
   &:hover {
     color: #ffffff;
@@ -71,7 +72,7 @@ const Logo = styled(Typography)`
 `;
 
 const Copyright = styled(Typography)`
-  
+  font-size: .7em;
 `;
 
 
@@ -84,7 +85,7 @@ const Footer: React.FC = () => {
     <Wrapper component='footer'>
       <Content maxWidth={'xl'}>
         <Grid container spacing={3}>
-          <LinkGroup item sm={12} md={6}>
+          <LinkGroup item xs={12} md={6}>
             <LinkGroupTitle>Competitions</LinkGroupTitle>
             <LinkList>
               {links.map(link=> (
@@ -94,7 +95,7 @@ const Footer: React.FC = () => {
               ))}
             </LinkList>
           </LinkGroup>
-          <LinkGroup item sm={12} md={2}>
+          <LinkGroup item xs={12} md={2}>
             <LinkGroupTitle variant='inherit'>Subscribe</LinkGroupTitle>
             <LinkList>
               <LinkListItem>
@@ -114,7 +115,7 @@ const Footer: React.FC = () => {
               </LinkListItem>
             </LinkList>
           </LinkGroup>
-          <LinkGroup item sm={12} md={2}>
+          <LinkGroup item xs={12} md={2}>
           <LinkGroupTitle variant='inherit'>HQ</LinkGroupTitle>
             <LinkList>
               <LinkListItem>
@@ -137,7 +138,7 @@ const Footer: React.FC = () => {
               </LinkListItem>
             </LinkList>
           </LinkGroup>
-          <LinkGroup item sm={12} md={2}>
+          <LinkGroup item xs={12} md={2}>
             <LinkGroupTitle variant='inherit'>Support</LinkGroupTitle>
             <LinkList>
               <LinkListItem>

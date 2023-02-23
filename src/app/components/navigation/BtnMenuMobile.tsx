@@ -13,11 +13,6 @@ interface IBtnMenuMobileProps {
   links: CompetitionModel[],
 }
 
-
-const Wrapper = styled(Box)`
-  
-`;
-
 const NavbarButton = styled(Button)`
   margin: 0;
   padding: 0;
@@ -54,7 +49,7 @@ const CommonListItem = styled(ListItem)`
 `;
 
 const DetailsList = styled(List)`
-
+  
 `;
 
 const DetailsListItem = styled(ListItem)`
@@ -111,7 +106,7 @@ const BtnMenuMobile: React.FC<IBtnMenuMobileProps> = ({ links }) => {
   };
 
   return (
-    <Wrapper>
+    <Box>
       <NavbarButton onClick={handleMenuOpen}>
         <FontAwesomeIcon icon={isOpen ? faXmark : faBars} />
       </NavbarButton>
@@ -215,7 +210,7 @@ const BtnMenuMobile: React.FC<IBtnMenuMobileProps> = ({ links }) => {
           }
         </CompetitionLinks>
       </Drawer>
-    </Wrapper>
+    </Box>
   );
 };
 
