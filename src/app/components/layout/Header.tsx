@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Box, Button, Container, styled, useMediaQuery } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import MainMenu from '../navigation/MainMenu';
-import NavPanel from '../navigation/Navigation';
 import { competitions } from '../../../data';
+import BtnMenu from '../navigation/BtnMenu';
+import Navigation from '../navigation/Navigation';
+import BtnMenuMobile from '../navigation/BtnMenuMobile';
 
 
 const Wrapper = styled(Box)`
@@ -20,14 +19,6 @@ const Content = styled(Container)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-`;
-
-const NavbarButton = styled(Button)`
-  width: auto;
-  svg {
-    font-size: 1.5em;
-    color: #ffffff;
-  }
 `;
 
 const SubscribeBtn = styled(Button)`
@@ -49,34 +40,17 @@ const Header: React.FC = () => {
   const data = competitions
   const isMobile = useMediaQuery('(max-width:640px)');
 
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-
-  const handleMenuOpen = () => {
-    setIsOpen(true);
-  };
-
-  const handleMenuClose = () => {
-    setIsOpen(false);
-  };
-
   return (
     <Wrapper component='header'>
       <Content maxWidth={'xl'}>
-        <NavbarButton onClick={handleMenuOpen}>
-          <FontAwesomeIcon icon={faBars} />
-        </NavbarButton>
         {
-          isOpen && (
-            <MainMenu 
-              links={data} 
-              isMobile={isMobile} 
-              onClose={handleMenuClose} 
-            />
-          )
+          isMobile ? 
+            <BtnMenuMobile links={data} /> : 
+            <BtnMenu links={data} />
         }
         <Logo to={'/'}>The Athletic</Logo>
         {
-          !isMobile && <NavPanel links={data} />
+          !isMobile && <Navigation links={data} />
         }
         <SubscribeBtn>Subscribe</SubscribeBtn>
       </Content>

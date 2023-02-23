@@ -54,6 +54,7 @@ const LinkListItem = styled(ListItem)`
 const Link = styled(NavLink)`
   text-decoration: none;
   color: #7b7b7b;
+  z-index: 0;
   &:hover {
     color: #ffffff;
   }

@@ -1,72 +1,48 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { Box, Button, Container, Divider, List, ListItem, styled, Typography } from '@mui/material';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { Box, Container, Divider, Drawer, List, ListItem, styled, Typography } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { CompetitionModel } from '../../models/components';
 import { setUrl } from '../../utils/helpers';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsis } from '@fortawesome/free-solid-svg-icons';
 
 
-interface INavPanelProps {
+interface INavigationProps {
   links: CompetitionModel[]
 }
 
-const NavPanelContainer = styled(Box)`
-  flex: 1;
+const Wrapper = styled(Box)`
+
 `;
 
-const NavList = styled(List)`
-  position: relative;
-  width: 100%;
+const NavLinkList = styled(List)`
   display: flex;
   list-style: none;
+  z-index: 1000;
 `;
 
-const NavListItem = styled(ListItem)`
+const NavLinkListItem = styled(ListItem)`
   width: max-content;
   display: flex;
   align-items: center;
 `;
 
-const MenuLink = styled(NavLink)`
+const Link = styled(NavLink)`
   font-size: 1.1em;
   text-decoration: none;
   color: #ffffff;
 `;
 
-const DropDownMenu = styled(Box)`
-  display: flex;
-  align-items: center;
-  
+const DropDownListWrapper = styled(Box)`
+
 `;
 
-const Wrapper = styled(Box)`
-  position: absolute;
-  top: 7vh;
-  left: 0;
-  width: 100%;
-  background: #ffffff;
-`;
-
-const TopLinks = styled(List)`
+const TopLinkList = styled(List)`
   display: flex;
   flex-wrap: wrap;
   list-style: none;
 `;
 
-const TopListItem = styled(ListItem)`
-  width: fit-content;
-`;
-
-const TopLink = styled(NavLink)`
-  font-size: 1.2em;
-  font-weight: 700;
-  text-decoration: none;
-  color: #333333;
-`;
-
-const BottomLinks = styled(List)`
+const BottomLinkList = styled(List)`
   position: relative;
   width: 100%;
   height: 24vh;
@@ -76,9 +52,19 @@ const BottomLinks = styled(List)`
   list-style: none;
 `;
 
-const BottomListItem = styled(ListItem)`
-  margin-bottom: 20px;
-  width: 20%;
+const TopLinkListItem = styled(ListItem)`
+  width: fit-content;
+`;
+
+const BottomLinkListItem = styled(ListItem)`
+  width: fit-content;
+`;
+
+const TopLink = styled(NavLink)`
+  font-size: 1.2em;
+  font-weight: 700;
+  text-decoration: none;
+  color: #333333;
 `;
 
 const BottomLink = styled(NavLink)`
@@ -93,144 +79,99 @@ const BottomLink = styled(NavLink)`
   }
 `;
 
-const OtherLinksButton = styled(Button)`
-  font-size: 1.2em;
-  color: #ffffff;
-`;
 
-
-const NavPanel: React.FC<INavPanelProps> = ({ links }) => {
-  const ref = useRef<HTMLElement | null>(null);
-
+const Navigation: React.FC<INavigationProps> = ({ links }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [activeLink, setActiveLink] = useState<CompetitionModel | null>(null);
-  const [otherLinks, setOtherLinks] = useState<CompetitionModel[] | null>(null);
-  const [width, setWidth] = useState(0);
-  const [visibleLinks, setVisibleLinks] = useState<number>(5);
 
-  const handleActiveLink = (e: any) => {
-    setOtherLinks(null);
-    setActiveLink(links.find(link => link.fullName === e.target.innerText)!)
+  const handleMenuOpen = (value: string) => {
+    setIsOpen(true);
+    const linkToRender = links.find(link => link.fullName === value);
+    if(linkToRender) setActiveLink(linkToRender);
   };
 
-  const clearActiveLink = () => {
+  const handleMenuClose = () => {
+    setIsOpen(false);
     setActiveLink(null);
   };
-
-  const handleOtherLinks = () => {
-    setActiveLink(null);
-    if(links.length > 6) {
-      setOtherLinks(links.slice(visibleLinks));
-    }
-  };
-
-  const clearOtherLinks = () => {
-    setOtherLinks(null);
-  };
-
-  useLayoutEffect(() => {
-    setVisibleLinks(Math.round(ref.current?.clientWidth! / 170));
-  }, [width])
-
-  useEffect(() => {
-    
-    const handleWindowResize = () => {
-      setWidth(ref.current?.clientWidth!)
-    };
-
-    window.addEventListener('resize', handleWindowResize);
-    return () => {
-      window.removeEventListener('resize', handleWindowResize);
-    }
-  }, [width]);
 
   return (
-    <NavPanelContainer ref={ref}>
-      <NavList>
-        {links.slice(0, visibleLinks).map(link => (
-          <NavListItem key={uuid()}>
-            <MenuLink 
-              to={setUrl(link.fullName)}
-              onMouseEnter={handleActiveLink}
-            >{link.fullName}</MenuLink>
-          </NavListItem>
+    <Wrapper component='nav'>
+      <NavLinkList>
+        {links.slice(0, 6).map(link => (
+          <NavLinkListItem key={uuid()}>
+            <Link 
+              to={setUrl(link.fullName)} 
+              onMouseEnter={() => handleMenuOpen(link.fullName)}
+            >
+              {link.fullName}
+            </Link>
+          </NavLinkListItem>
         ))}
-        <NavListItem key={uuid()}>
-          <OtherLinksButton 
-            onMouseEnter={handleOtherLinks}
-          >
-            <FontAwesomeIcon icon={faEllipsis} />
-          </OtherLinksButton>
-        </NavListItem>
-      </NavList>
-      {activeLink && (
-        <DropDownMenu onMouseLeave={clearActiveLink}>
-          <Wrapper>
-            <Container>
-              <TopLinks>
-                <TopListItem>
+        
+      </NavLinkList>
+      <Drawer
+        anchor='top'
+        open={isOpen}
+        PaperProps={{
+          style: {
+            position: 'relative',
+          }
+        }}
+        ModalProps={{
+          style: {
+            position: 'absolute',
+            top: '7vh'
+          }
+        }}
+        hideBackdrop={true}
+        transitionDuration={0}
+        onClose={handleMenuClose}
+      >
+        <DropDownListWrapper onMouseLeave={handleMenuClose}>
+          {activeLink && (
+            <Container maxWidth='xl'>
+              <TopLinkList>
+                <TopLinkListItem>
                   <TopLink to={setUrl(activeLink?.fullName!)}>
-                    <Typography variant='inherit'>Home</Typography>
+                    Home
                   </TopLink>
-                </TopListItem>
-                <TopListItem>
-                  <TopLink to={`${setUrl(activeLink?.fullName!)}/schedule/`}>
+                </TopLinkListItem>
+                <TopLinkListItem>
+                  <TopLink to={`${setUrl(activeLink?.fullName!)}/schedule`}>
                     Scores & Schedule
                   </TopLink>
-                </TopListItem>
-                <TopListItem>
+                </TopLinkListItem>
+                <TopLinkListItem>
                   <TopLink to={`${setUrl(activeLink?.fullName!)}/standings/`}>
                     Standings
                   </TopLink>
-                </TopListItem>
-                <TopListItem>
+                </TopLinkListItem>
+                <TopLinkListItem>
                   <TopLink to={`${setUrl(activeLink?.fullName!)}/news/`}>
                     News
                   </TopLink>
-                </TopListItem>
-              </TopLinks>
+                </TopLinkListItem>
+              </TopLinkList>
               <Divider />
-              <BottomLinks>
-                {activeLink!.clubs.map(club => (
-                  <BottomListItem key={uuid()}>
-                    <BottomLink 
-                      to={`${setUrl(activeLink?.fullName!)}/${setUrl(club.commonName)}`}
-                    >
+              <BottomLinkList>
+                {activeLink.clubs.map(club => (
+                  <BottomLinkListItem key={uuid()}>
+                    <BottomLink to={`${setUrl(activeLink.fullName)}/${setUrl(club.commonName)}`}>
                       <img src={club.clubLogoUrl} alt={club.commonName} />
                       <Typography variant='inherit'>
                         {club.commonName}
                       </Typography>
                     </BottomLink>
-                  </BottomListItem>
+                  </BottomLinkListItem>
                 ))}
-              </BottomLinks>
+              </BottomLinkList>
             </Container>
-          </Wrapper>
-        </DropDownMenu>
-      )}
-      {otherLinks && (
-        <DropDownMenu onMouseLeave={clearOtherLinks}>
-          <Wrapper>
-          <Container>
-            <BottomLinks>
-              {otherLinks.map(link => (
-                <BottomListItem key={uuid()}>
-                  <BottomLink 
-                    to={setUrl(link.fullName)}
-                  >
-                    <img src={link.logoUrl} alt={link.fullName} />
-                    <Typography variant='inherit'>
-                      {link.fullName}
-                    </Typography>
-                  </BottomLink>
-                </BottomListItem>
-              ))}
-            </BottomLinks>
-          </Container>
-          </Wrapper>
-        </DropDownMenu>
-      )}
-    </NavPanelContainer>
-  );
-};
+          )}
+        </DropDownListWrapper>
+      </Drawer>
+    </Wrapper>
+  )
+}
 
-export default NavPanel;
+export default Navigation
