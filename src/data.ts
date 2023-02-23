@@ -360,3 +360,27 @@ export const competitions = [
   },
 ];
 
+
+export const materials = [
+  {
+    author: { 
+      firstName: 'Laurie',
+      lastName: 'Whitwell',
+      photoUrl: 'https://www.storage.com/authors/author_1.png',
+      organization: 'Arsenal',
+      position: 'Correspondent',
+     }, 
+    title: 'Arsenal’s victory over Aston Villa proves the depth of Mikel Arteta’s squad',
+    text: 'As soon as Fabio Vieira released the pass, he celebrated. Emiliano Martinez had come forward for a 98th-minute corner, seeking redemption for his own goal just minutes before. The ball was headed clear by William Saliba, and Vieira raced onto it before releasing a perfect pass for Gabriel Martinelli to run through and score. A despondent Martinez barely made it back to halfway.',
+    image: 'https://cdn.theathletic.com/cdn-cgi/image/width=770,format=auto/https://cdn.theathletic.com/app/uploads/2023/02/20094541/Vieira-Arsenal-Martinelli-Aston-Villa-1024x718.jpg',
+    views: 76,
+    likes: 74,
+    comments: [
+      {
+        user: 'John Doe', 
+        message: 'Come on Arsenal!'
+      }
+    ],
+    labels: ['Arsenal', 'Premier League', 'Aston Villa'],
+  }
+];

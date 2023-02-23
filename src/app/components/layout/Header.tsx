@@ -27,10 +27,14 @@ const Section = styled(Box)`
 
 const SubscribeBtn = styled(Button)`
   background: #ed4747;
+  font-family: 'Arvo';
+  font-weight: 600;
+  text-transform: capitalize;
   color: #ffffff;
 `;
 
 const Logo = styled(NavLink)`
+  margin-left: 20px;
   font-family: 'Arvo';
   font-size: 2em;
   font-weight: 700;
@@ -62,7 +66,7 @@ const Header: React.FC = () => {
         {
           !isMobile && <Navigation links={data} />
         }
-        <SubscribeBtn>Subscribe</SubscribeBtn>
+        <SubscribeBtn >Subscribe</SubscribeBtn>
       </Content>
     </Wrapper>
   );
