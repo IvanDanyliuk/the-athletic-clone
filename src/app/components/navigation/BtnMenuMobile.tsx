@@ -8,7 +8,6 @@ import { CompetitionModel } from '../../models/components';
 import { setUrl } from '../../utils/helpers';
 
 
-
 interface IBtnMenuMobileProps {
   links: CompetitionModel[],
 }
@@ -49,7 +48,7 @@ const CommonListItem = styled(ListItem)`
 `;
 
 const DetailsList = styled(List)`
-  
+
 `;
 
 const DetailsListItem = styled(ListItem)`

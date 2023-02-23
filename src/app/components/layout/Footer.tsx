@@ -54,13 +54,17 @@ const LinkListItem = styled(ListItem)`
 const Link = styled(NavLink)`
   text-decoration: none;
   color: #7b7b7b;
-  font-size: .7em;
+  font-size: 1em;
   z-index: 0;
   &:hover {
     color: #ffffff;
   }
   svg  {
     font-size: 2em;
+  }
+
+  @media (max-width: 640px) {
+    font-size: .7em;
   }
 `;
 
@@ -72,7 +76,11 @@ const Logo = styled(Typography)`
 `;
 
 const Copyright = styled(Typography)`
-  font-size: .7em;
+  font-size: 1em;
+  
+  @media (max-width: 640px) {
+    font-size: .7em;
+  }
 `;
 
 

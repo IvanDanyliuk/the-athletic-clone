@@ -21,6 +21,10 @@ const Content = styled(Container)`
   align-items: center;
 `;
 
+const Section = styled(Box)`
+  display: flex;
+`;
+
 const SubscribeBtn = styled(Button)`
   background: #ed4747;
   color: #ffffff;
@@ -33,6 +37,10 @@ const Logo = styled(NavLink)`
   white-space: nowrap;
   text-decoration: none;
   color: #ffffff;
+
+  @media (max-width: 640px) {
+    font-size: 1.7em;
+  }
 `;
 
 
@@ -43,12 +51,14 @@ const Header: React.FC = () => {
   return (
     <Wrapper component='header'>
       <Content maxWidth={'xl'}>
-        {
-          isMobile ? 
-            <BtnMenuMobile links={data} /> : 
-            <BtnMenu links={data} />
-        }
-        <Logo to={'/'}>The Athletic</Logo>
+        <Section>
+          {
+            isMobile ? 
+              <BtnMenuMobile links={data} /> : 
+              <BtnMenu links={data} />
+          }
+          <Logo to={'/'}>The Athletic</Logo>
+        </Section>
         {
           !isMobile && <Navigation links={data} />
         }
