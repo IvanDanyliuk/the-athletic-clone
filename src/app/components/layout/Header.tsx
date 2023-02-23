@@ -4,6 +4,7 @@ import { Box, Button, Container, styled, useMediaQuery } from '@mui/material';
 import { competitions } from '../../../data';
 import BtnMenu from '../navigation/BtnMenu';
 import Navigation from '../navigation/Navigation';
+import BtnMenuMobile from '../navigation/BtnMenuMobile';
 
 
 const Wrapper = styled(Box)`
@@ -42,7 +43,11 @@ const Header: React.FC = () => {
   return (
     <Wrapper component='header'>
       <Content maxWidth={'xl'}>
-        <BtnMenu links={data} />
+        {
+          isMobile ? 
+            <BtnMenuMobile links={data} /> : 
+            <BtnMenu links={data} />
+        }
         <Logo to={'/'}>The Athletic</Logo>
         {
           !isMobile && <Navigation links={data} />
