@@ -1,123 +1,154 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, styled, Typography } from '@mui/material';
+import { Box, Grid, styled, Typography, useMediaQuery } from '@mui/material';
 import { materials } from '../../data';
+import { setPreviewText } from '../utils/helpers';
 
 
 const Wrapper = styled(Box)`
   padding: 2em;
   width: 100%;
-  max-height: 93vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  background: #454444;
-  color: #000000;
+  min-height: 93vh;
+  background: #3b3b3b;
+
+  @media (max-width: 640px) {
+    padding: 2em 1em;
+  }
 `;
 
-const TopSection = styled(Box)`
-  margin-bottom: 30px;
+const ErrorMessage = styled(Box)`
+  letter-spacing: 3px;
 `;
 
-const BottomSection = styled(Box)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const Index = styled(Typography)`
-  margin-bottom: 20px;
-  padding: .2em;
+const ErrorIndex = styled(Typography)`
+  padding: 10px 20px;
   width: fit-content;
   font-size: 5em;
+  font-weight: 500;
   line-height: 1em;
-  letter-spacing: 3px;
   border-radius: 5px;
   background: #ffffff;
+
+  @media (max-width: 640px) {
+    font-size: 3em;
+  }
 `;
 
-const Message = styled(Box)`
-  margin-bottom: 20px;
-  padding: .4em;
+const Message = styled(Typography)`
+  margin: 20px 0;
+  padding: 10px 20px;
   width: fit-content;
-  height: fit-content;
-  font-size: 2em;
-  line-height: 1em;
-  letter-spacing: 3px;
+  font-size: 1.5em;
   border-radius: 5px;
   background: #ffffff;
 
   a {
-    color: #086ef4;
+    text-decoration: none;
+    color: #078adb;
+  }
+
+  @media (max-width: 640px) {
+    font-size: .9em;
   }
 `;
 
 const Article = styled(Box)`
-  padding: .5em 1em;
-  width: 55%;
+  padding: 1em;
   display: flex;
   align-items: center;
   border-radius: 5px;
   background: #ffffff;
 
   img {
-    height: 16em;
+    height: 180px;
+  }
+
+  @media (max-width: 640px) {
+    img {
+      height: 100px;
+    }
   }
 `;
 
-const ArticleDetails = styled(Box)`
-  padding: 1em;
+const ArticleContent = styled(Box)`
+  margin-left: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 
 const Title = styled(Typography)`
   font-family: 'Merriweather', serif;
-  font-size: 1.7em;
+  font-size: 1.4em;
+
+  @media (max-width: 640px) {
+    font-size: .8em;
+  }
 `;
 
-const Author = styled(Typography)`
+const AuthorName = styled(Typography)`
   margin: 10px 0;
-  font-weight: 500;
-  color: #939393;
+  font-weight: 600;
+  color: #858585;
+
+  @media (max-width: 640px) {
+    font-size: .7em;
+  }
 `;
 
-const Text = styled(Typography)`
-  font-family: 'Merriweather', serif;
-  font-size: .8em;
+const PreviewText = styled(Typography)`
+  font-size: .9em;
+`;
+
+const BackLinkContainer = styled(Box)`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 
 const NotFound: React.FC = () => {
   const article = materials[0];
 
+  const isMobile = useMediaQuery('(max-width:640px)');
+
   return (
     <Wrapper>
-      <TopSection>
-        <Index variant='inherit'>
-          404
-        </Index>
-        <Message>
-          <Typography variant='inherit'>Sorry this page isn’t available.</Typography>
-        </Message>
-        <Message>
-          <Typography variant='inherit'>Check out this article instead.</Typography>
-        </Message>
-      </TopSection>
-      <BottomSection>
-        <Article>
-          <img src={article.image} alt={article.title} />
-          <ArticleDetails>
-            <Title>{article.title}</Title>
-            <Author>{`${article.author.firstName} ${article.author.lastName}`}</Author>
-            <Text>{article.text}</Text>
-          </ArticleDetails>
-        </Article>
-        <Message>
-          <Typography variant='inherit'>
-            Or take me <Link to='/'>home.</Link>
-          </Typography>
-        </Message>
-      </BottomSection>
+      <ErrorMessage>
+        <ErrorIndex variant='inherit'>404</ErrorIndex>
+        <Message variant='inherit'>Sorry this page isn’t available.</Message>
+        <Message variant='inherit'>Check out this article instead.</Message>
+      </ErrorMessage>
+      <Grid container spacing={3} alignItems='center'>
+        <Grid item xs={12} md={6}>
+          <Article>
+            <img src={article.image} alt={article.title} />
+            <ArticleContent>
+              <Title variant='inherit'>
+                {article.title}
+              </Title>
+              <AuthorName variant='inherit'>
+                {`${article.author.firstName} ${article.author.lastName}`}
+              </AuthorName>
+              {
+                !isMobile && (
+                  <PreviewText variant='inherit'>
+                    {setPreviewText(30, article.text)}
+                  </PreviewText>
+                )
+              }
+            </ArticleContent>
+          </Article>
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <BackLinkContainer>
+            <Message variant='inherit'>
+              Or take me <Link to='/'>home.</Link>
+            </Message>
+          </BackLinkContainer>
+        </Grid>
+      </Grid>
     </Wrapper>
   );
 };
