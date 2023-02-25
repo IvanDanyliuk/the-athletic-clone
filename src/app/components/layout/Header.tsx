@@ -11,6 +11,7 @@ const Wrapper = styled(Box)`
   position: fixed;
   width: 100%;
   background: #181818;
+  z-index: 1000;
 `;
 
 const Content = styled(Container)`
