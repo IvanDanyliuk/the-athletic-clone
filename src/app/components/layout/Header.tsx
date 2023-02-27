@@ -5,6 +5,7 @@ import { competitions } from '../../../data';
 import BtnMenu from '../navigation/BtnMenu';
 import Navigation from '../navigation/Navigation';
 import BtnMenuMobile from '../navigation/BtnMenuMobile';
+import UserHeaderMenu from '../user/UserHeaderMenu';
 
 
 const Wrapper = styled(Box)`
@@ -67,6 +68,7 @@ const Header: React.FC = () => {
         {
           !isMobile && <Navigation links={data} />
         }
+        <UserHeaderMenu />
         <SubscribeBtn >Subscribe</SubscribeBtn>
       </Content>
     </Wrapper>

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, signup } from './asyncActions';
+import { login, logout, signup } from './asyncActions';
 import { IUserInitialState } from './types';
 
 
@@ -34,6 +34,17 @@ const userSlice = createSlice({
         state.user = action.payload;
       })
       .addCase(login.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = 'error';
+      })
+      .addCase(logout.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(logout.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.user = null;
+      })
+      .addCase(logout.rejected, (state, action) => {
         state.status = 'failed';
         state.error = 'error';
       })

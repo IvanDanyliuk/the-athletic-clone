@@ -26,3 +26,14 @@ export const signup = createAsyncThunk(
     }
   }
 );
+
+export const logout = createAsyncThunk(
+  'users/logout',
+  async (_: undefined, thunkAPI) => {
+    try {
+      await api.logout();
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
