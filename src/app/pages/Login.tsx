@@ -1,7 +1,13 @@
 import React from 'react';
-import { Box, Button, Divider, InputLabel, styled, TextField, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useForm } from 'react-hook-form';
+import { Box, Button, Divider, styled, Typography } from '@mui/material';
+import { AppDispatch } from '../../features/store';
 import AuthButtons from '../components/authentication/AuthButtons';
+import TextInput from '../components/ui/TextInput';
+import { login } from '../../features/users/asyncActions';
+import { ILoginCredentials } from '../../features/users/types';
 
 
 const Wrapper = styled(Box)`
@@ -49,17 +55,6 @@ const LoginForm = styled('form')`
 
 `;
 
-const Label = styled(InputLabel)`
-  margin-bottom: 5px;
-  font-size: .9em;
-  color: #000000;
-`;
-
-const Input = styled(TextField)`
-  margin-bottom: 20px;
-  width: 100%;
-`;
-
 const SubmitButton = styled(Button)`
   margin: 10px 0;
   padding: 1em;
@@ -89,9 +84,11 @@ const BottomLink = styled(Link)`
 
 
 const Login: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { register, handleSubmit, formState: { errors }, getValues } = useForm<ILoginCredentials>();
 
-  const submitLoginForm = () => {
-
+  const submitLoginForm = (data: ILoginCredentials) => {
+    dispatch(login(data));
   };
 
   return (
@@ -104,11 +101,21 @@ const Login: React.FC = () => {
           <Typography>or</Typography>
           <Divider />
         </PageDivider>
-        <LoginForm onSubmit={submitLoginForm}>
-          <Label htmlFor='email'>Email</Label>
-          <Input id='email' />
-          <Label htmlFor='password'>Password</Label>
-          <Input id='password' />
+        <LoginForm onSubmit={handleSubmit(submitLoginForm)}>
+          <TextInput 
+            name='email'
+            label='Email'
+            type='email'
+            register={register}
+            registerOptions={{ required: 'Required' }}
+          />
+          <TextInput 
+            name='password'
+            label='Password'
+            type='password'
+            register={register}
+            registerOptions={{ required: 'Required' }}
+          />
           <SubmitButton type='submit'>Log in</SubmitButton>
         </LoginForm>
         <BottomLink to='/'>Forgot your password?</BottomLink>

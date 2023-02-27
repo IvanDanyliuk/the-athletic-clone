@@ -1,11 +1,16 @@
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
+import { styled } from '@mui/material';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Box, Button, Checkbox, Divider, FormControlLabel, Grid, InputLabel, TextField, Typography } from '@mui/material';
-import { styled } from '@mui/system';
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Box, Button, Checkbox, Divider, FormControlLabel, Grid, Typography } from '@mui/material';
 import AuthButtons from '../components/authentication/AuthButtons';
 import { IUser } from '../models/users';
+import TextInput from '../components/ui/TextInput';
+import { useDispatch } from 'react-redux';
+import { signup } from '../../features/users/asyncActions';
+import { AppDispatch } from '../../features/store';
 
 
 const Wrapper = styled(Box)`
@@ -51,16 +56,6 @@ const PageDivider = styled(Box)`
 
 const RegisterForm = styled('form')`
 
-`;
-
-const Label = styled(InputLabel)`
-  margin-bottom: 5px;
-  font-size: .9em;
-  color: #000000;
-`;
-
-const Input = styled(TextField)`
-  width: 100%;
 `;
 
 const SubmitButton = styled(Button)`
@@ -120,23 +115,20 @@ const BottomText = styled(Typography)`
 
 
 const Register: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { register, handleSubmit, formState: { errors }, getValues } = useForm<IUser>();
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
-  const [email, setEmail] = useState<string>('');
-
-  const handleEmailChange = (e: any) => {
-    setEmail(e.target.value);
-  };
 
   const handlePageMode = () => {
-    if(!isFormVisible && email) {
+    if(!isFormVisible && getValues().email) {
       setIsFormVisible(true);
     } else {
       setIsFormVisible(false);
     }
   };
 
-  const submitRegisterForm = () => {
-
+  const submitRegisterForm = (data: IUser) => {
+    dispatch(signup(data));
   };
 
   return (
@@ -150,28 +142,48 @@ const Register: React.FC = () => {
                 <FontAwesomeIcon icon={faAngleLeft} />
                 Back
               </BackButton>
-              <RegisterForm onSubmit={submitRegisterForm}>
+              <RegisterForm onSubmit={handleSubmit(submitRegisterForm)}>
                 <Grid container spacing={2}>
                   <Grid item xs={12} md={6}>
-                    <Label htmlFor='firstName'>First Name</Label>
-                    <Input id='firstName' />
+                    <TextInput 
+                      name='firstName'
+                      label='First Name'
+                      type='text'
+                      register={register}
+                      registerOptions={{ required: 'Required' }}
+                    />
                   </Grid>
                   <Grid item xs={12} md={6}>
-                    <Label htmlFor='lastName'>Last Name</Label>
-                    <Input id='lastName' />
+                    <TextInput 
+                      name='lastName'
+                      label='Last Name'
+                      type='text'
+                      register={register}
+                      registerOptions={{ required: 'Required' }}
+                    />
                   </Grid>
                   <Grid item xs={12} >
-                    <Label htmlFor='email'>Email</Label>
-                    <Input id='email' value={email} onChange={handleEmailChange} />
+                    <TextInput 
+                      name='email'
+                      label='Email'
+                      type='email'
+                      register={register}
+                      registerOptions={{ required: 'Required' }}
+                    />
                   </Grid>
                   <Grid item xs={12} >
-                    <Label htmlFor='password'>Password</Label>
-                    <Input id='password' type='password' />
+                    <TextInput 
+                      name='password'
+                      label='Password'
+                      type='password'
+                      register={register}
+                      registerOptions={{ required: 'Required' }}
+                    />
                   </Grid>
                   <Grid item xs={12} >
                     <CheckboxLabel 
                       control={<Checkbox />} 
-                      label="I would like to receive news, updates and promotions from The Athletic. I can unsubscribe at any time." 
+                      label='I would like to receive news, updates and promotions from The Athletic. I can unsubscribe at any time.' 
                     />
                   </Grid>
                   <Grid item xs={12} >
@@ -188,8 +200,13 @@ const Register: React.FC = () => {
                 <Typography>or</Typography>
                 <Divider />
               </PageDivider>
-              <Label htmlFor='email'>Email</Label>
-              <Input id='email' value={email} onChange={handleEmailChange} />
+              <TextInput 
+                name='email'
+                label='Email'
+                type='email'
+                register={register}
+                registerOptions={{ required: 'Required' }}
+              />
               <SubmitButton onClick={handlePageMode}>Continue</SubmitButton>
             </>
           )
