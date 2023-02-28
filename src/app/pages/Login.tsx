@@ -51,10 +51,6 @@ const PageDivider = styled(Box)`
   }
 `;
 
-const LoginForm = styled('form')`
-
-`;
-
 const SubmitButton = styled(Button)`
   margin: 10px 0;
   padding: 1em;
@@ -85,10 +81,11 @@ const BottomLink = styled(Link)`
 
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { register, handleSubmit, formState: { errors }, getValues } = useForm<ILoginCredentials>();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<ILoginCredentials>();
 
   const submitLoginForm = (data: ILoginCredentials) => {
     dispatch(login(data));
+    reset();
   };
 
   return (
@@ -101,23 +98,25 @@ const Login: React.FC = () => {
           <Typography>or</Typography>
           <Divider />
         </PageDivider>
-        <LoginForm onSubmit={handleSubmit(submitLoginForm)}>
+        <form onSubmit={handleSubmit(submitLoginForm)}>
           <TextInput 
             name='email'
             label='Email'
             type='email'
             register={register}
-            registerOptions={{ required: 'Required' }}
+            registerOptions={{ required: 'Email is required!' }}
+            error={errors.email}
           />
           <TextInput 
             name='password'
             label='Password'
             type='password'
             register={register}
-            registerOptions={{ required: 'Required' }}
+            registerOptions={{ required: 'Password is required!' }}
+            error={errors.password}
           />
           <SubmitButton type='submit'>Log in</SubmitButton>
-        </LoginForm>
+        </form>
         <BottomLink to='/'>Forgot your password?</BottomLink>
         <BottomLink to='/register'>Don't have an account? Sign Up</BottomLink>
       </Container>

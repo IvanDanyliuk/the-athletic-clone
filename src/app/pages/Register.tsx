@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material';
@@ -8,7 +9,6 @@ import { Box, Button, Checkbox, Divider, FormControlLabel, Grid, Typography } fr
 import AuthButtons from '../components/authentication/AuthButtons';
 import { IUser } from '../models/users';
 import TextInput from '../components/ui/TextInput';
-import { useDispatch } from 'react-redux';
 import { signup } from '../../features/users/asyncActions';
 import { AppDispatch } from '../../features/store';
 
@@ -52,10 +52,6 @@ const PageDivider = styled(Box)`
   hr {
     width: 43%;
   }
-`;
-
-const RegisterForm = styled('form')`
-
 `;
 
 const SubmitButton = styled(Button)`
@@ -116,7 +112,7 @@ const BottomText = styled(Typography)`
 
 const Register: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { register, handleSubmit, formState: { errors }, getValues } = useForm<IUser>();
+  const { register, handleSubmit, formState: { errors }, getValues, reset } = useForm<IUser>();
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
 
   const handlePageMode = () => {
@@ -129,6 +125,7 @@ const Register: React.FC = () => {
 
   const submitRegisterForm = (data: IUser) => {
     dispatch(signup(data));
+    reset();
   };
 
   return (
@@ -142,7 +139,7 @@ const Register: React.FC = () => {
                 <FontAwesomeIcon icon={faAngleLeft} />
                 Back
               </BackButton>
-              <RegisterForm onSubmit={handleSubmit(submitRegisterForm)}>
+              <form onSubmit={handleSubmit(submitRegisterForm)}>
                 <Grid container spacing={2}>
                   <Grid item xs={12} md={6}>
                     <TextInput 
@@ -150,7 +147,8 @@ const Register: React.FC = () => {
                       label='First Name'
                       type='text'
                       register={register}
-                      registerOptions={{ required: 'Required' }}
+                      registerOptions={{ required: 'This field is required!' }}
+                      error={errors.firstName}
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
@@ -159,7 +157,8 @@ const Register: React.FC = () => {
                       label='Last Name'
                       type='text'
                       register={register}
-                      registerOptions={{ required: 'Required' }}
+                      registerOptions={{ required: 'This field is required!' }}
+                      error={errors.lastName}
                     />
                   </Grid>
                   <Grid item xs={12} >
@@ -168,7 +167,8 @@ const Register: React.FC = () => {
                       label='Email'
                       type='email'
                       register={register}
-                      registerOptions={{ required: 'Required' }}
+                      registerOptions={{ required: 'This field is required!' }}
+                      error={errors.email}
                     />
                   </Grid>
                   <Grid item xs={12} >
@@ -177,7 +177,8 @@ const Register: React.FC = () => {
                       label='Password'
                       type='password'
                       register={register}
-                      registerOptions={{ required: 'Required' }}
+                      registerOptions={{ required: 'This field is required!' }}
+                      error={errors.password}
                     />
                   </Grid>
                   <Grid item xs={12} >
@@ -190,7 +191,7 @@ const Register: React.FC = () => {
                     <SubmitButton type='submit'>Create Account</SubmitButton>
                   </Grid>
                 </Grid>
-              </RegisterForm>
+              </form>
             </>
           ) : (
             <>
@@ -205,7 +206,8 @@ const Register: React.FC = () => {
                 label='Email'
                 type='email'
                 register={register}
-                registerOptions={{ required: 'Required' }}
+                registerOptions={{ required: 'This field is required!' }}
+                error={errors.email}
               />
               <SubmitButton onClick={handlePageMode}>Continue</SubmitButton>
             </>

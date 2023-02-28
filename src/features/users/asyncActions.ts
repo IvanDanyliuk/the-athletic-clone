@@ -22,6 +22,7 @@ export const signup = createAsyncThunk(
       const { data } = await api.signup(userData);
       return data;
     } catch (error: any) {
+      console.log(error.message)
       return thunkAPI.rejectWithValue(error.message);
     }
   }

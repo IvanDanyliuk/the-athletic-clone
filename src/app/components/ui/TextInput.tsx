@@ -1,7 +1,8 @@
 import React from 'react';
 import { FieldError, RegisterOptions, UseFormRegister } from 'react-hook-form';
-
 import { Box, InputLabel, styled, TextField, Typography } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 
 interface ITextInputProps {
@@ -27,8 +28,16 @@ const Input = styled(TextField)`
   width: 100%;
 `;
 
-const ErrorMessage = styled(Typography)`
+const ErrorMessage = styled(Box)`
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  font-size: .7em;
+  color: #cd2424;
 
+  svg {
+    margin-right: 5px;
+  }
 `;
 
 const TextInput: React.FC<ITextInputProps> = ({ name, label, register, registerOptions, error, ...props }) => {
@@ -42,7 +51,14 @@ const TextInput: React.FC<ITextInputProps> = ({ name, label, register, registerO
         {...props} 
         {...register(name, registerOptions)}
       />
-      <ErrorMessage>{error?.message}</ErrorMessage>
+      <ErrorMessage>
+        {error && (
+          <>
+            <FontAwesomeIcon icon={faCircleExclamation} />
+            <Typography variant='inherit'>{error?.message}</Typography>
+          </>
+        )}
+      </ErrorMessage>
     </Wrapper>
   );
 };

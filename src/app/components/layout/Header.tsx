@@ -1,11 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { Box, Button, Container, styled, useMediaQuery } from '@mui/material';
 import { competitions } from '../../../data';
 import BtnMenu from '../navigation/BtnMenu';
 import Navigation from '../navigation/Navigation';
 import BtnMenuMobile from '../navigation/BtnMenuMobile';
 import UserHeaderMenu from '../user/UserHeaderMenu';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../../features/users/selectors';
 
 
 const Wrapper = styled(Box)`
@@ -49,10 +51,19 @@ const Logo = styled(NavLink)`
   }
 `;
 
+const LoginLink = styled(Link)`
+  font-size: 1.1em;
+  font-weight: 600;
+  text-decoration: none;
+  color: #ffffff;
+`;
+
 
 const Header: React.FC = () => {
   const data = competitions
   const isMobile = useMediaQuery('(max-width:640px)');
+
+  const user = useSelector(selectUser);
 
   return (
     <Wrapper component='header'>
@@ -68,7 +79,13 @@ const Header: React.FC = () => {
         {
           !isMobile && <Navigation links={data} />
         }
-        <UserHeaderMenu />
+        {
+          user ? (
+            <UserHeaderMenu user={user} />
+          ) : (
+            <LoginLink to='/login'>Log In</LoginLink>
+          )
+        }
         <SubscribeBtn >Subscribe</SubscribeBtn>
       </Content>
     </Wrapper>
