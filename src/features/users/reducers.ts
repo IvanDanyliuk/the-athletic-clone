@@ -12,7 +12,12 @@ const initialState: IUserInitialState = {
 const userSlice = createSlice({
   name: 'users',
   initialState,
-  reducers: {},
+  reducers: {
+    clearError: (state) => {
+      state.status = 'idle';
+      state.error = null;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(signup.pending, (state, action) => {
@@ -22,9 +27,9 @@ const userSlice = createSlice({
         state.status = 'succeeded';
         state.user = action.payload;
       })
-      .addCase(signup.rejected, (state, action) => {
+      .addCase(signup.rejected, (state, action: any) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = action.payload.error;
       })
       .addCase(login.pending, (state, action) => {
         state.status = 'loading';
@@ -33,9 +38,9 @@ const userSlice = createSlice({
         state.status = 'succeeded';
         state.user = action.payload;
       })
-      .addCase(login.rejected, (state, action) => {
+      .addCase(login.rejected, (state, action: any) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = action.payload.error;
       })
       .addCase(logout.pending, (state, action) => {
         state.status = 'loading';
@@ -44,13 +49,13 @@ const userSlice = createSlice({
         state.status = 'succeeded';
         state.user = null;
       })
-      .addCase(logout.rejected, (state, action) => {
+      .addCase(logout.rejected, (state, action: any) => {
         state.status = 'failed';
-        state.error = 'error';
+        state.error = action.payload.error;
       })
   }
 });
 
-// export const {  } = userSlice.actions;
+export const { clearError } = userSlice.actions;
 
 export default userSlice.reducer;

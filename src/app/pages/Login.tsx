@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { Box, Button, Divider, styled, Typography } from '@mui/material';
+import { Box, Button, Divider, Snackbar, styled, Typography } from '@mui/material';
 import { AppDispatch } from '../../features/store';
 import AuthButtons from '../components/authentication/AuthButtons';
 import TextInput from '../components/ui/TextInput';
 import { login } from '../../features/users/asyncActions';
 import { ILoginCredentials } from '../../features/users/types';
+import { selectUserError } from '../../features/users/selectors';
+import ErrorSnackbar from '../components/ui/ErrorSnackbar';
+import { clearError } from '../../features/users/reducers';
 
 
 const Wrapper = styled(Box)`
@@ -82,11 +85,25 @@ const BottomLink = styled(Link)`
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ILoginCredentials>();
+  const [isError, setIsError] = useState<boolean>(false);
+
+  const error = useSelector(selectUserError);
 
   const submitLoginForm = (data: ILoginCredentials) => {
     dispatch(login(data));
     reset();
   };
+
+  const handleErrorSnackbarClose = () => {
+    dispatch(clearError());
+    setIsError(false);
+  }
+
+  useEffect(() => {
+    if(error) {
+      setIsError(true);
+    }
+  }, [error]);
 
   return (
     <Wrapper>
@@ -120,6 +137,11 @@ const Login: React.FC = () => {
         <BottomLink to='/'>Forgot your password?</BottomLink>
         <BottomLink to='/register'>Don't have an account? Sign Up</BottomLink>
       </Container>
+      <ErrorSnackbar 
+        isOpen={isError}
+        message={error}
+        onClose={handleErrorSnackbarClose}
+      />
     </Wrapper>
   );
 };
