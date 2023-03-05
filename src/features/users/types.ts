@@ -10,9 +10,13 @@ export interface IUser {
   email: string,
   password: string,
   userPhotoUrl?: string,
-  role: string,
+  role?: string,
   location?: string,
   organization?: string,
   position?: string
 }
 
+export interface ILoginCredentials {
+  email: string,
+  password: string
+}
