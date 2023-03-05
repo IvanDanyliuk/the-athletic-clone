@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { Box, Button, Divider, Snackbar, styled, Typography } from '@mui/material';
+import { Box, Button, Divider, styled, Typography } from '@mui/material';
 import { AppDispatch } from '../../features/store';
 import AuthButtons from '../components/authentication/AuthButtons';
 import TextInput from '../components/ui/TextInput';

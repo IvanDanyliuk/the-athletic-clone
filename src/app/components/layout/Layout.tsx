@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { styled } from '@mui/material/styles';
 import { Box, Container } from '@mui/material';
 import Header from './Header';
 import Footer from './Footer';
+import { AppDispatch } from '../../../features/store';
+import { getAuthenticatedUser } from '../../../features/users/asyncActions';
 
 
 interface ILayout {
@@ -24,6 +27,12 @@ const Content = styled(Container)`
 `;
 
 const Layout: React.FC<ILayout> = ({ children }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  useEffect(() => {
+    dispatch(getAuthenticatedUser());
+  }, [])
+
   return (
     <Wrapper>
       <Header />

@@ -38,3 +38,14 @@ export const logout = createAsyncThunk(
   }
 );
 
+export const getAuthenticatedUser = createAsyncThunk(
+  'users/getAuthenticatedUser',
+  async (_: undefined, thunkAPI) => {
+    try {
+      const { data } = await api.getAuthenticatedUser();
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data)
+    }
+  }
+);
