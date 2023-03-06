@@ -61,7 +61,7 @@ const UserHeaderMenu: React.FC<IUserHeaderMenuProps> = ({ user }) => {
         </UserMenuItem>
         {user.role === 'admin' && (
           <UserMenuItem onClick={handleMenuClose}>
-            <Link to='/admin'>Admin Panel</Link>
+            <Link to='/admin/materials'>Admin Panel</Link>
           </UserMenuItem>
         )}
         <UserMenuItem onClick={handleLogout}>Logout</UserMenuItem>

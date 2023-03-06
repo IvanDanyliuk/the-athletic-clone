@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './app/components/layout/Layout';
 import { Admin, Checkout, Home, Login, News, NotFound, Realtime, Register, Search } from './app/pages';
-import { Authors, Clubs, Competitions, Materials, Players, Schedules } from './app/components/adminPanelSections';
+import { Authors, Clubs, Competitions, Materials, Players, Schedules } from './app/components/adminPanel/adminPanelSections';
 
 
 const App: React.FC = () => {
@@ -19,6 +19,7 @@ const App: React.FC = () => {
             <Route path='/news' element={<News />} />
             <Route path='/realtime' element={<Realtime />} />
             <Route path='/admin' element={<Admin />}>
+              <Route index element={<Materials />} />
               <Route path='materials' element={<Materials />} />
               <Route path='competitions' element={<Competitions />} />
               <Route path='clubs' element={<Clubs />} />
