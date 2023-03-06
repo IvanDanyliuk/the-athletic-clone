@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import { Avatar, Box, Menu, MenuItem, styled } from '@mui/material';
 import { AppDispatch } from '../../../features/store';
 import { logout } from '../../../features/users/asyncActions';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { IUser } from '../../models/users';
 
 
@@ -13,10 +11,6 @@ interface IUserHeaderMenuProps {
   user: IUser
 }
 
-
-const Wrapper = styled(Box)`
-
-`;
 
 const UserAvatar = styled(Avatar)`
   cursor: pointer;
@@ -51,7 +45,7 @@ const UserHeaderMenu: React.FC<IUserHeaderMenuProps> = ({ user }) => {
   }
 
   return (
-    <Wrapper>
+    <Box>
       <UserAvatar 
         src={user.userPhotoUrl} 
         alt={user.lastName} 
@@ -72,7 +66,7 @@ const UserHeaderMenu: React.FC<IUserHeaderMenuProps> = ({ user }) => {
         )}
         <UserMenuItem onClick={handleLogout}>Logout</UserMenuItem>
       </Menu>
-    </Wrapper>
+    </Box>
   );
 };
 
