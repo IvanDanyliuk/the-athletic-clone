@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Layout from './app/components/layout/Layout';
 import { Admin, Checkout, Home, Login, News, NotFound, Realtime, Register, Search } from './app/pages';
-import { Authors, Clubs, Competitions, Materials, Players, Schedules } from './app/components/adminPanel/adminPanelSections';
+import { Authors, Clubs, Competitions, Materials, Players, Schedules } from './app/components/adminPanel/sections';
 import { NewAuthorForm, NewClubForm, NewCompetitionForm, NewMaterialForm, NewPlayerForm, NewScheduleForm } from './app/components/adminPanel/forms/creationForms';
 import { UpdateAuthorForm, UpdateClubForm, UpdateCompetitionForm, UpdateMaterialForm, UpdatePlayerForm, UpdateScheduleForm } from './app/components/adminPanel/forms/updationForms';
 

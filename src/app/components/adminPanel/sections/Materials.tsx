@@ -1,14 +1,8 @@
 import React from 'react';
-import { Box, styled, Typography } from '@mui/material';
 import MaterialsTable from '../tables/MaterialsTable';
 import { materials } from '../../../../data';
+import SubPageHeader from '../ui/SubPageHeader';
 
-
-const Container = styled(Box)`
-  padding: 1em 0;
-  width: 100%;
-  min-height: 93vh;
-`;
 
 const Materials: React.FC = () => {
   const data = materials;
@@ -22,14 +16,17 @@ const Materials: React.FC = () => {
   };
 
   return (
-    <Container>
-      <Typography variant='h4'>Materials</Typography>
+    <>
+      <SubPageHeader 
+        title='Materials' 
+        link='new-material' 
+      />
       <MaterialsTable 
         materials={data} 
         onEdit={handleMaterialEdit} 
         onDelete={handleMaterialDelete} 
       />
-    </Container>
+    </>
   );
 };
 
