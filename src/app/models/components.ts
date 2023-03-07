@@ -19,3 +19,24 @@ export interface CompetitionModel {
   logoUrl: string,
   type: string,
 }
+
+export interface MaterialModel {
+  author: { 
+    firstName: string,
+    lastName: string,
+    photoUrl?: string,
+    organization: string,
+    position: string,
+  }, 
+  type: string,
+  title: string,
+  text: string,
+  image?: string,
+  views: number,
+  likes: number,
+  comments: {
+    user: string, 
+    message: string
+  }[],
+  labels: string[],
+}
