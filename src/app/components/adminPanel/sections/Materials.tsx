@@ -19,11 +19,11 @@ const Materials: React.FC = () => {
   return (
     <>
       <MaterialsHeader />
-      <MaterialsTable 
+      {/* <MaterialsTable 
         materials={data} 
         onEdit={handleMaterialEdit} 
         onDelete={handleMaterialDelete} 
-      />
+      /> */}
     </>
   );
 };

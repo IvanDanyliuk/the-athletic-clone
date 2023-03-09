@@ -22,16 +22,15 @@ export interface CompetitionModel {
 
 export interface MaterialModel {
   author: { 
-    firstName: string,
-    lastName: string,
+    name: string,
     photoUrl?: string,
     organization: string,
     position: string,
   }, 
   type: string,
   title: string,
-  text: string,
-  image?: string,
+  content: string,
+  image?: File,
   views: number,
   likes: number,
   publicationDate: string,
