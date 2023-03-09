@@ -34,6 +34,7 @@ export interface MaterialModel {
   image?: string,
   views: number,
   likes: number,
+  publicationDate: string,
   comments: {
     user: string, 
     message: string

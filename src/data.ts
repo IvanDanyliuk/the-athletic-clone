@@ -376,6 +376,7 @@ export const materials = [
     image: 'https://cdn.theathletic.com/cdn-cgi/image/width=770,format=auto/https://cdn.theathletic.com/app/uploads/2023/02/20094541/Vieira-Arsenal-Martinelli-Aston-Villa-1024x718.jpg',
     views: 76,
     likes: 74,
+    publicationDate: new Date().getUTCDate().toString(),
     comments: [
       {
         user: 'John Doe', 
@@ -398,6 +399,7 @@ export const materials = [
     image: 'https://cdn.theathletic.com/cdn-cgi/image/width=770,format=auto/https://cdn.theathletic.com/app/uploads/2023/02/20094541/Vieira-Arsenal-Martinelli-Aston-Villa-1024x718.jpg',
     views: 76,
     likes: 74,
+    publicationDate: new Date().getUTCDate().toString(),
     comments: [
       {
         user: 'John Doe', 
@@ -420,6 +422,7 @@ export const materials = [
     image: 'https://cdn.theathletic.com/cdn-cgi/image/width=770,format=auto/https://cdn.theathletic.com/app/uploads/2023/02/20094541/Vieira-Arsenal-Martinelli-Aston-Villa-1024x718.jpg',
     views: 76,
     likes: 74,
+    publicationDate: new Date().getUTCDate().toString(),
     comments: [
       {
         user: 'John Doe', 
@@ -442,6 +445,7 @@ export const materials = [
     image: 'https://cdn.theathletic.com/cdn-cgi/image/width=770,format=auto/https://cdn.theathletic.com/app/uploads/2023/02/20094541/Vieira-Arsenal-Martinelli-Aston-Villa-1024x718.jpg',
     views: 76,
     likes: 74,
+    publicationDate: new Date().getUTCDate().toString(),
     comments: [
       {
         user: 'John Doe', 

@@ -1,7 +1,8 @@
 import React from 'react';
 import MaterialsTable from '../tables/MaterialsTable';
+import MaterialsHeader from '../ui/MaterialsHeader';
+
 import { materials } from '../../../../data';
-import SubPageHeader from '../ui/SubPageHeader';
 
 
 const Materials: React.FC = () => {
@@ -17,10 +18,7 @@ const Materials: React.FC = () => {
 
   return (
     <>
-      <SubPageHeader 
-        title='Materials' 
-        link='new-material' 
-      />
+      <MaterialsHeader />
       <MaterialsTable 
         materials={data} 
         onEdit={handleMaterialEdit} 

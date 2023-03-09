@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, styled, Typography } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
 interface ISubPageHeaderProps {
@@ -16,22 +18,34 @@ const Container = styled(Box)`
 `;
 
 const LinkBtn = styled(Link)`
-  padding: 10px 15px;
-  font-size: 1em;
-  font-weight: 500;
-  border-radius: 5px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 22px;
+  line-height: 1em;
   text-decoration: none;
   background: #30b77e;
   color: #ffffff;
+
+  svg {
+    font-size: 20px;
+  }
 `;
 
 
 const SubPageHeader: React.FC<ISubPageHeaderProps> = ({ title, link }) => {
   return (
     <Container>
-      <Typography variant='h4'>{title}</Typography>
-      <LinkBtn to={`/admin/${link}`}>Add new</LinkBtn>
+      <Typography variant='h4'>
+        {title}
+      </Typography>
+      <LinkBtn to={`/admin/${link}`}>
+        <FontAwesomeIcon icon={faPlus} />
+      </LinkBtn>
     </Container>
   );
 };
+
 export default SubPageHeader;

@@ -1,6 +1,8 @@
-export { default as NewAuthorForm } from './NewAuthorForm';
-export { default as NewClubForm } from './NewClubForm';
-export { default as NewCompetitionForm } from './NewCompetitionForm';
-export { default as NewMaterialForm } from './NewMaterialForm';
-export { default as NewPlayerForm } from './NewPlayerForm';
-export { default as NewScheduleForm } from './NewScheduleForm';
+export { default as ArticleForm } from './ArticleForm';
+export { default as AuthorForm } from './AuthorForm';
+export { default as ClubForm } from './ClubForm';
+export { default as CompetitionForm } from './CompetitionForm';
+export { default as NoteForm } from './NoteForm';
+export { default as PlayerForm } from './PlayerForm';
+export { default as ScheduleForm } from './ScheduleForm';
+export { default as RealtimePostForm } from './RealtimePostForm';
