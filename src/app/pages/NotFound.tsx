@@ -134,7 +134,7 @@ const NotFound: React.FC = () => {
               {
                 !isMobile && (
                   <PreviewText variant='inherit'>
-                    {setPreviewText(30, article.text)}
+                    {setPreviewText(30, article.content)}
                   </PreviewText>
                 )
               }
