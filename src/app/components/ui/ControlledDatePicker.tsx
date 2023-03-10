@@ -16,9 +16,6 @@ interface IControlledDatePickerProps {
   [x: string]: any,
 }
 
-const Wrapper = styled(Box)`
-
-`;
 
 const Label = styled(InputLabel)`
   margin-bottom: 5px;
@@ -40,7 +37,7 @@ const ErrorMessage = styled(Box)`
 
 const ControlledDatePicker: React.FC<IControlledDatePickerProps> = ({ name, label, control, register, registerOptions, error, ...props }) => {
   return (
-    <Wrapper>
+    <Box>
       <Label htmlFor={name}>
         {label}
       </Label>
@@ -53,6 +50,7 @@ const ControlledDatePicker: React.FC<IControlledDatePickerProps> = ({ name, labe
             inputRef={ref}
             format='DD/MM/YYYY'
             label='Publication Date'
+            sx={{ width: '100%' }}
             { ...rest }
           />
         )}
@@ -65,7 +63,7 @@ const ControlledDatePicker: React.FC<IControlledDatePickerProps> = ({ name, labe
           </>
         )}
       </ErrorMessage>
-    </Wrapper>
+    </Box>
   );
 };
 

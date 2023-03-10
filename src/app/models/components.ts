@@ -30,7 +30,7 @@ export interface MaterialModel {
   type: string,
   title: string,
   content: string,
-  image?: File,
+  image?: any,
   views: number,
   likes: number,
   publicationDate: string,
