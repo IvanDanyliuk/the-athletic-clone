@@ -12,6 +12,7 @@ import { createMaterial } from '../../../../../features/materials/asyncActions';
 import { selectUser } from '../../../../../features/users/selectors';
 import { uploadImage } from '../../../../services/uploadImage';
 import BackLink from '../../ui/BackLink';
+import SelectField from '../../../ui/SelectField';
 
 
 const Form = styled(Box)`
@@ -21,6 +22,11 @@ const Form = styled(Box)`
 const FormRow = styled(Grid)`
   margin-bottom: 10px;
 `;
+
+const statusOptions = [
+  { label: 'Published', value: 'published' },
+  { label: 'Not Published', value: 'not-published' },
+];
 
 
 const NewArticleForm: React.FC = () => {
@@ -70,7 +76,7 @@ const NewArticleForm: React.FC = () => {
           </Grid>
         </FormRow>
         <FormRow container spacing={3}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <TextInput 
               name='image' 
               label='Image'
@@ -80,7 +86,7 @@ const NewArticleForm: React.FC = () => {
               
             />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
             <ControlledDatePicker 
               name='publicationDate'
               label='Publication Date'
@@ -89,8 +95,19 @@ const NewArticleForm: React.FC = () => {
               error={errors.publicationDate}
             />
           </Grid>
-          <Grid item>
-            <Typography>Label selection will be available soon!</Typography>
+          <Grid item xs={12} md={3}>
+            <Typography>Labels will be here soon!</Typography>
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <SelectField 
+              name='status'
+              label='Status'
+              control={control}
+              register={register}
+              registerOptions={{ required: 'Status is required!' }} 
+              error={errors.status}
+              options={statusOptions}
+            />
           </Grid>
         </FormRow>
         <FormRow container>
