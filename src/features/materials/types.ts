@@ -4,7 +4,13 @@ export interface IMaterialsState {
   status: string,
   data: {
     materials: MaterialModel[],
-    page: number
+    pages: number
   },
   error: string | null
+}
+
+export interface IMaterialsRequestData {
+  page: number,
+  itemsPerPage: number,
+  filterData?: any
 }

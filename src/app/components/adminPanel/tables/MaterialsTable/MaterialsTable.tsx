@@ -1,5 +1,7 @@
+import { Table } from '@mui/material';
 import React from 'react';
-import { MaterialModel } from '../../../models/components';
+import { MaterialModel } from '../../../../models/components';
+import MaterialsTableHead from './MaterialsTableHead';
 
 
 interface IMaterialsTableProps {
@@ -10,7 +12,9 @@ interface IMaterialsTableProps {
 
 const MaterialsTable: React.FC<IMaterialsTableProps> = ({ materials, onEdit, onDelete }) => {
   return (
-    <div>MaterialsTable</div>
+    <Table>
+      <MaterialsTableHead />
+    </Table>
   );
 };
 

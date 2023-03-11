@@ -1,12 +1,16 @@
-import React from 'react';
-import MaterialsTable from '../tables/MaterialsTable';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllMaterials } from '../../../../features/materials/asyncActions';
+import { selectMaterials } from '../../../../features/materials/selectors';
+import { AppDispatch } from '../../../../features/store';
+import MaterialsTable from '../tables/MaterialsTable/MaterialsTable';
 import MaterialsHeader from '../ui/MaterialsHeader';
-
-import { materials } from '../../../../data';
 
 
 const Materials: React.FC = () => {
-  const data = materials;
+  const dispatch = useDispatch<AppDispatch>();
+  const materials = useSelector(selectMaterials);
+  const [page, setPage] = useState<number>(1);
 
   const handleMaterialEdit = () => {
 
@@ -16,14 +20,18 @@ const Materials: React.FC = () => {
 
   };
 
+  useEffect(() => {
+    dispatch(getAllMaterials({page, itemsPerPage: 10}));
+  }, [dispatch, page]);
+
   return (
     <>
       <MaterialsHeader />
-      {/* <MaterialsTable 
-        materials={data} 
+      <MaterialsTable 
+        materials={materials} 
         onEdit={handleMaterialEdit} 
         onDelete={handleMaterialDelete} 
-      /> */}
+      />
     </>
   );
 };

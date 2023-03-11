@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createMaterial } from './asyncActions';
+import { createMaterial, getAllMaterials } from './asyncActions';
 import { IMaterialsState } from './types';
 
 
@@ -7,7 +7,7 @@ const initialState: IMaterialsState = {
   status: 'idle',
   data: {
     materials: [],
-    page: 0
+    pages: 0
   },
   error: null
 }
@@ -26,6 +26,17 @@ const materialsSlice = createSlice({
         state.data.materials.push(action.payload);
       })
       .addCase(createMaterial.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(getAllMaterials.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getAllMaterials.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data = action.payload;
+      })
+      .addCase(getAllMaterials.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })
