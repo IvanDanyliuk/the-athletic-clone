@@ -1,5 +1,5 @@
-import React from 'react';
-import { Table, TableBody, TableCell, TableRow } from '@mui/material';
+import React, { useState } from 'react';
+import { styled, Table, TableBody, TableCell, TablePagination, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { MaterialModel } from '../../../../models/components';
 import MaterialsTableHead from './MaterialsTableHead';
@@ -7,11 +7,27 @@ import MaterialsTableHead from './MaterialsTableHead';
 
 interface IMaterialsTableProps {
   materials: MaterialModel[],
+  page: number,
+  pageCount: number,
+  onPageChange: (e: unknown, newPage: number) => void,
   onEdit: () => void,
   onDelete: () => void
 }
 
-const MaterialsTable: React.FC<IMaterialsTableProps> = ({ materials, onEdit, onDelete }) => {
+
+const MaterialsTablePagination = styled(TablePagination)`
+  width: 100%;
+`;
+
+
+const MaterialsTable: React.FC<IMaterialsTableProps> = ({ 
+  materials, 
+  page, 
+  pageCount, 
+  onPageChange, 
+  onEdit, 
+  onDelete 
+}) => {
 
   return (
     <Table>
@@ -31,6 +47,13 @@ const MaterialsTable: React.FC<IMaterialsTableProps> = ({ materials, onEdit, onD
           ))
         }
       </TableBody>
+      <MaterialsTablePagination
+        rowsPerPageOptions={[]}
+        count={pageCount}
+        rowsPerPage={10}
+        page={page}
+        onPageChange={onPageChange}
+      />
     </Table>
   );
 };

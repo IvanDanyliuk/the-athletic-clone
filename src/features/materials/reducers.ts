@@ -7,7 +7,7 @@ const initialState: IMaterialsState = {
   status: 'idle',
   data: {
     materials: [],
-    pages: 0
+    materialsCount: 0
   },
   error: null
 }

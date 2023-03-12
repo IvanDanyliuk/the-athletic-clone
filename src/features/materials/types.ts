@@ -4,7 +4,7 @@ export interface IMaterialsState {
   status: string,
   data: {
     materials: MaterialModel[],
-    pages: number
+    materialsCount: number
   },
   error: string | null
 }
