@@ -19,12 +19,12 @@ export const createMaterial = createAsyncThunk(
 export const getAllMaterials = createAsyncThunk(
   'materials/getAllMaterials',
   async (requestData: IMaterialsRequestData, thunkAPI) => {
-    const { page, itemsPerPage, filterData } = requestData;
+    const { page, itemsPerPage, filterData, sortData } = requestData;
     try {
-      const { data } = await api.getAllMaterials(page, itemsPerPage, filterData);
+      const { data } = await api.getAllMaterials(page, itemsPerPage, filterData, sortData);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
-)
+);

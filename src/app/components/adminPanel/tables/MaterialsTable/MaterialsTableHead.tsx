@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Box, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 
@@ -54,38 +54,25 @@ const cells: ITableHeadCell[] = [
     sortKey: 'publicationDate',
     order: Order.asc
   },
+  {
+    title: '', 
+    isSortable: false,
+    sortKey: 'actions',
+    order: Order.asc
+  }
 ];
 
 
-const MaterialsTableHead: React.FC = () => {
-  const [activeCell, setActiveCell] = useState<ITableHeadCell | null>(null);
+interface IMaterialsTableHeadProps {
+  activeCell: ITableHeadCell | null,
+  onSort: (data: ITableHeadCell) => void
+}
 
-  const handleDataSort = (data: ITableHeadCell) => {
-    if(!activeCell || activeCell.sortKey !== data.sortKey) {
-      setActiveCell({
-        ...data,
-        order: Order.desc
-      });
-    }
-    if(activeCell?.sortKey === data.sortKey && activeCell?.order === Order.desc) {
-      setActiveCell({
-        ...data,
-        order: Order.asc
-      });
-    }
-    if(activeCell?.sortKey === data.sortKey && activeCell?.order === Order.asc) {
-      setActiveCell({
-        ...data,
-        order: Order.desc
-      });
-    }
-  };
 
-  useEffect(() => {
-    //Place dispatching the async action for sorting materials here
-    console.log(activeCell)
-  }, [activeCell]);
-
+const MaterialsTableHead: React.FC<IMaterialsTableHeadProps> = ({
+  activeCell, 
+  onSort
+}) => {
   return (
     <TableHead>
       <TableRow>
@@ -95,7 +82,7 @@ const MaterialsTableHead: React.FC = () => {
               <TableSortLabel 
                 active={activeCell?.sortKey === cell.sortKey}
                 direction={activeCell?.sortKey === cell.sortKey ? activeCell?.order : cell.order} 
-                onClick={() => handleDataSort(cell)}
+                onClick={() => onSort(cell)}
               >
                 {cell.title}
               </TableSortLabel>
