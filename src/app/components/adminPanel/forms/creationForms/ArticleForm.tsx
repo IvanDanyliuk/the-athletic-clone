@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Backdrop, Box, Button, CircularProgress, Grid, styled, Typography } from '@mui/material';
+import { Box, Button, Grid, styled, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { AppDispatch } from '../../../../../features/store';
 import { MaterialModel } from '../../../../models/components';
@@ -13,6 +13,7 @@ import { selectUser } from '../../../../../features/users/selectors';
 import { uploadImage } from '../../../../services/uploadImage';
 import BackLink from '../../ui/BackLink';
 import SelectField from '../../../ui/SelectField';
+import BackdropLoader from '../../../ui/BackdropLoader';
 
 
 const Form = styled(Box)`
@@ -125,12 +126,7 @@ const NewArticleForm: React.FC = () => {
           variant='contained'
         >Submit</Button>
       </Form>
-      <Backdrop
-        sx={{ color: '#fff', zIndex: 1 }}
-        open={isLoading}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
+      <BackdropLoader open={isLoading} />
     </Box>
   );
 };

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IMaterial } from '../../features/materials/types';
 import { ILoginCredentials } from '../../features/users/types';
 import { MaterialModel } from '../models/components';
 import { IUser } from '../models/users';
@@ -15,3 +16,5 @@ export const getAllMaterials = (page: number, itemsPerPage: number, filterData?:
 export const getArticles = (page: number, itemsPerPage: number, filterData?: any) => API.get('/materials/articles', { params: { page, itemsPerPage, filterData } });
 export const getNotes = (page: number, itemsPerPage: number, filterData?: any) => API.get('/materials/notes', { params: { page, itemsPerPage, filterData } });
 export const getRealtimePosts = (page: number, itemsPerPage: number, filterData?: any) => API.get('/materials/real-time-posts', { params: { page, itemsPerPage, filterData } });
+export const updateMaterial = (materialToUpdate: IMaterial) => API.patch('/materials', materialToUpdate);
+export const deleteMaterial = (id: string, page: number, itemsPerPage: number) => API.delete('/materials', { params: { id, page, itemsPerPage } });

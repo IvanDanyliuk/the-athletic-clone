@@ -1,22 +1,29 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
-import { IMaterialResponse } from '../../../../../features/materials/types';
+import { IMaterial } from '../../../../../features/materials/types';
 import RowActionButtons from './RowActionButtons';
+import { AppDispatch } from '../../../../../features/store';
+import { deleteMaterial } from '../../../../../features/materials/asyncActions';
 
 
 interface IMaterialsTableBodyProps {
-  materials: IMaterialResponse[]
+  materials: IMaterial[],
+  page: number,
+  itemsPerPage: number
 }
 
 
-const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials }) => {
+const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials, page, itemsPerPage }) => {
+  const dispatch = useDispatch<AppDispatch>();
+
   const handleMaterialEdit = (id: string) => {
     console.log('Edit', id);
   };
 
   const handleMaterialDelete = (id: string) => {
-    console.log('Edit', id);
+    dispatch(deleteMaterial({ id, page, itemsPerPage }));
   };
 
   return (
@@ -24,7 +31,6 @@ const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials }) =>
       {
         materials.map(({ _id, title, labels, type, author, status, publicationDate }) => (
           <TableRow key={uuid()}>
-            <TableCell>ID</TableCell>
             <TableCell>{title}</TableCell>
             <TableCell>{labels.length ? labels[0] : '-'}</TableCell>
             <TableCell>{type}</TableCell>

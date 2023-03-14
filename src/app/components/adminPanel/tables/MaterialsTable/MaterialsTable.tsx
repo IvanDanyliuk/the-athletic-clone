@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { styled, Table, TablePagination } from '@mui/material';
+import { Table } from '@mui/material';
 import MaterialsTableHead from './MaterialsTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectMaterials, selectMaterialsCount } from '../../../../../features/materials/selectors';
+import { selectMaterials, selectMaterialsCount, selectMaterialsStatus } from '../../../../../features/materials/selectors';
 import { getAllMaterials } from '../../../../../features/materials/asyncActions';
 import MaterialTableBody from './MaterialTableBody';
+import MaterialsTableFooter from './MaterialsTableFooter';
+import BackdropLoader from '../../../ui/BackdropLoader';
 
 
 enum Order {
@@ -20,15 +22,12 @@ interface ITableHeadCell {
   order?: Order
 }
 
-const MaterialsTablePagination = styled(TablePagination)`
-  width: 100%;
-`;
-
 
 const MaterialsTable: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const materials = useSelector(selectMaterials);
   const pageCount = useSelector(selectMaterialsCount);
+  const status = useSelector(selectMaterialsStatus);
 
   const [page, setPage] = useState<number>(0);
   const [activeCell, setActiveCell] = useState<ITableHeadCell | null>(null);
@@ -76,6 +75,12 @@ const MaterialsTable: React.FC = () => {
     }
   }, [dispatch, page, activeCell]);
 
+  if(status === 'loading') {
+    return (
+      <BackdropLoader open={true} />
+    );
+  }
+
   return (
     <Table>
       <MaterialsTableHead 
@@ -84,14 +89,10 @@ const MaterialsTable: React.FC = () => {
       />
       <MaterialTableBody 
         materials={materials} 
+        page={page} 
+        itemsPerPage={10}
       />
-      <MaterialsTablePagination
-        rowsPerPageOptions={[]}
-        count={pageCount}
-        rowsPerPage={10}
-        page={page}
-        onPageChange={handleCurrentPageChange}
-      />
+      <MaterialsTableFooter pageCount={pageCount} page={page} onPageChange={handleCurrentPageChange} />
     </Table>
   );
 };

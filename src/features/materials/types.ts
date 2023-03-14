@@ -3,7 +3,7 @@ import { MaterialModel } from "../../app/models/components";
 export interface IMaterialsState {
   status: string,
   data: {
-    materials: IMaterialResponse[],
+    materials: IMaterial[],
     materialsCount: number
   },
   error: string | null
@@ -19,7 +19,7 @@ export interface IMaterialsRequestData {
   }
 }
 
-export interface IMaterialResponse {
+export interface IMaterial {
   _id: string,
   author: { 
     name: string,
@@ -47,4 +47,10 @@ export interface IMaterialResponse {
 export interface ISortMaterialRequestData {
   indicator: string,
   order: string
+}
+
+export interface IDeleteMaterialData {
+  id: string,
+  page: number,
+  itemsPerPage: number
 }

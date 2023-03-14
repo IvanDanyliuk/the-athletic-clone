@@ -17,10 +17,6 @@ interface ITableHeadCell {
 
 const cells: ITableHeadCell[] = [
   {
-    title: 'Material ID', 
-    isSortable: false
-  },
-  {
     title: 'Title', 
     isSortable: false
   },
