@@ -31,6 +31,7 @@ export interface MaterialModel {
   title: string,
   content: string,
   image?: any,
+  status: string,
   views: number,
   likes: number,
   publicationDate: string,

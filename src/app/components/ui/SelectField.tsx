@@ -1,26 +1,37 @@
 import React from 'react';
 import { Control, Controller, FieldError, RegisterOptions, UseFormRegister } from 'react-hook-form';
-import { Box, InputLabel, styled, Typography } from '@mui/material';
+import { Box, InputLabel, MenuItem, Select, styled, Typography } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { v4 as uuid } from 'uuid';
 import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 
 
-interface IControlledDatePickerProps {
+interface ISelectFieldProps {
   name: string,
   label: string,
   control: Control<any>,
   register: UseFormRegister<any>,
   registerOptions?: RegisterOptions,
   error?: FieldError,
+  options: {
+    label: string,
+    value: string
+  }[],
   [x: string]: any,
 }
 
+const Wrapper = styled(Box)`
+
+`;
 
 const Label = styled(InputLabel)`
   margin-bottom: 5px;
   font-size: .9em;
   color: #000000;
+`;
+
+const SelectBody = styled(Select)`
+  width: 100%;
 `;
 
 const ErrorMessage = styled(Box)`
@@ -36,32 +47,36 @@ const ErrorMessage = styled(Box)`
 `;
 
 
-const ControlledDatePicker: React.FC<IControlledDatePickerProps> = ({ 
+const SelectField: React.FC<ISelectFieldProps> = ({ 
   name, 
   label, 
   control, 
   register, 
   registerOptions, 
   error, 
+  options, 
   ...props 
 }) => {
   return (
-    <Box>
+    <Wrapper>
       <Label htmlFor={name}>
         {label}
       </Label>
       <Controller
-        name='publicationDate'
-        defaultValue=''
+        name={name}
+        defaultValue={options[0].value}
         control={control}
         render={({ field: { ref, ...rest } }) => (
-          <DatePicker 
+          <SelectBody
             inputRef={ref}
-            format='DD/MM/YYYY'
-            label='Publication Date'
-            sx={{ width: '100%' }}
-            { ...rest }
-          />
+            {...rest}
+          >
+            {options.map(({ label, value }) => (
+              <MenuItem key={uuid()} value={value}>
+                {label}
+              </MenuItem>
+            ))}
+          </SelectBody>
         )}
       />
       <ErrorMessage>
@@ -72,8 +87,8 @@ const ControlledDatePicker: React.FC<IControlledDatePickerProps> = ({
           </>
         )}
       </ErrorMessage>
-    </Box>
+    </Wrapper>
   );
 };
 
-export default ControlledDatePicker;
+export default SelectField;
