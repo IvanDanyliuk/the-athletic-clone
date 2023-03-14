@@ -1,21 +1,12 @@
 import React from 'react';
 import { Box, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { v4 as uuid } from 'uuid';
+import { IMaterialsTableHeadCell, Order } from '../../../../../features/materials/types';
 
 
-enum Order {
-  asc = 'asc',
-  desc = 'desc'
-}
 
-interface ITableHeadCell {
-  title: string,
-  isSortable: boolean,
-  sortKey?: string,
-  order?: Order
-}
 
-const cells: ITableHeadCell[] = [
+const cells: IMaterialsTableHeadCell[] = [
   {
     title: 'Title', 
     isSortable: false
@@ -60,8 +51,8 @@ const cells: ITableHeadCell[] = [
 
 
 interface IMaterialsTableHeadProps {
-  activeCell: ITableHeadCell | null,
-  onSort: (data: ITableHeadCell) => void
+  activeCell: IMaterialsTableHeadCell | null,
+  onSort: (data: IMaterialsTableHeadCell) => void
 }
 
 

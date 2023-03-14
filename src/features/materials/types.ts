@@ -54,3 +54,15 @@ export interface IDeleteMaterialData {
   page: number,
   itemsPerPage: number
 }
+
+export enum Order {
+  asc = 'asc',
+  desc = 'desc'
+}
+
+export interface IMaterialsTableHeadCell {
+  title: string,
+  isSortable: boolean,
+  sortKey?: string,
+  order?: Order
+}

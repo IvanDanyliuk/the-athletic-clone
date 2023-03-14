@@ -8,19 +8,7 @@ import { getAllMaterials } from '../../../../../features/materials/asyncActions'
 import MaterialTableBody from './MaterialTableBody';
 import MaterialsTableFooter from './MaterialsTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
-
-
-enum Order {
-  asc = 'asc',
-  desc = 'desc'
-}
-
-interface ITableHeadCell {
-  title: string,
-  isSortable: boolean,
-  sortKey?: string,
-  order?: Order
-}
+import { IMaterialsTableHeadCell, Order } from '../../../../../features/materials/types';
 
 
 const MaterialsTable: React.FC = () => {
@@ -30,9 +18,9 @@ const MaterialsTable: React.FC = () => {
   const status = useSelector(selectMaterialsStatus);
 
   const [page, setPage] = useState<number>(0);
-  const [activeCell, setActiveCell] = useState<ITableHeadCell | null>(null);
+  const [activeCell, setActiveCell] = useState<IMaterialsTableHeadCell | null>(null);
 
-  const handleDataSort = (data: ITableHeadCell) => {
+  const handleDataSort = (data: IMaterialsTableHeadCell) => {
     if(!activeCell || activeCell.sortKey !== data.sortKey) {
       setActiveCell({
         ...data,
