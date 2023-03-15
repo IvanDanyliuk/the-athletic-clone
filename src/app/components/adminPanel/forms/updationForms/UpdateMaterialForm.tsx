@@ -2,7 +2,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectMaterials } from '../../../../../features/materials/selectors';
-import { ArticleForm } from '../creationForms';
+import { MaterialType } from '../../../../models/components';
+import { ArticleForm, NoteForm, RealtimePostForm } from '../creationForms';
 
 
 const UpdateMaterialForm: React.FC = () => {
@@ -13,8 +14,12 @@ const UpdateMaterialForm: React.FC = () => {
   return (
     <>
       {
-        materialToUpdate?.type === 'article' && (
+        materialToUpdate?.type === MaterialType.article ? (
           <ArticleForm articleToUpdate={materialToUpdate} />
+        ) : materialToUpdate?.type === MaterialType.note ? (
+          <NoteForm noteToUpdate={materialToUpdate} />
+        ) : (
+          <RealtimePostForm postToUpdate={materialToUpdate} />
         )
       }
     </>
