@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form';
 import { Box, Button, Grid, styled, Typography } from '@mui/material';
 import dayjs from 'dayjs';
 import { AppDispatch } from '../../../../../features/store';
-import { MaterialModel } from '../../../../models/components';
+import { MaterialModel, MaterialType } from '../../../../models/components';
 import TextInput from '../../../ui/TextInput';
 import ControlledDatePicker from '../../../ui/ControlledDatePicker';
 import TextEditor from '../../ui/TextEditor';
@@ -70,7 +70,7 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
           organization: user?.organization,
           position: user?.position
         },
-        type: 'note',
+        type: MaterialType.note,
         image: imageUrl,
         publicationDate: dayjs(data.publicationDate).format('DD/MM/YYYY'),
         content: data.content,

@@ -27,7 +27,7 @@ const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials, page
       {
         materials.map(({ _id, title, labels, type, author, status, publicationDate }) => (
           <TableRow key={uuid()}>
-            <TableCell>{title}</TableCell>
+            <TableCell>{title ? title : '-'}</TableCell>
             <TableCell>{labels.length ? labels[0] : '-'}</TableCell>
             <TableCell>{type}</TableCell>
             <TableCell>{author.name}</TableCell>

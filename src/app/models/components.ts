@@ -27,7 +27,7 @@ export interface MaterialModel {
     organization: string,
     position: string,
   }, 
-  type: string,
+  type: MaterialType,
   title: string,
   content: string,
   image?: any,
@@ -40,4 +40,10 @@ export interface MaterialModel {
     message: string
   }[],
   labels: string[],
+}
+
+export enum MaterialType {
+  article = 'article',
+  note = 'note',
+  post = 'post'
 }
