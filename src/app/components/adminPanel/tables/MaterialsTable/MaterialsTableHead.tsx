@@ -4,8 +4,6 @@ import { v4 as uuid } from 'uuid';
 import { IMaterialsTableHeadCell, Order } from '../../../../../features/materials/types';
 
 
-
-
 const cells: IMaterialsTableHeadCell[] = [
   {
     title: 'Title', 

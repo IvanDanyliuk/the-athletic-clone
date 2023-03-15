@@ -26,6 +26,7 @@ const App: React.FC = () => {
               <Route path='/admin' element={<Admin />}>
                 <Route index element={<Materials />} />
                 <Route path='materials' element={<Materials />} />
+                <Route path='materials/edit/:id' element={<UpdateMaterialForm />} />
                 <Route path='competitions' element={<Competitions />} />
                 <Route path='clubs' element={<Clubs />} />
                 <Route path='authors' element={<Authors />} />
