@@ -1,16 +1,22 @@
 import React, { useState } from 'react';
-import { Button, Menu, MenuItem } from '@mui/material';
+import { Button, Menu, MenuItem, styled } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 
 
 interface IRowActionButtonsProps {
-  onEdit: () => void,
+  id: string, 
   onDelete: () => void
 }
 
+const EditLink = styled(Link)`
+  text-decoration: none;
+  color: #000000;
+`;
 
-const RowActionButtons: React.FC<IRowActionButtonsProps> = ({ onEdit, onDelete }) => {
+
+const RowActionButtons: React.FC<IRowActionButtonsProps> = ({ id, onDelete }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLButtonElement>(null);
   const open = Boolean(anchorEl);
 
@@ -42,7 +48,9 @@ const RowActionButtons: React.FC<IRowActionButtonsProps> = ({ onEdit, onDelete }
         }}
         onClose={handleClose}
       >
-        <MenuItem onClick={onEdit}>Edit</MenuItem>
+        <MenuItem>
+          <EditLink to={`/admin/materials/edit/${id}`}>Edit</EditLink>
+        </MenuItem>
         <MenuItem onClick={onDelete}>Delete</MenuItem>
       </Menu>
     </>

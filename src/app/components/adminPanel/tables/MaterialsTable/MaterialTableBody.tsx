@@ -18,10 +18,6 @@ interface IMaterialsTableBodyProps {
 const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials, page, itemsPerPage }) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const handleMaterialEdit = (id: string) => {
-    console.log('Edit', id);
-  };
-
   const handleMaterialDelete = (id: string) => {
     dispatch(deleteMaterial({ id, page, itemsPerPage }));
   };
@@ -39,7 +35,7 @@ const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials, page
             <TableCell>{publicationDate}</TableCell>
             <TableCell>
               <RowActionButtons 
-                onEdit={() => handleMaterialEdit(_id)} 
+                id={_id} 
                 onDelete={() => handleMaterialDelete(_id)} 
               />
             </TableCell>
