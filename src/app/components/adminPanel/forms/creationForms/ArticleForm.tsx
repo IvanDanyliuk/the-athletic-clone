@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Button, Grid, styled, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { Box, Button, Grid, styled, Typography } from '@mui/material';
+import dayjs from 'dayjs';
 import { AppDispatch } from '../../../../../features/store';
 import { MaterialModel } from '../../../../models/components';
 import TextInput from '../../../ui/TextInput';
-import dayjs from 'dayjs';
 import ControlledDatePicker from '../../../ui/ControlledDatePicker';
 import TextEditor from '../../ui/TextEditor';
-import { createMaterial } from '../../../../../features/materials/asyncActions';
+import { createMaterial, updateMaterial } from '../../../../../features/materials/asyncActions';
 import { selectUser } from '../../../../../features/users/selectors';
 import { uploadImage } from '../../../../services/uploadImage';
 import BackLink from '../../ui/BackLink';
 import SelectField from '../../../ui/SelectField';
 import BackdropLoader from '../../../ui/BackdropLoader';
+import { IMaterial } from '../../../../../features/materials/types';
+
 
 
 const Form = styled(Box)`
@@ -29,36 +32,68 @@ const statusOptions = [
   { label: 'Not Published', value: 'not-published' },
 ];
 
+interface INewArticleFormProps {
+  articleToUpdate?: IMaterial
+}
 
-const NewArticleForm: React.FC = () => {
+
+const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm<MaterialModel>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const user = useSelector(selectUser);
 
   const handleFormSubmit = async (data: any) => {
-    setIsLoading(true);
-    const imageUrl = data.image[0] ? await uploadImage(data.image[0]) : '';
-    dispatch(createMaterial({
-      ...data,
-      author: {
-        name: `${user?.firstName} ${user?.lastName}`,
-        photoUrl: user?.userPhotoUrl,
-        organization: user?.organization,
-        position: user?.position
-      },
-      type: 'article',
-      image: imageUrl,
-      publicationDate: dayjs(data.publicationDate).format('DD/MM/YYYY'),
-      content: data.content,
-      views: 0,
-      likes: 0,
-      comments: []
-    }));
-    setIsLoading(false);
+    
+    if(articleToUpdate) {
+      setIsLoading(true);
+      await dispatch(updateMaterial({
+        ...articleToUpdate,
+        title: data.title,
+        image: data.image,
+        publicationDate: data.publicationDate,
+        status: data.status,
+        content: data.content
+      }));
+      setIsLoading(false);
+      navigate('/admin/materials');
+    } else {
+      setIsLoading(true);
+      const imageUrl = data.image.length > 0 ? await uploadImage(data.image[0]) : '';
+      await dispatch(createMaterial({
+        ...data,
+        author: {
+          name: `${user?.firstName} ${user?.lastName}`,
+          photoUrl: user?.userPhotoUrl,
+          organization: user?.organization,
+          position: user?.position
+        },
+        type: 'article',
+        image: imageUrl,
+        publicationDate: dayjs(data.publicationDate).format('DD/MM/YYYY'),
+        content: data.content,
+        views: 0,
+        likes: 0,
+        comments: []
+      }));
+      setIsLoading(false);
+    }
     reset();
   };
+
+  useEffect(() => {
+    if(articleToUpdate) {
+      reset({
+        title: articleToUpdate.title,
+        image: articleToUpdate.image,
+        publicationDate: articleToUpdate.publicationDate,
+        status: articleToUpdate.status,
+        content: articleToUpdate.content
+      })
+    }
+  }, []);
 
   return (
     <Box>
@@ -69,7 +104,7 @@ const NewArticleForm: React.FC = () => {
             <TextInput 
               name='title' 
               label='Title'
-              type='text'
+              type='text' 
               register={register}
               registerOptions={{ required: 'Title is required!' }}
               error={errors.title}
@@ -83,7 +118,6 @@ const NewArticleForm: React.FC = () => {
               label='Image'
               type='file'
               register={register}
-              registerOptions={{ required: 'Image is required!' }}
               
             />
           </Grid>
@@ -93,7 +127,6 @@ const NewArticleForm: React.FC = () => {
               label='Publication Date'
               control={control}
               register={register}
-              error={errors.publicationDate}
             />
           </Grid>
           <Grid item xs={12} md={3}>
@@ -102,7 +135,7 @@ const NewArticleForm: React.FC = () => {
           <Grid item xs={12} md={3}>
             <SelectField 
               name='status'
-              label='Status'
+              label='Status' 
               control={control}
               register={register}
               registerOptions={{ required: 'Status is required!' }} 
@@ -114,7 +147,7 @@ const NewArticleForm: React.FC = () => {
         <FormRow container>
           <Grid item xs={12}>
             <TextEditor 
-              name='content'
+              name='content' 
               control={control}
               register={register}
               error={errors.content}
@@ -124,7 +157,9 @@ const NewArticleForm: React.FC = () => {
         <Button 
           type='submit'
           variant='contained'
-        >Submit</Button>
+        >
+          Submit
+        </Button>
       </Form>
       <BackdropLoader open={isLoading} />
     </Box>
