@@ -110,6 +110,7 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
               register={register}
               registerOptions={{ required: 'Status is required!' }} 
               error={errors.status}
+              defaultValue={statusOptions[0].value}
               options={statusOptions}
             />
           </Grid>

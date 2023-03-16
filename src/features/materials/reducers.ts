@@ -9,13 +9,21 @@ const initialState: IMaterialsState = {
     materials: [],
     materialsCount: 0
   },
+  filters: null,
   error: null
 }
 
 const materialsSlice = createSlice({
   name: 'materials',
   initialState,
-  reducers: {},
+  reducers: {
+    setFilters: (state, action) => {
+      state.filters = action.payload;
+    },
+    clearFilters: (state) => {
+      state.filters = null;
+    }
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createMaterial.pending, (state, action) => {
@@ -65,6 +73,6 @@ const materialsSlice = createSlice({
   }
 });
 
-// export const { } = materialsSlice.actions;
+export const { setFilters, clearFilters } = materialsSlice.actions;
 
 export default materialsSlice.reducer;

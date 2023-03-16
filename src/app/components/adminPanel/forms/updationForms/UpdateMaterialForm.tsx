@@ -16,7 +16,8 @@ const UpdateMaterialForm: React.FC = () => {
       {
         materialToUpdate?.type === MaterialType.article ? (
           <ArticleForm articleToUpdate={materialToUpdate} />
-        ) : materialToUpdate?.type === MaterialType.note ? (
+        ) : 
+        materialToUpdate?.type === MaterialType.note ? (
           <NoteForm noteToUpdate={materialToUpdate} />
         ) : (
           <RealtimePostForm postToUpdate={materialToUpdate} />

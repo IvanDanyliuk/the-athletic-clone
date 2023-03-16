@@ -140,6 +140,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
               register={register}
               registerOptions={{ required: 'Status is required!' }} 
               error={errors.status}
+              defaultValue={statusOptions[0].value}
               options={statusOptions}
             />
           </Grid>
