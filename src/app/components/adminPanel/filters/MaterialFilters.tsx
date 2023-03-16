@@ -1,21 +1,19 @@
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faFilterCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Box, Button, Grid, styled } from '@mui/material';
+import { Box, Button, Grid, styled, Tooltip } from '@mui/material';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { getAllMaterials } from '../../../../features/materials/asyncActions';
+import { clearFilters, setFilters } from '../../../../features/materials/reducers';
+import { MaterialFilterData } from '../../../../features/materials/types';
 import { AppDispatch } from '../../../../features/store';
+import { MaterialType } from '../../../models/components';
 import ControlledDatePicker from '../../ui/ControlledDatePicker';
 import SelectField from '../../ui/SelectField';
-import TextInput from '../../ui/TextInput';
 
 
-interface MaterialFilterData {
-  title?: string,
-  dateFrom?: string,
-  dateTo?: string,
-  author?: string
-}
+
 
 const Form = styled(Box)`
   margin-top: 20px;
@@ -40,26 +38,44 @@ const SubmitBtn = styled(Button)`
   }
 `;
 
-const MaterialFilters = () => {
+const authors = [
+  { label: 'John Doe', value: 'John Doe' }, 
+  { label: 'Rowan Atkinson', value: 'Rowan Atkinson' }, 
+  { label: 'Jack Sparrow', value: 'Jack Sparrow' }
+];
+
+const types = [
+  { label: 'Article', value: MaterialType.article }, 
+  { label: 'Note', value: MaterialType.note }, 
+  { label: 'Post', value: MaterialType.post }
+];
+
+
+const MaterialFilters: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm<MaterialFilterData>();
 
-  const authors = [{ label: 'John Doe', value: 'John Doe' }, { label: 'Rowan Atkinson', value: 'Rowan Atkinson' }];
-
   const sumbitFilterData = (data: any) => {
-    console.log(data)
+    dispatch(setFilters(data));
+  };
+
+  const clearFilterData = () => {
+    reset();
+    dispatch(clearFilters());
+    dispatch(getAllMaterials({ page: 0, itemsPerPage: 10 }))
   };
 
   return (
     <Form component='form' onSubmit={handleSubmit(sumbitFilterData)}>
       <FormRow container spacing={3}>
-        <Grid item xs={12} md={5}>
-          <TextInput 
-            name='title' 
-            label='Title'
-            type='text' 
+        <Grid item xs={12} md={4}>
+          <SelectField 
+            name='author'
+            label='Author' 
+            control={control}
             register={register}
-            error={errors.title}
+            error={errors.author}
+            options={authors}
           />
         </Grid>
         <Grid item xs={12} md={2}>
@@ -80,18 +96,27 @@ const MaterialFilters = () => {
         </Grid>
         <Grid item xs={12} md={2}>
           <SelectField 
-            name='author'
-            label='Author' 
+            name='type'
+            label='Type' 
             control={control}
             register={register}
             error={errors.author}
-            options={authors}
+            options={types}
           />
         </Grid>
         <BtnWrapper item xs={12} md={1}>
-          <SubmitBtn type='submit' variant='outlined'>
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </SubmitBtn>
+          <Tooltip title='Find' placement='top' arrow>
+            <SubmitBtn type='submit' variant='outlined'>
+              <FontAwesomeIcon icon={faFilter} />
+            </SubmitBtn>
+          </Tooltip>
+        </BtnWrapper>
+        <BtnWrapper item xs={12} md={1}>
+          <Tooltip title='Clear filters' placement='top' arrow>
+            <SubmitBtn type='button' variant='outlined' color='warning' onClick={clearFilterData}>
+              <FontAwesomeIcon icon={faFilterCircleXmark} />
+            </SubmitBtn>
+          </Tooltip>
         </BtnWrapper>
       </FormRow>
     </Form>

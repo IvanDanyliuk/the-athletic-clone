@@ -6,6 +6,7 @@ export interface IMaterialsState {
     materials: IMaterial[],
     materialsCount: number
   },
+  filters: MaterialFilterData | null,
   error: string | null
 }
 
@@ -65,4 +66,11 @@ export interface IMaterialsTableHeadCell {
   isSortable: boolean,
   sortKey?: string,
   order?: Order
+}
+
+export interface MaterialFilterData {
+  title?: string,
+  dateFrom?: string,
+  dateTo?: string,
+  author?: string
 }
