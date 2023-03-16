@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Table } from '@mui/material';
+import { Paper, Table } from '@mui/material';
 import MaterialsTableHead from './MaterialsTableHead';
 import { AppDispatch } from '../../../../../features/store';
 import { selectMaterials, selectMaterialsCount, selectMaterialsStatus } from '../../../../../features/materials/selectors';
@@ -70,18 +70,24 @@ const MaterialsTable: React.FC = () => {
   }
 
   return (
-    <Table>
-      <MaterialsTableHead 
-        activeCell={activeCell} 
-        onSort={handleDataSort} 
-      />
-      <MaterialTableBody 
-        materials={materials} 
-        page={page} 
-        itemsPerPage={10}
-      />
-      <MaterialsTableFooter pageCount={pageCount} page={page} onPageChange={handleCurrentPageChange} />
-    </Table>
+    <Paper sx={{ maxWidth: '100%', overflow: 'auto' }}>
+      <Table stickyHeader>
+        <MaterialsTableHead 
+          activeCell={activeCell} 
+          onSort={handleDataSort} 
+        />
+        <MaterialTableBody 
+          materials={materials} 
+          page={page} 
+          itemsPerPage={10}
+        />
+        <MaterialsTableFooter 
+          pageCount={pageCount} 
+          page={page} 
+          onPageChange={handleCurrentPageChange} 
+        />
+      </Table>
+    </Paper>
   );
 };
 

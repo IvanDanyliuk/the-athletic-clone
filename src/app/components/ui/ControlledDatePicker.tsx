@@ -36,14 +36,13 @@ const ControlledDatePicker: React.FC<IControlledDatePickerProps> = ({
         {label}
       </Label>
       <Controller
-        name='publicationDate'
+        name={name}
         defaultValue={dayjs(props.defaultValue)}
         control={control}
         render={({ field: { ref, ...rest } }) => (
           <DatePicker 
             inputRef={ref}
             format='DD/MM/YYYY'
-            label='Publication Date'
             sx={{ width: '100%' }}
             { ...rest }
           />
