@@ -54,6 +54,7 @@ const MaterialFilters: React.FC = () => {
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm<MaterialFilterData>();
 
   const sumbitFilterData = (data: any) => {
+    console.log(data)
     dispatch(setFilters(data));
   };
 
@@ -73,6 +74,7 @@ const MaterialFilters: React.FC = () => {
             control={control}
             register={register}
             error={errors.author}
+            defaultValue=''
             options={authors}
           />
         </Grid>
@@ -99,6 +101,7 @@ const MaterialFilters: React.FC = () => {
             control={control}
             register={register}
             error={errors.author}
+            defaultValue={types[0].value}
             options={types}
           />
         </Grid>

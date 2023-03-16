@@ -140,6 +140,7 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
               register={register}
               registerOptions={{ required: 'Status is required!' }} 
               error={errors.status}
+              defaultValue={statusOptions[0].value}
               options={statusOptions}
             />
           </Grid>

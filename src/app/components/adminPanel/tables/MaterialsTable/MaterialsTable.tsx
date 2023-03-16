@@ -60,7 +60,7 @@ const MaterialsTable: React.FC = () => {
       dispatch(getAllMaterials({ 
         page, 
         itemsPerPage: 10, 
-        filterData 
+        filterData
       }));
     } else {
       dispatch(getAllMaterials({

@@ -13,6 +13,7 @@ interface ISelectFieldProps {
   register: UseFormRegister<any>,
   registerOptions?: RegisterOptions,
   error?: FieldError,
+  defaultValue?: string,
   options: {
     label: string,
     value: string
@@ -20,9 +21,6 @@ interface ISelectFieldProps {
   [x: string]: any,
 }
 
-const Wrapper = styled(Box)`
-
-`;
 
 const Label = styled(InputLabel)`
   margin-bottom: 5px;
@@ -54,17 +52,18 @@ const SelectField: React.FC<ISelectFieldProps> = ({
   register, 
   registerOptions, 
   error, 
+  defaultValue,
   options, 
   ...props 
 }) => {
   return (
-    <Wrapper>
+    <Box>
       <Label htmlFor={name}>
         {label}
       </Label>
       <Controller
         name={name}
-        defaultValue={options[0].value}
+        defaultValue={defaultValue}
         control={control}
         render={({ field: { ref, ...rest } }) => (
           <SelectBody
@@ -87,7 +86,7 @@ const SelectField: React.FC<ISelectFieldProps> = ({
           </>
         )}
       </ErrorMessage>
-    </Wrapper>
+    </Box>
   );
 };
 
