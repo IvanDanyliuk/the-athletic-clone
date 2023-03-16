@@ -1,6 +1,7 @@
 import { faFilter, faFilterCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Button, Grid, styled, Tooltip } from '@mui/material';
+import dayjs from 'dayjs';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -54,8 +55,11 @@ const MaterialFilters: React.FC = () => {
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm<MaterialFilterData>();
 
   const sumbitFilterData = (data: any) => {
-    console.log(data)
-    dispatch(setFilters(data));
+    dispatch(setFilters({
+      ...data,
+      dateFrom: dayjs(data.dateFrom).toISOString(),
+      dateTo: dayjs(data.dateTo).toISOString(),
+    }));
   };
 
   const clearFilterData = () => {
@@ -101,7 +105,6 @@ const MaterialFilters: React.FC = () => {
             control={control}
             register={register}
             error={errors.author}
-            defaultValue={types[0].value}
             options={types}
           />
         </Grid>

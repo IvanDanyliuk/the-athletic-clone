@@ -63,7 +63,7 @@ const SelectField: React.FC<ISelectFieldProps> = ({
       </Label>
       <Controller
         name={name}
-        defaultValue={defaultValue}
+        defaultValue={defaultValue ? defaultValue : ''}
         control={control}
         render={({ field: { ref, ...rest } }) => (
           <SelectBody
