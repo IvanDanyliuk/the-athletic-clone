@@ -69,7 +69,7 @@ export interface IMaterialsTableHeadCell {
 }
 
 export interface MaterialFilterData {
-  title?: string,
+  type?: string,
   dateFrom?: string,
   dateTo?: string,
   author?: string

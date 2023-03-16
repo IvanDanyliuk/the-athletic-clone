@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import MaterialsTableHead from './MaterialsTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectMaterials, selectMaterialsCount, selectMaterialsStatus } from '../../../../../features/materials/selectors';
+import { selectFilters, selectMaterials, selectMaterialsCount, selectMaterialsStatus } from '../../../../../features/materials/selectors';
 import { getAllMaterials } from '../../../../../features/materials/asyncActions';
 import MaterialTableBody from './MaterialTableBody';
 import MaterialsTableFooter from './MaterialsTableFooter';
@@ -16,6 +16,7 @@ const MaterialsTable: React.FC = () => {
   const materials = useSelector(selectMaterials);
   const pageCount = useSelector(selectMaterialsCount);
   const status = useSelector(selectMaterialsStatus);
+  const filterData = useSelector(selectFilters);
 
   const [page, setPage] = useState<number>(0);
   const [activeCell, setActiveCell] = useState<IMaterialsTableHeadCell | null>(null);
@@ -55,13 +56,19 @@ const MaterialsTable: React.FC = () => {
           order: activeCell?.order! 
         }
       }));
+    } else if(filterData) {
+      dispatch(getAllMaterials({ 
+        page, 
+        itemsPerPage: 10, 
+        filterData 
+      }));
     } else {
       dispatch(getAllMaterials({
         page, 
         itemsPerPage: 10 
       }));
     }
-  }, [dispatch, page, activeCell]);
+  }, [dispatch, page, activeCell, filterData]);
 
   if(status === 'loading') {
     return (
