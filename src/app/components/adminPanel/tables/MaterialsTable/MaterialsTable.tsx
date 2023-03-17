@@ -47,27 +47,15 @@ const MaterialsTable: React.FC = () => {
   };
 
   useEffect(() => {
-    if(activeCell) {
-      dispatch(getAllMaterials({
-        page, 
-        itemsPerPage: 10, 
-        sortData: { 
-          indicator: activeCell?.sortKey!, 
-          order: activeCell?.order! 
-        }
-      }));
-    } else if(filterData) {
-      dispatch(getAllMaterials({ 
-        page, 
-        itemsPerPage: 10, 
-        filterData
-      }));
-    } else {
-      dispatch(getAllMaterials({
-        page, 
-        itemsPerPage: 10 
-      }));
-    }
+    dispatch(getAllMaterials({
+      page, 
+      itemsPerPage: 10, 
+      filterData: filterData,
+      sortData: activeCell ? { 
+        indicator: activeCell?.sortKey!, 
+        order: activeCell?.order! 
+        } : null
+    }));
   }, [dispatch, page, activeCell, filterData]);
 
   if(status === 'loading') {

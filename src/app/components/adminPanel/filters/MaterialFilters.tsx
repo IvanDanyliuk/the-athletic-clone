@@ -65,7 +65,7 @@ const MaterialFilters: React.FC = () => {
   const clearFilterData = () => {
     reset();
     dispatch(clearFilters());
-    dispatch(getAllMaterials({ page: 0, itemsPerPage: 10 }))
+    dispatch(getAllMaterials({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
   };
 
   return (

@@ -13,11 +13,11 @@ export interface IMaterialsState {
 export interface IMaterialsRequestData {
   page: number,
   itemsPerPage: number,
-  filterData?: any, 
-  sortData?: {
+  filterData: any | null, 
+  sortData: {
     indicator: string,
     order: string
-  }
+  } | null
 }
 
 export interface IMaterial {
