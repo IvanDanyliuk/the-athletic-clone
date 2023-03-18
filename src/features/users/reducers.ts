@@ -1,11 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAuthenticatedUser, login, logout, signup } from './asyncActions';
+import { getAuthenticatedUser, getAllUsers, login, logout, signup } from './asyncActions';
 import { IUserInitialState } from './types';
 
 
 const initialState: IUserInitialState = {
   status: 'idle',
   user: null,
+  data: {
+    users: [],
+    usersCount: 0
+  },
+  filters: null,
   error: null
 };
 
@@ -13,6 +18,12 @@ const userSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
+    setFilters: (state, action) => {
+      state.filters = action.payload;
+    },
+    clearFilters: (state) => {
+      state.filters = null;
+    },
     clearError: (state) => {
       state.status = 'idle';
       state.error = null;
@@ -64,9 +75,20 @@ const userSlice = createSlice({
         state.status = 'failed';
         state.error = action.payload.error;
       })
+      .addCase(getAllUsers.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data = action.payload;
+      })
+      .addCase(getAllUsers.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
   }
 });
 
-export const { clearError } = userSlice.actions;
+export const { clearError, setFilters, clearFilters } = userSlice.actions;
 
 export default userSlice.reducer;

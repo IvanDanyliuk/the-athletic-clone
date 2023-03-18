@@ -35,7 +35,7 @@ const AdminPanelNavMenu: React.FC = () => {
         <MenuLink to='clubs'>Clubs</MenuLink>
       </ListItem>
       <ListItem>
-        <MenuLink to='authors'>Authors</MenuLink>
+        <MenuLink to='users'>Users</MenuLink>
       </ListItem>
       <ListItem>
         <MenuLink to='players'>Players</MenuLink>

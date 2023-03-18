@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
-import MaterialsTableHead from './MaterialsTableHead';
+import UsersTableHead from './UsersTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectFilters, selectMaterials, selectMaterialsCount, selectMaterialsStatus } from '../../../../../features/materials/selectors';
-import { getAllMaterials } from '../../../../../features/materials/asyncActions';
-import MaterialTableBody from './MaterialsTableBody';
-import MaterialsTableFooter from './MaterialsTableFooter';
+import { selectUserFilters, selectAllUsers, selectAllUsersCount, selectUserStatus } from '../../../../../features/users/selectors';
+import { getAllUsers } from '../../../../../features/users/asyncActions';
+import UsersTableBody from './UsersTableBody';
+import UsersTableFooter from './UsersTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
-import { IMaterialsTableHeadCell, Order } from '../../../../../features/materials/types';
+import { IUsersTableHeadCell, Order } from '../../../../../features/users/types';
 
 
-const MaterialsTable: React.FC = () => {
+const UsersTable: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const materials = useSelector(selectMaterials);
-  const pageCount = useSelector(selectMaterialsCount);
-  const status = useSelector(selectMaterialsStatus);
-  const filterData = useSelector(selectFilters);
+  const users = useSelector(selectAllUsers);
+  const pageCount = useSelector(selectAllUsersCount);
+  const status = useSelector(selectUserStatus);
+  const filterData = useSelector(selectUserFilters);
 
   const [page, setPage] = useState<number>(0);
-  const [activeCell, setActiveCell] = useState<IMaterialsTableHeadCell | null>(null);
+  const [activeCell, setActiveCell] = useState<IUsersTableHeadCell | null>(null);
 
-  const handleDataSort = (data: IMaterialsTableHeadCell) => {
+  const handleDataSort = (data: IUsersTableHeadCell) => {
     if(!activeCell || activeCell.sortKey !== data.sortKey) {
       setActiveCell({
         ...data,
@@ -47,7 +47,7 @@ const MaterialsTable: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllMaterials({
+    dispatch(getAllUsers({
       page, 
       itemsPerPage: 10, 
       filterData: filterData,
@@ -67,16 +67,16 @@ const MaterialsTable: React.FC = () => {
   return (
     <Paper sx={{ maxWidth: '100%', overflow: 'auto' }}>
       <Table stickyHeader>
-        <MaterialsTableHead 
+        <UsersTableHead 
           activeCell={activeCell} 
           onSort={handleDataSort} 
         />
-        <MaterialTableBody 
-          materials={materials} 
+        <UsersTableBody 
+          users={users} 
           page={page} 
           itemsPerPage={10}
         />
-        <MaterialsTableFooter 
+        <UsersTableFooter 
           pageCount={pageCount} 
           page={page} 
           onPageChange={handleCurrentPageChange} 
@@ -86,4 +86,4 @@ const MaterialsTable: React.FC = () => {
   );
 };
 
-export default MaterialsTable;
+export default UsersTable;

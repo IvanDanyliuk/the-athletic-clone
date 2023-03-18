@@ -10,6 +10,7 @@ export const login = (loginData: ILoginCredentials) => API.post('/users/login', 
 export const signup = (registerData: IUser) => API.post('/users/signup', registerData);
 export const logout = () => API.post('/users/logout');
 export const getAuthenticatedUser = () => API.get('/users');
+export const getAllUsers = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/users/all', { params: { page, itemsPerPage, filterData, sortData } });
 
 export const createMaterial = (materialData: MaterialModel) => API.post('/materials', materialData);
 export const getAllMaterials = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/materials/all', { params: { page, itemsPerPage, filterData, sortData } });

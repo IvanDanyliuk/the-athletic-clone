@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
-import { ILoginCredentials, IUser } from './types';
+import { ILoginCredentials, IUser, IUserRequestData } from './types';
 
 
 export const login = createAsyncThunk(
@@ -46,6 +46,19 @@ export const getAuthenticatedUser = createAsyncThunk(
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data)
+    }
+  }
+);
+
+export const getAllUsers = createAsyncThunk(
+  'users/getAllUsers',
+  async (requestData: IUserRequestData, thunkAPI) => {
+    const { page, itemsPerPage, filterData, sortData } = requestData;
+    try {
+      const { data } = await api.getAllUsers(page, itemsPerPage, filterData, sortData);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
