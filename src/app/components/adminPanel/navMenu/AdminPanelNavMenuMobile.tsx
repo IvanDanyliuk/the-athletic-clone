@@ -98,7 +98,7 @@ const AdminPanelNavMenuMobile: React.FC = () => {
           <MenuLink to='clubs'>Clubs</MenuLink>
         </MenuItem>
         <MenuItem onClick={handleClose}>
-          <MenuLink to='authors'>Authors</MenuLink>
+          <MenuLink to='users'>Users</MenuLink>
         </MenuItem>
         <MenuItem onClick={handleClose}>
           <MenuLink to='players'>Players</MenuLink>

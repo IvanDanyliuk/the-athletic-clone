@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../../../features/materials/types';
-import RowActionButtons from './RowActionButtons';
+import RowActionButtons from '../../ui/RowActionButtons';
 import { AppDispatch } from '../../../../../features/store';
 import { deleteMaterial } from '../../../../../features/materials/asyncActions';
 

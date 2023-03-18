@@ -4,7 +4,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import Layout from './app/components/layout/Layout';
 import { Admin, Checkout, Home, Login, News, NotFound, Realtime, Register, Search } from './app/pages';
-import { Authors, Clubs, Competitions, Materials, Players, Schedules } from './app/components/adminPanel/sections';
+import { Clubs, Competitions, Materials, Players, Schedules, Users } from './app/components/adminPanel/sections';
 import { ArticleForm, AuthorForm, ClubForm, CompetitionForm, NoteForm, PlayerForm, ScheduleForm, RealtimePostForm } from './app/components/adminPanel/forms/creationForms';
 import { UpdateAuthorForm, UpdateClubForm, UpdateCompetitionForm, UpdateMaterialForm, UpdatePlayerForm, UpdateScheduleForm } from './app/components/adminPanel/forms/updationForms';
 
@@ -29,7 +29,7 @@ const App: React.FC = () => {
                 <Route path='materials/edit/:id' element={<UpdateMaterialForm />} />
                 <Route path='competitions' element={<Competitions />} />
                 <Route path='clubs' element={<Clubs />} />
-                <Route path='authors' element={<Authors />} />
+                <Route path='users' element={<Users />} />
                 <Route path='players' element={<Players />} />
                 <Route path='schedules' element={<Schedules />} />
                 <Route path='new-article' element={<ArticleForm />} />

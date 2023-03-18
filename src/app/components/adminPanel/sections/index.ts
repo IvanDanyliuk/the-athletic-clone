@@ -1,4 +1,4 @@
-export { default as Authors } from './Authors';
+export { default as Users } from './Users';
 export { default as Clubs } from './Clubs';
 export { default as Competitions } from './Competitions';
 export { default as Materials } from './Materials';
