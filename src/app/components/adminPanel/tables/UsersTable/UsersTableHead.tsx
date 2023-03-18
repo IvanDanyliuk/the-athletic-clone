@@ -6,8 +6,16 @@ import { IUsersTableHeadCell, Order } from '../../../../../features/users/types'
 
 const cells: IUsersTableHeadCell[] = [
   {
-    title: 'Name', 
-    isSortable: false
+    title: 'First Name', 
+    isSortable: true,
+    sortKey: 'firstName',
+    order: Order.asc
+  },
+  {
+    title: 'Last Name', 
+    isSortable: true,
+    sortKey: 'lastName',
+    order: Order.asc
   },
   {
     title: 'Role', 

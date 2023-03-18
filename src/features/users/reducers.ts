@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAuthenticatedUser, getAllUsers, login, logout, signup } from './asyncActions';
+import { getAuthenticatedUser, getAllUsers, login, logout, signup, deleteUser } from './asyncActions';
 import { IUserInitialState } from './types';
 
 
@@ -83,6 +83,17 @@ const userSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(getAllUsers.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(deleteUser.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data = action.payload;
+      })
+      .addCase(deleteUser.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })

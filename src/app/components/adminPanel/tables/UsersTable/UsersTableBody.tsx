@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { IUserResponseData } from '../../../../../features/users/types';
 import RowActionButtons from '../../ui/RowActionButtons';
 import { AppDispatch } from '../../../../../features/store';
-// import { deleteMaterial } from '../../../../../features/materials/asyncActions';
+import { deleteUser } from '../../../../../features/users/asyncActions';
 
 
 interface IUserTableBodyProps {
@@ -19,7 +19,7 @@ const UserTableBody: React.FC<IUserTableBodyProps> = ({ users, page, itemsPerPag
   const dispatch = useDispatch<AppDispatch>();
 
   const handleUserDelete = (id: string) => {
-    // dispatch(deleteMaterial({ id, page, itemsPerPage }));
+    dispatch(deleteUser({ id, page, itemsPerPage }));
   };
 
   return (
@@ -27,7 +27,8 @@ const UserTableBody: React.FC<IUserTableBodyProps> = ({ users, page, itemsPerPag
       {
         users.map(({ _id, firstName, lastName, location, organization, position, role, createdAt }) => (
           <TableRow key={uuid()}>
-            <TableCell>{firstName && lastName ? `${firstName} ${lastName}` : '-'}</TableCell>
+            <TableCell>{firstName ? firstName : '-'}</TableCell>
+            <TableCell>{lastName ? lastName : '-'}</TableCell>
             <TableCell>{role}</TableCell>
             <TableCell>{organization}</TableCell>
             <TableCell>{position}</TableCell>

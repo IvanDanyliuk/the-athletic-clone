@@ -68,3 +68,9 @@ export interface IUserFiltersData {
   dateFrom?: string,
   dateTo?: string
 }
+
+export interface IDeleteUserData {
+  id: string,
+  page: number,
+  itemsPerPage: number
+}
