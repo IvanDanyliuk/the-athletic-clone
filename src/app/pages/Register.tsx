@@ -11,6 +11,8 @@ import { IUser } from '../models/users';
 import TextInput from '../components/ui/TextInput';
 import { signup } from '../../features/users/asyncActions';
 import { AppDispatch } from '../../features/store';
+import SelectField from '../components/ui/SelectField';
+import { getCountries } from '../services/countries';
 
 
 const Wrapper = styled(Box)`
@@ -112,8 +114,10 @@ const BottomText = styled(Typography)`
 
 const Register: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { register, handleSubmit, formState: { errors }, getValues, reset } = useForm<IUser>();
+  const { register, control, handleSubmit, formState: { errors }, getValues, reset } = useForm<IUser>();
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
+
+  const countries = getCountries().map(country => ({ label: country, value: country }));
 
   const handlePageMode = () => {
     if(!isFormVisible && getValues().email) {
@@ -159,6 +163,16 @@ const Register: React.FC = () => {
                       register={register}
                       registerOptions={{ required: 'This field is required!' }}
                       error={errors.lastName}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <SelectField 
+                      name='location'
+                      label='Country'
+                      control={control}
+                      register={register}
+                      options={countries}
+                      error={errors.location}
                     />
                   </Grid>
                   <Grid item xs={12} >

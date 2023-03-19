@@ -51,7 +51,7 @@ const UserFilters: React.FC = () => {
   const [dateError, setDateError] = useState<string | null>(null);
 
   const locations = useSelector(selectUserLocations);
-  const countries = locations.map(location => ({ label: location, value: location.toLowerCase() }));
+  const countries = locations.map(location => ({ label: location, value: location }));
 
   const sumbitFilterData = (data: any) => {
     const isDatesValid = checkFilterTimeInterval(data.dateFrom, data.dateTo, handleDateError);
