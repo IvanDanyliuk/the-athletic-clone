@@ -63,6 +63,18 @@ export const getAllUsers = createAsyncThunk(
   }
 );
 
+export const getUsersLocations = createAsyncThunk(
+  'users/getUsersLocations',
+  async (_: undefined, thunkAPI) => {
+    try {
+      const { data } = await api.getUsersLocations();
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const deleteUser = createAsyncThunk(
   'materials/deleteUser',
   async (deleteData: IDeleteUserData, thunkAPI) => {

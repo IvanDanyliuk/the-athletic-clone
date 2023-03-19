@@ -6,6 +6,7 @@ export interface IUserInitialState {
     usersCount: number
   },
   filters: IUserFiltersData | null,
+  countries: string[],
   error: string | null
 }
 
@@ -63,8 +64,8 @@ export interface IUserRequestData {
 }
 
 export interface IUserFiltersData {
-  organization?: string,
-  country?: string,
+  role?: string,
+  location?: string,
   dateFrom?: string,
   dateTo?: string
 }

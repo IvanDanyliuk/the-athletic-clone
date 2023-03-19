@@ -11,6 +11,7 @@ export const signup = (registerData: IUser) => API.post('/users/signup', registe
 export const logout = () => API.post('/users/logout');
 export const getAuthenticatedUser = () => API.get('/users');
 export const getAllUsers = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/users/all', { params: { page, itemsPerPage, filterData, sortData } });
+export const getUsersLocations = () => API.get('/users/locations');
 export const deleteUser = (id: string, page: number, itemsPerPage: number) => API.delete('/users', { params: { id, page, itemsPerPage } });
 
 export const createMaterial = (materialData: MaterialModel) => API.post('/materials', materialData);

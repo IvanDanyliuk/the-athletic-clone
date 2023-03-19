@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { faFilter, faFilterCircleXmark, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Button, Grid, IconButton, Snackbar, styled, Tooltip } from '@mui/material';
 import dayjs from 'dayjs';
-import { getAllMaterials } from '../../../../features/materials/asyncActions';
-import { clearFilters, setFilters } from '../../../../features/materials/reducers';
-import { MaterialFilterData } from '../../../../features/materials/types';
+import { clearFilters, setFilters } from '../../../../features/users/reducers';
 import { AppDispatch } from '../../../../features/store';
-import { MaterialType } from '../../../models/components';
 import ControlledDatePicker from '../../ui/ControlledDatePicker';
 import SelectField from '../../ui/SelectField';
 import { checkFilterTimeInterval } from '../../../utils/helpers';
+import { IUserFiltersData } from '../../../../features/users/types';
+import { selectUserLocations } from '../../../../features/users/selectors';
+import { getAllUsers, getUsersLocations } from '../../../../features/users/asyncActions';
 
 
 const Form = styled(Box)`
@@ -38,23 +38,20 @@ const SubmitBtn = styled(Button)`
   }
 `;
 
-const authors = [
-  { label: 'John Doe', value: 'John Doe' }, 
-  { label: 'Rowan Atkinson', value: 'Rowan Atkinson' }, 
-  { label: 'Jack Sparrow', value: 'Jack Sparrow' }
-];
-
-const types = [
-  { label: 'Article', value: MaterialType.article }, 
-  { label: 'Note', value: MaterialType.note }, 
-  { label: 'Post', value: MaterialType.post }
+const roles = [
+  { label: 'Administrator', value: 'admin' }, 
+  { label: 'Author', value: 'author' }, 
+  { label: 'Reader', value: 'reader' },
 ];
 
 
-const MaterialFilters: React.FC = () => {
+const UserFilters: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { register, handleSubmit, control, formState: { errors }, reset } = useForm<MaterialFilterData>();
+  const { register, handleSubmit, control, formState: { errors }, reset } = useForm<IUserFiltersData>();
   const [dateError, setDateError] = useState<string | null>(null);
+
+  const locations = useSelector(selectUserLocations);
+  const countries = locations.map(location => ({ label: location, value: location.toLowerCase() }));
 
   const sumbitFilterData = (data: any) => {
     const isDatesValid = checkFilterTimeInterval(data.dateFrom, data.dateTo, handleDateError);
@@ -70,7 +67,7 @@ const MaterialFilters: React.FC = () => {
   const clearFilterData = () => {
     reset();
     dispatch(clearFilters());
-    dispatch(getAllMaterials({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
+    dispatch(getAllUsers({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
   };
 
   const handleDateError = (value: string) => {
@@ -80,6 +77,10 @@ const MaterialFilters: React.FC = () => {
   const clearDateError = () => {
     setDateError('');
   };
+
+  useEffect(() => {
+    dispatch(getUsersLocations());
+  }, []);
 
   const action = (
     <IconButton
@@ -97,13 +98,13 @@ const MaterialFilters: React.FC = () => {
       <FormRow container spacing={3}>
         <Grid item xs={12} md={4}>
           <SelectField 
-            name='author'
-            label='Author' 
+            name='role'
+            label='Role' 
             control={control}
             register={register}
-            error={errors.author}
+            error={errors.role}
             defaultValue=''
-            options={authors}
+            options={roles}
           />
         </Grid>
         <Grid item xs={12} md={2}>
@@ -124,12 +125,12 @@ const MaterialFilters: React.FC = () => {
         </Grid>
         <Grid item xs={12} md={2}>
           <SelectField 
-            name='type'
-            label='Type' 
+            name='location'
+            label='Location' 
             control={control}
             register={register}
-            error={errors.author}
-            options={types}
+            error={errors.location}
+            options={countries}
           />
         </Grid>
         <BtnWrapper item xs={12} md={1}>
@@ -166,4 +167,4 @@ const MaterialFilters: React.FC = () => {
   );
 };
 
-export default MaterialFilters;
+export default UserFilters;

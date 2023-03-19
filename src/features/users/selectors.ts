@@ -6,3 +6,4 @@ export const selectAllUsersCount = (state: RootState) => state.users.data.usersC
 export const selectUserStatus = (state: RootState) => state.users.status;
 export const selectUserError = (state: RootState) => state.users.error;
 export const selectUserFilters = (state: RootState) => state.users.filters;
+export const selectUserLocations = (state: RootState) => state.users.countries;

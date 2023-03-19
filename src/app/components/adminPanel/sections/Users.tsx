@@ -1,4 +1,5 @@
 import React from 'react';
+import UserFilters from '../filters/UserFilters';
 import UsersTable from '../tables/UsersTable/UsersTable';
 import SubPageHeader from '../ui/SubPageHeader';
 
@@ -10,6 +11,7 @@ const Users: React.FC = () => {
         title='Users' 
         link='new-author' 
       />
+      <UserFilters />
       <UsersTable />
     </>
   );
