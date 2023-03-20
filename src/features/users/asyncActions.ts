@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
+import { UserModel } from '../../app/models/users';
 import { IDeleteUserData, ILoginCredentials, IUser, IUserRequestData } from './types';
 
 
@@ -17,7 +18,7 @@ export const login = createAsyncThunk(
 
 export const signup = createAsyncThunk(
   'users/signup',
-  async (userData: IUser, thunkAPI) => {
+  async (userData: UserModel, thunkAPI) => {
     try {
       const { data } = await api.signup(userData);
       return data;
@@ -74,6 +75,18 @@ export const getUsersLocations = createAsyncThunk(
     }
   }
 );
+
+export const updateUser = createAsyncThunk(
+  'users/updateUser',
+  async (userToUpdate: IUser, thunkAPI) => {
+    try {
+      const { data } = await api.updateUser(userToUpdate);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+)
 
 export const deleteUser = createAsyncThunk(
   'materials/deleteUser',

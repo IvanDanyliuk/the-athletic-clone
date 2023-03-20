@@ -5,8 +5,17 @@ import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 
 
+export enum EssenseType {
+  materials = 'materials',
+  users = 'users',
+  competitions = 'competitions',
+  clubs = 'clubs',
+  schedules = 'schedules'
+}
+
 interface IRowActionButtonsProps {
-  id: string, 
+  id: string,
+  type: EssenseType, 
   onDelete: () => void
 }
 
@@ -16,7 +25,7 @@ const EditLink = styled(Link)`
 `;
 
 
-const RowActionButtons: React.FC<IRowActionButtonsProps> = ({ id, onDelete }) => {
+const RowActionButtons: React.FC<IRowActionButtonsProps> = ({ id, type, onDelete }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLButtonElement>(null);
   const open = Boolean(anchorEl);
 
@@ -49,7 +58,7 @@ const RowActionButtons: React.FC<IRowActionButtonsProps> = ({ id, onDelete }) =>
         onClose={handleClose}
       >
         <MenuItem>
-          <EditLink to={`/admin/materials/edit/${id}`}>Edit</EditLink>
+          <EditLink to={`/admin/${type}/edit/${id}`}>Edit</EditLink>
         </MenuItem>
         <MenuItem onClick={onDelete}>Delete</MenuItem>
       </Menu>

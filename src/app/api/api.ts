@@ -1,17 +1,19 @@
 import axios from 'axios';
 import { IMaterial } from '../../features/materials/types';
-import { ILoginCredentials } from '../../features/users/types';
+import { ILoginCredentials, IUser } from '../../features/users/types';
 import { MaterialModel } from '../models/components';
-import { IUser } from '../models/users';
+import { UserModel } from '../models/users';
+
 
 const API = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL, withCredentials: true });
 
 export const login = (loginData: ILoginCredentials) => API.post('/users/login', loginData);
-export const signup = (registerData: IUser) => API.post('/users/signup', registerData);
+export const signup = (registerData: UserModel) => API.post('/users/signup', registerData);
 export const logout = () => API.post('/users/logout');
 export const getAuthenticatedUser = () => API.get('/users');
 export const getAllUsers = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/users/all', { params: { page, itemsPerPage, filterData, sortData } });
 export const getUsersLocations = () => API.get('/users/locations');
+export const updateUser = (userToUpdate: IUser) => API.patch('/users', userToUpdate);
 export const deleteUser = (id: string, page: number, itemsPerPage: number) => API.delete('/users', { params: { id, page, itemsPerPage } });
 
 export const createMaterial = (materialData: MaterialModel) => API.post('/materials', materialData);
