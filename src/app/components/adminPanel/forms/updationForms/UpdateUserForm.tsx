@@ -12,6 +12,7 @@ import TextInput from '../../../ui/TextInput';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import SelectField from '../../../ui/SelectField';
 import { getCountries } from '../../../../services/countries';
+import UpdatePasswordModal from './UpdatePasswordModal';
 
 
 const Form = styled(Box)`
@@ -41,12 +42,17 @@ const UpdateUserForm: React.FC = () => {
   
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm<IUser>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [newPassword, setNewPassword] = useState<string>('');
 
   const handleFormSubmit = async (data: IUser) => {
     setIsLoading(true);
     await dispatch(updateUser(data));
     setIsLoading(false);
     navigate('/admin/users');
+  };
+
+  const handleNewPassword = (value: string) => {
+    setNewPassword(value);
   };
 
   useEffect(() => {
@@ -92,7 +98,7 @@ const UpdateUserForm: React.FC = () => {
           </Grid>
         </FormRow>
         <FormRow container spacing={3}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={5}>
             <SelectField 
               name='role' 
               label='Role'
@@ -101,7 +107,7 @@ const UpdateUserForm: React.FC = () => {
               options={roles}
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={5}>
             <SelectField 
               name='location'
               label='Country'
@@ -110,6 +116,9 @@ const UpdateUserForm: React.FC = () => {
               options={countries}
               error={errors.location}
             />
+          </Grid>
+          <Grid item xs={12} md={2}>
+            
           </Grid>
         </FormRow>
         <FormRow container spacing={3}>
@@ -161,6 +170,7 @@ const UpdateUserForm: React.FC = () => {
           Submit
         </Button>
       </Form>
+      <UpdatePasswordModal onUpdate={handleNewPassword} />
       <BackdropLoader open={isLoading} />
     </Box>
   );
