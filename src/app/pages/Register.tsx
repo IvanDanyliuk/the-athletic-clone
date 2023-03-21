@@ -7,7 +7,7 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Button, Checkbox, Divider, FormControlLabel, Grid, Typography } from '@mui/material';
 import AuthButtons from '../components/authentication/AuthButtons';
-import { IUser } from '../models/users';
+import { UserModel } from '../models/users';
 import TextInput from '../components/ui/TextInput';
 import { signup } from '../../features/users/asyncActions';
 import { AppDispatch } from '../../features/store';
@@ -114,7 +114,7 @@ const BottomText = styled(Typography)`
 
 const Register: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { register, control, handleSubmit, formState: { errors }, getValues, reset } = useForm<IUser>();
+  const { register, control, handleSubmit, formState: { errors }, getValues, reset } = useForm<UserModel>();
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
 
   const countries = getCountries().map(country => ({ label: country, value: country }));
@@ -127,7 +127,7 @@ const Register: React.FC = () => {
     }
   };
 
-  const submitRegisterForm = (data: IUser) => {
+  const submitRegisterForm = (data: UserModel) => {
     dispatch(signup(data));
     reset();
   };

@@ -6,7 +6,7 @@ import Layout from './app/components/layout/Layout';
 import { Admin, Checkout, Home, Login, News, NotFound, Realtime, Register, Search } from './app/pages';
 import { Clubs, Competitions, Materials, Players, Schedules, Users } from './app/components/adminPanel/sections';
 import { ArticleForm, AuthorForm, ClubForm, CompetitionForm, NoteForm, PlayerForm, ScheduleForm, RealtimePostForm } from './app/components/adminPanel/forms/creationForms';
-import { UpdateAuthorForm, UpdateClubForm, UpdateCompetitionForm, UpdateMaterialForm, UpdatePlayerForm, UpdateScheduleForm } from './app/components/adminPanel/forms/updationForms';
+import { UpdateClubForm, UpdateCompetitionForm, UpdateMaterialForm, UpdatePlayerForm, UpdateScheduleForm, UpdateUserForm } from './app/components/adminPanel/forms/updationForms';
 
 
 const App: React.FC = () => {
@@ -30,6 +30,7 @@ const App: React.FC = () => {
                 <Route path='competitions' element={<Competitions />} />
                 <Route path='clubs' element={<Clubs />} />
                 <Route path='users' element={<Users />} />
+                <Route path='users/edit/:id' element={<UpdateUserForm />} />
                 <Route path='players' element={<Players />} />
                 <Route path='schedules' element={<Schedules />} />
                 <Route path='new-article' element={<ArticleForm />} />
@@ -40,10 +41,8 @@ const App: React.FC = () => {
                 <Route path='new-author' element={<AuthorForm />} />
                 <Route path='new-player' element={<PlayerForm />} />
                 <Route path='new-schedule' element={<ScheduleForm />} />
-                <Route path='update-material/:id' element={<UpdateMaterialForm />} />
                 <Route path='update-competition/:id' element={<UpdateCompetitionForm />} />
                 <Route path='update-club/:id' element={<UpdateClubForm />} />
-                <Route path='update-author/:id' element={<UpdateAuthorForm />} />
                 <Route path='update-player/:id' element={<UpdatePlayerForm />} />
                 <Route path='update-schedule/:id' element={<UpdateScheduleForm />} />
               </Route>

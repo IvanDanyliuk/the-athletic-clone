@@ -2,14 +2,14 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
-import { IUserResponseData } from '../../../../../features/users/types';
-import RowActionButtons from '../../ui/RowActionButtons';
+import { IUser } from '../../../../../features/users/types';
+import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
 import { AppDispatch } from '../../../../../features/store';
 import { deleteUser } from '../../../../../features/users/asyncActions';
 
 
 interface IUserTableBodyProps {
-  users: IUserResponseData[],
+  users: IUser[],
   page: number,
   itemsPerPage: number
 }
@@ -37,6 +37,7 @@ const UserTableBody: React.FC<IUserTableBodyProps> = ({ users, page, itemsPerPag
             <TableCell>
               <RowActionButtons 
                 id={_id} 
+                type={EssenseType.users}
                 onDelete={() => handleUserDelete(_id)} 
               />
             </TableCell>

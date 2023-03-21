@@ -1,4 +1,4 @@
-export interface IUser {
+export interface UserModel {
   firstName: string,
   lastName: string,
   email: string,
@@ -8,4 +8,4 @@ export interface IUser {
   location?: string,
   organization?: string,
   position?: string
-};
+}

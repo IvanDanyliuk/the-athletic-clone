@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../../../features/materials/types';
-import RowActionButtons from '../../ui/RowActionButtons';
+import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
 import { AppDispatch } from '../../../../../features/store';
 import { deleteMaterial } from '../../../../../features/materials/asyncActions';
 
@@ -36,6 +36,7 @@ const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials, page
             <TableCell>
               <RowActionButtons 
                 id={_id} 
+                type={EssenseType.materials}
                 onDelete={() => handleMaterialDelete(_id)} 
               />
             </TableCell>

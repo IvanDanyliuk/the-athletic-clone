@@ -2,7 +2,7 @@ export interface IUserInitialState {
   status: string,
   user: IUser | null,
   data: {
-    users: IUserResponseData[],
+    users: IUser[],
     usersCount: number
   },
   filters: IUserFiltersData | null,
@@ -10,7 +10,7 @@ export interface IUserInitialState {
   error: string | null
 }
 
-export interface IUserResponseData {
+export interface IUser {
   _id: string,
   firstName: string,
   lastName: string,
@@ -44,6 +44,12 @@ export interface ILoginCredentials {
 export enum Order {
   asc = 'asc',
   desc = 'desc'
+}
+
+export enum UserRoles {
+  admin = 'admin',
+  author = 'author',
+  reader = 'reader'
 }
 
 export interface IUsersTableHeadCell {

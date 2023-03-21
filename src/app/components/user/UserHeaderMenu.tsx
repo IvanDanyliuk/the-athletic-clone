@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { Avatar, Box, Menu, MenuItem, styled } from '@mui/material';
 import { AppDispatch } from '../../../features/store';
 import { logout } from '../../../features/users/asyncActions';
-import { IUser } from '../../models/users';
+import { UserModel } from '../../models/users';
 
 
 interface IUserHeaderMenuProps {
-  user: IUser
+  user: UserModel
 }
 
 
