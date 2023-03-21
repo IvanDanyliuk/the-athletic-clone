@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { IMaterial } from '../../features/materials/types';
 import { ILoginCredentials, IUser } from '../../features/users/types';
-import { MaterialModel } from '../models/components';
+import { ClubModel, MaterialModel } from '../models/components';
 import { UserModel } from '../models/users';
 
 
@@ -23,3 +23,5 @@ export const getNotes = (page: number, itemsPerPage: number, filterData?: any) =
 export const getRealtimePosts = (page: number, itemsPerPage: number, filterData?: any) => API.get('/materials/real-time-posts', { params: { page, itemsPerPage, filterData } });
 export const updateMaterial = (materialToUpdate: IMaterial) => API.patch('/materials', materialToUpdate);
 export const deleteMaterial = (id: string, page: number, itemsPerPage: number) => API.delete('/materials', { params: { id, page, itemsPerPage } });
+
+export const createClub = (clubData: ClubModel) => API.post('/clubs', clubData);
