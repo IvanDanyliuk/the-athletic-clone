@@ -50,7 +50,6 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
     } else {
       setIsLoading(true);
       const clubLogoUrl = data.clubLogoUrl.length > 0 ? await uploadImage(data.clubLogoUrl[0]) : '';
-      console.log(data)
       await dispatch(createClub({
         ...data,
         clubLogoUrl
@@ -62,9 +61,9 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
 
   useEffect(() => {
     if(clubToUpdate) {
-      reset({
+      // reset({
         //pass updation data here
-      })
+      // })
     }
   }, []);
 

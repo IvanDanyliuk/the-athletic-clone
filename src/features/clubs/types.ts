@@ -13,8 +13,18 @@ export interface IClubFilters {
   country?: string
 }
 
+export interface IClubsRequestData {
+  page: number,
+  itemsPerPage: number,
+  filterData: IClubFilters | null, 
+  sortData: {
+    indicator: string,
+    order: string
+  } | null
+}
+
 export interface IClub {
-  _id?: string,
+  _id: string,
   fullName: string,
   commonName: string,
   shortName: string,
@@ -23,4 +33,22 @@ export interface IClub {
   stadium: string,
   createdAt?: string,
   updatedAt?: string
+}
+
+export enum Order {
+  asc = 'asc',
+  desc = 'desc'
+}
+
+export interface IClubsTableHeadCell {
+  title: string,
+  isSortable: boolean,
+  sortKey?: string,
+  order?: Order
+}
+
+export interface IDeleteClubData {
+  id: string,
+  page: number,
+  itemsPerPage: number
 }
