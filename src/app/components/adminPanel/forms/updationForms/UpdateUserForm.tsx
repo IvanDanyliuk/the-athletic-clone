@@ -12,7 +12,6 @@ import TextInput from '../../../ui/TextInput';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import SelectField from '../../../ui/SelectField';
 import { getCountries } from '../../../../services/countries';
-import UpdatePasswordModal from './UpdatePasswordModal';
 
 
 const Form = styled(Box)`
@@ -42,17 +41,12 @@ const UpdateUserForm: React.FC = () => {
   
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm<IUser>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [newPassword, setNewPassword] = useState<string>('');
 
   const handleFormSubmit = async (data: IUser) => {
     setIsLoading(true);
     await dispatch(updateUser(data));
     setIsLoading(false);
     navigate('/admin/users');
-  };
-
-  const handleNewPassword = (value: string) => {
-    setNewPassword(value);
   };
 
   useEffect(() => {
@@ -170,7 +164,6 @@ const UpdateUserForm: React.FC = () => {
           Submit
         </Button>
       </Form>
-      <UpdatePasswordModal onUpdate={handleNewPassword} />
       <BackdropLoader open={isLoading} />
     </Box>
   );
