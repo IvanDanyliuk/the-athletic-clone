@@ -1,14 +1,14 @@
 //ENTITIES
 export interface ClubModel {
-  _id?: string,
+  // _id?: string,
   fullName: string,
   commonName: string,
   shortName: string,
   country: string,
   clubLogoUrl: string,
   stadium: string,
-  createdAt?: string,
-  updatedAt?: string
+  // createdAt?: string,
+  // updatedAt?: string
 }
 
 export interface CompetitionModel {
