@@ -10,9 +10,9 @@ import { uploadImage } from '../../../../services/uploadImage';
 import BackLink from '../../ui/BackLink';
 import SelectField from '../../../ui/SelectField';
 import BackdropLoader from '../../../ui/BackdropLoader';
-import { IMaterial } from '../../../../../features/materials/types';
 import { getCountries } from '../../../../services/countries';
-import { createClub } from '../../../../../features/clubs/asyncActions';
+import { createClub, updateClub } from '../../../../../features/clubs/asyncActions';
+import { IClub } from '../../../../../features/clubs/types';
 
 
 
@@ -25,7 +25,7 @@ const FormRow = styled(Grid)`
 `;
 
 interface INewClubFormProps {
-  clubToUpdate?: IMaterial
+  clubToUpdate?: IClub
 }
 
 
@@ -38,13 +38,12 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
   const countries = getCountries().map(country => ({ label: country, value: country }));
 
   const handleFormSubmit = async (data: any) => {
-    
     if(clubToUpdate) {
       setIsLoading(true);
-      // await dispatch(updateClub({
-      //   ...clubToUpdate,
-        
-      // }));
+      await dispatch(updateClub({
+        _id: clubToUpdate._id,
+        ...data
+      }));
       setIsLoading(false);
       navigate('/admin/clubs');
     } else {
@@ -61,9 +60,14 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
 
   useEffect(() => {
     if(clubToUpdate) {
-      // reset({
-        //pass updation data here
-      // })
+      reset({
+        fullName: clubToUpdate.fullName,
+        commonName: clubToUpdate.commonName,
+        shortName: clubToUpdate.shortName,
+        stadium: clubToUpdate.stadium,
+        clubLogoUrl: clubToUpdate.clubLogoUrl,
+        country: clubToUpdate.country
+      })
     }
   }, []);
 
@@ -131,7 +135,6 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
               register={register}
               registerOptions={{ required: 'Country is required!' }} 
               error={errors.country}
-              // defaultValue={statusOptions[0].value}
               options={countries}
             />
           </Grid>
