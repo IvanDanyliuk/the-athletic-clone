@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { IClub } from '../../features/clubs/types';
 import { IMaterial } from '../../features/materials/types';
 import { ILoginCredentials, IUser } from '../../features/users/types';
 import { ClubModel, MaterialModel } from '../models/components';
@@ -26,4 +27,5 @@ export const deleteMaterial = (id: string, page: number, itemsPerPage: number) =
 
 export const createClub = (clubData: ClubModel) => API.post('/clubs', clubData);
 export const getAllClubs = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/clubs/all', { params: { page, itemsPerPage, filterData, sortData } });
+export const updateClub = (clubToUpdate: IClub) => API.patch('/clubs', clubToUpdate);
 export const deleteClub = (id: string, page: number, itemsPerPage: number) => API.delete('/clubs', { params: { id, page, itemsPerPage } });
