@@ -3,6 +3,7 @@ import * as api from '../../app/api/api';
 import { ClubModel } from '../../app/models/components';
 import { IClub, IClubsRequestData, IDeleteClubData } from './types';
 
+
 export const createClub = createAsyncThunk(
   'clubs/createClub',
   async (clubData: ClubModel, thunkAPI) => {
@@ -21,6 +22,18 @@ export const getAllClubs = createAsyncThunk(
     const { page, itemsPerPage, filterData, sortData } = requestData;
     try {
       const { data } = await api.getAllClubs(page, itemsPerPage, filterData, sortData,);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getClubsByCountry = createAsyncThunk(
+  'clubs/getClubsByCountry',
+  async (country: string | undefined, thunkAPI) => {
+    try {
+      const { data } = await api.getClubsByCountry(country);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
