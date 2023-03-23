@@ -5,6 +5,7 @@ export interface ICLubsInitialState {
     clubsCount: number
   },
   filters: IClubFilters | null,
+  clubsByCountry: IClub[],
   error: string | null
 }
 

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { updateUser } from '../users/asyncActions';
-import { createClub, deleteClub, getAllClubs, updateClub } from './asyncActions';
+import { createClub, deleteClub, getAllClubs, getClubsByCountry, updateClub } from './asyncActions';
 import { ICLubsInitialState } from './types';
 
 
@@ -11,6 +11,7 @@ const initialState: ICLubsInitialState = {
     clubsCount: 0
   },
   filters: null,
+  clubsByCountry: [],
   error: null
 };
 
@@ -47,6 +48,17 @@ const clubSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(getAllClubs.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(getClubsByCountry.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getClubsByCountry.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.clubsByCountry = action.payload;
+      })
+      .addCase(getClubsByCountry.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })
