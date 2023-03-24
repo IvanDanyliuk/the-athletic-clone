@@ -1,5 +1,3 @@
-import { ClubModel } from "../../app/models/components";
-
 export interface ICompetition {
   _id: string,
   fullName: string,
@@ -22,4 +20,47 @@ export interface ICompetitionsInitialState {
     type?: string
   } | null,
   error: string | null
+}
+
+export enum Order {
+  asc = 'asc',
+  desc = 'desc'
+}
+
+export interface ICompetitionsTableHeadCell {
+  title: string,
+  isSortable: boolean,
+  sortKey?: string,
+  order?: Order
+}
+
+export interface ICompetitionsInitialState {
+  status: string,
+  data: {
+    competitions: ICompetition[],
+    competitionsCount: number
+  },
+  filters: ICompetitionsFilters | null,
+  error: string | null
+}
+
+export interface ICompetitionsFilters {
+  type?: string,
+  country?: string
+}
+
+export interface ICompetitionsRequestData {
+  page: number,
+  itemsPerPage: number,
+  filterData: ICompetitionsFilters | null, 
+  sortData: {
+    indicator: string,
+    order: string
+  } | null
+}
+
+export interface ICompetitionDeleteQuery {
+  id: string,
+  page: number,
+  itemsPerPage: number
 }
