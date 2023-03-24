@@ -14,7 +14,7 @@ import { ICompetition } from '../../../../../features/competitions/types';
 import ClubSelect from '../../../ui/ClubSelect';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
-import { createCompetition } from '../../../../../features/competitions/asyncActions';
+import { createCompetition, updateCompetition } from '../../../../../features/competitions/asyncActions';
 
 
 
@@ -74,10 +74,10 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
   const handleFormSubmit = async (data: any) => {
     if(competitionToUpdate) {
       setIsLoading(true);
-      // await dispatch(updateClub({
-      //   _id: clubToUpdate._id,
-      //   ...data
-      // }));
+      await dispatch(updateCompetition({
+        _id: competitionToUpdate._id,
+        ...data
+      }));
       setIsLoading(false);
       navigate('/admin/competitions');
     } else {

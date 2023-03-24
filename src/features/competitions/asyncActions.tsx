@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CompetitionModel } from '../../app/models/components';
 import * as api from '../../app/api/api';
-import { ICompetitionDeleteQuery, ICompetitionsRequestData } from './types';
+import { ICompetition, ICompetitionDeleteQuery, ICompetitionsRequestData } from './types';
 
 
 export const createCompetition = createAsyncThunk(
@@ -28,6 +28,18 @@ export const getAllCompetitions = createAsyncThunk(
     }
   }
 );
+
+export const updateCompetition = createAsyncThunk(
+  'competitions/updateCompetition',
+  async (competitionToUpdate: ICompetition, thunkAPI) => {
+    try {
+      const { data } = await api.updateCompetition(competitionToUpdate);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+)
 
 export const deleteCompetition = createAsyncThunk(
   'competitions/deleteCompetition',

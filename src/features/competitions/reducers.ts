@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createCompetition, deleteCompetition, getAllCompetitions } from './asyncActions';
+import { createCompetition, deleteCompetition, getAllCompetitions, updateCompetition } from './asyncActions';
 import { ICompetitionsInitialState } from './types';
 
 
@@ -45,6 +45,17 @@ const competitionSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(getAllCompetitions.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(updateCompetition.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(updateCompetition.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data.competitions = state.data.competitions.map(competition => competition._id === action.payload._id ? action.payload : competition);
+      })
+      .addCase(updateCompetition.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })

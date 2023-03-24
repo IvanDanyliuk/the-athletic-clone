@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { IClub } from '../../features/clubs/types';
+import { ICompetition } from '../../features/competitions/types';
 import { IMaterial } from '../../features/materials/types';
 import { ILoginCredentials, IUser } from '../../features/users/types';
 import { ClubModel, CompetitionModel, MaterialModel } from '../models/components';
@@ -33,4 +34,5 @@ export const deleteClub = (id: string, page: number, itemsPerPage: number) => AP
 
 export const createCompetition = (competitionData: CompetitionModel) => API.post('/competitions', competitionData);
 export const getAllCompetitions = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/competitions/all', { params: { page, itemsPerPage, filterData, sortData } });
+export const updateCompetition = (competitionToUpdate: ICompetition) => API.patch('/competitions', competitionToUpdate);
 export const deleteCompetition = (id: string, page: number, itemsPerPage: number) => API.delete('/competitions', { params: { id, page, itemsPerPage } });
