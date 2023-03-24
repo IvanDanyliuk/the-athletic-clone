@@ -28,8 +28,8 @@ const CompetitionsTableBody: React.FC<ICompetitionsTableBodyProps> = ({ clubs, p
         clubs.map(({ _id, fullName, type, country, createdAt }) => (
           <TableRow key={uuid()}>
             <TableCell>{fullName}</TableCell>
-            <TableCell>{type}</TableCell>
             <TableCell>{country}</TableCell>
+            <TableCell>{type}</TableCell>
             <TableCell>{createdAt}</TableCell>
             <TableCell>
               <RowActionButtons 

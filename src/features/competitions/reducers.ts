@@ -62,6 +62,6 @@ const competitionSlice = createSlice({
   }
 });
 
-const { setFilters, clearFilters } = competitionSlice.actions;
+export const { setFilters, clearFilters } = competitionSlice.actions;
 
 export default competitionSlice.reducer;

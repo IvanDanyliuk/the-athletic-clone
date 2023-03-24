@@ -58,6 +58,7 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
   const [selectedClubs, setSelectedClubs] = useState<string[]>([]);
 
   const countries = getCountries().map(country => ({ label: country, value: country }));
+  countries.unshift({ label: 'International', value: 'international' });
   const clubsData = useSelector(selectClubsByCountry);
   const clubs = clubsData.map(club => ({ label: club.commonName, value: club._id }));
 
