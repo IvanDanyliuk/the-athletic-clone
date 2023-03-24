@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { updateUser } from '../users/asyncActions';
 import { createClub, deleteClub, getAllClubs, getClubsByCountry, updateClub } from './asyncActions';
 import { ICLubsInitialState } from './types';
 

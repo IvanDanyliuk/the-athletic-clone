@@ -1,4 +1,5 @@
 import React from 'react';
+import CompetitionsTable from '../tables/CompetitionsTable/CompetitionsTable';
 import SubPageHeader from '../ui/SubPageHeader';
 
 
@@ -9,6 +10,7 @@ const Competitions: React.FC = () => {
         title='Competitions' 
         link='new-competition' 
       />
+      <CompetitionsTable />
     </>
   );
 };
