@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { faFilter, faFilterCircleXmark, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faFilter, faFilterCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Box, Button, Grid, IconButton, Snackbar, styled, Tooltip } from '@mui/material';
+import { Box, Button, Grid, styled, Tooltip } from '@mui/material';
 import { clearFilters, setFilters } from '../../../../features/competitions/reducers';
 import { ICompetitionsFilters } from '../../../../features/competitions/types';
 import { AppDispatch } from '../../../../features/store';
 import SelectField from '../../ui/SelectField';
-import { checkFilterTimeInterval } from '../../../utils/helpers';
 import { getCountries } from '../../../services/countries';
 import { getAllCompetitions } from '../../../../features/competitions/asyncActions';
 
