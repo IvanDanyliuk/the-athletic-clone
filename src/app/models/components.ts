@@ -44,3 +44,14 @@ export enum MaterialType {
   note = 'note',
   post = 'post'
 }
+
+export interface PlayerModel {
+  firstName: string,
+  lastName: string,
+  birthDate: string,
+  country: string,
+  photoUrl: string,
+  number: string,
+  position: string,
+  club: string,
+}
