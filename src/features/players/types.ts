@@ -60,3 +60,8 @@ export interface IPlayersRequestData {
   } | null
 }
 
+export interface IDeletePlayerData {
+  id: string,
+  page: number,
+  itemsPerPage: number
+}

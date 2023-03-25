@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 import { IPlayer } from '../../../../../features/players/types';
 import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
 import { AppDispatch } from '../../../../../features/store';
-import { deleteClub } from '../../../../../features/clubs/asyncActions';
+import { deletePlayer } from '../../../../../features/players/asyncActions';
 
 
 interface IPlayersTableBodyProps {
@@ -19,7 +19,7 @@ const PlayersTableBody: React.FC<IPlayersTableBodyProps> = ({ players, page, ite
   const dispatch = useDispatch<AppDispatch>();
 
   const handleClubDelete = (id: string) => {
-    // dispatch(deletePlayer({ id, page, itemsPerPage }));
+    dispatch(deletePlayer({ id, page, itemsPerPage }));
   };
 
   return (

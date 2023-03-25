@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
 import { PlayerModel } from '../../app/models/components';
-import { IPlayersRequestData } from './types';
+import { IDeletePlayerData, IPlayersRequestData } from './types';
 
 
 export const createPlayer = createAsyncThunk(
@@ -22,6 +22,19 @@ export const getAllPlayers = createAsyncThunk(
     const { page, itemsPerPage, filterData, sortData } = requestData;
     try {
       const { data } = await api.getAllPlayers(page, itemsPerPage, filterData, sortData,);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const deletePlayer = createAsyncThunk(
+  'players/deletePlayer',
+  async (deleteData: IDeletePlayerData, thunkAPI) => {
+    const { id, page, itemsPerPage } = deleteData;
+    try {
+      const { data } = await api.deletePlayer(id, page, itemsPerPage);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);

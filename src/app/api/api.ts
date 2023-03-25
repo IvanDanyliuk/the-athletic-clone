@@ -39,4 +39,5 @@ export const deleteCompetition = (id: string, page: number, itemsPerPage: number
 
 export const createPlayer = (playerData: PlayerModel) => API.post('/players', playerData);
 export const getAllPlayers = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/players/all', { params: { page, itemsPerPage, filterData, sortData } });
+export const deletePlayer = (id: string, page: number, itemsPerPage: number) => API.delete('/players', { params: { id, page, itemsPerPage } });
 
