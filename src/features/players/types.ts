@@ -29,3 +29,39 @@ export enum PlayerPosition {
   midfielder = 'M',
   attack = 'A'
 }
+
+export enum Order {
+  asc = 'asc',
+  desc = 'desc'
+}
+
+export interface IPlayersTableHeadCell {
+  title: string,
+  isSortable: boolean,
+  sortKey?: string,
+  order?: Order
+}
+
+export interface IPlayersFilters {
+  club?: string,
+  position?: string,
+  country?: string,
+  dateFrom?: string,
+  dateTo?: string,
+}
+
+export interface IPlayersRequestData {
+  page: number,
+  itemsPerPage: number,
+  filterData: IPlayersFilters | null, 
+  sortData: {
+    indicator: string,
+    order: string
+  } | null
+}
+
+export interface IDeletePlayerData {
+  id: string,
+  page: number,
+  itemsPerPage: number
+}
