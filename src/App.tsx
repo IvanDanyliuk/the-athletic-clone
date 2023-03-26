@@ -34,6 +34,7 @@ const App: React.FC = () => {
                 <Route path='users' element={<Users />} />
                 <Route path='users/edit/:id' element={<UpdateUserForm />} />
                 <Route path='players' element={<Players />} />
+                <Route path='players/edit/:id' element={<UpdatePlayerForm />} />
                 <Route path='schedules' element={<Schedules />} />
                 <Route path='new-article' element={<ArticleForm />} />
                 <Route path='new-note' element={<NoteForm />} />
@@ -44,7 +45,6 @@ const App: React.FC = () => {
                 <Route path='new-player' element={<PlayerForm />} />
                 <Route path='new-schedule' element={<ScheduleForm />} />
                 <Route path='update-competition/:id' element={<UpdateCompetitionForm />} />
-                <Route path='update-player/:id' element={<UpdatePlayerForm />} />
                 <Route path='update-schedule/:id' element={<UpdateScheduleForm />} />
               </Route>
               <Route path='*' element={<NotFound />} />

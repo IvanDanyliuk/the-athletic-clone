@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createPlayer, deletePlayer, getAllPlayers } from './asyncActions';
+import { createPlayer, deletePlayer, getAllPlayers, updatePlayer } from './asyncActions';
 import { IPlayerInitialState } from './types';
 
 
@@ -45,6 +45,17 @@ const playerSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(getAllPlayers.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(updatePlayer.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(updatePlayer.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data.players = state.data.players.map(player => player._id === action.payload._id ? action.payload : player);
+      })
+      .addCase(updatePlayer.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })
