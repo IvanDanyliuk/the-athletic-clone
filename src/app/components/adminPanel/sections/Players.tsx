@@ -1,4 +1,5 @@
 import React from 'react';
+import PlayersFilters from '../filters/PlayersFilters';
 import PlayersTable from '../tables/PlayersTable/PlayersTable';
 import SubPageHeader from '../ui/SubPageHeader';
 
@@ -10,6 +11,7 @@ const Players: React.FC = () => {
         title='Players' 
         link='new-player' 
       />
+      <PlayersFilters />
       <PlayersTable />
     </>
   );
