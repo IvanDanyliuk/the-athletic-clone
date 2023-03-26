@@ -37,7 +37,7 @@ const PlayersTableBody: React.FC<IPlayersTableBodyProps> = ({ players, page, ite
             <TableCell>
               <RowActionButtons 
                 id={_id} 
-                type={EssenseType.clubs}
+                type={EssenseType.players}
                 onDelete={() => handleClubDelete(_id)} 
               />
             </TableCell>

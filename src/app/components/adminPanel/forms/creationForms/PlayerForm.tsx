@@ -11,7 +11,7 @@ import BackLink from '../../ui/BackLink';
 import SelectField from '../../../ui/SelectField';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { getCountries } from '../../../../services/countries';
-import { createPlayer } from '../../../../../features/players/asyncActions';
+import { createPlayer, updatePlayer } from '../../../../../features/players/asyncActions';
 import { IPlayer, PlayerPosition } from '../../../../../features/players/types';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
@@ -52,10 +52,10 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
   const handleFormSubmit = async (data: any) => {
     if(playerToUpdate) {
       setIsLoading(true);
-      // await dispatch(updatePlayer({
-      //   _id: clubToUpdate._id,
-      //   ...data
-      // }));
+      await dispatch(updatePlayer({
+        _id: playerToUpdate._id,
+        ...data
+      }));
       setIsLoading(false);
       navigate('/admin/players');
     } else {
@@ -63,7 +63,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
       const photoUrl = data.photoUrl.length > 0 ? await uploadImage(data.photoUrl[0]) : '';
       await dispatch(createPlayer({
         ...data,
-        photoUrl
+        photoUrl,
       }));
       setIsLoading(false);
     }
@@ -74,8 +74,15 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
     dispatch(getClubsByCountry('International'));
     if(playerToUpdate) {
       reset({
-        
-      })
+        firstName: playerToUpdate.firstName,
+        lastName: playerToUpdate.lastName,
+        country: playerToUpdate.country,
+        club: playerToUpdate.club,
+        number: playerToUpdate.number,
+        position: playerToUpdate.position,
+        birthDate: playerToUpdate.birthDate,
+        photoUrl: playerToUpdate.photoUrl
+      });
     }
   }, []);
 
@@ -111,7 +118,6 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
               label='Birth Date'
               control={control}
               register={register}
-              registerOptions={{ required: 'Birth Date is required!' }}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -157,7 +163,6 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
               inputProps={{
                 min: 1, max: 99
               }}
-              // registerOptions={{ max: 99, min: 1 }}
               error={errors.number}
             />
           </Grid>

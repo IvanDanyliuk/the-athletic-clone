@@ -10,7 +10,8 @@ export enum EssenseType {
   users = 'users',
   competitions = 'competitions',
   clubs = 'clubs',
-  schedules = 'schedules'
+  schedules = 'schedules',
+  players = 'players'
 }
 
 interface IRowActionButtonsProps {
