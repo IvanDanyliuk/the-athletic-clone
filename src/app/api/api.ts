@@ -20,7 +20,7 @@ export const updateUser = (userToUpdate: IUser) => API.patch('/users', userToUpd
 export const deleteUser = (id: string, page: number, itemsPerPage: number) => API.delete('/users', { params: { id, page, itemsPerPage } });
 
 export const createMaterial = (materialData: MaterialModel) => API.post('/materials', materialData);
-export const getAllMaterials = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/materials/all', { params: { page, itemsPerPage, filterData, sortData } });
+export const getMaterials = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/materials', { params: { page, itemsPerPage, filterData, sortData } });
 export const getArticles = (page: number, itemsPerPage: number, filterData?: any) => API.get('/materials/articles', { params: { page, itemsPerPage, filterData } });
 export const getNotes = (page: number, itemsPerPage: number, filterData?: any) => API.get('/materials/notes', { params: { page, itemsPerPage, filterData } });
 export const getRealtimePosts = (page: number, itemsPerPage: number, filterData?: any) => API.get('/materials/real-time-posts', { params: { page, itemsPerPage, filterData } });

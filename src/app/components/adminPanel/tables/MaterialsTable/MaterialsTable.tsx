@@ -4,7 +4,7 @@ import { Paper, Table } from '@mui/material';
 import MaterialsTableHead from './MaterialsTableHead';
 import { AppDispatch } from '../../../../../features/store';
 import { selectFilters, selectMaterials, selectMaterialsCount } from '../../../../../features/materials/selectors';
-import { getAllMaterials } from '../../../../../features/materials/asyncActions';
+import { getMaterials } from '../../../../../features/materials/asyncActions';
 import MaterialTableBody from './MaterialsTableBody';
 import MaterialsTableFooter from './MaterialsTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
@@ -46,7 +46,7 @@ const MaterialsTable: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllMaterials({
+    dispatch(getMaterials({
       page, 
       itemsPerPage: 10, 
       filterData: filterData,
