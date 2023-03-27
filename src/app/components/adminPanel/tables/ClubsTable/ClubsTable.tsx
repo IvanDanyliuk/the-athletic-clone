@@ -4,7 +4,7 @@ import { Paper, Table } from '@mui/material';
 import ClubsTableHead from './ClubsTableHead';
 import { AppDispatch } from '../../../../../features/store';
 import { selectFilters, selectAllClubs, selectClubsCount } from '../../../../../features/clubs/selectors';
-import { getAllClubs } from '../../../../../features/clubs/asyncActions';
+import { getClubs } from '../../../../../features/clubs/asyncActions';
 import ClubsTableBody from './ClubsTableBody';
 import ClubsTableFooter from './ClubsTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
@@ -46,7 +46,7 @@ const ClubsTable: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllClubs({
+    dispatch(getClubs({
       page, 
       itemsPerPage: 10, 
       filterData: filterData,

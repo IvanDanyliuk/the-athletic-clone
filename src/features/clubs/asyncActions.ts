@@ -16,12 +16,12 @@ export const createClub = createAsyncThunk(
   }
 );
 
-export const getAllClubs = createAsyncThunk(
+export const getClubs = createAsyncThunk(
   'clubs/getAllClubs',
   async (requestData: IClubsRequestData, thunkAPI) => {
     const { page, itemsPerPage, filterData, sortData } = requestData;
     try {
-      const { data } = await api.getAllClubs(page, itemsPerPage, filterData, sortData,);
+      const { data } = await api.getClubs(page, itemsPerPage, filterData, sortData,);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);

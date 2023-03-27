@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { faFilter, faFilterCircleXmark, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Button, Grid, IconButton, Snackbar, styled, Tooltip } from '@mui/material';
-import { getAllClubs } from '../../../../features/clubs/asyncActions';
+import { getClubs } from '../../../../features/clubs/asyncActions';
 import { clearFilters, setFilters } from '../../../../features/clubs/reducers';
 import { IClubFilters } from '../../../../features/clubs/types';
 import { AppDispatch } from '../../../../features/store';
@@ -55,7 +55,7 @@ const ClubsFilters: React.FC = () => {
   const clearFilterData = () => {
     reset();
     dispatch(clearFilters());
-    dispatch(getAllClubs({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
+    dispatch(getClubs({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
   };
 
   const handleDateError = (value: string) => {

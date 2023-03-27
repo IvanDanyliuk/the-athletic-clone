@@ -28,7 +28,7 @@ export const updateMaterial = (materialToUpdate: IMaterial) => API.patch('/mater
 export const deleteMaterial = (id: string, page: number, itemsPerPage: number) => API.delete('/materials', { params: { id, page, itemsPerPage } });
 
 export const createClub = (clubData: ClubModel) => API.post('/clubs', clubData);
-export const getAllClubs = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/clubs/all', { params: { page, itemsPerPage, filterData, sortData } });
+export const getClubs = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/clubs', { params: { page, itemsPerPage, filterData, sortData } });
 export const getClubsByCountry = (country?: string) => API.get('/clubs/country', { params: { country } });
 export const updateClub = (clubToUpdate: IClub) => API.patch('/clubs', clubToUpdate);
 export const deleteClub = (id: string, page: number, itemsPerPage: number) => API.delete('/clubs', { params: { id, page, itemsPerPage } });
@@ -40,7 +40,7 @@ export const updateCompetition = (competitionToUpdate: ICompetition) => API.patc
 export const deleteCompetition = (id: string, page: number, itemsPerPage: number) => API.delete('/competitions', { params: { id, page, itemsPerPage } });
 
 export const createPlayer = (playerData: PlayerModel) => API.post('/players', playerData);
-export const getAllPlayers = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/players/all', { params: { page, itemsPerPage, filterData, sortData } });
+export const getPlayers = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/players', { params: { page, itemsPerPage, filterData, sortData } });
 export const updatePlayer = (playerToUpdate: IPlayer) => API.patch('/players', playerToUpdate);
 export const deletePlayer = (id: string, page: number, itemsPerPage: number) => API.delete('/players', { params: { id, page, itemsPerPage } });
 

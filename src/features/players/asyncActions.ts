@@ -16,12 +16,12 @@ export const createPlayer = createAsyncThunk(
   }
 );
 
-export const getAllPlayers = createAsyncThunk(
-  'clubs/getAllClubs',
+export const getPlayers = createAsyncThunk(
+  'clubs/getClubs',
   async (requestData: IPlayersRequestData, thunkAPI) => {
     const { page, itemsPerPage, filterData, sortData } = requestData;
     try {
-      const { data } = await api.getAllPlayers(page, itemsPerPage, filterData, sortData,);
+      const { data } = await api.getPlayers(page, itemsPerPage, filterData, sortData,);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
