@@ -4,7 +4,7 @@ import { ICompetition } from '../../features/competitions/types';
 import { IMaterial } from '../../features/materials/types';
 import { IPlayer } from '../../features/players/types';
 import { ILoginCredentials, IUser } from '../../features/users/types';
-import { ClubModel, CompetitionModel, MaterialModel, PlayerModel } from '../models/components';
+import { ClubModel, CompetitionModel, CupScheduleModel, LeagueMatchweekModel, MaterialModel, PlayerModel } from '../models/components';
 import { UserModel } from '../models/users';
 
 
@@ -34,7 +34,8 @@ export const updateClub = (clubToUpdate: IClub) => API.patch('/clubs', clubToUpd
 export const deleteClub = (id: string, page: number, itemsPerPage: number) => API.delete('/clubs', { params: { id, page, itemsPerPage } });
 
 export const createCompetition = (competitionData: CompetitionModel) => API.post('/competitions', competitionData);
-export const getAllCompetitions = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/competitions/all', { params: { page, itemsPerPage, filterData, sortData } });
+export const getCompetitions = (page?: number, itemsPerPage?: number, filterData?: any, sortData?: any) => API.get('/competitions', { params: { page, itemsPerPage, filterData, sortData } });
+export const getAllCompetitions = () => API.get('/competitions/all');
 export const updateCompetition = (competitionToUpdate: ICompetition) => API.patch('/competitions', competitionToUpdate);
 export const deleteCompetition = (id: string, page: number, itemsPerPage: number) => API.delete('/competitions', { params: { id, page, itemsPerPage } });
 
@@ -43,3 +44,4 @@ export const getAllPlayers = (page: number, itemsPerPage: number, filterData?: a
 export const updatePlayer = (playerToUpdate: IPlayer) => API.patch('/players', playerToUpdate);
 export const deletePlayer = (id: string, page: number, itemsPerPage: number) => API.delete('/players', { params: { id, page, itemsPerPage } });
 
+export const createSchedule = (scheduleData: CupScheduleModel | LeagueMatchweekModel[]) => API.post('/schedules', scheduleData);

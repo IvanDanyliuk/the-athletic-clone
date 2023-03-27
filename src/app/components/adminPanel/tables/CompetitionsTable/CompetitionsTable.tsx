@@ -8,7 +8,7 @@ import CompetitionsTableBody from './CompetitionsTableBody';
 import CompetitionsTableFooter from './CompetitionsTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { ICompetitionsTableHeadCell, Order } from '../../../../../features/competitions/types';
-import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
+import { getCompetitions } from '../../../../../features/competitions/asyncActions';
 
 
 const CompetitionsTable: React.FC = () => {
@@ -47,7 +47,7 @@ const CompetitionsTable: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllCompetitions({
+    dispatch(getCompetitions({
       page, 
       itemsPerPage: 10, 
       filterData: filterData,

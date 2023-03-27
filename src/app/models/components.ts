@@ -1,3 +1,5 @@
+import { IClub } from "../../features/clubs/types"
+
 //ENTITIES
 export interface ClubModel {
   fullName: string,
@@ -54,4 +56,43 @@ export interface PlayerModel {
   number: string,
   position: string,
   club: string,
+}
+
+export interface CupScheduleModel {
+  season: string,
+  groupStage: [
+    {
+      groupIndex: string,
+      teams: IClub[],
+      games: {
+        home: IClub,
+        away: IClub,
+        date: string,
+        location: string,
+        score: string
+      }[]
+    }
+  ],
+  knockoutStage: [
+    {
+      stageName: string,
+      teams: IClub[],
+      games: {
+        home: IClub,
+        away: IClub,
+        date: string,
+        location: string,
+        score: string
+      }[]
+    }
+  ]
+}
+
+export interface LeagueMatchweekModel {
+  matchweekName: string,
+  home: IClub,
+  away: IClub,
+  date: string,
+  location: string,
+  score: string
 }

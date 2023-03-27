@@ -9,7 +9,7 @@ import { ICompetitionsFilters } from '../../../../features/competitions/types';
 import { AppDispatch } from '../../../../features/store';
 import SelectField from '../../ui/SelectField';
 import { getCountries } from '../../../services/countries';
-import { getAllCompetitions } from '../../../../features/competitions/asyncActions';
+import { getCompetitions } from '../../../../features/competitions/asyncActions';
 
 
 
@@ -61,7 +61,7 @@ const CompetitionsFilters: React.FC = () => {
   const clearFilterData = () => {
     reset();
     dispatch(clearFilters());
-    dispatch(getAllCompetitions({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
+    dispatch(getCompetitions({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
   };
 
   return (
