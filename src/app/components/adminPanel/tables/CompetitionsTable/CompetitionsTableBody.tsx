@@ -9,13 +9,13 @@ import { deleteCompetition } from '../../../../../features/competitions/asyncAct
 
 
 interface ICompetitionsTableBodyProps {
-  clubs: ICompetition[],
+  competitions: ICompetition[],
   page: number,
   itemsPerPage: number
 }
 
 
-const CompetitionsTableBody: React.FC<ICompetitionsTableBodyProps> = ({ clubs, page, itemsPerPage }) => {
+const CompetitionsTableBody: React.FC<ICompetitionsTableBodyProps> = ({ competitions, page, itemsPerPage }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleCompetitionDelete = (id: string) => {
@@ -25,7 +25,7 @@ const CompetitionsTableBody: React.FC<ICompetitionsTableBodyProps> = ({ clubs, p
   return (
     <TableBody>
       {
-        clubs.map(({ _id, fullName, type, country, createdAt }) => (
+        competitions.map(({ _id, fullName, type, country, createdAt }) => (
           <TableRow key={uuid()}>
             <TableCell>{fullName}</TableCell>
             <TableCell>{country}</TableCell>

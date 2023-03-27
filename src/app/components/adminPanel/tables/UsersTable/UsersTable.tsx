@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import UsersTableHead from './UsersTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectUserFilters, selectAllUsers, selectAllUsersCount, selectUserStatus } from '../../../../../features/users/selectors';
-import { getAllUsers } from '../../../../../features/users/asyncActions';
+import { selectUserFilters, selectAllUsers, selectAllUsersCount } from '../../../../../features/users/selectors';
+import { getUsers } from '../../../../../features/users/asyncActions';
 import UsersTableBody from './UsersTableBody';
 import UsersTableFooter from './UsersTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
@@ -15,7 +15,6 @@ const UsersTable: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const users = useSelector(selectAllUsers);
   const pageCount = useSelector(selectAllUsersCount);
-  const status = useSelector(selectUserStatus);
   const filterData = useSelector(selectUserFilters);
 
   const [page, setPage] = useState<number>(0);
@@ -47,7 +46,7 @@ const UsersTable: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllUsers({
+    dispatch(getUsers({
       page, 
       itemsPerPage: 10, 
       filterData: filterData,
@@ -58,7 +57,7 @@ const UsersTable: React.FC = () => {
     }));
   }, [dispatch, page, activeCell, filterData]);
 
-  if(status === 'loading') {
+  if(!users) {
     return (
       <BackdropLoader open={true} />
     );

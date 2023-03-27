@@ -14,7 +14,7 @@ export const login = (loginData: ILoginCredentials) => API.post('/users/login', 
 export const signup = (registerData: UserModel) => API.post('/users/signup', registerData);
 export const logout = () => API.post('/users/logout');
 export const getAuthenticatedUser = () => API.get('/users');
-export const getAllUsers = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/users/all', { params: { page, itemsPerPage, filterData, sortData } });
+export const getUsers = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/users/all', { params: { page, itemsPerPage, filterData, sortData } });
 export const getUsersLocations = () => API.get('/users/locations');
 export const updateUser = (userToUpdate: IUser) => API.patch('/users', userToUpdate);
 export const deleteUser = (id: string, page: number, itemsPerPage: number) => API.delete('/users', { params: { id, page, itemsPerPage } });

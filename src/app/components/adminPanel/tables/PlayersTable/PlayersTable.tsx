@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import PlayersTableHead from './PlayersTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectPlayersFilters, selectAllPlayers, selectPlayersCount, selectPlayersStatus } from '../../../../../features/players/selectors';
+import { selectPlayersFilters, selectAllPlayers, selectPlayersCount } from '../../../../../features/players/selectors';
 import { getAllPlayers } from '../../../../../features/players/asyncActions';
 import PlayersTableBody from './PlayersTableBody';
 import PlayersTableFooter from './PlayersTableFooter';
@@ -15,7 +15,6 @@ const PlayersTable: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const players = useSelector(selectAllPlayers);
   const pageCount = useSelector(selectPlayersCount);
-  const status = useSelector(selectPlayersStatus);
   const filterData = useSelector(selectPlayersFilters);
 
   const [page, setPage] = useState<number>(0);
@@ -58,7 +57,7 @@ const PlayersTable: React.FC = () => {
     }));
   }, [dispatch, page, activeCell, filterData]);
 
-  if(status === 'loading') {
+  if(!players) {
     return (
       <BackdropLoader open={true} />
     );

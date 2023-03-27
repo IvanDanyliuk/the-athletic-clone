@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAuthenticatedUser, getAllUsers, login, logout, signup, deleteUser, getUsersLocations, updateUser } from './asyncActions';
+import { getAuthenticatedUser, getUsers, login, logout, signup, deleteUser, getUsersLocations, updateUser } from './asyncActions';
 import { IUserInitialState } from './types';
 
 
@@ -76,14 +76,14 @@ const userSlice = createSlice({
         state.status = 'failed';
         state.error = action.payload.error;
       })
-      .addCase(getAllUsers.pending, (state, action) => {
+      .addCase(getUsers.pending, (state, action) => {
         state.status = 'loading';
       })
-      .addCase(getAllUsers.fulfilled, (state, action) => {
+      .addCase(getUsers.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.data = action.payload;
       })
-      .addCase(getAllUsers.rejected, (state, action: any) => {
+      .addCase(getUsers.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })
