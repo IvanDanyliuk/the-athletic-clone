@@ -9,7 +9,7 @@ interface IClubSelectProps {
     value: string
   }[],
   checkedClubs: string[],
-  disabled: boolean,
+  disabled?: boolean,
   setClubs: (event: SelectChangeEvent<any>) => void
 
 }

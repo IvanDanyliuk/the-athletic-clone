@@ -15,6 +15,7 @@ import ClubSelect from '../../../ui/ClubSelect';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { createCompetition, updateCompetition } from '../../../../../features/competitions/asyncActions';
+import { IClub } from '../../../../../features/clubs/types';
 
 
 
@@ -34,7 +35,7 @@ interface FormData {
   fullName: string,
   shortName: string,
   country: string,
-  clubs: string[],
+  clubs: IClub[],
   logoUrl: string,
   type: string,
 }
@@ -58,7 +59,7 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
   const [selectedClubs, setSelectedClubs] = useState<string[]>([]);
 
   const countries = getCountries().map(country => ({ label: country, value: country }));
-  countries.unshift({ label: 'International', value: 'international' });
+  countries.unshift({ label: 'International', value: 'International' });
   const clubsData = useSelector(selectClubsByCountry);
   const clubs = clubsData.map(club => ({ label: club.commonName, value: club._id }));
 

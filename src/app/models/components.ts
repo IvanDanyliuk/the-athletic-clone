@@ -58,41 +58,17 @@ export interface PlayerModel {
   club: string,
 }
 
-export interface CupScheduleModel {
+export interface ScheduleModel {
+  competition: string,
   season: string,
-  groupStage: [
-    {
-      groupIndex: string,
-      teams: IClub[],
-      games: {
-        home: IClub,
-        away: IClub,
-        date: string,
-        location: string,
-        score: string
-      }[]
-    }
-  ],
-  knockoutStage: [
-    {
-      stageName: string,
-      teams: IClub[],
-      games: {
-        home: IClub,
-        away: IClub,
-        date: string,
-        location: string,
-        score: string
-      }[]
-    }
-  ]
-}
-
-export interface LeagueMatchweekModel {
-  matchweekName: string,
-  home: IClub,
-  away: IClub,
-  date: string,
-  location: string,
-  score: string
+  fixture: {
+    matchweekName: string,
+    games: {
+      home: IClub,
+      away: IClub,
+      date: string,
+      location: string,
+      score: string,
+    }[]
+  }[]
 }

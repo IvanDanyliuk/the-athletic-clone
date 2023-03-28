@@ -51,7 +51,7 @@ export const updateCompetition = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
-)
+);
 
 export const deleteCompetition = createAsyncThunk(
   'competitions/deleteCompetition',

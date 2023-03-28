@@ -3,7 +3,7 @@ import { IClub } from "../clubs/types"
 export interface ISchedule {
   _id: string,
   season: string,
-  league: IMatchweek[],
+  fixture: IMatchweek[],
   createdAt: string
 }
 

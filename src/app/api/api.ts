@@ -4,7 +4,7 @@ import { ICompetition } from '../../features/competitions/types';
 import { IMaterial } from '../../features/materials/types';
 import { IPlayer } from '../../features/players/types';
 import { ILoginCredentials, IUser } from '../../features/users/types';
-import { ClubModel, CompetitionModel, CupScheduleModel, LeagueMatchweekModel, MaterialModel, PlayerModel } from '../models/components';
+import { ClubModel, CompetitionModel, MaterialModel, PlayerModel, ScheduleModel } from '../models/components';
 import { UserModel } from '../models/users';
 
 
@@ -44,4 +44,4 @@ export const getPlayers = (page: number, itemsPerPage: number, filterData?: any,
 export const updatePlayer = (playerToUpdate: IPlayer) => API.patch('/players', playerToUpdate);
 export const deletePlayer = (id: string, page: number, itemsPerPage: number) => API.delete('/players', { params: { id, page, itemsPerPage } });
 
-export const createSchedule = (scheduleData: CupScheduleModel | LeagueMatchweekModel[]) => API.post('/schedules', scheduleData);
+export const createSchedule = (scheduleData: ScheduleModel) => API.post('/schedules', scheduleData);
