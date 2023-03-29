@@ -7,12 +7,8 @@ export interface ISchedule {
   createdAt: string
 }
 
-export interface IMatchweek {
-  matchweekName: string,
-  games: IMatch[]
-}
-
 export interface IMatch {
+  id: string,
   home: IClub,
   away: IClub,
   date: string,
@@ -20,6 +16,11 @@ export interface IMatch {
   score: string
 }
 
+export interface IMatchweek {
+  id: string,
+  matchweekName: string,
+  games: IMatch[]
+}
 export interface ISchedulesInitialState {
   status: string,
   data: {

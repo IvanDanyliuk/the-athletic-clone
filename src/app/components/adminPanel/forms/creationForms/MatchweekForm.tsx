@@ -1,26 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Box, Button, Collapse, Grid, styled } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { IClub } from '../../../../../features/clubs/types';
+import { v4 as uuid } from 'uuid';
 import TextInput from '../../../ui/TextInput';
+import ScheduleContext, { ScheduleContextType } from '../../../../context/scheduleContext';
 
-
-interface IMatchweek {
-  matchweekName: string,
-  games: {
-    home: IClub,
-    away: IClub,
-    date: string,
-    location: string,
-    score: string
-  }[]
-}
-
-interface IMatchweekFormProps {
-  open: boolean,
-  matchweeks: IMatchweek[],
-  onSetMatchweek: (data: any) => void
-}
 
 interface ITitle {
   matchweekName: string
@@ -35,25 +19,23 @@ const FormRow = styled(Grid)`
 `;
 
 
-const MatchweekForm: React.FC<IMatchweekFormProps> = ({ open, matchweeks, onSetMatchweek }) => {
-  const { register, handleSubmit, formState: { errors }, reset, setError } = useForm<ITitle>();
+const MatchweekForm: React.FC = () => {
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<ITitle>();
+  
+  const { schedule, addMatchweek } = useContext(ScheduleContext) as ScheduleContextType;
 
-  const addMatchweek = (data: any) => {
-    const isMWExists = matchweeks.find(mw => mw.matchweekName === data.matchweekName);
-    if(!isMWExists) {
-      onSetMatchweek({
-        matchweekName: data.matchweekName,
-        games: []
-      });
-      reset();
-    } else {
-      setError('matchweekName', { type: 'custom', message: 'Matchweek with such name already exists' });
-    }
+  const handleMatchweekTitle = (data: any) => {
+    addMatchweek({
+      ...data,
+      id: uuid(),
+      games: []
+    });
+    reset();
   };
 
   return (
-    <Collapse in={open}>
-      <Form component='form' onSubmit={handleSubmit(addMatchweek)}>
+    <Collapse in={Boolean(schedule.competition)}>
+      <Form component='form' onSubmit={handleSubmit(handleMatchweekTitle)}>
         <FormRow container spacing={3}>
           <Grid item xs={12} md={5}>
             <TextInput 

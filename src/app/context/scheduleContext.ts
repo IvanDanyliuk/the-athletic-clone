@@ -1,17 +1,20 @@
 import { createContext } from 'react';
 import { IClub } from '../../features/clubs/types';
+import { IMatch, IMatchweek } from '../../features/schedules/types';
+import { ScheduleModel } from '../models/components';
 
-interface IMatchweek {
-  matchweekName: string,
-  games: {
-    home: IClub[],
-    away: IClub[],
-    date: Date,
-    location: string,
-    score: string
-  }[]
+
+
+
+export interface ScheduleContextType {
+  schedule: ScheduleModel,
+  addScheduleTitle: (data: any) => void,
+  addMatchweek: (mw: IMatchweek) => void,
+  addMatch: (mwId: string, match: IMatch) => void,
+  deleteMatchweek: (mwId: string) => void,
+  deleteMatch: (matchId: string) => void
 }
 
-const ScheduleContext = createContext<IMatchweek[]>([]);
+const ScheduleContext = createContext<ScheduleContextType | null>(null);
 
 export default ScheduleContext;

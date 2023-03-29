@@ -1,6 +1,7 @@
-import React, { useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import { Box, Button, Dialog, Grid, styled, Tooltip } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { v4 as uuid } from 'uuid';
 import { IClub } from '../../../../../features/clubs/types';
 import SelectField from '../../../ui/SelectField';
 import ControlledDatePicker from '../../../ui/ControlledDatePicker';
@@ -15,8 +16,8 @@ interface IMatchFormProps {
 
 interface IFormData {
   matchweekName: string,
-  home: IClub,
-  away: IClub,
+  home: string,
+  away: string,
   date: string,
   location: string,
   score: string
@@ -33,9 +34,10 @@ const SubmitBtn = styled(Button)`
 
 const MatchForm: React.FC<IMatchFormProps> = ({ clubs, mwName, setMatch }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { register, handleSubmit, control, formState: { errors } } = useForm<IFormData>();
+  const { register, handleSubmit, control, formState: { errors }, getValues, watch } = useForm<IFormData>();
 
   const clubSelectOptions = clubs.map(club => ({ label: club.commonName, value: club._id }));
+  const [stadium, setStadium] = useState<string>('');
 
   const handleFormOpen = () => {
     setIsOpen(true);
@@ -48,10 +50,25 @@ const MatchForm: React.FC<IMatchFormProps> = ({ clubs, mwName, setMatch }) => {
   const createMatch = (data: any) => {
     setMatch(mwName, {
       ...data,
+      id: uuid(),
       home: clubs.find(club => club._id === data.home),
       away: clubs.find(club => club._id === data.away),
     });
+    console.log({
+      ...data,
+      id: uuid(),
+      home: clubs.find(club => club._id === data.home),
+      away: clubs.find(club => club._id === data.away),
+    })
   };
+
+  useEffect(() => {
+    const homeClub = clubs.find(club => club._id === getValues().home);
+    console.log(homeClub)
+    if(homeClub) {
+      setStadium(homeClub!.stadium);
+    }
+  }, [watch('home')]);
 
   return (
     <>
@@ -103,7 +120,7 @@ const MatchForm: React.FC<IMatchFormProps> = ({ clubs, mwName, setMatch }) => {
                 type='text' 
                 defaultValue='0:0'
                 register={register}
-                error={errors.location}
+                error={errors.score}
               />
             </Grid>
             <Grid item xs={12}>
@@ -111,6 +128,7 @@ const MatchForm: React.FC<IMatchFormProps> = ({ clubs, mwName, setMatch }) => {
                 name='location' 
                 label='Stadium'
                 type='text' 
+                defaultValue={stadium}
                 register={register}
                 registerOptions={{ required: 'Location is required!' }}
                 error={errors.location}
