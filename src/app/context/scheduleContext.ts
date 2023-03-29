@@ -10,7 +10,7 @@ export interface ScheduleContextType {
   addMatchweek: (mw: IMatchweek) => void,
   addMatch: (mwId: string, match: IMatch) => void,
   deleteMatchweek: (mwId: string) => void,
-  deleteMatch: (matchId: string) => void
+  deleteMatch: (mwId: string, matchId: string) => void
 }
 
 const ScheduleContext = createContext<ScheduleContextType | null>(null);

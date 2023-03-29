@@ -25,12 +25,8 @@ interface IFormData {
   score: string
 }
 
-const SubmitBtn = styled(Button)`
-  width: 100%;
-  height: 4em;
-  svg {
-    font-size: 1.5em;
-  }
+const Form = styled(Box)`
+  padding: 20px;
 `;
 
 
@@ -71,17 +67,17 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
   return (
     <>
       <Tooltip title='Create a new match' placement='top' arrow>
-        <SubmitBtn 
+        <Button 
           type='button' 
           variant='outlined'
           disabled={clubs!.length < 1}
           onClick={handleFormOpen}
         >
           Add Match
-        </SubmitBtn>
+        </Button>
       </Tooltip>
       <Dialog open={isOpen} onClose={handleFormClose}>
-        <Box component='form' onSubmit={handleSubmit(handleMatchCreate)}>
+        <Form component='form' onSubmit={handleSubmit(handleMatchCreate)}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
               <SelectField
@@ -133,10 +129,10 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Button type='submit'>Add</Button>
+              <Button type='submit' variant='outlined'>Add</Button>
             </Grid>
           </Grid>
-        </Box>
+        </Form>
       </Dialog>
     </>
   );

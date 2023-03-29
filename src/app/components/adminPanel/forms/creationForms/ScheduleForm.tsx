@@ -62,11 +62,22 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
   };
 
   const deleteMatchweek = (mwId: string) => {
-
+    setSchedule({
+      ...schedule,
+      fixture: schedule.fixture.filter(mw => mw.id !== mwId)
+    });
   };
 
-  const deleteMatch = (matchId: string) => {
-
+  const deleteMatch = (mwId: string, matchId: string) => {
+    setSchedule({
+      ...schedule,
+      fixture: schedule
+        .fixture
+        .map(mw => mw.id === mwId ? 
+          ({ ...mw, games: mw.games.filter(game => game.id !== matchId) }) : 
+          mw
+        )
+    });
   };
 
   const createNewSchedule = async () => {
