@@ -10,6 +10,7 @@ interface ITextInputProps {
   label: string,
   register: UseFormRegister<any>,
   registerOptions?: RegisterOptions,
+  defaultValue?: string,
   error?: FieldError,
   [x: string]: any,
 }
@@ -40,7 +41,7 @@ const ErrorMessage = styled(Box)`
   }
 `;
 
-const TextInput: React.FC<ITextInputProps> = ({ name, label, register, registerOptions, error, ...props }) => {
+const TextInput: React.FC<ITextInputProps> = ({ name, label, register, registerOptions, defaultValue, error, ...props }) => {
   return (
     <Wrapper>
       <Label htmlFor={name}>
@@ -48,6 +49,7 @@ const TextInput: React.FC<ITextInputProps> = ({ name, label, register, registerO
       </Label>
       <Input 
         id={name} 
+        defaultValue={defaultValue}
         {...props} 
         {...register(name, registerOptions)}
       />

@@ -62,8 +62,10 @@ export interface ScheduleModel {
   competition: string,
   season: string,
   fixture: {
+    id: string,
     matchweekName: string,
     games: {
+      id: string,
       home: IClub,
       away: IClub,
       date: string,
