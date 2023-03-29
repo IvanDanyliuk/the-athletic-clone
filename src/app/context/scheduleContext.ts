@@ -4,8 +4,6 @@ import { IMatch, IMatchweek } from '../../features/schedules/types';
 import { ScheduleModel } from '../models/components';
 
 
-
-
 export interface ScheduleContextType {
   schedule: ScheduleModel,
   addScheduleTitle: (data: any) => void,

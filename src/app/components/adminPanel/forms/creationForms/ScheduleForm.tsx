@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
-import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../../../../features/store';
 import BackLink from '../../ui/BackLink';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { IMatch, IMatchweek, ISchedule } from '../../../../../features/schedules/types';
-import { IClub } from '../../../../../features/clubs/types';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
 import { ScheduleModel } from '../../../../models/components';
 import ScheduleContext from '../../../../context/scheduleContext';
@@ -51,14 +49,16 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
     });
   };
 
-  const addMatch = (mwId: string, match: any) => {
-    const matchweek = schedule.fixture.find(mw => mw.id === mwId);
-    const updatedFixture = schedule.fixture.map(mw => mw.id === mwId ? mw.games.push(match) : mw);
-    console.log(updatedFixture)
-    // setSchedule({
-    //   ...schedule,
-    //   fixture: updatedFixture
-    // })
+  const addMatch = (mwId: string, match: IMatch) => {
+    setSchedule({
+      ...schedule,
+      fixture: schedule
+        .fixture
+        .map(mw => mw.id === mwId ? 
+          ({ ...mw, games: [ ...mw.games, match ] }) : 
+          mw
+        )
+    });
   };
 
   const deleteMatchweek = (mwId: string) => {
@@ -104,12 +104,6 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
         <ScheduleMatchweekList />
       </ScheduleContext.Provider>
       <Button color='primary' onClick={createNewSchedule}>Create</Button>
-      {/* <MatchweekForm 
-        open={Boolean(scheduleTitle)}
-        matchweeks={matchweeks}
-        onSetMatchweek={handleAddMatchweek}
-      />
-       */}
       <BackdropLoader open={isLoading} />
     </Box>
   );
