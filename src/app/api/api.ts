@@ -45,3 +45,5 @@ export const updatePlayer = (playerToUpdate: IPlayer) => API.patch('/players', p
 export const deletePlayer = (id: string, page: number, itemsPerPage: number) => API.delete('/players', { params: { id, page, itemsPerPage } });
 
 export const createSchedule = (scheduleData: ScheduleModel) => API.post('/schedules', scheduleData);
+export const getSchedules = (page?: number, itemsPerPage?: number, filterData?: any, sortData?: any) => API.get('/schedules', { params: { page, itemsPerPage, filterData, sortData } });
+export const deleteSchedule = (id: string, page: number, itemsPerPage: number) => API.delete('/schedules', { params: { id, page, itemsPerPage } });

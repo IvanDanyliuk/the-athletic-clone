@@ -14,10 +14,6 @@ interface ITextInputProps {
   [x: string]: any,
 }
 
-const Wrapper = styled(Box)`
-
-`;
-
 const Label = styled(InputLabel)`
   margin-bottom: 5px;
   font-size: .9em;
@@ -49,7 +45,7 @@ const TextInput: React.FC<ITextInputProps> = ({
   ...props 
 }) => {
   return (
-    <Wrapper>
+    <Box>
       {error ? (
         <ErrorMessage>
           <FontAwesomeIcon icon={faCircleExclamation} />
@@ -67,7 +63,7 @@ const TextInput: React.FC<ITextInputProps> = ({
         {...props} 
         {...register(name, registerOptions)}
       />
-    </Wrapper>
+    </Box>
   );
 };
 
