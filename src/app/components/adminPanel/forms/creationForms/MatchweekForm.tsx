@@ -18,6 +18,16 @@ const FormRow = styled(Grid)`
   margin-bottom: 10px;
 `;
 
+const BtnWrapper = styled(Grid)`
+  display: flex;
+  align-items: flex-end;
+`;
+
+const SubmitBtn = styled(Button)`
+  width: 100%;
+  height: 4em;
+`;
+
 
 const MatchweekForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ITitle>();
@@ -47,15 +57,15 @@ const MatchweekForm: React.FC = () => {
               error={errors.matchweekName}
             />
           </Grid>
-          <Grid item xs={12} md={2}>
-            <Button 
+          <BtnWrapper item xs={12} md={2}>
+            <SubmitBtn 
               type='submit'
               variant='contained'
               color='success'
             >
               Add
-            </Button>
-          </Grid>
+            </SubmitBtn>
+          </BtnWrapper>
         </FormRow>
       </Form>
     </Collapse>

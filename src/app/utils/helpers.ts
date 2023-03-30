@@ -1,3 +1,5 @@
+import { ScheduleModel } from "../models/components";
+
 export const setUrl = (title: string) => {
   const splittedTitle = title.toLowerCase().split(' ').map(item => item.replace(/[^a-z0-9]/gi, ''));
   return splittedTitle.length > 1 ? splittedTitle.join('-') : splittedTitle[0];
@@ -22,4 +24,10 @@ export const checkFilterTimeInterval = (dateFrom: string, dateTo: string, setErr
     return false;
   }
   return true;
+};
+
+export const checkScheduleData = (schedule: ScheduleModel) => {
+  return Boolean(
+    schedule.competition && schedule.season && schedule.fixture.length > 0
+  );
 };

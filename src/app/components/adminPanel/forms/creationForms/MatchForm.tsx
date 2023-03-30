@@ -10,6 +10,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
 import { AppDispatch } from '../../../../../features/store';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 interface IMatchFormProps {
@@ -27,6 +29,29 @@ interface IFormData {
 
 const Form = styled(Box)`
   padding: 20px;
+`;
+
+const CloseSection = styled(Box)`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+const CloseBtn = styled(Button)`
+  margin-top: 10px;
+  svg {
+    color: #525252;
+    font-size: 2em;
+  }
+`;
+
+const SubmitBtn = styled(Button)`
+  margin-top: 1em;
+  width: 12em;
+  height: 4em;
+  @media (max-width: 640px) {
+    width: 100%;
+  }
 `;
 
 
@@ -81,6 +106,11 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
         </Button>
       </Tooltip>
       <Dialog open={isOpen} onClose={handleFormClose}>
+        <CloseSection>
+          <CloseBtn onClick={handleFormClose}>
+            <FontAwesomeIcon icon={faXmark} />
+          </CloseBtn>
+        </CloseSection>
         <Form component='form' onSubmit={handleSubmit(handleMatchCreate)}>
           <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
@@ -132,7 +162,7 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Button type='submit' variant='outlined'>Add</Button>
+              <SubmitBtn type='submit' variant='contained'>Add</SubmitBtn>
             </Grid>
           </Grid>
         </Form>

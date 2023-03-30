@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Box, Button } from '@mui/material';
+import { Box, Button, styled } from '@mui/material';
 import { AppDispatch } from '../../../../../features/store';
 import BackLink from '../../ui/BackLink';
 import BackdropLoader from '../../../ui/BackdropLoader';
@@ -13,6 +13,7 @@ import ScheduleTitleForm from './ScheduleTitleForm';
 import MatchweekForm from './MatchweekForm';
 import ScheduleMatchweekList from './ScheduleMatchweekList';
 import { createSchedule } from '../../../../../features/schedules/asyncActions';
+import { checkScheduleData } from '../../../../utils/helpers';
 
 
 interface IScheduleFormProps {
@@ -25,12 +26,22 @@ const initialState = {
   fixture: []
 };
 
+const SubmitBtn = styled(Button)`
+  margin-top: 1em;
+  width: 12em;
+  height: 4em;
+  @media (max-width: 640px) {
+    width: 100%;
+  }
+`;
+
 
 const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isSubmitBtnDisabled, setIsSubmitBtnDisabled] = useState<boolean>(true);
   const [schedule, setSchedule] = useState<ScheduleModel>(initialState);
 
   const addScheduleTitle = (data: any) => {
@@ -94,6 +105,11 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
     dispatch(getAllCompetitions());
   }, []);
 
+  useEffect(() => {
+    const isDisabled = checkScheduleData(schedule);
+    setIsSubmitBtnDisabled(!isDisabled);
+  }, [schedule]);
+
   return (
     <Box>
       <BackLink link='/admin/schedules' title='Go back' />
@@ -104,7 +120,14 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
         <MatchweekForm />
         <ScheduleMatchweekList />
       </ScheduleContext.Provider>
-      <Button color='primary' onClick={createNewSchedule}>Create</Button>
+      <SubmitBtn 
+        variant='contained'
+        color='primary' 
+        disabled={isSubmitBtnDisabled}
+        onClick={createNewSchedule}
+      >
+        Create
+      </SubmitBtn>
       <BackdropLoader open={isLoading} />
     </Box>
   );

@@ -1,10 +1,9 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { Box, Button, Grid, styled } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
 import SelectField from '../../../ui/SelectField';
-import { IClub } from '../../../../../features/clubs/types';
 import TextInput from '../../../ui/TextInput';
 import ScheduleContext, { ScheduleContextType } from '../../../../context/scheduleContext';
 
@@ -14,7 +13,6 @@ interface IScheduleTitle {
   season: string
 }
 
-
 const Form = styled(Box)`
   margin-top: 20px;
 `;
@@ -23,24 +21,24 @@ const FormRow = styled(Grid)`
   margin-bottom: 10px;
 `;
 
+const BtnWrapper = styled(Grid)`
+  display: flex;
+  align-items: flex-end;
+`;
+
+const SubmitBtn = styled(Button)`
+  width: 100%;
+  height: 4em;
+`;
+
+
 const ScheduleTitleForm: React.FC = () => {
-
   const { register, handleSubmit, control, formState: { errors }, watch, getValues } = useForm<IScheduleTitle>();
-
   const { addScheduleTitle } = useContext(ScheduleContext) as ScheduleContextType;
 
   const competitionsData = useSelector(selectAllCompetitions);
-  const competitions = competitionsData.map(competition => ({ label: competition.fullName, value: competition._id }));
-  const [clubs, setClubs] = useState<IClub[]>([]);
-
-
-  useEffect(() => {
-    const league = competitionsData
-      .find(competition => competition._id === getValues().competition);
-    league ? 
-      setClubs(league!.clubs!) : 
-      setClubs([]);
-  }, [watch('competition')]);
+  const competitions = competitionsData
+    .map(competition => ({ label: competition.fullName, value: competition._id }));
 
   return (
     <Form component='form' onSubmit={handleSubmit(addScheduleTitle)}>
@@ -66,15 +64,15 @@ const ScheduleTitleForm: React.FC = () => {
             error={errors.season}
           />
         </Grid>
-        <Grid item xs={12} md={2}>
-          <Button 
+        <BtnWrapper item xs={12} md={2}>
+          <SubmitBtn 
             type='submit'
             variant='contained'
             color='success'
           >
             Next
-          </Button>
-        </Grid>
+          </SubmitBtn>
+        </BtnWrapper>
       </FormRow>
     </Form>
   )

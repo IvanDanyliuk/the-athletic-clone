@@ -50,24 +50,23 @@ const TextInput: React.FC<ITextInputProps> = ({
 }) => {
   return (
     <Wrapper>
-      <Label htmlFor={name}>
-        {label}
-      </Label>
+      {error ? (
+        <ErrorMessage>
+          <FontAwesomeIcon icon={faCircleExclamation} />
+          <Typography variant='inherit'>
+            {error?.message}
+          </Typography>
+        </ErrorMessage>
+      ) : (
+        <Label htmlFor={name}>
+          {label}
+        </Label>
+      )}
       <Input 
         id={name} 
         {...props} 
         {...register(name, registerOptions)}
       />
-      <ErrorMessage>
-        {error && (
-          <>
-            <FontAwesomeIcon icon={faCircleExclamation} />
-            <Typography variant='inherit'>
-              {error?.message}
-            </Typography>
-          </>
-        )}
-      </ErrorMessage>
     </Wrapper>
   );
 };
