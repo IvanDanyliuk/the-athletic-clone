@@ -12,11 +12,18 @@ import ScheduleContext from '../../../../context/scheduleContext';
 import ScheduleTitleForm from './ScheduleTitleForm';
 import MatchweekForm from './MatchweekForm';
 import ScheduleMatchweekList from './ScheduleMatchweekList';
+import { createSchedule } from '../../../../../features/schedules/asyncActions';
 
 
 interface IScheduleFormProps {
   scheduleToUpdate?: ISchedule
 }
+
+const initialState = {
+  competition: '',
+  season: '',
+  fixture: []
+};
 
 
 const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
@@ -24,12 +31,7 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
   const navigate = useNavigate();
   
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const [schedule, setSchedule] = useState<ScheduleModel>({
-    competition: '',
-    season: '',
-    fixture: []
-  });
+  const [schedule, setSchedule] = useState<ScheduleModel>(initialState);
 
   const addScheduleTitle = (data: any) => {
     setSchedule({
@@ -81,35 +83,23 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
   };
 
   const createNewSchedule = async () => {
-    // if(scheduleTitle) {
-    //   setIsLoading(true);
-    //   await dispatch(createSchedule({
-    //     ...scheduleTitle,
-    //     fixture: matchweeks
-    //   }));
-    //   setIsLoading(false);
-    // }
+    setIsLoading(true);
+    await dispatch(createSchedule(schedule));
+    setSchedule(initialState);
+    setIsLoading(false);
+    navigate('/admin/schedules');
   };
-  
-  
 
   useEffect(() => {
     dispatch(getAllCompetitions());
-    // if(scheduleToUpdate) {
-    //   reset({
-        
-    //   });
-    // }
   }, []);
-
-  useEffect(() => {
-    console.log('Schedule Context', schedule)
-  }, [schedule]);
 
   return (
     <Box>
       <BackLink link='/admin/schedules' title='Go back' />
-      <ScheduleContext.Provider value={{ schedule, addScheduleTitle, addMatchweek, addMatch, deleteMatchweek, deleteMatch }}>
+      <ScheduleContext.Provider 
+        value={{ schedule, addScheduleTitle, addMatchweek, addMatch, deleteMatchweek, deleteMatch }}
+      >
         <ScheduleTitleForm />
         <MatchweekForm />
         <ScheduleMatchweekList />

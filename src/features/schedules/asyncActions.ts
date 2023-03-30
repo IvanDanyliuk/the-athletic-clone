@@ -13,4 +13,4 @@ export const createSchedule = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
-)
+);

@@ -1,5 +1,8 @@
 import React, { useContext } from 'react';
-import { Accordion, AccordionDetails, AccordionSummary, Button, Grid, List, ListItem, Typography } from '@mui/material';
+import { 
+  Accordion, AccordionDetails, AccordionSummary, 
+  Button, Grid, List, ListItem, Typography 
+} from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import ScheduleContext, { ScheduleContextType } from '../../../../context/scheduleContext';
 import MatchForm from './MatchForm';

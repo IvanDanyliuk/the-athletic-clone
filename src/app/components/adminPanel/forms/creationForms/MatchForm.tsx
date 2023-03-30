@@ -32,7 +32,7 @@ const Form = styled(Box)`
 
 const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const { register, handleSubmit, control, formState: { errors }, getValues, watch } = useForm<IFormData>();
+  const { register, handleSubmit, control, formState: { errors }, getValues, watch, setValue } = useForm<IFormData>();
   const { schedule, addMatch } = useContext(ScheduleContext) as ScheduleContextType;
 
   const competitions = useSelector(selectAllCompetitions);
@@ -41,7 +41,6 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
   const clubSelectOptions = clubs!.map(club => ({ label: club.commonName, value: club._id }));
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [stadium, setStadium] = useState<string>('');
 
   const handleFormOpen = () => {
     setIsOpen(true);
@@ -63,6 +62,11 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
   useEffect(() => {
     dispatch(getAllCompetitions());
   }, []);
+
+  useEffect(() => {
+    const homeClub = clubs?.find(club => club._id === getValues().home)
+    setValue('location', homeClub?.stadium!)
+  }, [watch('home')]);
 
   return (
     <>
@@ -122,7 +126,6 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
                 name='location' 
                 label='Stadium'
                 type='text' 
-                defaultValue={stadium}
                 register={register}
                 registerOptions={{ required: 'Location is required!' }}
                 error={errors.location}
