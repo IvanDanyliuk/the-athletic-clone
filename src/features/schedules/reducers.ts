@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createSchedule } from './asyncActions';
+import { createSchedule, deleteSchedule, getSchedules } from './asyncActions';
 import { ISchedulesInitialState } from './types';
 
 
@@ -35,6 +35,28 @@ const schedulesSlice = createSlice({
         state.data.schedules.push(action.payload);
       })
       .addCase(createSchedule.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(getSchedules.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getSchedules.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data = action.payload;
+      })
+      .addCase(getSchedules.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(deleteSchedule.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteSchedule.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data = action.payload;
+      })
+      .addCase(deleteSchedule.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })
