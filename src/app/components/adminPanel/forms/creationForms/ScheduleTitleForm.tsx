@@ -33,7 +33,7 @@ const SubmitBtn = styled(Button)`
 
 
 const ScheduleTitleForm: React.FC = () => {
-  const { register, handleSubmit, control, formState: { errors }, watch, getValues } = useForm<IScheduleTitle>();
+  const { register, handleSubmit, control, formState: { errors } } = useForm<IScheduleTitle>();
   const { addScheduleTitle } = useContext(ScheduleContext) as ScheduleContextType;
 
   const competitionsData = useSelector(selectAllCompetitions);
@@ -75,7 +75,7 @@ const ScheduleTitleForm: React.FC = () => {
         </BtnWrapper>
       </FormRow>
     </Form>
-  )
-}
+  );
+};
 
-export default ScheduleTitleForm
+export default ScheduleTitleForm;

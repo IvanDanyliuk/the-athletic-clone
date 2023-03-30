@@ -31,7 +31,6 @@ const SubmitBtn = styled(Button)`
 
 const MatchweekForm: React.FC = () => {
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ITitle>();
-  
   const { schedule, addMatchweek } = useContext(ScheduleContext) as ScheduleContextType;
 
   const handleMatchweekTitle = (data: any) => {
