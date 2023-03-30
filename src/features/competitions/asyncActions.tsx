@@ -16,12 +16,24 @@ export const createCompetition = createAsyncThunk(
   }
 );
 
-export const getAllCompetitions = createAsyncThunk(
-  'competitions/getAllCompetitions',
+export const getCompetitions = createAsyncThunk(
+  'competitions/getCompetitions',
   async (requestData: ICompetitionsRequestData, thunkAPI) => {
     const { page, itemsPerPage, filterData, sortData } = requestData;
     try {
-      const { data } = await api.getAllCompetitions(page, itemsPerPage, filterData, sortData);
+      const { data } = await api.getCompetitions(page, itemsPerPage, filterData, sortData);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getAllCompetitions = createAsyncThunk(
+  'competitions/getAllCompetitions',
+  async (_: void, thunkAPI) => {
+    try {
+      const { data } = await api.getAllCompetitions();
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -39,7 +51,7 @@ export const updateCompetition = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
-)
+);
 
 export const deleteCompetition = createAsyncThunk(
   'competitions/deleteCompetition',

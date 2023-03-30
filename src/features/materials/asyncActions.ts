@@ -16,12 +16,12 @@ export const createMaterial = createAsyncThunk(
   }
 );
 
-export const getAllMaterials = createAsyncThunk(
-  'materials/getAllMaterials',
+export const getMaterials = createAsyncThunk(
+  'materials/getMaterials',
   async (requestData: IMaterialsRequestData, thunkAPI) => {
     const { page, itemsPerPage, filterData, sortData } = requestData;
     try {
-      const { data } = await api.getAllMaterials(page, itemsPerPage, filterData, sortData);
+      const { data } = await api.getMaterials(page, itemsPerPage, filterData, sortData);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);

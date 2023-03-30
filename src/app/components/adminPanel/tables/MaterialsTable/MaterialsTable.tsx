@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import MaterialsTableHead from './MaterialsTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectFilters, selectMaterials, selectMaterialsCount, selectMaterialsStatus } from '../../../../../features/materials/selectors';
-import { getAllMaterials } from '../../../../../features/materials/asyncActions';
+import { selectFilters, selectMaterials, selectMaterialsCount } from '../../../../../features/materials/selectors';
+import { getMaterials } from '../../../../../features/materials/asyncActions';
 import MaterialTableBody from './MaterialsTableBody';
 import MaterialsTableFooter from './MaterialsTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
@@ -15,7 +15,6 @@ const MaterialsTable: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const materials = useSelector(selectMaterials);
   const pageCount = useSelector(selectMaterialsCount);
-  const status = useSelector(selectMaterialsStatus);
   const filterData = useSelector(selectFilters);
 
   const [page, setPage] = useState<number>(0);
@@ -47,7 +46,7 @@ const MaterialsTable: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllMaterials({
+    dispatch(getMaterials({
       page, 
       itemsPerPage: 10, 
       filterData: filterData,
@@ -58,7 +57,7 @@ const MaterialsTable: React.FC = () => {
     }));
   }, [dispatch, page, activeCell, filterData]);
 
-  if(status === 'loading') {
+  if(!materials) {
     return (
       <BackdropLoader open={true} />
     );

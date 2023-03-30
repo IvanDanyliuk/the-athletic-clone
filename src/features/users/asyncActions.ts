@@ -51,12 +51,12 @@ export const getAuthenticatedUser = createAsyncThunk(
   }
 );
 
-export const getAllUsers = createAsyncThunk(
-  'users/getAllUsers',
+export const getUsers = createAsyncThunk(
+  'users/getUsers',
   async (requestData: IUserRequestData, thunkAPI) => {
     const { page, itemsPerPage, filterData, sortData } = requestData;
     try {
-      const { data } = await api.getAllUsers(page, itemsPerPage, filterData, sortData);
+      const { data } = await api.getUsers(page, itemsPerPage, filterData, sortData);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);

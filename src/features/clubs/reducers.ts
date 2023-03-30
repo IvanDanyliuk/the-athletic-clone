@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createClub, deleteClub, getAllClubs, getClubsByCountry, updateClub } from './asyncActions';
+import { createClub, deleteClub, getClubs, getClubsByCountry, updateClub } from './asyncActions';
 import { ICLubsInitialState } from './types';
 
 
@@ -39,14 +39,14 @@ const clubSlice = createSlice({
         state.status = 'failed';
         state.error = action.payload.error;
       })
-      .addCase(getAllClubs.pending, (state, action) => {
+      .addCase(getClubs.pending, (state, action) => {
         state.status = 'loading';
       })
-      .addCase(getAllClubs.fulfilled, (state, action) => {
+      .addCase(getClubs.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.data = action.payload;
       })
-      .addCase(getAllClubs.rejected, (state, action: any) => {
+      .addCase(getClubs.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })

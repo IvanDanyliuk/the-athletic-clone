@@ -3,19 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import CompetitionsTableHead from './CompetitionsTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectCompetitionsFilters, selectAllCompetitions, selectCompetitionsCount, selectCompetitionsStatus } from '../../../../../features/competitions/selectors';
+import { selectCompetitionsFilters, selectAllCompetitions, selectCompetitionsCount } from '../../../../../features/competitions/selectors';
 import CompetitionsTableBody from './CompetitionsTableBody';
 import CompetitionsTableFooter from './CompetitionsTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { ICompetitionsTableHeadCell, Order } from '../../../../../features/competitions/types';
-import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
+import { getCompetitions } from '../../../../../features/competitions/asyncActions';
 
 
 const CompetitionsTable: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const competitons = useSelector(selectAllCompetitions);
   const pageCount = useSelector(selectCompetitionsCount);
-  const status = useSelector(selectCompetitionsStatus);
   const filterData = useSelector(selectCompetitionsFilters);
 
   const [page, setPage] = useState<number>(0);
@@ -47,7 +46,7 @@ const CompetitionsTable: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllCompetitions({
+    dispatch(getCompetitions({
       page, 
       itemsPerPage: 10, 
       filterData: filterData,
@@ -58,7 +57,7 @@ const CompetitionsTable: React.FC = () => {
     }));
   }, [dispatch, page, activeCell, filterData]);
 
-  if(status === 'loading') {
+  if(!competitons) {
     return (
       <BackdropLoader open={true} />
     );
@@ -72,7 +71,7 @@ const CompetitionsTable: React.FC = () => {
           onSort={handleDataSort} 
         />
         <CompetitionsTableBody 
-          clubs={competitons} 
+          competitions={competitons} 
           page={page} 
           itemsPerPage={10}
         />

@@ -12,7 +12,7 @@ import SelectField from '../../ui/SelectField';
 import { checkFilterTimeInterval } from '../../../utils/helpers';
 import { IUserFiltersData } from '../../../../features/users/types';
 import { selectUserLocations } from '../../../../features/users/selectors';
-import { getAllUsers, getUsersLocations } from '../../../../features/users/asyncActions';
+import { getUsers, getUsersLocations } from '../../../../features/users/asyncActions';
 
 
 const Form = styled(Box)`
@@ -67,7 +67,7 @@ const UserFilters: React.FC = () => {
   const clearFilterData = () => {
     reset();
     dispatch(clearFilters());
-    dispatch(getAllUsers({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
+    dispatch(getUsers({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
   };
 
   const handleDateError = (value: string) => {

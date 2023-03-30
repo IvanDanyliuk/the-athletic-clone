@@ -4,6 +4,7 @@ import materialReducer from './materials/reducers';
 import clubsReducer from './clubs/reducers';
 import competitionsReducer from './competitions/reducers';
 import playersReducer from './players/reducers';
+import schedulesReducer from './schedules/reducers';
 
 
 const rootReducer = combineReducers({
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   clubs: clubsReducer,
   competitions: competitionsReducer,
   players: playersReducer,
+  schedules: schedulesReducer,
 });
 
 export default rootReducer;

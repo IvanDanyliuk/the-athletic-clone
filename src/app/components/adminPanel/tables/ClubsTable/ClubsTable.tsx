@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import ClubsTableHead from './ClubsTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectFilters, selectAllClubs, selectClubsCount, selectClubsStatus } from '../../../../../features/clubs/selectors';
-import { getAllClubs } from '../../../../../features/clubs/asyncActions';
+import { selectFilters, selectAllClubs, selectClubsCount } from '../../../../../features/clubs/selectors';
+import { getClubs } from '../../../../../features/clubs/asyncActions';
 import ClubsTableBody from './ClubsTableBody';
 import ClubsTableFooter from './ClubsTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
@@ -15,7 +15,6 @@ const ClubsTable: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const clubs = useSelector(selectAllClubs);
   const pageCount = useSelector(selectClubsCount);
-  const status = useSelector(selectClubsStatus);
   const filterData = useSelector(selectFilters);
 
   const [page, setPage] = useState<number>(0);
@@ -47,7 +46,7 @@ const ClubsTable: React.FC = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllClubs({
+    dispatch(getClubs({
       page, 
       itemsPerPage: 10, 
       filterData: filterData,
@@ -58,7 +57,7 @@ const ClubsTable: React.FC = () => {
     }));
   }, [dispatch, page, activeCell, filterData]);
 
-  if(status === 'loading') {
+  if(!clubs) {
     return (
       <BackdropLoader open={true} />
     );

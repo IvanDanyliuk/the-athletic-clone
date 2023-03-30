@@ -11,7 +11,7 @@ import ControlledDatePicker from '../../ui/ControlledDatePicker';
 import SelectField from '../../ui/SelectField';
 import { checkFilterTimeInterval } from '../../../utils/helpers';
 import { IPlayersFilters, PlayerPosition } from '../../../../features/players/types';
-import { getAllPlayers } from '../../../../features/players/asyncActions';
+import { getPlayers } from '../../../../features/players/asyncActions';
 import { getCountries } from '../../../services/countries';
 import { selectClubsByCountry } from '../../../../features/clubs/selectors';
 import { getClubsByCountry } from '../../../../features/clubs/asyncActions';
@@ -71,7 +71,7 @@ const PlayersFilters: React.FC = () => {
   const clearFilterData = () => {
     reset();
     dispatch(clearFilters());
-    dispatch(getAllPlayers({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
+    dispatch(getPlayers({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
   };
 
   const handleDateError = (value: string) => {

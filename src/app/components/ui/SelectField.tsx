@@ -58,9 +58,16 @@ const SelectField: React.FC<ISelectFieldProps> = ({
 }) => {
   return (
     <Box>
-      <Label htmlFor={name}>
-        {label}
-      </Label>
+      {error ? (
+          <ErrorMessage>
+            <FontAwesomeIcon icon={faCircleExclamation} />
+            <Typography variant='inherit'>{error?.message}</Typography>
+          </ErrorMessage>
+        ) : (
+          <Label htmlFor={name}>
+            {label}
+          </Label>
+        )}
       <Controller
         name={name}
         defaultValue={defaultValue ? defaultValue : ''}
@@ -78,14 +85,6 @@ const SelectField: React.FC<ISelectFieldProps> = ({
           </SelectBody>
         )}
       />
-      <ErrorMessage>
-        {error && (
-          <>
-            <FontAwesomeIcon icon={faCircleExclamation} />
-            <Typography variant='inherit'>{error?.message}</Typography>
-          </>
-        )}
-      </ErrorMessage>
     </Box>
   );
 };

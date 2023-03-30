@@ -5,7 +5,7 @@ import { faFilter, faFilterCircleXmark, faXmark } from '@fortawesome/free-solid-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Button, Grid, IconButton, Snackbar, styled, Tooltip } from '@mui/material';
 import dayjs from 'dayjs';
-import { getAllMaterials } from '../../../../features/materials/asyncActions';
+import { getMaterials } from '../../../../features/materials/asyncActions';
 import { clearFilters, setFilters } from '../../../../features/materials/reducers';
 import { MaterialFilterData } from '../../../../features/materials/types';
 import { AppDispatch } from '../../../../features/store';
@@ -70,7 +70,7 @@ const MaterialFilters: React.FC = () => {
   const clearFilterData = () => {
     reset();
     dispatch(clearFilters());
-    dispatch(getAllMaterials({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
+    dispatch(getMaterials({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
   };
 
   const handleDateError = (value: string) => {
