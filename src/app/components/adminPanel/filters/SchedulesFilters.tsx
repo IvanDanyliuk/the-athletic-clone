@@ -102,7 +102,7 @@ const SchedulesFilters: React.FC = () => {
             options={countries}
           />
         </Grid>
-        <Grid item xs={12} md={2}>
+        <Grid item xs={12} md={3}>
           <SelectField 
             name='competition'
             label='Competition' 
