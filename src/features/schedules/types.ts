@@ -46,9 +46,8 @@ export interface ISchedulesTableHeadCell {
 }
 
 export interface ISchedulesFilters {
-  // club?: string,
-  // position?: string,
-  // country?: string,
+  competition?: string,
+  country?: string,
   dateFrom?: string,
   dateTo?: string,
 }
