@@ -24,7 +24,6 @@ const FormRow = styled(Grid)`
 `;
 
 const BtnWrapper = styled(Grid)`
-  padding: 10px 0;
   display: flex;
   justify-content: center;
   align-items: flex-end;

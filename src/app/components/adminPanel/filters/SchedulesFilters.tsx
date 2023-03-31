@@ -1,18 +1,20 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { faFilter, faFilterCircleXmark, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Button, Grid, IconButton, Snackbar, styled, Tooltip } from '@mui/material';
 import dayjs from 'dayjs';
-import { getMaterials } from '../../../../features/materials/asyncActions';
-import { clearFilters, setFilters } from '../../../../features/materials/reducers';
-import { MaterialFilterData } from '../../../../features/materials/types';
+import { clearFilters, setFilters } from '../../../../features/schedules/reducers';
 import { AppDispatch } from '../../../../features/store';
-import { MaterialType } from '../../../models/components';
 import ControlledDatePicker from '../../ui/ControlledDatePicker';
 import SelectField from '../../ui/SelectField';
 import { checkFilterTimeInterval } from '../../../utils/helpers';
+import { ISchedulesFilters } from '../../../../features/schedules/types';
+import { getSchedules } from '../../../../features/schedules/asyncActions';
+import { getCountries } from '../../../services/countries';
+import { getAllCompetitions } from '../../../../features/competitions/asyncActions';
+import { selectAllCompetitions } from '../../../../features/competitions/selectors';
 
 
 const Form = styled(Box)`
@@ -37,23 +39,15 @@ const SubmitBtn = styled(Button)`
   }
 `;
 
-const authors = [
-  { label: 'John Doe', value: 'John Doe' }, 
-  { label: 'Rowan Atkinson', value: 'Rowan Atkinson' }, 
-  { label: 'Jack Sparrow', value: 'Jack Sparrow' }
-];
 
-const types = [
-  { label: 'Article', value: MaterialType.article }, 
-  { label: 'Note', value: MaterialType.note }, 
-  { label: 'Post', value: MaterialType.post }
-];
-
-
-const MaterialFilters: React.FC = () => {
+const SchedulesFilters: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { register, handleSubmit, control, formState: { errors }, reset } = useForm<MaterialFilterData>();
+  const { register, handleSubmit, control, formState: { errors }, reset } = useForm<ISchedulesFilters>();
   const [dateError, setDateError] = useState<string | null>(null);
+
+  const countries = getCountries().map(country => ({ label: country, value: country }));
+  const competitionsData = useSelector(selectAllCompetitions);
+  const competitions = competitionsData.map(competition => ({ label: competition.fullName, value: competition._id }));
 
   const sumbitFilterData = (data: any) => {
     const isDatesValid = checkFilterTimeInterval(data.dateFrom, data.dateTo, handleDateError);
@@ -69,7 +63,7 @@ const MaterialFilters: React.FC = () => {
   const clearFilterData = () => {
     reset();
     dispatch(clearFilters());
-    dispatch(getMaterials({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
+    dispatch(getSchedules({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
   };
 
   const handleDateError = (value: string) => {
@@ -79,6 +73,10 @@ const MaterialFilters: React.FC = () => {
   const clearDateError = () => {
     setDateError('');
   };
+
+  useEffect(() => {
+    dispatch(getAllCompetitions());
+  }, []);
 
   const action = (
     <IconButton
@@ -94,15 +92,24 @@ const MaterialFilters: React.FC = () => {
   return (
     <Form component='form' onSubmit={handleSubmit(sumbitFilterData)}>
       <FormRow container spacing={3}>
-        <Grid item xs={12} md={4}>
+        <Grid item xs={12} md={3}>
           <SelectField 
-            name='author'
-            label='Author' 
+            name='country'
+            label='Country' 
             control={control}
             register={register}
-            error={errors.author}
-            defaultValue=''
-            options={authors}
+            error={errors.country}
+            options={countries}
+          />
+        </Grid>
+        <Grid item xs={12} md={2}>
+          <SelectField 
+            name='competition'
+            label='Competition' 
+            control={control}
+            register={register}
+            error={errors.competition}
+            options={competitions}
           />
         </Grid>
         <Grid item xs={12} md={2}>
@@ -119,16 +126,6 @@ const MaterialFilters: React.FC = () => {
             label='To'
             control={control}
             register={register}
-          />
-        </Grid>
-        <Grid item xs={12} md={2}>
-          <SelectField 
-            name='type'
-            label='Type' 
-            control={control}
-            register={register}
-            error={errors.author}
-            options={types}
           />
         </Grid>
         <BtnWrapper item xs={12} md={1}>
@@ -165,4 +162,4 @@ const MaterialFilters: React.FC = () => {
   );
 };
 
-export default MaterialFilters;
+export default SchedulesFilters;
