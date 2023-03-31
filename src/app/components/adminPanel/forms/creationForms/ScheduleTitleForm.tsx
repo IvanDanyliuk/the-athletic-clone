@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { Box, Button, Grid, styled } from '@mui/material';
 import { useForm } from 'react-hook-form';
@@ -33,12 +33,20 @@ const SubmitBtn = styled(Button)`
 
 
 const ScheduleTitleForm: React.FC = () => {
-  const { register, handleSubmit, control, formState: { errors } } = useForm<IScheduleTitle>();
-  const { addScheduleTitle } = useContext(ScheduleContext) as ScheduleContextType;
+  const { register, handleSubmit, control, formState: { errors }, reset } = useForm<IScheduleTitle>();
+  const { schedule, isUpdatingMode, addScheduleTitle } = useContext(ScheduleContext) as ScheduleContextType;
 
   const competitionsData = useSelector(selectAllCompetitions);
   const competitions = competitionsData
     .map(competition => ({ label: competition.fullName, value: competition._id }));
+
+  useEffect(() => {
+    if(isUpdatingMode) {
+      reset({
+        season: schedule.season
+      });
+    }
+  }, [schedule.competition, schedule.season]);
 
   return (
     <Form component='form' onSubmit={handleSubmit(addScheduleTitle)}>
@@ -50,6 +58,8 @@ const ScheduleTitleForm: React.FC = () => {
             control={control}
             register={register}
             registerOptions={{ required: 'Competition is required!' }} 
+            disabled={schedule.fixture.length > 0}
+            placeholder='aaaaaaaaaaaa'
             error={errors.competition}
             options={competitions}
           />
@@ -70,7 +80,7 @@ const ScheduleTitleForm: React.FC = () => {
             variant='contained'
             color='success'
           >
-            Next
+            {isUpdatingMode ? 'Update' : 'Next'}
           </SubmitBtn>
         </BtnWrapper>
       </FormRow>

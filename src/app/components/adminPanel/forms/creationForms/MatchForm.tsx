@@ -61,7 +61,9 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
   const { schedule, addMatch } = useContext(ScheduleContext) as ScheduleContextType;
 
   const competitions = useSelector(selectAllCompetitions);
-  const competition = competitions.find(comp => comp._id === schedule.competition);
+  const competition = typeof schedule.competition === 'string' ? 
+    competitions.find(comp => comp._id === schedule.competition) : 
+    schedule.competition;
   const clubs = competition?.clubs
   const clubSelectOptions = clubs!.map(club => ({ label: club.commonName, value: club._id }));
 

@@ -1,11 +1,11 @@
 import { createContext } from 'react';
-import { IClub } from '../../features/clubs/types';
-import { IMatch, IMatchweek } from '../../features/schedules/types';
+import { IMatch, IMatchweek} from '../../features/schedules/types';
 import { ScheduleModel } from '../models/components';
 
 
 export interface ScheduleContextType {
   schedule: ScheduleModel,
+  isUpdatingMode: Boolean,
   addScheduleTitle: (data: any) => void,
   addMatchweek: (mw: IMatchweek) => void,
   addMatch: (mwId: string, match: IMatch) => void,

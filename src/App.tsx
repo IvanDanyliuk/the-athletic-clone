@@ -3,10 +3,22 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import Layout from './app/components/layout/Layout';
-import { Admin, Checkout, Home, Login, News, NotFound, Realtime, Register, Search } from './app/pages';
-import { Clubs, Competitions, Materials, Players, Schedules, Users } from './app/components/adminPanel/sections';
-import { ArticleForm, AuthorForm, ClubForm, CompetitionForm, NoteForm, PlayerForm, ScheduleForm, RealtimePostForm } from './app/components/adminPanel/forms/creationForms';
-import { UpdateClubForm, UpdateCompetitionForm, UpdateMaterialForm, UpdatePlayerForm, UpdateScheduleForm, UpdateUserForm } from './app/components/adminPanel/forms/updationForms';
+import { 
+  Admin, Checkout, Home, Login, News, 
+  NotFound, Realtime, Register, Search 
+} from './app/pages';
+import {
+   Clubs, Competitions, Materials, 
+   Players, Schedules, Users 
+} from './app/components/adminPanel/sections';
+import { 
+  ArticleForm, AuthorForm, ClubForm, CompetitionForm, 
+  NoteForm, PlayerForm, ScheduleForm, RealtimePostForm 
+} from './app/components/adminPanel/forms/creationForms';
+import { 
+  UpdateClubForm, UpdateCompetitionForm, UpdateMaterialForm, 
+  UpdatePlayerForm, UpdateScheduleForm, UpdateUserForm 
+} from './app/components/adminPanel/forms/updationForms';
 
 
 const App: React.FC = () => {
@@ -36,6 +48,7 @@ const App: React.FC = () => {
                 <Route path='players' element={<Players />} />
                 <Route path='players/edit/:id' element={<UpdatePlayerForm />} />
                 <Route path='schedules' element={<Schedules />} />
+                <Route path='schedules/edit/:id' element={<UpdateScheduleForm />} />
                 <Route path='new-article' element={<ArticleForm />} />
                 <Route path='new-note' element={<NoteForm />} />
                 <Route path='new-realtime-post' element={<RealtimePostForm />} />
