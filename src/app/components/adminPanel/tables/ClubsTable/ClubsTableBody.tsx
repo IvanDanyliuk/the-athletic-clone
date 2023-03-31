@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
+import dayjs from 'dayjs';
 import { IClub } from '../../../../../features/clubs/types';
 import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
 import { AppDispatch } from '../../../../../features/store';
@@ -29,7 +30,7 @@ const ClubsTableBody: React.FC<IClubsTableBodyProps> = ({ clubs, page, itemsPerP
           <TableRow key={uuid()}>
             <TableCell>{commonName}</TableCell>
             <TableCell>{country}</TableCell>
-            <TableCell>{createdAt}</TableCell>
+            <TableCell>{dayjs(createdAt).format('DD/MM/YYYY')}</TableCell>
             <TableCell>
               <RowActionButtons 
                 id={_id} 

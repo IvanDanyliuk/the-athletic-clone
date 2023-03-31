@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
+import dayjs from 'dayjs';
 import { IUser } from '../../../../../features/users/types';
 import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
 import { AppDispatch } from '../../../../../features/store';
@@ -33,7 +34,7 @@ const UserTableBody: React.FC<IUserTableBodyProps> = ({ users, page, itemsPerPag
             <TableCell>{organization}</TableCell>
             <TableCell>{position}</TableCell>
             <TableCell>{location}</TableCell>
-            <TableCell>{createdAt}</TableCell>
+            <TableCell>{dayjs(createdAt).format('DD/MM/YYYY')}</TableCell>
             <TableCell>
               <RowActionButtons 
                 id={_id} 

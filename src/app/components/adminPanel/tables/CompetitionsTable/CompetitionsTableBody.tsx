@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
+import dayjs from 'dayjs';
 import { ICompetition } from '../../../../../features/competitions/types';
 import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
 import { AppDispatch } from '../../../../../features/store';
@@ -30,7 +31,7 @@ const CompetitionsTableBody: React.FC<ICompetitionsTableBodyProps> = ({ competit
             <TableCell>{fullName}</TableCell>
             <TableCell>{country}</TableCell>
             <TableCell>{type}</TableCell>
-            <TableCell>{createdAt}</TableCell>
+            <TableCell>{dayjs(createdAt).format('DD/MM/YYYY')}</TableCell>
             <TableCell>
               <RowActionButtons 
                 id={_id} 

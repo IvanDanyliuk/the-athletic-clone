@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
+import dayjs from 'dayjs';
 import { IPlayer } from '../../../../../features/players/types';
 import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
 import { AppDispatch } from '../../../../../features/store';
@@ -33,7 +34,7 @@ const PlayersTableBody: React.FC<IPlayersTableBodyProps> = ({ players, page, ite
             <TableCell>{number}</TableCell>
             <TableCell>{position}</TableCell>
             <TableCell>{country}</TableCell>
-            <TableCell>{birthDate}</TableCell>
+            <TableCell>{dayjs(birthDate).format('DD/MM/YYYY')}</TableCell>
             <TableCell>
               <RowActionButtons 
                 id={_id} 

@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
+import dayjs from 'dayjs';
 import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
 import { AppDispatch } from '../../../../../features/store';
 import { deleteSchedule } from '../../../../../features/schedules/asyncActions';
@@ -32,7 +33,7 @@ const SchedulesTableBody: React.FC<ISchedulesTableBodyProps> = ({ schedules, pag
             <TableCell>{competition.country}</TableCell>
             <TableCell>{competition.clubs.length}</TableCell>
             <TableCell>{season}</TableCell>
-            <TableCell>{createdAt}</TableCell>
+            <TableCell>{dayjs(createdAt).format('DD/MM/YYYY')}</TableCell>
             <TableCell>
               <RowActionButtons 
                 id={_id} 
