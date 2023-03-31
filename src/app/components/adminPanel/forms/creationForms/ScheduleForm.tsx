@@ -7,12 +7,11 @@ import BackLink from '../../ui/BackLink';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { IMatch, IMatchweek, ISchedule } from '../../../../../features/schedules/types';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
-import { ScheduleModel } from '../../../../models/components';
 import ScheduleContext from '../../../../context/scheduleContext';
 import ScheduleTitleForm from './ScheduleTitleForm';
 import MatchweekForm from './MatchweekForm';
 import ScheduleMatchweekList from './ScheduleMatchweekList';
-import { createSchedule } from '../../../../../features/schedules/asyncActions';
+import { createSchedule, updateSchedule } from '../../../../../features/schedules/asyncActions';
 import { checkScheduleData } from '../../../../utils/helpers';
 
 
@@ -20,7 +19,7 @@ interface IScheduleFormProps {
   scheduleToUpdate?: ISchedule
 }
 
-const initialState = {
+const initialState: ISchedule = {
   competition: '',
   season: '',
   fixture: []
@@ -42,14 +41,23 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
   
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSubmitBtnDisabled, setIsSubmitBtnDisabled] = useState<boolean>(true);
-  const [schedule, setSchedule] = useState<ScheduleModel>(initialState);
+  const [schedule, setSchedule] = useState<ISchedule>(initialState);
+
+  const isUpdatingMode = Boolean(scheduleToUpdate);
 
   const addScheduleTitle = (data: any) => {
-    setSchedule({
-      ...schedule,
-      competition: data.competition,
-      season: data.season
-    });
+    if(scheduleToUpdate) {
+      setSchedule({
+        ...schedule,
+        season: data.season
+      });
+    } else {
+      setSchedule({
+        ...schedule,
+        competition: data.competition,
+        season: data.season
+      });
+    }
   };
 
   const addMatchweek = (mwData: IMatchweek) => {
@@ -95,7 +103,11 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
 
   const createNewSchedule = async () => {
     setIsLoading(true);
-    await dispatch(createSchedule(schedule));
+    if(scheduleToUpdate) {
+      await dispatch(updateSchedule(schedule));
+    } else {
+      await dispatch(createSchedule(schedule));
+    }
     setSchedule(initialState);
     setIsLoading(false);
     navigate('/admin/schedules');
@@ -103,6 +115,9 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
 
   useEffect(() => {
     dispatch(getAllCompetitions());
+    if(scheduleToUpdate) {
+      setSchedule(scheduleToUpdate);
+    }
   }, []);
 
   useEffect(() => {
@@ -114,7 +129,7 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
     <Box>
       <BackLink link='/admin/schedules' title='Go back' />
       <ScheduleContext.Provider 
-        value={{ schedule, addScheduleTitle, addMatchweek, addMatch, deleteMatchweek, deleteMatch }}
+        value={{ schedule, isUpdatingMode, addScheduleTitle, addMatchweek, addMatch, deleteMatchweek, deleteMatch }}
       >
         <ScheduleTitleForm />
         <MatchweekForm />
@@ -126,7 +141,7 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
         disabled={isSubmitBtnDisabled}
         onClick={createNewSchedule}
       >
-        Create
+        {isUpdatingMode ? 'Update' : 'Create'}
       </SubmitBtn>
       <BackdropLoader open={isLoading} />
     </Box>

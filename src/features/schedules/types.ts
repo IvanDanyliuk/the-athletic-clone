@@ -2,11 +2,11 @@ import { IClub } from "../clubs/types"
 import { ICompetition } from "../competitions/types"
 
 export interface ISchedule {
-  _id: string,
-  competition: ICompetition,
+  _id?: string,
+  competition: ICompetition | any,
   season: string,
   fixture: IMatchweek[],
-  createdAt: string
+  createdAt?: string
 }
 
 export interface IMatch {
@@ -19,6 +19,7 @@ export interface IMatch {
 }
 
 export interface IMatchweek {
+  _id?: string,
   id: string,
   matchweekName: string,
   games: IMatch[]

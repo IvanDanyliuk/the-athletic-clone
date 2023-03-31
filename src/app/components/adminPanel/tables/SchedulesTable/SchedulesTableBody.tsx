@@ -36,9 +36,9 @@ const SchedulesTableBody: React.FC<ISchedulesTableBodyProps> = ({ schedules, pag
             <TableCell>{dayjs(createdAt).format('DD/MM/YYYY')}</TableCell>
             <TableCell>
               <RowActionButtons 
-                id={_id} 
-                type={EssenseType.players}
-                onDelete={() => handleScheduleDelete(_id)} 
+                id={_id!} 
+                type={EssenseType.schedules}
+                onDelete={() => handleScheduleDelete(_id!)} 
               />
             </TableCell>
           </TableRow>

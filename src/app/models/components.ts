@@ -1,4 +1,5 @@
 import { IClub } from "../../features/clubs/types"
+import { ICompetition } from "../../features/competitions/types"
 
 //ENTITIES
 export interface ClubModel {
@@ -59,7 +60,7 @@ export interface PlayerModel {
 }
 
 export interface ScheduleModel {
-  competition: string,
+  competition: string | ICompetition,
   season: string,
   fixture: {
     id: string,
