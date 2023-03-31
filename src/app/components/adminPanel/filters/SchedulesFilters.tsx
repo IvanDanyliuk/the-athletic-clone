@@ -13,8 +13,6 @@ import { checkFilterTimeInterval } from '../../../utils/helpers';
 import { ISchedulesFilters } from '../../../../features/schedules/types';
 import { getSchedules } from '../../../../features/schedules/asyncActions';
 import { getCountries } from '../../../services/countries';
-import { selectClubsByCountry } from '../../../../features/clubs/selectors';
-import { getClubsByCountry } from '../../../../features/clubs/asyncActions';
 import { getAllCompetitions } from '../../../../features/competitions/asyncActions';
 import { selectAllCompetitions } from '../../../../features/competitions/selectors';
 
