@@ -14,6 +14,7 @@ const API = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL, withCred
 export const login = (loginData: ILoginCredentials) => API.post('/users/login', loginData);
 export const signup = (registerData: UserModel) => API.post('/users/signup', registerData);
 export const logout = () => API.post('/users/logout');
+export const createUser = (userData: UserModel) => API.post('/users/new-user', userData);
 export const getAuthenticatedUser = () => API.get('/users');
 export const getUsers = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/users/all', { params: { page, itemsPerPage, filterData, sortData } });
 export const getUsersLocations = () => API.get('/users/locations');
