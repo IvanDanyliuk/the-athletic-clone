@@ -18,7 +18,6 @@ import BackdropLoader from '../../../ui/BackdropLoader';
 import { IMaterial } from '../../../../../features/materials/types';
 
 
-
 const Form = styled(Box)`
   margin-top: 20px;
 `;

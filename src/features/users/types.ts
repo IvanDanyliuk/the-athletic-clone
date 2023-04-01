@@ -11,7 +11,7 @@ export interface IUserInitialState {
 }
 
 export interface IUser {
-  _id: string,
+  _id?: string,
   firstName: string,
   lastName: string,
   email: string,
@@ -21,20 +21,20 @@ export interface IUser {
   location?: string,
   organization?: string,
   position?: string,
-  createdAt: string
+  createdAt?: string
 }
 
-export interface IUser {
-  firstName: string,
-  lastName: string,
-  email: string,
-  password: string,
-  userPhotoUrl?: string,
-  role?: string,
-  location?: string,
-  organization?: string,
-  position?: string
-}
+// export interface IUser {
+//   firstName: string,
+//   lastName: string,
+//   email: string,
+//   password: string,
+//   userPhotoUrl?: string,
+//   role?: string,
+//   location?: string,
+//   organization?: string,
+//   position?: string
+// }
 
 export interface ILoginCredentials {
   email: string,

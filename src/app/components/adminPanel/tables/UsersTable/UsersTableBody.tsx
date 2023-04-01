@@ -37,9 +37,9 @@ const UserTableBody: React.FC<IUserTableBodyProps> = ({ users, page, itemsPerPag
             <TableCell>{dayjs(createdAt).format('DD/MM/YYYY')}</TableCell>
             <TableCell>
               <RowActionButtons 
-                id={_id} 
+                id={_id!} 
                 type={EssenseType.users}
-                onDelete={() => handleUserDelete(_id)} 
+                onDelete={() => handleUserDelete(_id!)} 
               />
             </TableCell>
           </TableRow>

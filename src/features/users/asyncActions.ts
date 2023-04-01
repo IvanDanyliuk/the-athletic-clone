@@ -39,6 +39,18 @@ export const logout = createAsyncThunk(
   }
 );
 
+export const createUser = createAsyncThunk(
+  'users/createUser',
+   async (userData: UserModel, thunkAPI) => {
+    try {
+      const { data } = await api.createUser(userData);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+   }
+);
+
 export const getAuthenticatedUser = createAsyncThunk(
   'users/getAuthenticatedUser',
   async (_: undefined, thunkAPI) => {
