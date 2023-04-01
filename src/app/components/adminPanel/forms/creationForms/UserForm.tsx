@@ -27,6 +27,7 @@ const roles = [
   { label: 'Reader', value: UserRoles.reader }
 ];
 
+
 const UserForm: React.FC<IUserFormProps> = ({ userToUpdate }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { register, control, handleSubmit, formState: { errors }, getValues, setValue, watch, reset } = useForm<IUser>();

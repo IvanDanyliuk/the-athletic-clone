@@ -1,5 +1,5 @@
 export { default as ArticleForm } from './ArticleForm';
-export { default as AuthorForm } from './AuthorForm';
+export { default as AuthorForm } from './UserForm';
 export { default as ClubForm } from './ClubForm';
 export { default as CompetitionForm } from './CompetitionForm';
 export { default as NoteForm } from './NoteForm';
