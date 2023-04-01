@@ -24,18 +24,6 @@ export interface IUser {
   createdAt?: string
 }
 
-// export interface IUser {
-//   firstName: string,
-//   lastName: string,
-//   email: string,
-//   password: string,
-//   userPhotoUrl?: string,
-//   role?: string,
-//   location?: string,
-//   organization?: string,
-//   position?: string
-// }
-
 export interface ILoginCredentials {
   email: string,
   password: string
