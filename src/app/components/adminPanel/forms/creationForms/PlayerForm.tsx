@@ -18,7 +18,6 @@ import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import ControlledDatePicker from '../../../ui/ControlledDatePicker';
 
 
-
 const Form = styled(Box)`
   margin-top: 20px;
 `;
