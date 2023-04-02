@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,6 +13,8 @@ import { signup } from '../../features/users/asyncActions';
 import { AppDispatch } from '../../features/store';
 import SelectField from '../components/ui/SelectField';
 import { getCountries } from '../services/countries';
+import { selectUserStatus } from '../../features/users/selectors';
+import BackdropLoader from '../components/ui/BackdropLoader';
 
 
 const Wrapper = styled(Box)`
@@ -114,8 +116,10 @@ const BottomText = styled(Typography)`
 
 const Register: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const { register, control, handleSubmit, formState: { errors }, getValues, reset } = useForm<UserModel>();
   const [isFormVisible, setIsFormVisible] = useState<boolean>(false);
+  const status = useSelector(selectUserStatus);
 
   const countries = getCountries().map(country => ({ label: country, value: country }));
 
@@ -127,9 +131,10 @@ const Register: React.FC = () => {
     }
   };
 
-  const submitRegisterForm = (data: UserModel) => {
-    dispatch(signup(data));
+  const submitRegisterForm = async (data: UserModel) => {
+    await dispatch(signup(data));
     reset();
+    navigate('/');
   };
 
   return (
@@ -235,6 +240,7 @@ const Register: React.FC = () => {
           We use your email to provide you with news, updates, and promotions.
         </BottomText>
       </Container>
+      <BackdropLoader open={status === 'loading'} />
     </Wrapper>
   );
 };

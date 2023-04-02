@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Box, Button, Divider, styled, Typography } from '@mui/material';
@@ -8,9 +8,10 @@ import AuthButtons from '../components/authentication/AuthButtons';
 import TextInput from '../components/ui/TextInput';
 import { login } from '../../features/users/asyncActions';
 import { ILoginCredentials } from '../../features/users/types';
-import { selectUserError } from '../../features/users/selectors';
+import { selectUserError, selectUserStatus } from '../../features/users/selectors';
 import ErrorSnackbar from '../components/ui/ErrorSnackbar';
 import { clearError } from '../../features/users/reducers';
+import BackdropLoader from '../components/ui/BackdropLoader';
 
 
 const Wrapper = styled(Box)`
@@ -84,14 +85,17 @@ const BottomLink = styled(Link)`
 
 const Login: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors }, reset } = useForm<ILoginCredentials>();
   const [isError, setIsError] = useState<boolean>(false);
+  const status = useSelector(selectUserStatus);
 
   const error = useSelector(selectUserError);
 
-  const submitLoginForm = (data: ILoginCredentials) => {
-    dispatch(login(data));
+  const submitLoginForm = async (data: ILoginCredentials) => {
+    await dispatch(login(data));
     reset();
+    navigate('/');
   };
 
   const handleErrorSnackbarClose = () => {
@@ -142,6 +146,7 @@ const Login: React.FC = () => {
         message={error}
         onClose={handleErrorSnackbarClose}
       />
+      <BackdropLoader open={status === 'loading'} />
     </Wrapper>
   );
 };

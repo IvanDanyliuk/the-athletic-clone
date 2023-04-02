@@ -23,7 +23,7 @@ const Admin: React.FC = () => {
     if(user?.role !== 'admin') {
       navigate('/');
     }
-  }, []);
+  }, [user]);
 
   return (
     <Grid container>
