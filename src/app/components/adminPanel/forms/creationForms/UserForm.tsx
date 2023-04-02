@@ -39,14 +39,22 @@ const UserForm: React.FC<IUserFormProps> = ({ userToUpdate }) => {
   const submitRegisterForm = async (data: any) => {
     setIsLoading(true);
     if(userToUpdate) {
-      const userPhotoUrl = data.userPhotoUrl!.length > 0 ? await uploadImage(data.userPhotoUrl![0]) : userToUpdate?.userPhotoUrl;
+      const userPhotoUrl = data.userPhotoUrl!.length > 0 ? 
+        await uploadImage(data.userPhotoUrl![0]) : 
+        userToUpdate?.userPhotoUrl;
       await dispatch(updateUser({
-        ...data, _id: userToUpdate._id, userPhotoUrl, password: userToUpdate.password
+        ...data, 
+        _id: userToUpdate._id, 
+        userPhotoUrl, 
+        password: userToUpdate.password
       }));
     } else {
-      const userPhotoUrl = data.userPhotoUrl!.length > 0 ? await uploadImage(data.userPhotoUrl![0]) : '';
+      const userPhotoUrl = data.userPhotoUrl!.length > 0 ? 
+        await uploadImage(data.userPhotoUrl![0]) : 
+        '';
       await dispatch(createUser({
-        ...data, userPhotoUrl
+        ...data, 
+        userPhotoUrl
       }));
     }
     setIsLoading(false);
