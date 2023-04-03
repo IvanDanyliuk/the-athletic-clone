@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Menu, MenuItem, styled } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogTitle, Menu, MenuItem, styled } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
@@ -27,8 +27,18 @@ const EditLink = styled(Link)`
 
 
 const RowActionButtons: React.FC<IRowActionButtonsProps> = ({ id, type, onDelete }) => {
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLButtonElement>(null);
   const open = Boolean(anchorEl);
+
+  const handleConfirmModalOpen = ()=> {
+    setIsConfirmModalOpen(true);
+  };
+
+  const handleConfirmModalClose = ()=> {
+    setIsConfirmModalOpen(false);
+    setAnchorEl(null);
+  };
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -37,6 +47,38 @@ const RowActionButtons: React.FC<IRowActionButtonsProps> = ({ id, type, onDelete
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const DeleteBtn = (
+    <>
+      <Box onClick={handleConfirmModalOpen}>Delete</Box>
+      <Dialog
+        open={isConfirmModalOpen}
+        onClose={handleConfirmModalClose}
+      >
+        <DialogTitle>
+          Do you want to delete this {type.slice(0, type.length - 1)}?
+        </DialogTitle>
+        <DialogActions>
+          <Button 
+            type='button' 
+            color='success' 
+            variant='contained' 
+            onClick={onDelete}
+          >
+            Yes
+          </Button>
+          <Button 
+            type='button' 
+            color='error' 
+            variant='contained' 
+            onClick={handleConfirmModalClose}
+          >
+            No
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
+  );
   
   return (
     <>
@@ -61,7 +103,9 @@ const RowActionButtons: React.FC<IRowActionButtonsProps> = ({ id, type, onDelete
         <MenuItem>
           <EditLink to={`/admin/${type}/edit/${id}`}>Edit</EditLink>
         </MenuItem>
-        <MenuItem onClick={onDelete}>Delete</MenuItem>
+        <MenuItem>
+          {DeleteBtn}
+        </MenuItem>
       </Menu>
     </>
   );
