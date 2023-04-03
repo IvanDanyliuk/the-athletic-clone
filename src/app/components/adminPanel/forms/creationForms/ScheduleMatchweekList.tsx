@@ -6,7 +6,7 @@ import {
 import { v4 as uuid } from 'uuid';
 import ScheduleContext, { ScheduleContextType } from '../../../../context/scheduleContext';
 import MatchForm from './MatchForm';
-import MatchweelDetails from '../../schedules/MatchweelDetails';
+import MatchweelDetails from '../../schedules/MatchweekDetails';
 
 
 const MatchweekListItem = styled(ListItem)`
