@@ -5,7 +5,7 @@
 import '@testing-library/jest-dom/extend-expect';
 import '@testing-library/react/dont-cleanup-after-each';
 import '@testing-library/jest-dom';
-import { server } from './app/utils/serverMock';
+import { server } from './app/utils/testing/serverMocks/serverMock';
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
