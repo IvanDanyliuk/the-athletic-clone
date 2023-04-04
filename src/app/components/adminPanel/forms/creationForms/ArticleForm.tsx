@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { Box, Button, Grid, styled, Typography } from '@mui/material';
+import { Box, Button, Grid, styled } from '@mui/material';
 import dayjs from 'dayjs';
 import { AppDispatch } from '../../../../../features/store';
 import { MaterialModel, MaterialType } from '../../../../models/components';
@@ -27,8 +27,9 @@ const Form = styled(Box)`
   margin-top: 20px;
 `;
 
-const FormRow = styled(Grid)`
-  margin-bottom: 10px;
+const SubmitBtn = styled(Button)`
+  width: 100%;
+  height: 4em;
 `;
 
 const statusOptions = [
@@ -184,13 +185,15 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
               error={errors.content}
             />
           </Grid>
+          <Grid item xs={12} md={2}>
+            <SubmitBtn 
+              type='submit'
+              variant='contained'
+            >
+              Submit
+            </SubmitBtn>
+          </Grid>
         </Grid>
-        <Button 
-          type='submit'
-          variant='contained'
-        >
-          Submit
-        </Button>
       </Form>
       <BackdropLoader open={isLoading} />
     </Box>
