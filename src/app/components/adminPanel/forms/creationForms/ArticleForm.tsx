@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { Box, Button, Grid, styled, Typography } from '@mui/material';
+import { Box, Button, Grid, styled } from '@mui/material';
 import dayjs from 'dayjs';
 import { AppDispatch } from '../../../../../features/store';
 import { MaterialModel, MaterialType } from '../../../../models/components';
@@ -16,14 +16,20 @@ import BackLink from '../../ui/BackLink';
 import SelectField from '../../../ui/SelectField';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { IMaterial } from '../../../../../features/materials/types';
+import LabelSelect from '../../../ui/LabelSelect';
+import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
+import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
+import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
+import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
 
 
 const Form = styled(Box)`
   margin-top: 20px;
 `;
 
-const FormRow = styled(Grid)`
-  margin-bottom: 10px;
+const SubmitBtn = styled(Button)`
+  width: 100%;
+  height: 4em;
 `;
 
 const statusOptions = [
@@ -41,8 +47,22 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
   const navigate = useNavigate();
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm<MaterialModel>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
 
   const user = useSelector(selectUser);
+  const clubsData = useSelector(selectClubsByCountry);
+  const clubs = clubsData.map(club => ({ label: club.commonName, value: club.commonName }));
+  const competitionsData = useSelector(selectAllCompetitions);
+  const competitions = competitionsData.map(competition => ({ label: competition.fullName, value: competition.fullName }));
+
+  const handleLabelSelect = (event: any) => {
+    const {
+      target: { value },
+    } = event;
+    setSelectedLabels(
+      typeof value === 'string' ? value.split(',') : value
+    );
+  };
 
   const handleFormSubmit = async (data: any) => {
     
@@ -75,6 +95,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
         content: data.content,
         views: 0,
         likes: 0,
+        labels: selectedLabels,
         comments: []
       }));
       setIsLoading(false);
@@ -83,6 +104,8 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
   };
 
   useEffect(() => {
+    dispatch(getClubsByCountry('International'));
+    dispatch(getAllCompetitions());
     if(articleToUpdate) {
       reset({
         title: articleToUpdate.title,
@@ -98,8 +121,8 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
     <Box>
       <BackLink link='/admin/materials' title='Go back' />
       <Form component='form' onSubmit={handleSubmit(handleFormSubmit)}>
-        <FormRow container>
-          <Grid item xs={12}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={9}>
             <TextInput 
               name='title' 
               label='Title'
@@ -109,8 +132,6 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
               error={errors.title}
             />
           </Grid>
-        </FormRow>
-        <FormRow container spacing={3}>
           <Grid item xs={12} md={3}>
             <TextInput 
               name='image' 
@@ -121,15 +142,28 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
             />
           </Grid>
           <Grid item xs={12} md={3}>
+            <LabelSelect 
+              name='Competition Label' 
+              data={competitions} 
+              checkedLabels={selectedLabels} 
+              setLabels={handleLabelSelect} 
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <LabelSelect 
+              name='Clubs Label' 
+              data={clubs} 
+              checkedLabels={selectedLabels} 
+              setLabels={handleLabelSelect} 
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
             <ControlledDatePicker 
               name='publicationDate'
               label='Publication Date'
               control={control}
               register={register}
             />
-          </Grid>
-          <Grid item xs={12} md={3}>
-            <Typography>Labels will be here soon!</Typography>
           </Grid>
           <Grid item xs={12} md={3}>
             <SelectField 
@@ -143,8 +177,6 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
               options={statusOptions}
             />
           </Grid>
-        </FormRow>
-        <FormRow container>
           <Grid item xs={12}>
             <TextEditor 
               name='content' 
@@ -153,13 +185,15 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
               error={errors.content}
             />
           </Grid>
-        </FormRow>
-        <Button 
-          type='submit'
-          variant='contained'
-        >
-          Submit
-        </Button>
+          <Grid item xs={12} md={2}>
+            <SubmitBtn 
+              type='submit'
+              variant='contained'
+            >
+              Submit
+            </SubmitBtn>
+          </Grid>
+        </Grid>
       </Form>
       <BackdropLoader open={isLoading} />
     </Box>
