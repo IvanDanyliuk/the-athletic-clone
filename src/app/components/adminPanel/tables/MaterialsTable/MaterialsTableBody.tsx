@@ -6,6 +6,7 @@ import { IMaterial } from '../../../../../features/materials/types';
 import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
 import { AppDispatch } from '../../../../../features/store';
 import { deleteMaterial } from '../../../../../features/materials/asyncActions';
+import dayjs from 'dayjs';
 
 
 interface IMaterialsTableBodyProps {
@@ -32,7 +33,7 @@ const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials, page
             <TableCell>{type}</TableCell>
             <TableCell>{author.name}</TableCell>
             <TableCell>{status}</TableCell>
-            <TableCell>{publicationDate}</TableCell>
+            <TableCell>{dayjs(publicationDate).subtract(1, 'day').format('DD/MM/YYYY')}</TableCell>
             <TableCell>
               <RowActionButtons 
                 id={_id} 

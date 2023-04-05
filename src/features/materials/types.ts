@@ -35,7 +35,7 @@ export interface IMaterial {
   status: string,
   views: number,
   likes: number,
-  publicationDate: string,
+  publicationDate: string | any,
   comments: {
     user: string, 
     message: string

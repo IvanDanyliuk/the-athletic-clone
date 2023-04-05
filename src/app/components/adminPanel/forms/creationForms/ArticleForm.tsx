@@ -65,16 +65,16 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
   };
 
   const handleFormSubmit = async (data: any) => {
-    
     if(articleToUpdate) {
       setIsLoading(true);
       await dispatch(updateMaterial({
         ...articleToUpdate,
         title: data.title,
         image: data.image,
-        publicationDate: data.publicationDate,
+        publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
         status: data.status,
-        content: data.content
+        content: data.content,
+        labels: selectedLabels,
       }));
       setIsLoading(false);
       navigate('/admin/materials');
@@ -91,7 +91,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
         },
         type: MaterialType.article,
         image: imageUrl,
-        publicationDate: dayjs(data.publicationDate).format('DD/MM/YYYY'),
+        publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
         content: data.content,
         views: 0,
         likes: 0,
@@ -110,10 +110,11 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
       reset({
         title: articleToUpdate.title,
         image: articleToUpdate.image,
-        publicationDate: articleToUpdate.publicationDate,
+        publicationDate: dayjs(articleToUpdate.publicationDate).subtract(1, 'day'),
         status: articleToUpdate.status,
         content: articleToUpdate.content
-      })
+      });
+      setSelectedLabels(articleToUpdate.labels);
     }
   }, []);
 

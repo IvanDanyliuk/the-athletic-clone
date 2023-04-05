@@ -1,5 +1,8 @@
 import React from 'react';
-import { Box, Checkbox, InputLabel, ListItemText, MenuItem, OutlinedInput, Select, SelectChangeEvent, styled } from '@mui/material';
+import { 
+  Box, Checkbox, InputLabel, ListItemText, MenuItem, 
+  OutlinedInput, Select, SelectChangeEvent, styled 
+} from '@mui/material';
 import { v4 as uuid } from 'uuid';
 
 
@@ -26,7 +29,17 @@ const SelectBody = styled(Select)`
 `;
 
 
-const LabelSelect: React.FC<ILabelSelectProps> = ({ name, data, checkedLabels, disabled, setLabels }) => {
+const LabelSelect: React.FC<ILabelSelectProps> = ({ 
+  name, 
+  data, 
+  checkedLabels, 
+  disabled, 
+  setLabels 
+}) => {
+  const dataStringValues = data.map(item => item.value);
+  const renderSelectedValues = (selected: any) => selected
+    .filter((item: any) => dataStringValues.includes(item)).join(', ');
+
   return (
     <Box>
       <Label htmlFor='data'>
@@ -38,7 +51,7 @@ const LabelSelect: React.FC<ILabelSelectProps> = ({ name, data, checkedLabels, d
         value={checkedLabels} 
         disabled={disabled}
         onChange={setLabels}
-        renderValue={(selected: any) => selected.join(', ')}
+        renderValue={renderSelectedValues}
         input={<OutlinedInput label="Tag" />}
       >
         {data.map((item) => (
