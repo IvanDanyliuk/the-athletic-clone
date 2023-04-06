@@ -28,8 +28,9 @@ const Form = styled(Box)`
   margin-top: 20px;
 `;
 
-const FormRow = styled(Grid)`
-  margin-bottom: 10px;
+const SubmitBtn = styled(Button)`
+  width: 100%;
+  height: 4em;
 `;
 
 const statusOptions = [
@@ -187,12 +188,12 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
             />
           </Grid>
           <Grid item xs={12} md={2}>
-          <Button 
+          <SubmitBtn 
             type='submit'
             variant='contained'
           >
             Submit
-          </Button>
+          </SubmitBtn>
           </Grid>
         </Grid>
       </Form>

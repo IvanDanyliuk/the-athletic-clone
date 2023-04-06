@@ -14,6 +14,11 @@ import BackLink from '../../ui/BackLink';
 import SelectField from '../../../ui/SelectField';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { IMaterial } from '../../../../../features/materials/types';
+import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
+import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
+import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
+import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
+import LabelSelect from '../../../ui/LabelSelect';
 
 
 
@@ -40,17 +45,32 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
   const navigate = useNavigate();
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm<MaterialModel>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
 
   const user = useSelector(selectUser);
+  const clubsData = useSelector(selectClubsByCountry);
+  const clubs = clubsData.map(club => ({ label: club.commonName, value: club.commonName }));
+  const competitionsData = useSelector(selectAllCompetitions);
+  const competitions = competitionsData.map(competition => ({ label: competition.fullName, value: competition.fullName }));
+
+  const handleLabelSelect = (event: any) => {
+    const {
+      target: { value },
+    } = event;
+    setSelectedLabels(
+      typeof value === 'string' ? value.split(',') : value
+    );
+  };
 
   const handleFormSubmit = async (data: any) => {
     if(postToUpdate) {
       setIsLoading(true);
       await dispatch(updateMaterial({
         ...postToUpdate,
-        publicationDate: data.publicationDate,
+        publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
         status: data.status,
-        content: data.content
+        content: data.content,
+        labels: selectedLabels,
       }));
       setIsLoading(false);
       navigate('/admin/materials');
@@ -65,8 +85,9 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
           position: user?.position
         },
         type: MaterialType.post,
-        publicationDate: dayjs(data.publicationDate).format('DD/MM/YYYY'),
+        publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
         content: data.content,
+        labels: selectedLabels,
         views: 0,
         likes: 0,
         comments: []
@@ -77,12 +98,15 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
   };
 
   useEffect(() => {
+    dispatch(getClubsByCountry('International'));
+    dispatch(getAllCompetitions());
     if(postToUpdate) {
       reset({
-        publicationDate: postToUpdate.publicationDate,
+        publicationDate: dayjs(postToUpdate.publicationDate).subtract(1, 'day'),
         status: postToUpdate.status,
         content: postToUpdate.content
-      })
+      });
+      setSelectedLabels(postToUpdate.labels);
     }
   }, []);
 
@@ -90,8 +114,8 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
     <Box>
       <BackLink link='/admin/materials' title='Go back' />
       <Form component='form' onSubmit={handleSubmit(handleFormSubmit)}>
-        <FormRow container spacing={3}>
-          <Grid item xs={12} md={4}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={3}>
             <ControlledDatePicker 
               name='publicationDate'
               label='Publication Date'
@@ -99,10 +123,23 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
               register={register}
             />
           </Grid>
-          <Grid item xs={12} md={4}>
-            <Typography>Labels will be here soon!</Typography>
+          <Grid item xs={12} md={3}>
+            <LabelSelect 
+              name='Competition Label' 
+              data={competitions} 
+              checkedLabels={selectedLabels} 
+              setLabels={handleLabelSelect} 
+            />
           </Grid>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md={3}>
+            <LabelSelect 
+              name='Clubs Label' 
+              data={clubs} 
+              checkedLabels={selectedLabels} 
+              setLabels={handleLabelSelect} 
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
             <SelectField 
               name='status'
               label='Status' 
@@ -114,8 +151,6 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
               options={statusOptions}
             />
           </Grid>
-        </FormRow>
-        <FormRow container>
           <Grid item xs={12}>
             <TextEditor 
               name='content' 
@@ -124,13 +159,15 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
               error={errors.content}
             />
           </Grid>
-        </FormRow>
-        <Button 
-          type='submit'
-          variant='contained'
-        >
-          Submit
-        </Button>
+          <Grid item xs={12} md={2}>
+            <Button 
+              type='submit'
+              variant='contained'
+            >
+              Submit
+            </Button>
+          </Grid>
+        </Grid>
       </Form>
       <BackdropLoader open={isLoading} />
     </Box>
