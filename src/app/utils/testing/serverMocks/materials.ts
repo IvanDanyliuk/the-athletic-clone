@@ -12,6 +12,12 @@ const materialsSuccessHandlers = [
       ctx.json(newArticle)
     );
   }),
+  rest.patch(`${baseUrl}/materials`, (req, res, ctx) => {
+    return res(
+      ctx.status(201),
+      ctx.json(newArticle)
+    );
+  }),
 ];
 
 

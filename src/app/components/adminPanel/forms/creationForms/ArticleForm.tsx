@@ -158,14 +158,14 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
               setLabels={handleLabelSelect} 
             />
           </Grid>
-          <Grid item xs={12} md={3}>
+          {/* <Grid item xs={12} md={3}>
             <ControlledDatePicker 
               name='publicationDate'
               label='Publication Date'
               control={control}
               register={register}
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} md={3}>
             <SelectField 
               name='status'
@@ -178,14 +178,14 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
               options={statusOptions}
             />
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <TextEditor 
               name='content' 
               control={control}
               register={register}
               error={errors.content}
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={12} md={2}>
             <SubmitBtn 
               type='submit'

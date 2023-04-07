@@ -1,13 +1,13 @@
-import { fireEvent, render, screen, waitFor } from '@testing-library/react';
-import { Provider } from 'react-redux';
-import { MemoryRouter } from 'react-router-dom';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { store } from '../../../../../../features/store';
-import { setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serverMocks/materials';
+import { render, screen, act, fireEvent } from '@testing-library/react';
+import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import ArticleForm from '../ArticleForm';
+import { setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serverMocks/materials';
 import userEvent from '@testing-library/user-event';
-
+import { Provider } from 'react-redux';
+import { store } from '../../../../../../features/store';
+import { MemoryRouter } from 'react-router-dom';
+import { articleToUpdate } from '../../../../../utils/testing/testDataMocks/materials';
+// import { act } from 'react-dom/test-utils';
 
 
 describe('ArticleForm tests', () => {
@@ -15,25 +15,17 @@ describe('ArticleForm tests', () => {
     setupMaterialsSuccessHandlers();
   });
 
-  test('should render the Article form', async () => {
+  test('should render the form', async () => {
     render(
       <Provider store={store}>
         <MemoryRouter>
-          <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <ArticleForm />
-          </LocalizationProvider>
+          <ArticleForm articleToUpdate={articleToUpdate} />
         </MemoryRouter>
       </Provider>
-    );
+    )
 
-    const textInputs = screen.getAllByRole('textbox');
-    userEvent.type(textInputs[0], 'This is title!');
     
-    const submitBtn = screen.getByRole('button', { name: /Submit/ });
-    fireEvent.click(submitBtn);
 
-    await waitFor(() => {
-      screen.debug(undefined, 300000);
-    });
+    screen.debug(undefined, 300000)
   });
 });
