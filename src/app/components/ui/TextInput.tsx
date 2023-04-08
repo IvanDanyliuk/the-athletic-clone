@@ -61,7 +61,7 @@ const TextInput: React.FC<ITextInputProps> = ({
       <Input 
         id={name} 
         inputProps={{
-          "data-testid": "textField",
+          'data-testid': 'textField',
         }}
         {...props} 
         {...register(name, registerOptions)}

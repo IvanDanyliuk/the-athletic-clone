@@ -52,6 +52,7 @@ const LabelSelect: React.FC<ILabelSelectProps> = ({
         disabled={disabled}
         onChange={setLabels}
         renderValue={renderSelectedValues}
+        data-testid='labelSelect'
         input={<OutlinedInput label="Tag" />}
       >
         {data.map((item) => (
