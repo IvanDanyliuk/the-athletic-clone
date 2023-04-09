@@ -15,7 +15,6 @@ interface ILabelSelectProps {
   checkedLabels: string[],
   disabled?: boolean,
   setLabels: (event: SelectChangeEvent<any>) => void
-
 }
 
 const Label = styled(InputLabel)`

@@ -34,6 +34,7 @@ describe('ArticleForm tests', () => {
     fireEvent.change(titleField[0], { target: { value: 'Test Title' } });
 
     const select = screen.getAllByTestId('labelSelect');
+    //eslint-disable-next-line
     fireEvent.change(select[0].querySelector('input')!, { target: { value: 'Premier League' } });
     
     const submitBtn = screen.getByRole('button', { name: 'Submit' });
@@ -51,6 +52,7 @@ describe('ArticleForm tests', () => {
     userEvent.type(titleField, 'Test Title');
 
     const select = screen.getAllByTestId('labelSelect');
+    //eslint-disable-next-line
     fireEvent.change(select[0].querySelector('input')!, { target: { value: 'Premier League' } });
 
     const submitBtn = screen.getByRole('button', { name: 'Submit' });
