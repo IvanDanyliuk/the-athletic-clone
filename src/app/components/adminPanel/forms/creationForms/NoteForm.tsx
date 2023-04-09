@@ -92,7 +92,7 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
         },
         type: MaterialType.note,
         image: imageUrl,
-        publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
+        publicationDate: dayjs(data.publicationDate).add(1, 'day'),
         content: data.content,
         views: 0,
         likes: 0,
@@ -100,6 +100,7 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
         comments: []
       }));
       setIsLoading(false);
+      navigate('/admin/materials');
     }
     reset();
   };

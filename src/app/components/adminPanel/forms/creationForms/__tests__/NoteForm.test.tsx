@@ -4,8 +4,8 @@ import { renderWithProviders } from '../../../../../utils/testing/customRenderMe
 import { setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serverMocks/materials';
 import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
 import { setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
-import { articleToUpdate } from '../../../../../utils/testing/testDataMocks/materials';
-import ArticleForm from '../ArticleForm';
+import { noteToUpdate } from '../../../../../utils/testing/testDataMocks/materials';
+import NoteForm from '../NoteForm';
 
 
 const mockedUseNavigate = jest.fn();
@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
 }));
 
 
-describe('ArticleForm tests', () => {
+describe('NoteForm tests', () => {
   beforeEach(() => {
     setupCompetitionsSuccessHandlers();
     setupClubsSuccessHandlers();
@@ -28,7 +28,7 @@ describe('ArticleForm tests', () => {
   });
 
   test('should call useNavigate after submiting a creation form', async () => {
-    renderWithProviders(<ArticleForm />);
+    renderWithProviders(<NoteForm />);
 
     const titleField = screen.getAllByTestId('textField');
     fireEvent.change(titleField[0], { target: { value: 'Test Title' } });
@@ -46,7 +46,7 @@ describe('ArticleForm tests', () => {
   });
 
   test('should call useNavigate after submiting an updation form', async () => {
-    renderWithProviders(<ArticleForm articleToUpdate={articleToUpdate} />);
+    renderWithProviders(<NoteForm noteToUpdate={noteToUpdate} />);
 
     const titleField = screen.getAllByTestId('textField')[0];
     userEvent.type(titleField, 'Test Title');
