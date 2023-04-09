@@ -21,13 +21,8 @@ import { getAllCompetitions } from '../../../../../features/competitions/asyncAc
 import LabelSelect from '../../../ui/LabelSelect';
 
 
-
 const Form = styled(Box)`
   margin-top: 20px;
-`;
-
-const FormRow = styled(Grid)`
-  margin-bottom: 10px;
 `;
 
 const statusOptions = [
@@ -85,7 +80,7 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
           position: user?.position
         },
         type: MaterialType.post,
-        publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
+        publicationDate: dayjs(data.publicationDate).add(1, 'day'),
         content: data.content,
         labels: selectedLabels,
         views: 0,
@@ -93,6 +88,7 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
         comments: []
       }));
       setIsLoading(false);
+      navigate('/admin/materials');
     }
     reset();
   };
