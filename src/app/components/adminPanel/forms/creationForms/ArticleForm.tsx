@@ -99,6 +99,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
         comments: []
       }));
       setIsLoading(false);
+      navigate('/admin/materials');
     }
     reset();
   };
