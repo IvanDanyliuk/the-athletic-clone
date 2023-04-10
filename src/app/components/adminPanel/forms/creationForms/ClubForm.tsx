@@ -54,6 +54,7 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
         clubLogoUrl
       }));
       setIsLoading(false);
+      navigate('/admin/clubs');
     }
     reset();
   };

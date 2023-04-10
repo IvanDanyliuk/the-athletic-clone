@@ -76,6 +76,7 @@ const SelectField: React.FC<ISelectFieldProps> = ({
           <SelectBody
             inputRef={ref}
             readOnly={props.disabled}
+            data-testid='selectField'
             {...rest}
           >
             {options.map(({ label, value }) => (
