@@ -4,8 +4,6 @@ import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMo
 import { setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
 import { competitionToUpdate } from '../../../../../utils/testing/testDataMocks/competitions';
 import CompetitionForm from '../CompetitionForm';
-// import { getCountries } from '../../../../../services/countries';
-
 
 
 const mockedUseNavigate = jest.fn();
@@ -14,13 +12,6 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom') as any,
   useNavigate: () => mockedUseNavigate,
 }));
-
-// jest.mock('../../../../../services/countries', () => ({
-//   ...jest.requireActual('react-router-dom') as any,
-//   getCountries: () => jest.fn().mockImplementation(() => {
-//     return ['Test Country 1', 'Test Country 2'];
-//   }),
-// }));
 
 
 describe('CompetitionForm tests', () => {

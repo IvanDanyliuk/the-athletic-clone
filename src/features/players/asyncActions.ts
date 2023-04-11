@@ -17,7 +17,7 @@ export const createPlayer = createAsyncThunk(
 );
 
 export const getPlayers = createAsyncThunk(
-  'clubs/getClubs',
+  'players/getPlayers',
   async (requestData: IPlayersRequestData, thunkAPI) => {
     const { page, itemsPerPage, filterData, sortData } = requestData;
     try {

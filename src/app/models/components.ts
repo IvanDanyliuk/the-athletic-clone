@@ -51,7 +51,7 @@ export enum MaterialType {
 export interface PlayerModel {
   firstName: string,
   lastName: string,
-  birthDate: string,
+  birthDate: string | any,
   country: string,
   photoUrl: string,
   number: string,

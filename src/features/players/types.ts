@@ -4,7 +4,7 @@ export interface IPlayer {
   _id: string,
   firstName: string,
   lastName: string,
-  birthDate: string,
+  birthDate: string | any,
   country: string,
   photoUrl: string,
   number: string,
