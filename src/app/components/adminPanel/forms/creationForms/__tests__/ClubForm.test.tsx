@@ -33,6 +33,7 @@ describe('ClubForm tests', () => {
     fireEvent.change(textFields[1], { target: { value: 'Test Common Name' } });
     fireEvent.change(textFields[2], { target: { value: 'TSN' } });
     fireEvent.change(textFields[3], { target: { value: 'Test Stadium' } });
+    //eslint-disable-next-line
     fireEvent.change(slectField.querySelector('input')!, { target: { value: 'Test Country' } });
     fireEvent.click(submitBtn);
 
@@ -52,6 +53,7 @@ describe('ClubForm tests', () => {
     fireEvent.change(textFields[1], { target: { value: 'Test Common Name' } });
     fireEvent.change(textFields[2], { target: { value: 'TSN' } });
     fireEvent.change(textFields[3], { target: { value: 'Test Stadium' } });
+    //eslint-disable-next-line
     fireEvent.change(slectField.querySelector('input')!, { target: { value: 'Test Country' } });
     fireEvent.click(submitBtn);
 

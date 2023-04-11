@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { Box, Button, Grid, styled, Typography } from '@mui/material';
+import { Box, Button, Grid, styled } from '@mui/material';
 import dayjs from 'dayjs';
 import { AppDispatch } from '../../../../../features/store';
 import { MaterialModel, MaterialType } from '../../../../models/components';

@@ -91,6 +91,7 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
       }));
       setSelectedClubs([]);
       setIsLoading(false);
+      navigate('/admin/competitions');
     }
     reset();
   };
