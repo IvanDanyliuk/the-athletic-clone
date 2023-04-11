@@ -33,7 +33,7 @@ describe('NoteForm tests', () => {
     const titleField = screen.getAllByTestId('textField');
     fireEvent.change(titleField[0], { target: { value: 'Test Title' } });
 
-    const select = screen.getAllByTestId('labelSelect');
+    const select = screen.getAllByTestId('multiSelect');
     //eslint-disable-next-line
     fireEvent.change(select[0].querySelector('input')!, { target: { value: 'Premier League' } });
     
@@ -51,7 +51,7 @@ describe('NoteForm tests', () => {
     const titleField = screen.getAllByTestId('textField')[0];
     userEvent.type(titleField, 'Test Title');
 
-    const select = screen.getAllByTestId('labelSelect');
+    const select = screen.getAllByTestId('multiSelect');
     //eslint-disable-next-line
     fireEvent.change(select[0].querySelector('input')!, { target: { value: 'Premier League' } });
 

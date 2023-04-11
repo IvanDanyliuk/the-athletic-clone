@@ -20,7 +20,7 @@ import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
-import LabelSelect from '../../../ui/LabelSelect';
+import MultiSelect from '../../../ui/MultiSelect';
 
 
 
@@ -145,16 +145,18 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
             />
           </Grid>
           <Grid item xs={12} md={3}>
-            <LabelSelect 
-              name='Competition Label' 
+            <MultiSelect
+              name='competitionLabel' 
+              label='Competition Label' 
               data={competitions} 
               checkedLabels={selectedLabels} 
               setLabels={handleLabelSelect} 
             />
           </Grid>
           <Grid item xs={12} md={3}>
-            <LabelSelect 
-              name='Clubs Label' 
+            <MultiSelect
+              name='clubsLabel' 
+              label='Clubs Label' 
               data={clubs} 
               checkedLabels={selectedLabels} 
               setLabels={handleLabelSelect} 

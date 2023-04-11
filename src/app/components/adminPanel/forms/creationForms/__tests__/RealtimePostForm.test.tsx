@@ -29,7 +29,7 @@ describe('NoteForm tests', () => {
   test('should call useNavigate after submiting a creation form', async () => {
     renderWithProviders(<RealtimePostForm />);
 
-    const select = screen.getAllByTestId('labelSelect');
+    const select = screen.getAllByTestId('multiSelect');
     //eslint-disable-next-line
     fireEvent.change(select[0].querySelector('input')!, { target: { value: 'Premier League' } });
     
@@ -44,7 +44,7 @@ describe('NoteForm tests', () => {
   test('should call useNavigate after submiting an updation form', async () => {
     renderWithProviders(<RealtimePostForm postToUpdate={postToUpdate} />);
 
-    const select = screen.getAllByTestId('labelSelect');
+    const select = screen.getAllByTestId('multiSelect');
     //eslint-disable-next-line
     fireEvent.change(select[0].querySelector('input')!, { target: { value: 'Premier League' } });
 

@@ -11,11 +11,11 @@ import SelectField from '../../../ui/SelectField';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { getCountries } from '../../../../services/countries';
 import { ICompetition } from '../../../../../features/competitions/types';
-import ClubSelect from '../../../ui/ClubSelect';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { createCompetition, updateCompetition } from '../../../../../features/competitions/asyncActions';
 import { IClub } from '../../../../../features/clubs/types';
+import MultiSelect from '../../../ui/MultiSelect';
 
 
 
@@ -131,11 +131,13 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
             />
           </Grid>
           <Grid item xs={12} md={6}>
-            <ClubSelect 
-              clubs={clubs} 
-              checkedClubs={selectedClubs} 
+            <MultiSelect
+              name='clubs'
+              label='Clubs'
+              data={clubs}
+              checkedLabels={selectedClubs}
               disabled={!Boolean(getValues().country)}
-              setClubs={handleClubSelect} 
+              setLabels={handleClubSelect}
             />
           </Grid>
         </FormRow>
