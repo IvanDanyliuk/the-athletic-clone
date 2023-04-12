@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import { store } from '../../../../../../features/store';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
