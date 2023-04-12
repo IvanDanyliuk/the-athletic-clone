@@ -21,7 +21,13 @@ export const playersStateMock: IPlayerInitialState = {
     ],
     playersCount: 1
   },
-  filters: null,
+  filters: {
+    country: 'Ukraine',
+    club: '',
+    dateFrom: '',
+    dateTo: '',
+    position: ''
+  },
   error: null
 };
 

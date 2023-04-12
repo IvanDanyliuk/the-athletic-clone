@@ -34,7 +34,12 @@ export const materialsStateSuccessMock: IMaterialsState = {
     ],
     materialsCount: 1
   },
-  filters: null,
+  filters: {
+    author: 'John Doe',
+    dateFrom: '',
+    dateTo: '',
+    type: ''
+  },
   error: null
 };
 

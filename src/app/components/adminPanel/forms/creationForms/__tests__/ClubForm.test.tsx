@@ -46,7 +46,7 @@ describe('ClubForm tests', () => {
     renderWithProviders(<ClubForm clubToUpdate={clubToUpdate} />);
 
     const textFields = screen.getAllByRole('textbox');
-    const slectField = screen.getByTestId('selectField');
+    const selectField = screen.getByTestId('selectField');
     const submitBtn = screen.getByRole('button', { name: 'Submit' });
 
     fireEvent.change(textFields[0], { target: { value: 'Test Full Name' } });
@@ -54,7 +54,7 @@ describe('ClubForm tests', () => {
     fireEvent.change(textFields[2], { target: { value: 'TSN' } });
     fireEvent.change(textFields[3], { target: { value: 'Test Stadium' } });
     //eslint-disable-next-line
-    fireEvent.change(slectField.querySelector('input')!, { target: { value: 'Test Country' } });
+    fireEvent.change(selectField.querySelector('input')!, { target: { value: 'Test Country' } });
     fireEvent.click(submitBtn);
 
     await waitFor(() => {

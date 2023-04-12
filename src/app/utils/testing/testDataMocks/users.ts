@@ -35,8 +35,23 @@ export const usersStateSuccessMock: IUserInitialState = {
     ],
     usersCount: 1
   },
-  filters: null,
-  countries: [],
+  filters: {
+    role: 'author',
+    dateFrom: '',
+    dateTo: '',
+    location: ''
+  },
+  countries: [
+    'United Kingdom',
+    'Netherlands',
+    'New Zealand',
+    'Austria',
+    'Andorra',
+    'Angola',
+    'Bahamas',
+    'Aruba',
+    'Barbados'
+  ],
   error: null
 };
 

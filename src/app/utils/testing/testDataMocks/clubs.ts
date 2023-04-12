@@ -28,7 +28,9 @@ export const clubsStateSuccessMock: ICLubsInitialState = {
     },],
     clubsCount: 2
   },
-  filters: null,
+  filters: {
+    country: 'United Kingdom'
+  },
   clubsByCountry: [
     {
       _id: '6419a26d6e0212a0462b4dd2',

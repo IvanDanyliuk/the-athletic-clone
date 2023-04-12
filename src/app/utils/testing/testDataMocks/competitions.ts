@@ -41,7 +41,10 @@ export const competitionsStateSuccessMock: ICompetitionsInitialState = {
     ],
     competitionsCount: 1
   },
-  filters: null,
+  filters: {
+    country: 'United Kingdom',
+    type: ''
+  },
   error: null
 };
 

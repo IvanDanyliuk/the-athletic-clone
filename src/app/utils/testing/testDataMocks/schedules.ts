@@ -122,7 +122,12 @@ export const schedulesStateMock: ISchedulesInitialState = {
     ],
     schedulesCount: 15
   },
-  filters: null,
+  filters: {
+    country: 'United Kingdom',
+    competition: '',
+    dateFrom: '',
+    dateTo: ''
+  },
   error: null
 };
 
