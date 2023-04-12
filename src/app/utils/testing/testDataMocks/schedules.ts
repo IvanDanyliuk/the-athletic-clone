@@ -81,6 +81,41 @@ export const schedulesStateMock: ISchedulesInitialState = {
             ],
             _id: '6426f8f2931e8ab78f3c929e'
           },
+          {
+            id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
+            matchweekName: 'Matchweek 2',
+            games: [
+              {
+                id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
+                home: {
+                  _id: '6419a26d6e0212a0462b4dd2',
+                  fullName: 'Arsenal FC',
+                  commonName: 'Arsenal',
+                  shortName: 'ARS',
+                  country: 'United Kingdom',
+                  clubLogoUrl: 'https://res.cloudinary.com/dsda5p1om/image/upload/v1679401593/r3ci6rp4umjhlnduimtp.svg',
+                  stadium: 'Emirates Stadium',
+                  createdAt: '2023-03-21T12:26:21.895Z',
+                  updatedAt: '2023-03-21T12:26:21.895Z',
+                },
+                away: {
+                  _id: '6419f57b1f12d2111b413ffc',
+                  fullName: 'Chelsea FC',
+                  commonName: 'Chelsea',
+                  shortName: 'CHE',
+                  country: 'United Kingdom',
+                  clubLogoUrl: 'https://res.cloudinary.com/dsda5p1om/image/upload/v1679422856/vr0isj4q0v3qg5cgkp9s.png',
+                  stadium: 'Stamford Bridge',
+                  createdAt: '2023-03-21T18:20:43.873Z',
+                  updatedAt: '2023-03-21T18:20:43.873Z',
+                },
+                date: '2023-03-29T21:00:00.000Z',
+                location: 'Emirates Stadium',
+                score: '0:0',
+              },
+            ],
+            _id: '6426f8f2931e8ab78f3c929e'
+          },
         ],
         createdAt: '2023-03-31T15:14:58.641Z',
       },
@@ -130,6 +165,40 @@ export const newSchedule: ScheduleModel = {
     {
       id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
       matchweekName: 'Matchweek 1',
+      games: [
+        {
+          id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
+          home: {
+            _id: '6419a26d6e0212a0462b4dd2',
+            fullName: 'Arsenal FC',
+            commonName: 'Arsenal',
+            shortName: 'ARS',
+            country: 'United Kingdom',
+            clubLogoUrl: 'https://res.cloudinary.com/dsda5p1om/image/upload/v1679401593/r3ci6rp4umjhlnduimtp.svg',
+            stadium: 'Emirates Stadium',
+            createdAt: '2023-03-21T12:26:21.895Z',
+            updatedAt: '2023-03-21T12:26:21.895Z',
+          },
+          away: {
+            _id: '6419f57b1f12d2111b413ffc',
+            fullName: 'Chelsea FC',
+            commonName: 'Chelsea',
+            shortName: 'CHE',
+            country: 'United Kingdom',
+            clubLogoUrl: 'https://res.cloudinary.com/dsda5p1om/image/upload/v1679422856/vr0isj4q0v3qg5cgkp9s.png',
+            stadium: 'Stamford Bridge',
+            createdAt: '2023-03-21T18:20:43.873Z',
+            updatedAt: '2023-03-21T18:20:43.873Z',
+          },
+          date: '2023-03-29T21:00:00.000Z',
+          location: 'Emirates Stadium',
+          score: '0:0',
+        },
+      ],
+    },
+    {
+      id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
+      matchweekName: 'Matchweek 2',
       games: [
         {
           id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -237,6 +306,47 @@ export const scheduleToUpdate: ISchedule = {
       ],
       _id: '6426f8f2931e8ab78f3c929e'
     },
+    {
+      id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
+      matchweekName: 'Matchweek 2',
+      games: [
+        {
+          id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
+          home: {
+            _id: '6419a26d6e0212a0462b4dd2',
+            fullName: 'Arsenal FC',
+            commonName: 'Arsenal',
+            shortName: 'ARS',
+            country: 'United Kingdom',
+            clubLogoUrl: 'https://res.cloudinary.com/dsda5p1om/image/upload/v1679401593/r3ci6rp4umjhlnduimtp.svg',
+            stadium: 'Emirates Stadium',
+            createdAt: '2023-03-21T12:26:21.895Z',
+            updatedAt: '2023-03-21T12:26:21.895Z',
+          },
+          away: {
+            _id: '6419f57b1f12d2111b413ffc',
+            fullName: 'Chelsea FC',
+            commonName: 'Chelsea',
+            shortName: 'CHE',
+            country: 'United Kingdom',
+            clubLogoUrl: 'https://res.cloudinary.com/dsda5p1om/image/upload/v1679422856/vr0isj4q0v3qg5cgkp9s.png',
+            stadium: 'Stamford Bridge',
+            createdAt: '2023-03-21T18:20:43.873Z',
+            updatedAt: '2023-03-21T18:20:43.873Z',
+          },
+          date: '2023-03-29T21:00:00.000Z',
+          location: 'Emirates Stadium',
+          score: '0:0',
+        },
+      ],
+      _id: '6426f8f2931e8ab78f3c929e'
+    },
   ],
   createdAt: '2023-03-31T15:14:58.641Z',
 };
+
+export const addScheduleTitleMock = jest.fn();
+export const addMatchweekMock = jest.fn();
+export const addMatchMock = jest.fn();
+export const deleteMatchweekMock = jest.fn();
+export const deleteMatchMock = jest.fn();

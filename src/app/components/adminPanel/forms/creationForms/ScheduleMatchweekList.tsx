@@ -30,8 +30,8 @@ const ScheduleMatchweekList: React.FC = () => {
                   <Button 
                     variant='outlined' 
                     color='error'
+                    data-testid='deleteMatchBtn'
                     onClick={() => deleteMatchweek(mw.id)}
-                    // onClick={() => console.log('Delete Matachweek', mw.id)}
                   >
                     Delete Matchweek
                   </Button>
