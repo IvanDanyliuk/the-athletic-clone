@@ -5,12 +5,12 @@ import { MemoryRouter } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import ScheduleContext from '../../../../../context/scheduleContext';
-import { newSchedule } from '../../../../../utils/testing/testDataMocks/schedules';
+import { scheduleToUpdate } from '../../../../../utils/testing/testDataMocks/schedules';
 import { ScheduleContextType } from '../../../../../context/scheduleContext';
 import { setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
 import { setupSchedulesSuccessHandlers } from '../../../../../utils/testing/serverMocks/schedules';
 import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
-import ScheduleTitleForm from '../ScheduleTitleForm';
+import MatchweekForm from '../MatchweekForm';
 
 
 const mockedUseNavigate = jest.fn();
@@ -27,8 +27,8 @@ const deleteMatchweekMock = jest.fn();
 const deleteMatchMock = jest.fn();
 
 const value: ScheduleContextType = {
-  schedule: newSchedule,
-  isUpdatingMode: true,
+  schedule: scheduleToUpdate,
+  isUpdatingMode: false,
   addScheduleTitle: addScheduleTitleMock,
   addMatchweek: addMatchweekMock, 
   addMatch: addMatchMock,
@@ -37,7 +37,7 @@ const value: ScheduleContextType = {
 };
 
 
-describe('ScheduleTitleForm tests', () => {
+describe('MatchweekForm tests', () => {
   beforeEach(() => {
     setupCompetitionsSuccessHandlers();
     setupClubsSuccessHandlers();
@@ -54,24 +54,21 @@ describe('ScheduleTitleForm tests', () => {
         <Provider store={store}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <ScheduleContext.Provider value={value}>
-              <ScheduleTitleForm />
+              <MatchweekForm />
             </ScheduleContext.Provider>
           </LocalizationProvider>
         </Provider>
       </MemoryRouter>
     );
 
-    const competitionSeletField = screen.getByTestId('selectField');
-    const seasonTitleField = screen.getByTestId('textField');
-    const nextBtn = screen.getByRole('button', { name: /Update/ });
+    const matchweekTitleField = screen.getByTestId('textField');
+    fireEvent.change(matchweekTitleField, { target: { value: 'Matchweek 1' } });
 
-    //eslint-disable-next-line
-    fireEvent.change(competitionSeletField.querySelector('input')!, { target: { value: 'Premier League' } });
-    fireEvent.change(seasonTitleField, { target: { value: '2022/2023' } });
-    fireEvent.click(nextBtn);
+    const submitBtn = screen.getByTestId('submitMwFormBtn');
+    fireEvent.click(submitBtn);
 
     await waitFor(() => {
-      expect(addScheduleTitleMock).toHaveBeenCalled()
-    });
+      expect(addMatchweekMock).toHaveBeenCalled();
+    })
   });
 });

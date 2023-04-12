@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup, waitFor } from '@testing-library/react';
 import { store } from '../../../../../../features/store';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
@@ -37,7 +37,7 @@ const value: ScheduleContextType = {
 };
 
 
-describe('UserForm tests', () => {
+describe('MatchForm tests', () => {
   beforeEach(() => {
     setupCompetitionsSuccessHandlers();
     setupClubsSuccessHandlers();
@@ -48,7 +48,7 @@ describe('UserForm tests', () => {
     cleanup();
   });
 
-  test('should render the component', async () => {
+  test('should submit the form after passing data', async () => {
     render(
       <MemoryRouter>
         <Provider store={store}>
@@ -65,17 +65,20 @@ describe('UserForm tests', () => {
     fireEvent.click(openFormBtn);
 
     const teamsFields = screen.getAllByTestId('selectField');
-    const textFields = screen.getAllByTestId('textField');
-    const submitBtn = screen.getByTestId('submitAddMatchBtn');
-
     //eslint-disable-next-line
     fireEvent.change(teamsFields[0].querySelector('input')!, { target: { value: '6419a26d6e0212a0462b4dd2' } });
     //eslint-disable-next-line
     fireEvent.change(teamsFields[1].querySelector('input')!, { target: { value: '6419f57b1f12d2111b413ffc' } });
+
+    const textFields = screen.getAllByTestId('textField');
     fireEvent.change(textFields[0], { target: { value: '3:0' } });
     fireEvent.change(textFields[0], { target: { value: 'Emirates Stadium' } });
+
+    const submitBtn = screen.getByTestId('submitAddMatchBtn');
     fireEvent.click(submitBtn);
-    
-    expect(submitBtn).toBeInTheDocument();
+
+    await waitFor(()=> {
+      expect(addMatchMock).toHaveBeenCalled();
+    })
   });
 });

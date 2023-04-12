@@ -65,7 +65,7 @@ const renderScheduleForm = (updationData?: ISchedule) => {
   }
 };
 
-describe('UserForm tests', () => {
+describe('ScheduleForm tests', () => {
   beforeEach(() => {
     setupCompetitionsSuccessHandlers();
     setupClubsSuccessHandlers();

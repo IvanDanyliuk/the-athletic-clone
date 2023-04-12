@@ -58,6 +58,7 @@ const MatchweekForm: React.FC = () => {
           </Grid>
           <BtnWrapper item xs={12} md={2}>
             <SubmitBtn 
+              data-testid='submitMwFormBtn'
               type='submit'
               variant='contained'
               color='success'

@@ -37,7 +37,7 @@ const value: ScheduleContextType = {
 };
 
 
-describe('UserForm tests', () => {
+describe('ScheduleMatchweekList tests', () => {
   beforeEach(() => {
     setupCompetitionsSuccessHandlers();
     setupClubsSuccessHandlers();
