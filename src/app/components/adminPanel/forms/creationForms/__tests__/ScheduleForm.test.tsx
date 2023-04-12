@@ -80,18 +80,19 @@ describe('ScheduleForm tests', () => {
     renderScheduleForm();
 
     const selectFields = screen.getAllByTestId('selectField');
-    const seasonTitleField = screen.getByLabelText(/Season/);
-    const nextBtn = screen.getByRole('button', { name: /Next/ });
-    
     //eslint-disable-next-line
     fireEvent.change(selectFields[0].querySelector('input')!, { target: { value: 'Premier League' } });
+
+    const seasonTitleField = screen.getByLabelText(/Season/);
     fireEvent.change(seasonTitleField, { target: { value: '2022/2023' } });
+
+    const nextBtn = screen.getByRole('button', { name: /Next/ });
     fireEvent.click(nextBtn);
     
     const matchweekTitleField = screen.getByLabelText(/Matchweek Title/);
-    const addMatchweekBtn = screen.getByText(/Add/);
-
     fireEvent.change(matchweekTitleField, { target: { value: 'Matchweek 1' } });
+
+    const addMatchweekBtn = screen.getByText(/Add/);
     fireEvent.click(addMatchweekBtn);
 
     const createBtn = screen.getByRole('button', { name: /Create/ });
@@ -106,17 +107,19 @@ describe('ScheduleForm tests', () => {
     renderScheduleForm(scheduleToUpdate);
 
     const selectFields = screen.getAllByTestId('selectField');
-    const seasonTitleField = screen.getByLabelText(/Season/);
-    const createBtns = screen.getAllByRole('button', { name: /Update/ });
-
     //eslint-disable-next-line
     fireEvent.change(selectFields[0].querySelector('input')!, { target: { value: 'Premier League' } });
+
+    const seasonTitleField = screen.getByLabelText(/Season/);
     fireEvent.change(seasonTitleField, { target: { value: '2022/2023' } });
+
+    const createBtns = screen.getAllByRole('button', { name: /Update/ });
     fireEvent.click(createBtns[0]);
     
     const matchweekTitleField = screen.getByLabelText(/Matchweek Title/);
-    const addMatchweekBtn = screen.getByRole('button', { name: /Add/ });
     fireEvent.change(matchweekTitleField, { target: { value: 'Matchweek 3' } });
+
+    const addMatchweekBtn = screen.getByRole('button', { name: /Add/ });
     fireEvent.click(addMatchweekBtn);
     
     //eslint-disable-next-line
