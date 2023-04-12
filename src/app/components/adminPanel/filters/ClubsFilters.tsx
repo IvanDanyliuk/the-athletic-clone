@@ -13,7 +13,6 @@ import { checkFilterTimeInterval } from '../../../utils/helpers';
 import { getCountries } from '../../../services/countries';
 
 
-
 const Form = styled(Box)`
   margin-top: 20px;
 `;
