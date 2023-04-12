@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, cleanup } from '@testing-library/react';
+import { render, screen, fireEvent, cleanup, waitFor } from '@testing-library/react';
 import { store } from '../../../../../../features/store';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
@@ -10,7 +10,7 @@ import { ScheduleContextType } from '../../../../../context/scheduleContext';
 import { setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
 import { setupSchedulesSuccessHandlers } from '../../../../../utils/testing/serverMocks/schedules';
 import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
-import ScheduleMatchweekList from '../ScheduleMatchweekList';
+import ScheduleTitleForm from '../ScheduleTitleForm';
 
 
 const mockedUseNavigate = jest.fn();
@@ -28,7 +28,7 @@ const deleteMatchMock = jest.fn();
 
 const value: ScheduleContextType = {
   schedule: newSchedule,
-  isUpdatingMode: false,
+  isUpdatingMode: true,
   addScheduleTitle: addScheduleTitleMock,
   addMatchweek: addMatchweekMock, 
   addMatch: addMatchMock,
@@ -48,22 +48,30 @@ describe('UserForm tests', () => {
     cleanup();
   });
 
-  test('should call the deleteMatchWeek function after clicking on the Delete Matchweek button', async () => {
+  test('should render the component', async () => {
     render(
       <MemoryRouter>
         <Provider store={store}>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <ScheduleContext.Provider value={value}>
-              <ScheduleMatchweekList />
+              <ScheduleTitleForm />
             </ScheduleContext.Provider>
           </LocalizationProvider>
         </Provider>
       </MemoryRouter>
     );
 
-    const deleteBtns = screen.getAllByTestId('deleteMatchBtn');
-    fireEvent.click(deleteBtns[1]);
+    const competitionSeletField = screen.getByTestId('selectField');
+    const seasonTitleField = screen.getByTestId('textField');
+    const nextBtn = screen.getByRole('button', { name: /Update/ });
 
-    expect(deleteMatchweekMock).toHaveBeenCalled();
+    //eslint-disable-next-line
+    fireEvent.change(competitionSeletField.querySelector('input')!, { target: { value: 'Premier League' } });
+    fireEvent.change(seasonTitleField, { target: { value: '2022/2023' } });
+    fireEvent.click(nextBtn);
+
+    await waitFor(() => {
+      expect(addScheduleTitleMock).toHaveBeenCalled()
+    });
   });
 });
