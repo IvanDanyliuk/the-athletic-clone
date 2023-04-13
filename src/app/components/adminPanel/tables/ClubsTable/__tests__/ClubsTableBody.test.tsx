@@ -13,7 +13,7 @@ jest.mock('react-redux', () => ({
 }));
 
 
-describe('ClubsTable tests', () => {
+describe('ClubsTableBody tests', () => {
   beforeEach(() => {
     setupClubsSuccessHandlers();
   });
