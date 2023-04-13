@@ -30,6 +30,12 @@ const clubsSuccessHandlers = [
       ctx.json(clubToUpdate)
     )
   }),
+  rest.delete(`${baseUrl}/clubs`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(clubsStateSuccessMock.data)
+    )
+  })
 ];
 
 const clubsErrorHandlers = [
