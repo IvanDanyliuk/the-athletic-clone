@@ -34,6 +34,7 @@ describe('ClubsTable tests', () => {
     const actionBtns = screen.getAllByTestId('rowActionBtn');
     fireEvent.click(actionBtns[1]);
     
+    //eslint-disable-next-line
     await act(async () => {
       const deleteBtn = screen.getByText(/Delete/);
       fireEvent.click(deleteBtn);
