@@ -1,22 +1,22 @@
 import { screen, fireEvent, cleanup } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
-import { setupPlayersSuccessHandlers } from '../../../../../utils/testing/serverMocks/players';
-import PlayersTableHead from '../PlayersTableHead';
-import { Order } from '../../../../../../features/players/types';
+import { setupSchedulesSuccessHandlers } from '../../../../../utils/testing/serverMocks/schedules';
+import SchedulesTableHead from '../SchedulesTableHead';
+import { Order } from '../../../../../../features/schedules/types';
 
 
 const activeCellMock = {
-  title: 'Country', 
+  title: 'Type', 
   isSortable: true,
-  sortKey: 'country',
+  sortKey: 'type',
   order: Order.asc
 };
 
 const onSortMock = jest.fn();
 
-describe('PlayersTableHead tests', () => {
+describe('SchedulesTableHead tests', () => {
   beforeEach(() => {
-    setupPlayersSuccessHandlers();
+    setupSchedulesSuccessHandlers();
   });
 
   afterEach(() => {
@@ -25,7 +25,7 @@ describe('PlayersTableHead tests', () => {
 
   test('should render the component', () => {
     renderWithProviders(
-      <PlayersTableHead 
+      <SchedulesTableHead 
         activeCell={activeCellMock}
         onSort={onSortMock}
       />
