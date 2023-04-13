@@ -6,16 +6,16 @@ import { clubToUpdate, clubs, clubsStateErrorMock, clubsStateSuccessMock, newClu
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 const clubsSuccessHandlers = [
-  rest.get(`${baseUrl}/clubs`, (req, res, ctx) => {
-    return res(
-      ctx.status(200),
-      ctx.json(clubsStateSuccessMock.data)
-    );
-  }),
   rest.get(`${baseUrl}/clubs/country`, (req, res, ctx) => {
     return res(
       ctx.status(200),
       ctx.json(clubs)
+    );
+  }),
+  rest.get(`${baseUrl}/clubs`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(clubsStateSuccessMock.data)
     );
   }),
   rest.post(`${baseUrl}/clubs`, (req, res, ctx) => {
@@ -39,16 +39,16 @@ const clubsSuccessHandlers = [
 ];
 
 const clubsErrorHandlers = [
-  rest.get(`${baseUrl}/clubs`, (req, res, ctx) => {
-    return res(
-      ctx.status(500),
-      // ctx.json(clubsStateErrorMock.data)
-    );
-  }),
   rest.get(`${baseUrl}/clubs/country`, (req, res, ctx) => {
     return res(
       ctx.status(500),
       ctx.json('Error')
+    );
+  }),
+  rest.get(`${baseUrl}/clubs`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json(clubsStateErrorMock.data)
     );
   }),
   rest.post(`${baseUrl}/clubs`, (req, res, ctx) => {

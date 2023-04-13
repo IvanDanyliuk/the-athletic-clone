@@ -9,12 +9,6 @@ const cells: IClubsTableHeadCell[] = [
     title: 'Name', 
     isSortable: false
   },
-  // {
-  //   title: 'League', 
-  //   isSortable: true,
-  //   sortKey: 'competition',
-  //   order: Order.asc
-  // },
   {
     title: 'Country', 
     isSortable: true,
