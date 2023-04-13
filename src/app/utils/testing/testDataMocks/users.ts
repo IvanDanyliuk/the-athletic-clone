@@ -55,6 +55,18 @@ export const usersStateSuccessMock: IUserInitialState = {
   error: null
 };
 
+export const usersStateErrorMock: IUserInitialState = {
+  status: 'failed',
+  user: null,
+  data: {
+    users: [],
+    usersCount: 0
+  },
+  filters: null,
+  countries: [],
+  error: null
+};
+
 export const newUser: UserModel = {
   firstName: 'John',
   lastName: 'Doe',

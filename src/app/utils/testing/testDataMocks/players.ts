@@ -2,7 +2,7 @@ import { IPlayer, IPlayerInitialState } from "../../../../features/players/types
 import { PlayerModel } from "../../../models/components";
 
 
-export const playersStateMock: IPlayerInitialState = {
+export const playersStateSuccessMock: IPlayerInitialState = {
   status: 'succeeded',
   data: {
     players: [
@@ -28,6 +28,16 @@ export const playersStateMock: IPlayerInitialState = {
     dateTo: '',
     position: ''
   },
+  error: null
+};
+
+export const playersStateErrorMock: IPlayerInitialState = {
+  status: 'failed',
+  data: {
+    players: [],
+    playersCount: 0
+  },
+  filters: null,
   error: null
 };
 

@@ -17,6 +17,8 @@ import { clubsStateSuccessMock } from './testDataMocks/clubs';
 import { materialsStateSuccessMock } from './testDataMocks/materials';
 import { usersStateSuccessMock } from './testDataMocks/users';
 import { competitionsStateSuccessMock } from './testDataMocks/competitions';
+import { playersStateSuccessMock } from './testDataMocks/players';
+import { schedulesStateSuccessMock } from './testDataMocks/schedules';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: PreloadedState<RootState>,
@@ -32,24 +34,8 @@ export const renderWithProviders = (
       materials: materialsStateSuccessMock,
       clubs: clubsStateSuccessMock,
       competitions: competitionsStateSuccessMock,
-      players: {
-        status: 'succeeded',
-        data: {
-          players: [],
-          playersCount: 0
-        },
-        filters: null,
-        error: null
-      },
-      schedules: {
-        status: 'succeeded',
-        data: {
-          schedules: [],
-          schedulesCount: 0
-        },
-        filters: null,
-        error: null
-      },
+      players: playersStateSuccessMock,
+      schedules: schedulesStateSuccessMock,
     },
     store = configureStore({
       reducer: combineReducers({

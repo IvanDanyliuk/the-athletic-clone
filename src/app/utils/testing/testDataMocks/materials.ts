@@ -43,6 +43,16 @@ export const materialsStateSuccessMock: IMaterialsState = {
   error: null
 };
 
+export const materialsStateErrorMock: IMaterialsState = {
+  status: 'failed',
+  data: {
+    materials: [],
+    materialsCount: 0
+  },
+  filters: null,
+  error: null
+};
+
 export const newArticle: MaterialModel = {
   author: { 
     name: 'Test Author',

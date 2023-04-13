@@ -1,7 +1,7 @@
 import { ISchedule, ISchedulesInitialState } from "../../../../features/schedules/types";
 import { ScheduleModel } from "../../../models/components";
 
-export const schedulesStateMock: ISchedulesInitialState = {
+export const schedulesStateSuccessMock: ISchedulesInitialState = {
   status: 'succeeded',
   data: {
     schedules: [
@@ -120,7 +120,7 @@ export const schedulesStateMock: ISchedulesInitialState = {
         createdAt: '2023-03-31T15:14:58.641Z',
       },
     ],
-    schedulesCount: 15
+    schedulesCount: 1
   },
   filters: {
     country: 'United Kingdom',
@@ -128,6 +128,16 @@ export const schedulesStateMock: ISchedulesInitialState = {
     dateFrom: '',
     dateTo: ''
   },
+  error: null
+};
+
+export const schedulesStateErrorMock: ISchedulesInitialState = {
+  status: 'succeeded',
+  data: {
+    schedules: [],
+    schedulesCount: 0
+  },
+  filters: null,
   error: null
 };
 

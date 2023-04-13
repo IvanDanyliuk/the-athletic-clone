@@ -48,6 +48,16 @@ export const competitionsStateSuccessMock: ICompetitionsInitialState = {
   error: null
 };
 
+export const competitionsStateErrorMock: ICompetitionsInitialState = {
+  status: 'failed',
+  data: {
+    competitions: [],
+    competitionsCount: 0
+  },
+  filters: null,
+  error: null
+};
+
 export const competitions = [
   {
     _id: '641ca17ae8277803cff5195e',
