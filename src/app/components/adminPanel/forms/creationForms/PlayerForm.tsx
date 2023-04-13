@@ -16,6 +16,7 @@ import { IPlayer, PlayerPosition } from '../../../../../features/players/types';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import ControlledDatePicker from '../../../ui/ControlledDatePicker';
+import dayjs from 'dayjs';
 
 
 const Form = styled(Box)`
@@ -53,6 +54,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
       setIsLoading(true);
       await dispatch(updatePlayer({
         _id: playerToUpdate._id,
+        birthDate: dayjs(data.birthDate).add(1, 'day').toISOString(),
         ...data
       }));
       setIsLoading(false);
@@ -62,9 +64,11 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
       const photoUrl = data.photoUrl.length > 0 ? await uploadImage(data.photoUrl[0]) : '';
       await dispatch(createPlayer({
         ...data,
+        birthDate: dayjs(data.birthDate).add(1, 'day'),
         photoUrl,
       }));
       setIsLoading(false);
+      navigate('/admin/players');
     }
     reset();
   };
@@ -79,7 +83,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
         club: playerToUpdate.club,
         number: playerToUpdate.number,
         position: playerToUpdate.position,
-        birthDate: playerToUpdate.birthDate,
+        birthDate: dayjs(playerToUpdate.birthDate).subtract(1, 'day'),
         photoUrl: playerToUpdate.photoUrl
       });
     }

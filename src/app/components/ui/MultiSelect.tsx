@@ -4,10 +4,12 @@ import {
   OutlinedInput, Select, SelectChangeEvent, styled 
 } from '@mui/material';
 import { v4 as uuid } from 'uuid';
+import { capitalizeString } from '../../utils/helpers';
 
 
-interface ILabelSelectProps {
+interface IMultiSelectProps {
   name: string,
+  label: string,
   data: {
     label: string,
     value: string
@@ -15,7 +17,6 @@ interface ILabelSelectProps {
   checkedLabels: string[],
   disabled?: boolean,
   setLabels: (event: SelectChangeEvent<any>) => void
-
 }
 
 const Label = styled(InputLabel)`
@@ -29,8 +30,9 @@ const SelectBody = styled(Select)`
 `;
 
 
-const LabelSelect: React.FC<ILabelSelectProps> = ({ 
+const MultiSelect: React.FC<IMultiSelectProps> = ({ 
   name, 
+  label,
   data, 
   checkedLabels, 
   disabled, 
@@ -42,16 +44,17 @@ const LabelSelect: React.FC<ILabelSelectProps> = ({
 
   return (
     <Box>
-      <Label htmlFor='data'>
-        {name}
+      <Label htmlFor={name}>
+        {label}
       </Label>
       <SelectBody 
-        name='data' 
+        name={name} 
         multiple 
         value={checkedLabels} 
         disabled={disabled}
         onChange={setLabels}
         renderValue={renderSelectedValues}
+        data-testid='multiSelect'
         input={<OutlinedInput label="Tag" />}
       >
         {data.map((item) => (
@@ -65,4 +68,4 @@ const LabelSelect: React.FC<ILabelSelectProps> = ({
   );
 };
 
-export default LabelSelect;
+export default MultiSelect;

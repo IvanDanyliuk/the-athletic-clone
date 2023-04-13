@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import ClubsTableHead from './ClubsTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectFilters, selectAllClubs, selectClubsCount } from '../../../../../features/clubs/selectors';
+import { selectFilters, selectAllClubs, selectClubsCount, selectClubsStatus } from '../../../../../features/clubs/selectors';
 import { getClubs } from '../../../../../features/clubs/asyncActions';
 import ClubsTableBody from './ClubsTableBody';
 import ClubsTableFooter from './ClubsTableFooter';
@@ -16,6 +16,7 @@ const ClubsTable: React.FC = () => {
   const clubs = useSelector(selectAllClubs);
   const pageCount = useSelector(selectClubsCount);
   const filterData = useSelector(selectFilters);
+  const status = useSelector(selectClubsStatus);
 
   const [page, setPage] = useState<number>(0);
   const [activeCell, setActiveCell] = useState<IClubsTableHeadCell | null>(null);
@@ -57,7 +58,7 @@ const ClubsTable: React.FC = () => {
     }));
   }, [dispatch, page, activeCell, filterData]);
 
-  if(!clubs) {
+  if(status === 'loading') {
     return (
       <BackdropLoader open={true} />
     );

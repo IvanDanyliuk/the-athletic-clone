@@ -134,6 +134,7 @@ const MaterialFilters: React.FC = () => {
         <BtnWrapper item xs={12} md={1}>
           <Tooltip title='Find' placement='top' arrow>
             <SubmitBtn 
+              data-testid='submitFilterDataBtn'
               type='submit' 
               variant='outlined'
             >
@@ -144,6 +145,7 @@ const MaterialFilters: React.FC = () => {
         <BtnWrapper item xs={12} md={1}>
           <Tooltip title='Clear filters' placement='top' arrow>
             <SubmitBtn 
+              data-testid='clearFilterDataBtn'
               type='button' 
               variant='outlined' 
               color='warning' 

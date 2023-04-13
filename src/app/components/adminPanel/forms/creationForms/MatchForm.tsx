@@ -101,6 +101,7 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
         <Button 
           type='button' 
           variant='outlined'
+          data-testid='openMatchFormBtn'
           disabled={clubs!.length < 1}
           onClick={handleFormOpen}
         >
@@ -164,7 +165,11 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
               />
             </Grid>
             <Grid item xs={12}>
-              <SubmitBtn type='submit' variant='contained'>Add</SubmitBtn>
+              <SubmitBtn 
+                type='submit' 
+                variant='contained'
+                data-testid='submitAddMatchBtn'
+              >Add</SubmitBtn>
             </Grid>
           </Grid>
         </Form>

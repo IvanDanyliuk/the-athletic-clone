@@ -16,7 +16,7 @@ import BackLink from '../../ui/BackLink';
 import SelectField from '../../../ui/SelectField';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { IMaterial } from '../../../../../features/materials/types';
-import LabelSelect from '../../../ui/LabelSelect';
+import MultiSelect from '../../../ui/MultiSelect';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
@@ -91,7 +91,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
         },
         type: MaterialType.article,
         image: imageUrl,
-        publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
+        publicationDate: dayjs(data.publicationDate).add(1, 'day'),
         content: data.content,
         views: 0,
         likes: 0,
@@ -99,6 +99,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
         comments: []
       }));
       setIsLoading(false);
+      navigate('/admin/materials');
     }
     reset();
   };
@@ -143,16 +144,18 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
             />
           </Grid>
           <Grid item xs={12} md={3}>
-            <LabelSelect 
-              name='Competition Label' 
+            <MultiSelect
+              name='competitionLabel' 
+              label='Competition Label' 
               data={competitions} 
               checkedLabels={selectedLabels} 
               setLabels={handleLabelSelect} 
             />
           </Grid>
           <Grid item xs={12} md={3}>
-            <LabelSelect 
-              name='Clubs Label' 
+            <MultiSelect
+              name='clubsLabel' 
+              label='Clubs Label' 
               data={clubs} 
               checkedLabels={selectedLabels} 
               setLabels={handleLabelSelect} 

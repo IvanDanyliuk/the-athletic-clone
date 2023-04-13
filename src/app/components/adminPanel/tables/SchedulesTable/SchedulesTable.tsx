@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import SchedulesTableHead from './SchedulesTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectSchedulesFilters, selectAllSchedules, selectSchedulesCount } from '../../../../../features/schedules/selectors';
+import { selectSchedulesFilters, selectAllSchedules, selectSchedulesCount, selectSchedulesStatus } from '../../../../../features/schedules/selectors';
 import { getSchedules } from '../../../../../features/schedules/asyncActions';
 import SchedulesTableBody from './SchedulesTableBody';
 import SchedulesTableFooter from './SchedulesTableFooter';
@@ -16,6 +16,7 @@ const SchedulesTable: React.FC = () => {
   const schedules = useSelector(selectAllSchedules);
   const pageCount = useSelector(selectSchedulesCount);
   const filterData = useSelector(selectSchedulesFilters);
+  const status = useSelector(selectSchedulesStatus);
 
   const [page, setPage] = useState<number>(0);
   const [activeCell, setActiveCell] = useState<ISchedulesTableHeadCell | null>(null);
@@ -57,7 +58,7 @@ const SchedulesTable: React.FC = () => {
     }));
   }, [dispatch, page, activeCell, filterData]);
 
-  if(!schedules) {
+  if(status === 'loading') {
     return (
       <BackdropLoader open={true} />
     );

@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import MaterialsTableHead from './MaterialsTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectFilters, selectMaterials, selectMaterialsCount } from '../../../../../features/materials/selectors';
+import { selectFilters, selectMaterials, selectMaterialsCount, selectMaterialsStatus } from '../../../../../features/materials/selectors';
 import { getMaterials } from '../../../../../features/materials/asyncActions';
 import MaterialTableBody from './MaterialsTableBody';
 import MaterialsTableFooter from './MaterialsTableFooter';
@@ -16,6 +16,7 @@ const MaterialsTable: React.FC = () => {
   const materials = useSelector(selectMaterials);
   const pageCount = useSelector(selectMaterialsCount);
   const filterData = useSelector(selectFilters);
+  const status = useSelector(selectMaterialsStatus);
 
   const [page, setPage] = useState<number>(0);
   const [activeCell, setActiveCell] = useState<IMaterialsTableHeadCell | null>(null);
@@ -57,7 +58,7 @@ const MaterialsTable: React.FC = () => {
     }));
   }, [dispatch, page, activeCell, filterData]);
 
-  if(!materials) {
+  if(status === 'loading') {
     return (
       <BackdropLoader open={true} />
     );

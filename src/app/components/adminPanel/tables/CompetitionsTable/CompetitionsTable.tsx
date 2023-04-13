@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import CompetitionsTableHead from './CompetitionsTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectCompetitionsFilters, selectAllCompetitions, selectCompetitionsCount } from '../../../../../features/competitions/selectors';
+import { selectCompetitionsFilters, selectAllCompetitions, selectCompetitionsCount, selectCompetitionsStatus } from '../../../../../features/competitions/selectors';
 import CompetitionsTableBody from './CompetitionsTableBody';
 import CompetitionsTableFooter from './CompetitionsTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
@@ -16,6 +16,7 @@ const CompetitionsTable: React.FC = () => {
   const competitons = useSelector(selectAllCompetitions);
   const pageCount = useSelector(selectCompetitionsCount);
   const filterData = useSelector(selectCompetitionsFilters);
+  const status = useSelector(selectCompetitionsStatus);
 
   const [page, setPage] = useState<number>(0);
   const [activeCell, setActiveCell] = useState<ICompetitionsTableHeadCell | null>(null);
@@ -56,8 +57,8 @@ const CompetitionsTable: React.FC = () => {
         } : null
     }));
   }, [dispatch, page, activeCell, filterData]);
-
-  if(!competitons) {
+  
+  if(status === 'loading') {
     return (
       <BackdropLoader open={true} />
     );

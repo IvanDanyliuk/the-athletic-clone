@@ -83,6 +83,7 @@ const RowActionButtons: React.FC<IRowActionButtonsProps> = ({ id, type, onDelete
   return (
     <>
       <Button
+        data-testid='rowActionBtn'
         onClick={handleClick}
       >
         <FontAwesomeIcon icon={faEllipsisVertical} />

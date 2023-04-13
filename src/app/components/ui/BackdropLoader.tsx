@@ -9,11 +9,12 @@ interface IBackdropLoaderProps {
 const BackdropLoader: React.FC<IBackdropLoaderProps> = ({ open }) => {
   return (
     <Backdrop
-        sx={{ color: '#fff', zIndex: 1 }}
-        open={open}
-      >
-        <CircularProgress color="inherit" />
-      </Backdrop>
+      data-testid='backgroundLoader'
+      sx={{ color: '#fff', zIndex: 1 }}
+      open={open}
+    >
+      <CircularProgress color="inherit" />
+    </Backdrop>
   );
 };
 

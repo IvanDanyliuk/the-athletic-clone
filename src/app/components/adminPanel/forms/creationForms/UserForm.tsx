@@ -11,6 +11,7 @@ import { IUser, UserRoles } from '../../../../../features/users/types';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { uploadImage } from '../../../../services/uploadImage';
 import BackLink from '../../ui/BackLink';
+import { useNavigate } from 'react-router-dom';
 
 
 interface IUserFormProps {
@@ -30,6 +31,7 @@ const roles = [
 
 const UserForm: React.FC<IUserFormProps> = ({ userToUpdate }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const { register, control, handleSubmit, formState: { errors }, getValues, setValue, watch, reset } = useForm<IUser>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isReader, setIsReader] = useState<boolean>(false);
@@ -58,6 +60,7 @@ const UserForm: React.FC<IUserFormProps> = ({ userToUpdate }) => {
       }));
     }
     setIsLoading(false);
+    navigate('/admin/users')
     reset();
   };
 

@@ -13,7 +13,6 @@ import { checkFilterTimeInterval } from '../../../utils/helpers';
 import { getCountries } from '../../../services/countries';
 
 
-
 const Form = styled(Box)`
   margin-top: 20px;
 `;
@@ -93,6 +92,7 @@ const ClubsFilters: React.FC = () => {
         <BtnWrapper item xs={12} md={1}>
           <Tooltip title='Find' placement='top' arrow>
             <SubmitBtn 
+              data-testid='submitFilterDataBtn'
               type='submit' 
               variant='outlined'
             >
@@ -103,6 +103,7 @@ const ClubsFilters: React.FC = () => {
         <BtnWrapper item xs={12} md={1}>
           <Tooltip title='Clear filters' placement='top' arrow>
             <SubmitBtn 
+              data-testid='clearFilterDataBtn'
               type='button' 
               variant='outlined' 
               color='warning' 

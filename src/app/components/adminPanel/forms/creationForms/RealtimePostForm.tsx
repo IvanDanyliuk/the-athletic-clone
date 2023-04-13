@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { Box, Button, Grid, styled, Typography } from '@mui/material';
+import { Box, Button, Grid, styled } from '@mui/material';
 import dayjs from 'dayjs';
 import { AppDispatch } from '../../../../../features/store';
 import { MaterialModel, MaterialType } from '../../../../models/components';
@@ -18,16 +18,11 @@ import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
-import LabelSelect from '../../../ui/LabelSelect';
-
+import MultiSelect from '../../../ui/MultiSelect';
 
 
 const Form = styled(Box)`
   margin-top: 20px;
-`;
-
-const FormRow = styled(Grid)`
-  margin-bottom: 10px;
 `;
 
 const statusOptions = [
@@ -85,7 +80,7 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
           position: user?.position
         },
         type: MaterialType.post,
-        publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
+        publicationDate: dayjs(data.publicationDate).add(1, 'day'),
         content: data.content,
         labels: selectedLabels,
         views: 0,
@@ -93,6 +88,7 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
         comments: []
       }));
       setIsLoading(false);
+      navigate('/admin/materials');
     }
     reset();
   };
@@ -124,16 +120,18 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
             />
           </Grid>
           <Grid item xs={12} md={3}>
-            <LabelSelect 
-              name='Competition Label' 
+            <MultiSelect 
+              name='competitionLabel'
+              label='Competition Label' 
               data={competitions} 
               checkedLabels={selectedLabels} 
               setLabels={handleLabelSelect} 
             />
           </Grid>
           <Grid item xs={12} md={3}>
-            <LabelSelect 
-              name='Clubs Label' 
+            <MultiSelect 
+              name='clubsLabel'
+              label='Clubs Label' 
               data={clubs} 
               checkedLabels={selectedLabels} 
               setLabels={handleLabelSelect} 
