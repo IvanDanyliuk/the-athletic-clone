@@ -24,6 +24,9 @@ const clubSlice = createSlice({
     },
     clearFilters: (state) => {
       state.filters = null;
+    },
+    clearError: (state) => {
+      state.error = null;
     }
   },
   extraReducers: (builder) => {
@@ -86,6 +89,6 @@ const clubSlice = createSlice({
   }
 });
 
-export const { setFilters, clearFilters } = clubSlice.actions;
+export const { setFilters, clearFilters, clearError } = clubSlice.actions;
 
 export default clubSlice.reducer;

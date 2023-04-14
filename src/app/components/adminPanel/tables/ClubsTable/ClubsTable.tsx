@@ -3,12 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import ClubsTableHead from './ClubsTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectFilters, selectAllClubs, selectClubsCount, selectClubsStatus } from '../../../../../features/clubs/selectors';
+import { 
+  selectFilters, selectAllClubs, selectClubsCount, 
+  selectClubsStatus, selectClubsError 
+} from '../../../../../features/clubs/selectors';
 import { getClubs } from '../../../../../features/clubs/asyncActions';
 import ClubsTableBody from './ClubsTableBody';
 import ClubsTableFooter from './ClubsTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { IClubsTableHeadCell, Order } from '../../../../../features/clubs/types';
+import ErrorSnackbar from '../../../ui/ErrorSnackbar';
+import { clearError } from '../../../../../features/clubs/reducers';
 
 
 const ClubsTable: React.FC = () => {
@@ -17,9 +22,11 @@ const ClubsTable: React.FC = () => {
   const pageCount = useSelector(selectClubsCount);
   const filterData = useSelector(selectFilters);
   const status = useSelector(selectClubsStatus);
+  const error = useSelector(selectClubsError);
 
   const [page, setPage] = useState<number>(0);
   const [activeCell, setActiveCell] = useState<IClubsTableHeadCell | null>(null);
+  const [isErrorSnackbarOpen, setIsErrorSnackbarOpen] = useState<boolean>(false);
 
   const handleDataSort = (data: IClubsTableHeadCell) => {
     if(!activeCell || activeCell.sortKey !== data.sortKey) {
@@ -46,6 +53,11 @@ const ClubsTable: React.FC = () => {
     setPage(newPage);
   };
 
+  const handleErrorSnackbarClose = () => {
+    setIsErrorSnackbarOpen(false);
+    dispatch(clearError());
+  };
+
   useEffect(() => {
     dispatch(getClubs({
       page, 
@@ -57,6 +69,12 @@ const ClubsTable: React.FC = () => {
         } : null
     }));
   }, [dispatch, page, activeCell, filterData]);
+
+  useEffect(() => {
+    if(error) {
+      setIsErrorSnackbarOpen(true);
+    }
+  }, [error]);
 
   if(status === 'loading') {
     return (
@@ -82,6 +100,11 @@ const ClubsTable: React.FC = () => {
           onPageChange={handleCurrentPageChange} 
         />
       </Table>
+      <ErrorSnackbar
+        isOpen={isErrorSnackbarOpen}
+        message={error}
+        onClose={handleErrorSnackbarClose}
+      />
     </Paper>
   );
 };
