@@ -3,12 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import UsersTableHead from './UsersTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectUserFilters, selectAllUsers, selectAllUsersCount, selectUserStatus } from '../../../../../features/users/selectors';
+import { 
+  selectUserFilters, selectAllUsers, 
+  selectAllUsersCount, selectUserStatus, selectUserError 
+} from '../../../../../features/users/selectors';
 import { getUsers } from '../../../../../features/users/asyncActions';
 import UsersTableBody from './UsersTableBody';
 import UsersTableFooter from './UsersTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { IUsersTableHeadCell, Order } from '../../../../../features/users/types';
+import { clearError } from '../../../../../features/users/reducers';
+import ErrorSnackbar from '../../../ui/ErrorSnackbar';
 
 
 const UsersTable: React.FC = () => {
@@ -17,9 +22,11 @@ const UsersTable: React.FC = () => {
   const pageCount = useSelector(selectAllUsersCount);
   const filterData = useSelector(selectUserFilters);
   const status = useSelector(selectUserStatus);
+  const error = useSelector(selectUserError);
 
   const [page, setPage] = useState<number>(0);
   const [activeCell, setActiveCell] = useState<IUsersTableHeadCell | null>(null);
+  const [isErrorSnackbarOpen, setIsErrorSnackbarOpen] = useState<boolean>(false);
 
   const handleDataSort = (data: IUsersTableHeadCell) => {
     if(!activeCell || activeCell.sortKey !== data.sortKey) {
@@ -46,6 +53,11 @@ const UsersTable: React.FC = () => {
     setPage(newPage);
   };
 
+  const handleErrorSnackbarClose = () => {
+    setIsErrorSnackbarOpen(false);
+    dispatch(clearError());
+  };
+
   useEffect(() => {
     dispatch(getUsers({
       page, 
@@ -57,6 +69,12 @@ const UsersTable: React.FC = () => {
         } : null
     }));
   }, [dispatch, page, activeCell, filterData]);
+
+  useEffect(() => {
+    if(error) {
+      setIsErrorSnackbarOpen(true);
+    }
+  }, [error]);
 
   if(status === 'loading') {
     return (
@@ -82,6 +100,11 @@ const UsersTable: React.FC = () => {
           onPageChange={handleCurrentPageChange} 
         />
       </Table>
+      <ErrorSnackbar
+        isOpen={isErrorSnackbarOpen}
+        message={error}
+        onClose={handleErrorSnackbarClose}
+      />
     </Paper>
   );
 };
