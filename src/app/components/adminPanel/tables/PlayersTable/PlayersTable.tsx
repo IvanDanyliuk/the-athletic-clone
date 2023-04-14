@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import PlayersTableHead from './PlayersTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectPlayersFilters, selectAllPlayers, selectPlayersCount, selectPlayersStatus, selectPlayersError } from '../../../../../features/players/selectors';
+import { 
+  selectPlayersFilters, selectAllPlayers, selectPlayersCount, 
+  selectPlayersStatus, selectPlayersError 
+} from '../../../../../features/players/selectors';
 import { getPlayers } from '../../../../../features/players/asyncActions';
 import PlayersTableBody from './PlayersTableBody';
 import PlayersTableFooter from './PlayersTableFooter';

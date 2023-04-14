@@ -23,6 +23,9 @@ const schedulesSlice = createSlice({
     },
     clearFilters: (state) => {
       state.filters = null;
+    },
+    clearError: (state) => {
+      state.error = null;
     }
   },
   extraReducers: (builder) => {
@@ -74,6 +77,6 @@ const schedulesSlice = createSlice({
   }
 });
 
-export const { setFilters, clearFilters } = schedulesSlice.actions;
+export const { setFilters, clearFilters, clearError } = schedulesSlice.actions;
 
 export default schedulesSlice.reducer;
