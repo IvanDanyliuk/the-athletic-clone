@@ -156,7 +156,7 @@ export const clubsStateErrorMock: ICLubsInitialState = {
   },
   filters: null,
   clubsByCountry: [],
-  error: null
+  error: 'error'
 };
 
 export const clubs = [
