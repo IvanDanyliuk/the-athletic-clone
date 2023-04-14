@@ -1164,7 +1164,7 @@ export const schedulesStateErrorMock: ISchedulesInitialState = {
     schedulesCount: 0
   },
   filters: null,
-  error: null
+  error: 'error'
 };
 
 export const newSchedule: ScheduleModel = {

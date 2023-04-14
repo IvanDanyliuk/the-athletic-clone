@@ -1,7 +1,7 @@
 import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
-import { setupSchedulesSuccessHandlers } from '../../../../../utils/testing/serverMocks/schedules';
-import { schedulesStateSuccessMock } from '../../../../../utils/testing/testDataMocks/schedules';
+import { setupSchedulesErrorHandlers, setupSchedulesSuccessHandlers } from '../../../../../utils/testing/serverMocks/schedules';
+import { schedulesStateErrorMock, schedulesStateSuccessMock } from '../../../../../utils/testing/testDataMocks/schedules';
 import SchedulesTable from '../SchedulesTable';
 
 
@@ -70,5 +70,38 @@ describe('SchedulesTable tests', () => {
       }
     );
     expect(screen.getByTestId('backgroundLoader')).toBeInTheDocument();
+  });
+});
+
+describe('SchedulesTable tests: error response', () => {
+  beforeEach(() => {
+    setupSchedulesErrorHandlers();
+    //eslint-disable-next-line
+    renderWithProviders(
+      <SchedulesTable />,
+      {
+        preloadedState: {
+          schedules: schedulesStateErrorMock
+        }
+      }
+    );
+  });
+
+  afterEach(() => {
+    cleanup();
+  });
+
+  test('should show the error snackbar when a server error occurs', async () => {
+    expect(screen.getByText(schedulesStateErrorMock.error!)).toBeInTheDocument();
+  });
+
+  test('should close the error snackbar after clicking on the close button', async () => {
+    const closeBtn = screen.getByTestId('CloseIcon');
+    fireEvent.click(closeBtn);
+
+    await waitFor(() => {
+      const errorAlert = screen.queryByRole('alert');
+      expect(errorAlert).not.toBeInTheDocument();
+    });
   });
 });
