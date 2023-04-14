@@ -22,6 +22,9 @@ const playerSlice = createSlice({
     },
     clearFilters: (state) => {
       state.filters = null;
+    },
+    clearError: (state) => {
+      state.error = null;
     }
   },
   extraReducers: (builder) => {
@@ -73,6 +76,6 @@ const playerSlice = createSlice({
   }
 });
 
-export const { setFilters, clearFilters } = playerSlice.actions;
+export const { setFilters, clearFilters, clearError } = playerSlice.actions;
 
 export default playerSlice.reducer;

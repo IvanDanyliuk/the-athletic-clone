@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import PlayersTableHead from './PlayersTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectPlayersFilters, selectAllPlayers, selectPlayersCount, selectPlayersStatus } from '../../../../../features/players/selectors';
+import { selectPlayersFilters, selectAllPlayers, selectPlayersCount, selectPlayersStatus, selectPlayersError } from '../../../../../features/players/selectors';
 import { getPlayers } from '../../../../../features/players/asyncActions';
 import PlayersTableBody from './PlayersTableBody';
 import PlayersTableFooter from './PlayersTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { IPlayersTableHeadCell, Order } from '../../../../../features/players/types';
+import { clearError } from '../../../../../features/players/reducers';
+import ErrorSnackbar from '../../../ui/ErrorSnackbar';
 
 
 const PlayersTable: React.FC = () => {
@@ -17,9 +19,11 @@ const PlayersTable: React.FC = () => {
   const pageCount = useSelector(selectPlayersCount);
   const filterData = useSelector(selectPlayersFilters);
   const status = useSelector(selectPlayersStatus);
+  const error = useSelector(selectPlayersError);
 
   const [page, setPage] = useState<number>(0);
   const [activeCell, setActiveCell] = useState<IPlayersTableHeadCell | null>(null);
+  const [isErrorSnackbarOpen, setIsErrorSnackbarOpen] = useState<boolean>(false);
 
   const handleDataSort = (data: IPlayersTableHeadCell) => {
     if(!activeCell || activeCell.sortKey !== data.sortKey) {
@@ -46,6 +50,11 @@ const PlayersTable: React.FC = () => {
     setPage(newPage);
   };
 
+  const handleErrorSnackbarClose = () => {
+    setIsErrorSnackbarOpen(false);
+    dispatch(clearError());
+  };
+
   useEffect(() => {
     dispatch(getPlayers({
       page, 
@@ -57,6 +66,12 @@ const PlayersTable: React.FC = () => {
         } : null
     }));
   }, [dispatch, page, activeCell, filterData]);
+
+  useEffect(() => {
+    if(error) {
+      setIsErrorSnackbarOpen(true);
+    }
+  }, [error]);
 
   if(status === 'loading') {
     return (
@@ -82,6 +97,11 @@ const PlayersTable: React.FC = () => {
           onPageChange={handleCurrentPageChange} 
         />
       </Table>
+      <ErrorSnackbar
+        isOpen={isErrorSnackbarOpen}
+        message={error}
+        onClose={handleErrorSnackbarClose}
+      />
     </Paper>
   );
 };
