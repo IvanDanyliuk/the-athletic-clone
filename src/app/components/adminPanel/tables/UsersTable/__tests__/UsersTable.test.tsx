@@ -1,7 +1,7 @@
 import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
-import { setupUsersSuccessHandlers } from '../../../../../utils/testing/serverMocks/users';
-import { usersStateSuccessMock } from '../../../../../utils/testing/testDataMocks/users';
+import { setupUsersErrorHandlers, setupUsersSuccessHandlers } from '../../../../../utils/testing/serverMocks/users';
+import { usersStateErrorMock, usersStateSuccessMock } from '../../../../../utils/testing/testDataMocks/users';
 import UsersTable from '../UsersTable';
 
 
@@ -84,5 +84,38 @@ describe('UsersTable tests', () => {
       }
     );
     expect(screen.getByTestId('backgroundLoader')).toBeInTheDocument();
+  });
+});
+
+describe('UsersTable tests: error response', () => {
+  beforeEach(() => {
+    setupUsersErrorHandlers();
+    //eslint-disable-next-line
+    renderWithProviders(
+      <UsersTable />,
+      {
+        preloadedState: {
+          users: usersStateErrorMock
+        }
+      }
+    );
+  });
+
+  afterEach(() => {
+    cleanup();
+  });
+
+  test('should show the error snackbar when a server error occurs', async () => {
+    expect(screen.getByText(usersStateErrorMock.error!)).toBeInTheDocument();
+  });
+
+  test('should close the error snackbar after clicking on the close button', async () => {
+    const closeBtn = screen.getByTestId('CloseIcon');
+    fireEvent.click(closeBtn);
+
+    await waitFor(() => {
+      const errorAlert = screen.queryByRole('alert');
+      expect(errorAlert).not.toBeInTheDocument();
+    });
   });
 });
