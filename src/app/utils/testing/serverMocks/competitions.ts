@@ -26,7 +26,32 @@ const competitionsSuccessHandlers = [
   }),
 ];
 
+const competitionsErrorHandlers = [
+  rest.get(`${baseUrl}/competitions/all`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    );
+  }),
+  rest.post(`${baseUrl}/competitions`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    );
+  }),
+  rest.patch(`${baseUrl}/competitions`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    );
+  }),
+];
+
 
 export const setupCompetitionsSuccessHandlers = () => {
   server.use(...competitionsSuccessHandlers);
+};
+
+export const setupCompetitionsErrorHandlers = () => {
+  server.use(...competitionsErrorHandlers);
 };

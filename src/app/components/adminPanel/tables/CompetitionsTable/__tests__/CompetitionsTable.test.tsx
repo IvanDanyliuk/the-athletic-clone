@@ -2,8 +2,8 @@ import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
 import CompetitionsTable from '../CompetitionsTable';
-import { competitionsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/competitions';
-import { setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
+import { competitionsStateErrorMock, competitionsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/competitions';
+import { setupCompetitionsErrorHandlers, setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
 
 
 const competitionsStateMock = {
@@ -25,7 +25,7 @@ jest.mock('react-redux', () => ({
 }));
 
 
-describe('CompetitionsTable tests', () => {
+describe('CompetitionsTable tests: success response', () => {
   beforeEach(() => {
     setupClubsSuccessHandlers();
     setupCompetitionsSuccessHandlers();
@@ -73,5 +73,38 @@ describe('CompetitionsTable tests', () => {
       }
     );
     expect(screen.getByTestId('backgroundLoader')).toBeInTheDocument();
+  });
+});
+
+describe('CompetitionsTable tests: error response', () => {
+  beforeEach(() => {
+    setupCompetitionsErrorHandlers();
+    //eslint-disable-next-line
+    renderWithProviders(
+      <CompetitionsTable />,
+      {
+        preloadedState: {
+          competitions: competitionsStateErrorMock
+        }
+      }
+    );
+  });
+
+  afterEach(() => {
+    cleanup();
+  });
+
+  test('should show the error snackbar when a server error occurs', async () => {
+    expect(screen.getByText(competitionsStateErrorMock.error!)).toBeInTheDocument();
+  });
+
+  test('should close the error snackbar after clicking on the close button', async () => {
+    const closeBtn = screen.getByTestId('CloseIcon');
+    fireEvent.click(closeBtn);
+
+    await waitFor(() => {
+      const errorAlert = screen.queryByRole('alert');
+      expect(errorAlert).not.toBeInTheDocument();
+    });
   });
 });
