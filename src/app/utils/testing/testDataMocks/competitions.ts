@@ -352,7 +352,7 @@ export const competitionsStateErrorMock: ICompetitionsInitialState = {
     competitionsCount: 0
   },
   filters: null,
-  error: null
+  error: 'error'
 };
 
 export const competitions = [
