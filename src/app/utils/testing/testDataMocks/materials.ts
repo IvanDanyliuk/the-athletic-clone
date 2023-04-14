@@ -266,7 +266,7 @@ export const materialsStateErrorMock: IMaterialsState = {
     materialsCount: 0
   },
   filters: null,
-  error: null
+  error: 'error'
 };
 
 export const newArticle: MaterialModel = {

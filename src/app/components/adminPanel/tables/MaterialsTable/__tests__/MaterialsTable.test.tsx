@@ -1,7 +1,7 @@
 import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
-import { setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serverMocks/materials';
-import { materialsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/materials';
+import { setupMaterialsErrorHandlers, setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serverMocks/materials';
+import { materialsStateErrorMock, materialsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/materials';
 import MaterialsTable from '../MaterialsTable';
 
 
@@ -70,5 +70,38 @@ describe('MaterialsTable tests', () => {
       }
     );
     expect(screen.getByTestId('backgroundLoader')).toBeInTheDocument();
+  });
+});
+
+describe('MaterialsTable tests: error response', () => {
+  beforeEach(() => {
+    setupMaterialsErrorHandlers();
+    //eslint-disable-next-line
+    renderWithProviders(
+      <MaterialsTable />,
+      {
+        preloadedState: {
+          materials: materialsStateErrorMock
+        }
+      }
+    );
+  });
+
+  afterEach(() => {
+    cleanup();
+  });
+
+  test('should show the error snackbar when a server error occurs', async () => {
+    expect(screen.getByText(materialsStateErrorMock.error!)).toBeInTheDocument();
+  });
+
+  test('should close the error snackbar after clicking on the close button', async () => {
+    const closeBtn = screen.getByTestId('CloseIcon');
+    fireEvent.click(closeBtn);
+
+    await waitFor(() => {
+      const errorAlert = screen.queryByRole('alert');
+      expect(errorAlert).not.toBeInTheDocument();
+    });
   });
 });
