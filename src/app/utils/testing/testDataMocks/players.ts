@@ -146,7 +146,7 @@ export const playersStateErrorMock: IPlayerInitialState = {
     playersCount: 0
   },
   filters: null,
-  error: null
+  error: 'error'
 };
 
 export const newPlayer: PlayerModel = {

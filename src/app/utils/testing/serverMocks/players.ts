@@ -26,7 +26,32 @@ const playersSuccessHandlers = [
   }),
 ];
 
+const playersErrorHandlers = [
+  rest.get(`${baseUrl}/players`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    );
+  }),
+  rest.post(`${baseUrl}/players`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    )
+  }),
+  rest.patch(`${baseUrl}/players`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    )
+  }),
+];
+
 
 export const setupPlayersSuccessHandlers = () => {
   server.use(...playersSuccessHandlers);
+};
+
+export const setupPlayersErrorHandlers = () => {
+  server.use(...playersErrorHandlers);
 };
