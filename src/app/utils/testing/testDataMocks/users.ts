@@ -181,7 +181,7 @@ export const usersStateErrorMock: IUserInitialState = {
   },
   filters: null,
   countries: [],
-  error: null
+  error: 'error'
 };
 
 export const newUser: UserModel = {

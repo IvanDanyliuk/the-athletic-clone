@@ -6,3 +6,4 @@ export const selectClubsCount = (state: RootState) => state.clubs.data.clubsCoun
 export const selectClubsStatus = (state: RootState) => state.clubs.status;
 export const selectFilters = (state: RootState) => state.clubs.filters;
 export const selectClubsByCountry = (state: RootState) => state.clubs.clubsByCountry;
+export const selectClubsError = (state: RootState) => state.clubs.error;

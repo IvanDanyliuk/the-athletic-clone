@@ -26,7 +26,32 @@ const schedulesSuccessHandlers = [
   }),
 ];
 
+const schedulesErrorHandlers = [
+  rest.get(`${baseUrl}/schedules`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    );
+  }),
+  rest.post(`${baseUrl}/schedules`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    )
+  }),
+  rest.patch(`${baseUrl}/schedules`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    )
+  }),
+];
+
 
 export const setupSchedulesSuccessHandlers = () => {
   server.use(...schedulesSuccessHandlers);
+};
+
+export const setupSchedulesErrorHandlers = () => {
+  server.use(...schedulesErrorHandlers);
 };

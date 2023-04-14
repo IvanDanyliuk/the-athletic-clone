@@ -20,7 +20,26 @@ const materialsSuccessHandlers = [
   }),
 ];
 
+const materialsErrorHandlers = [
+  rest.post(`${baseUrl}/materials`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    );
+  }),
+  rest.patch(`${baseUrl}/materials`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    );
+  }),
+];
+
 
 export const setupMaterialsSuccessHandlers = () => {
   server.use(...materialsSuccessHandlers);
+};
+
+export const setupMaterialsErrorHandlers = () => {
+  server.use(...materialsErrorHandlers);
 };

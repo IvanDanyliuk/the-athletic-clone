@@ -22,6 +22,9 @@ const competitionSlice = createSlice({
     },
     clearFilters: (state) => {
       state.filters = null;
+    },
+    clearError: (state) => {
+      state.error = null;
     }
   },
   extraReducers: (builder) => {
@@ -84,6 +87,6 @@ const competitionSlice = createSlice({
   }
 });
 
-export const { setFilters, clearFilters } = competitionSlice.actions;
+export const { setFilters, clearFilters, clearError } = competitionSlice.actions;
 
 export default competitionSlice.reducer;

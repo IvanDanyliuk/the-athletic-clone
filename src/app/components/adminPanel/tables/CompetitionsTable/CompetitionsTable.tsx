@@ -3,12 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import CompetitionsTableHead from './CompetitionsTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectCompetitionsFilters, selectAllCompetitions, selectCompetitionsCount, selectCompetitionsStatus } from '../../../../../features/competitions/selectors';
+import { 
+  selectCompetitionsFilters, selectAllCompetitions, selectCompetitionsCount, 
+  selectCompetitionsStatus, selectCompetitionsError 
+} from '../../../../../features/competitions/selectors';
 import CompetitionsTableBody from './CompetitionsTableBody';
 import CompetitionsTableFooter from './CompetitionsTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { ICompetitionsTableHeadCell, Order } from '../../../../../features/competitions/types';
 import { getCompetitions } from '../../../../../features/competitions/asyncActions';
+import { clearError } from '../../../../../features/competitions/reducers';
+import ErrorSnackbar from '../../../ui/ErrorSnackbar';
 
 
 const CompetitionsTable: React.FC = () => {
@@ -17,9 +22,11 @@ const CompetitionsTable: React.FC = () => {
   const pageCount = useSelector(selectCompetitionsCount);
   const filterData = useSelector(selectCompetitionsFilters);
   const status = useSelector(selectCompetitionsStatus);
+  const error = useSelector(selectCompetitionsError);
 
   const [page, setPage] = useState<number>(0);
   const [activeCell, setActiveCell] = useState<ICompetitionsTableHeadCell | null>(null);
+  const [isErrorSnackbarOpen, setIsErrorSnackbarOpen] = useState<boolean>(false);
 
   const handleDataSort = (data: ICompetitionsTableHeadCell) => {
     if(!activeCell || activeCell.sortKey !== data.sortKey) {
@@ -46,6 +53,11 @@ const CompetitionsTable: React.FC = () => {
     setPage(newPage);
   };
 
+  const handleErrorSnackbarClose = () => {
+    setIsErrorSnackbarOpen(false);
+    dispatch(clearError());
+  };
+
   useEffect(() => {
     dispatch(getCompetitions({
       page, 
@@ -57,6 +69,12 @@ const CompetitionsTable: React.FC = () => {
         } : null
     }));
   }, [dispatch, page, activeCell, filterData]);
+
+  useEffect(() => {
+    if(error) {
+      setIsErrorSnackbarOpen(true);
+    }
+  }, [error]);
   
   if(status === 'loading') {
     return (
@@ -82,6 +100,11 @@ const CompetitionsTable: React.FC = () => {
           onPageChange={handleCurrentPageChange} 
         />
       </Table>
+      <ErrorSnackbar
+        isOpen={isErrorSnackbarOpen}
+        message={error}
+        onClose={handleErrorSnackbarClose}
+      />
     </Paper>
   );
 };

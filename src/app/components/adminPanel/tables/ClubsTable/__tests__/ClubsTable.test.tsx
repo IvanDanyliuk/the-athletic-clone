@@ -1,7 +1,7 @@
 import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
-import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
-import { clubsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/clubs';
+import { setupClubsErrorHandlers, setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
+import { clubsStateErrorMock, clubsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/clubs';
 import ClubsTable from '../ClubsTable';
 
 
@@ -24,7 +24,7 @@ jest.mock('react-redux', () => ({
 }));
 
 
-describe('ClubsTable tests', () => {
+describe('ClubsTable tests: success response', () => {
   beforeEach(() => {
     setupClubsSuccessHandlers();
   });
@@ -32,11 +32,19 @@ describe('ClubsTable tests', () => {
   afterEach(() => {
     cleanup();
   });
-
+ 
   test('should call the dispatch method after clicking on the arrow button to change page', async () => {
     //eslint-disable-next-line
     await act(async () => {
-      renderWithProviders(<ClubsTable />, { preloadedState: { clubs: clubsStateSuccessMock } });
+      renderWithProviders(
+        <ClubsTable />, 
+        { 
+          preloadedState: 
+          { 
+            clubs: clubsStateSuccessMock 
+          } 
+        }
+      );
     });
 
     //eslint-disable-next-line
@@ -71,5 +79,38 @@ describe('ClubsTable tests', () => {
       }
     );
     expect(screen.getByTestId('backgroundLoader')).toBeInTheDocument();
+  });
+});
+
+describe('ClubsTable tests: error response', () => {
+  beforeEach(() => {
+    setupClubsErrorHandlers();
+    //eslint-disable-next-line
+    renderWithProviders(
+      <ClubsTable />,
+      {
+        preloadedState: {
+          clubs: clubsStateErrorMock
+        }
+      }
+    );
+  });
+
+  afterEach(() => {
+    cleanup();
+  });
+
+  test('should show the error snackbar when a server error occurs', async () => {
+    expect(screen.getByText(clubsStateErrorMock.error!)).toBeInTheDocument();
+  });
+
+  test('should close the error snackbar after clicking on the close button', async () => {
+    const closeBtn = screen.getByTestId('CloseIcon');
+    fireEvent.click(closeBtn);
+
+    await waitFor(() => {
+      const errorAlert = screen.queryByRole('alert');
+      expect(errorAlert).not.toBeInTheDocument();
+    });
   });
 });

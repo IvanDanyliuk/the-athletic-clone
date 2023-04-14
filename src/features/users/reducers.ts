@@ -28,7 +28,7 @@ const userSlice = createSlice({
     clearError: (state) => {
       state.status = 'idle';
       state.error = null;
-    }
+    },
   },
   extraReducers: (builder) => {
     builder

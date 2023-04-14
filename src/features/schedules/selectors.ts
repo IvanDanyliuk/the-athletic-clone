@@ -5,3 +5,4 @@ export const selectAllSchedules = (state: RootState) => state.schedules.data.sch
 export const selectSchedulesCount = (state: RootState) => state.schedules.data.schedulesCount;
 export const selectSchedulesFilters = (state: RootState) => state.schedules.filters;
 export const selectSchedulesStatus = (state: RootState) => state.schedules.status;
+export const selectSchedulesError = (state: RootState) => state.schedules.error;

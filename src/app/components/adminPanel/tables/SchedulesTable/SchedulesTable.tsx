@@ -3,12 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import SchedulesTableHead from './SchedulesTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectSchedulesFilters, selectAllSchedules, selectSchedulesCount, selectSchedulesStatus } from '../../../../../features/schedules/selectors';
+import { 
+  selectSchedulesFilters, selectAllSchedules, selectSchedulesCount, 
+  selectSchedulesStatus, selectSchedulesError 
+} from '../../../../../features/schedules/selectors';
 import { getSchedules } from '../../../../../features/schedules/asyncActions';
 import SchedulesTableBody from './SchedulesTableBody';
 import SchedulesTableFooter from './SchedulesTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { ISchedulesTableHeadCell, Order } from '../../../../../features/schedules/types';
+import ErrorSnackbar from '../../../ui/ErrorSnackbar';
+import { clearError } from '../../../../../features/schedules/reducers';
 
 
 const SchedulesTable: React.FC = () => {
@@ -17,9 +22,11 @@ const SchedulesTable: React.FC = () => {
   const pageCount = useSelector(selectSchedulesCount);
   const filterData = useSelector(selectSchedulesFilters);
   const status = useSelector(selectSchedulesStatus);
+  const error = useSelector(selectSchedulesError);
 
   const [page, setPage] = useState<number>(0);
   const [activeCell, setActiveCell] = useState<ISchedulesTableHeadCell | null>(null);
+  const [isErrorSnackbarOpen, setIsErrorSnackbarOpen] = useState<boolean>(false);
 
   const handleDataSort = (data: ISchedulesTableHeadCell) => {
     if(!activeCell || activeCell.sortKey !== data.sortKey) {
@@ -46,6 +53,11 @@ const SchedulesTable: React.FC = () => {
     setPage(newPage);
   };
 
+  const handleErrorSnackbarClose = () => {
+    setIsErrorSnackbarOpen(false);
+    dispatch(clearError());
+  };
+
   useEffect(() => {
     dispatch(getSchedules({
       page, 
@@ -57,6 +69,12 @@ const SchedulesTable: React.FC = () => {
         } : null
     }));
   }, [dispatch, page, activeCell, filterData]);
+
+  useEffect(() => {
+    if(error) {
+      setIsErrorSnackbarOpen(true);
+    }
+  }, [error]);
 
   if(status === 'loading') {
     return (
@@ -82,6 +100,11 @@ const SchedulesTable: React.FC = () => {
           onPageChange={handleCurrentPageChange} 
         />
       </Table>
+      <ErrorSnackbar
+        isOpen={isErrorSnackbarOpen}
+        message={error}
+        onClose={handleErrorSnackbarClose}
+      />
     </Paper>
   );
 };

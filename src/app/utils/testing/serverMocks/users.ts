@@ -26,7 +26,32 @@ const usersSuccessHandlers = [
   }),
 ];
 
+const usersErrorHandlers = [
+  rest.get(`${baseUrl}/users/all`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    );
+  }),
+  rest.post(`${baseUrl}/users/new-user`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    )
+  }),
+  rest.patch(`${baseUrl}/users`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json('Error')
+    )
+  }),
+];
+
 
 export const setupUsersSuccessHandlers = () => {
   server.use(...usersSuccessHandlers);
+};
+
+export const setupUsersErrorHandlers = () => {
+  server.use(...usersErrorHandlers);
 };

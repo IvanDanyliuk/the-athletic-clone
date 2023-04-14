@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import MaterialsTableHead from './MaterialsTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectFilters, selectMaterials, selectMaterialsCount, selectMaterialsStatus } from '../../../../../features/materials/selectors';
+import { selectFilters, selectMaterials, selectMaterialsCount, selectMaterialsError, selectMaterialsStatus } from '../../../../../features/materials/selectors';
 import { getMaterials } from '../../../../../features/materials/asyncActions';
 import MaterialTableBody from './MaterialsTableBody';
 import MaterialsTableFooter from './MaterialsTableFooter';
 import BackdropLoader from '../../../ui/BackdropLoader';
 import { IMaterialsTableHeadCell, Order } from '../../../../../features/materials/types';
+import ErrorSnackbar from '../../../ui/ErrorSnackbar';
+import { clearError } from '../../../../../features/materials/reducers';
 
 
 const MaterialsTable: React.FC = () => {
@@ -17,9 +19,11 @@ const MaterialsTable: React.FC = () => {
   const pageCount = useSelector(selectMaterialsCount);
   const filterData = useSelector(selectFilters);
   const status = useSelector(selectMaterialsStatus);
+  const error = useSelector(selectMaterialsError);
 
   const [page, setPage] = useState<number>(0);
   const [activeCell, setActiveCell] = useState<IMaterialsTableHeadCell | null>(null);
+  const [isErrorSnackbarOpen, setIsErrorSnackbarOpen] = useState<boolean>(false);
 
   const handleDataSort = (data: IMaterialsTableHeadCell) => {
     if(!activeCell || activeCell.sortKey !== data.sortKey) {
@@ -46,6 +50,11 @@ const MaterialsTable: React.FC = () => {
     setPage(newPage);
   };
 
+  const handleErrorSnackbarClose = () => {
+    setIsErrorSnackbarOpen(false);
+    dispatch(clearError());
+  };
+
   useEffect(() => {
     dispatch(getMaterials({
       page, 
@@ -57,6 +66,12 @@ const MaterialsTable: React.FC = () => {
         } : null
     }));
   }, [dispatch, page, activeCell, filterData]);
+
+  useEffect(() => {
+    if(error) {
+      setIsErrorSnackbarOpen(true);
+    }
+  }, [error]);
 
   if(status === 'loading') {
     return (
@@ -82,6 +97,11 @@ const MaterialsTable: React.FC = () => {
           onPageChange={handleCurrentPageChange} 
         />
       </Table>
+      <ErrorSnackbar
+        isOpen={isErrorSnackbarOpen}
+        message={error}
+        onClose={handleErrorSnackbarClose}
+      />
     </Paper>
   );
 };
