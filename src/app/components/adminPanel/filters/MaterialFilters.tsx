@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { faFilter, faFilterCircleXmark, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,6 +13,7 @@ import { MaterialType } from '../../../models/components';
 import ControlledDatePicker from '../../ui/ControlledDatePicker';
 import SelectField from '../../ui/SelectField';
 import { checkFilterTimeInterval } from '../../../utils/helpers';
+import { selectAuthors } from '../../../../features/materials/selectors';
 
 
 const Form = styled(Box)`
@@ -37,11 +38,11 @@ const SubmitBtn = styled(Button)`
   }
 `;
 
-const authors = [
-  { label: 'John Doe', value: 'John Doe' }, 
-  { label: 'Rowan Atkinson', value: 'Rowan Atkinson' }, 
-  { label: 'Jack Sparrow', value: 'Jack Sparrow' }
-];
+// const authors = [
+//   { label: 'John Doe', value: 'John Doe' }, 
+//   { label: 'Rowan Atkinson', value: 'Rowan Atkinson' }, 
+//   { label: 'Jack Sparrow', value: 'Jack Sparrow' }
+// ];
 
 const types = [
   { label: 'Article', value: MaterialType.article }, 
@@ -54,6 +55,9 @@ const MaterialFilters: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm<MaterialFilterData>();
   const [dateError, setDateError] = useState<string | null>(null);
+
+  const authorsData = useSelector(selectAuthors);
+  const authors = authorsData.map(author => ({ label: author, value: author }));
 
   const sumbitFilterData = (data: any) => {
     const isDatesValid = checkFilterTimeInterval(data.dateFrom, data.dateTo, handleDateError);

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createMaterial, deleteMaterial, getMaterials, updateMaterial } from './asyncActions';
+import { createMaterial, deleteMaterial, getAuthors, getMaterials, updateMaterial } from './asyncActions';
 import { IMaterialsState } from './types';
 
 
@@ -10,6 +10,7 @@ const initialState: IMaterialsState = {
     materialsCount: 0
   },
   filters: null,
+  authors: [],
   error: null
 }
 
@@ -48,6 +49,17 @@ const materialsSlice = createSlice({
         state.data = action.payload;
       })
       .addCase(getMaterials.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(getAuthors.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getAuthors.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.authors = action.payload;
+      })
+      .addCase(getAuthors.rejected, (state, action: any) =>{
         state.status = 'failed';
         state.error = action.payload.error;
       })

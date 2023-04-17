@@ -7,6 +7,7 @@ export interface IMaterialsState {
     materialsCount: number
   },
   filters: MaterialFilterData | null,
+  authors: string[],
   error: string | null
 }
 

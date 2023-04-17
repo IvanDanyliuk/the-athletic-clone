@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getAuthenticatedUser, getUsers, login, logout, signup, deleteUser, getUsersLocations, updateUser, createUser } from './asyncActions';
+import { 
+  getAuthenticatedUser, getUsers, login, logout, signup, 
+  deleteUser, getUsersLocations, updateUser, createUser 
+} from './asyncActions';
 import { IUserInitialState } from './types';
 
 
