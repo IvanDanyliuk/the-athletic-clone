@@ -43,6 +43,9 @@ const AdminPanelNavMenu: React.FC = () => {
       <ListItem>
         <MenuLink to='schedules'>Schedules</MenuLink>
       </ListItem>
+      <ListItem>
+        <MenuLink to='content'>Content</MenuLink>
+      </ListItem>
     </List>
   );
 };
