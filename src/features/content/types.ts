@@ -14,3 +14,15 @@ export interface IContentSection {
   materials: IMaterial[],
   createdAt: string
 }
+
+export interface IContentTableHeadCell {
+  title: string, 
+  isSortable: boolean,
+  sortKey?: string,
+  order?: Order.asc
+}
+
+export enum Order {
+  asc = 'asc',
+  desc = 'desc'
+}

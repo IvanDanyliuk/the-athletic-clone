@@ -53,7 +53,6 @@ const ContentSection: React.FC<IContentSectionProps> = ({ sectionToUpdate }) => 
               name='name'
               label='Section Name'
               type='number'
-              
               register={register}
               registerOptions={{ required: 'The Section Name is required' }}
               error={errors.name}
