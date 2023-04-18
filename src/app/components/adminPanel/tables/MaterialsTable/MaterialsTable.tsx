@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
 import MaterialsTableHead from './MaterialsTableHead';
 import { AppDispatch } from '../../../../../features/store';
-import { selectFilters, selectMaterials, selectMaterialsCount, selectMaterialsError, selectMaterialsStatus } from '../../../../../features/materials/selectors';
+import { 
+  selectFilters, selectMaterials, selectMaterialsCount, 
+  selectMaterialsError, selectMaterialsStatus 
+} from '../../../../../features/materials/selectors';
 import { getMaterials } from '../../../../../features/materials/asyncActions';
 import MaterialTableBody from './MaterialsTableBody';
 import MaterialsTableFooter from './MaterialsTableFooter';

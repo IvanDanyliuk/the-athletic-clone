@@ -3,7 +3,8 @@ import { IMaterial } from "../materials/types";
 
 export interface IContentSectionsInitialState {
   status: string,
-  sections: IContentSection[],
+  content: IContentSection[],
+  materialsToContent: IMaterial[],
   error: null | string
 }
 

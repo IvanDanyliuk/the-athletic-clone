@@ -8,6 +8,7 @@ import { ContentSectionModel } from '../../../../models/components';
 import { Box, Button, Grid, styled } from '@mui/material';
 import BackLink from '../../ui/BackLink';
 import TextInput from '../../../ui/TextInput';
+import MaterialsTable from '../../tables/MaterialsTable/MaterialsTable';
 
 
 interface IContentSectionProps {
@@ -30,9 +31,13 @@ const ContentSection: React.FC<IContentSectionProps> = ({ sectionToUpdate }) => 
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm<ContentSectionModel>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
+  const addMaterial = (id: string) => {
+    
+  }
+
   const handleFormSubmit = async (data: any) => {
 
-  }
+  };
 
   return (
     <Box>
@@ -57,6 +62,9 @@ const ContentSection: React.FC<IContentSectionProps> = ({ sectionToUpdate }) => 
               registerOptions={{ required: 'The Section Name is required' }}
               error={errors.name}
             />
+          </Grid>
+          <Grid item xs={12}>
+            <MaterialsTable />
           </Grid>
         </Grid>
       </Form>
