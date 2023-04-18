@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
 import { MaterialModel } from '../../app/models/components';
 import { IDeleteMaterialData, IMaterial, IMaterialsRequestData } from './types';
-import { IUser } from '../users/types';
+import { IUser, UserRoles } from '../users/types';
 
 
 export const createMaterial = createAsyncThunk(
@@ -31,10 +31,10 @@ export const getMaterials = createAsyncThunk(
 );
 
 export const getAuthors = createAsyncThunk(
-  'users/getUsersByRole',
-  async (role: string, thunkAPI) => {
+  'materials/getAuthors',
+  async (_: void, thunkAPI) => {
     try {
-      const { data } = await api.getUsersByRole(role);
+      const { data } = await api.getUsersByRole(UserRoles.author);
       const authors = data.map((author: IUser) => `${author.firstName} ${author.lastName}`);
       return authors;
     } catch (error: any) {

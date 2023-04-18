@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { faFilter, faFilterCircleXmark, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Button, Grid, IconButton, Snackbar, styled, Tooltip } from '@mui/material';
 import dayjs from 'dayjs';
-import { getMaterials } from '../../../../features/materials/asyncActions';
+import { getAuthors, getMaterials } from '../../../../features/materials/asyncActions';
 import { clearFilters, setFilters } from '../../../../features/materials/reducers';
 import { MaterialFilterData } from '../../../../features/materials/types';
 import { AppDispatch } from '../../../../features/store';
@@ -83,6 +83,10 @@ const MaterialFilters: React.FC = () => {
   const clearDateError = () => {
     setDateError('');
   };
+
+  useEffect(() => {
+    dispatch(getAuthors());
+  }, []);
 
   const action = (
     <IconButton
