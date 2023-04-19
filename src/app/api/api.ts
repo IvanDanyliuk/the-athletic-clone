@@ -53,3 +53,4 @@ export const updateSchedule = (scheduleToUpdate: ISchedule) => API.patch('/sched
 export const deleteSchedule = (id: string, page: number, itemsPerPage: number) => API.delete('/schedules', { params: { id, page, itemsPerPage } });
 
 export const createContentSection = (contentSectionData: ContentSectionModel) => API.post('/content', contentSectionData);
+export const getContentSections = () => API.get('/content');

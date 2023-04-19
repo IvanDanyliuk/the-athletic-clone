@@ -80,5 +80,5 @@ export interface ScheduleModel {
 export interface ContentSectionModel {
   name: string,
   maxLength: number,
-  materials: IMaterial[]
+  materials: string[]
 }

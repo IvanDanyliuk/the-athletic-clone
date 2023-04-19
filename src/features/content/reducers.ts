@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IContentSectionsInitialState } from './types';
+import { createContentSection, getContentSections } from './asyncActions';
 
 
 const initialState: IContentSectionsInitialState = {
@@ -34,11 +35,38 @@ const contentSlice = createSlice({
     }
   },
   extraReducers: (builder) => {
-    // builder
-    //   .addCase()
+    builder
+      .addCase(createContentSection.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(createContentSection.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.content.push(action.payload);
+      })
+      .addCase(createContentSection.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(getContentSections.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getContentSections.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.content = action.payload;
+      })
+      .addCase(getContentSections.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
   }
 });
 
-export const { addMaterialToContent, clearMaterialsToContent, handleEditingMode, setError, clearError } = contentSlice.actions;
+export const { 
+  addMaterialToContent, 
+  clearMaterialsToContent, 
+  handleEditingMode, 
+  setError, 
+  clearError 
+} = contentSlice.actions;
 
 export default contentSlice.reducer;

@@ -11,6 +11,7 @@ import TextInput from '../../../ui/TextInput';
 import MaterialsTable from '../../tables/MaterialsTable/MaterialsTable';
 import { clearMaterialsToContent, handleEditingMode } from '../../../../../features/content/reducers';
 import { selectMaterialsToContent } from '../../../../../features/content/selectors';
+import { createContentSection } from '../../../../../features/content/asyncActions';
 
 
 interface IContentSectionProps {
@@ -35,7 +36,11 @@ const ContentSection: React.FC<IContentSectionProps> = ({ sectionToUpdate }) => 
   const materials = useSelector(selectMaterialsToContent);
 
   const handleFormSubmit = async (data: any) => {
-    // dispatch()
+    dispatch(createContentSection({
+      name: data.name,
+      maxLength: data.maxLength,
+      materials
+    }))
     console.log({
       name: data.name,
       maxLength: data.maxLength,
