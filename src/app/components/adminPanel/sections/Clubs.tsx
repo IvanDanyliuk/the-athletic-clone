@@ -9,7 +9,7 @@ const Clubs: React.FC = () => {
     <>
       <SubPageHeader 
         title='Clubs' 
-        link='new-club' 
+        link='clubs/new-club' 
       />
       <ClubsFilters />
       <ClubsTable />

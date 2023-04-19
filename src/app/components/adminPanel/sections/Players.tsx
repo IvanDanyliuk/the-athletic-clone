@@ -9,7 +9,7 @@ const Players: React.FC = () => {
     <>
       <SubPageHeader 
         title='Players' 
-        link='new-player' 
+        link='players/new-player' 
       />
       <PlayersFilters />
       <PlayersTable />

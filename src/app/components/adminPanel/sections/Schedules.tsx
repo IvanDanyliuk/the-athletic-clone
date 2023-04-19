@@ -9,7 +9,7 @@ const Schedules: React.FC = () => {
     <>
       <SubPageHeader 
         title='Schedules' 
-        link='new-schedule' 
+        link='schedules/new-schedule' 
       />
       <SchedulesFilters />
       <SchedulesTable />

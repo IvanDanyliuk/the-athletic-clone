@@ -9,7 +9,7 @@ const Content: React.FC = () => {
     <div>
       <SubPageHeader 
         title='Content'
-        link='new-content-section'
+        link='content/new-content-section'
       />
       
     </div>
