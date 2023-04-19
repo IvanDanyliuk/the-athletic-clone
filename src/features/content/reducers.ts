@@ -6,6 +6,7 @@ const initialState: IContentSectionsInitialState = {
   status: 'idle',
   content: [],
   materialsToContent: [],
+  isContentEditingModeActive: false,
   error: null
 };
 
@@ -14,7 +15,15 @@ const contentSlice = createSlice({
   initialState,
   reducers: {
     addMaterialToContent: (state, action) => {
-      state.materialsToContent.push(action.payload);
+      state.materialsToContent.includes(action.payload) ? 
+        state.materialsToContent = state.materialsToContent.filter(id => id !== action.payload) : 
+        state.materialsToContent.push(action.payload);
+    },
+    clearMaterialsToContent: (state) => {
+      state.materialsToContent = [];
+    },
+    handleEditingMode: (state, action) => {
+      state.isContentEditingModeActive = action.payload;
     },
     setError: (state, action) => {
       state.status = action.payload;
@@ -30,6 +39,6 @@ const contentSlice = createSlice({
   }
 });
 
-export const { addMaterialToContent, setError, clearError } = contentSlice.actions;
+export const { addMaterialToContent, clearMaterialsToContent, handleEditingMode, setError, clearError } = contentSlice.actions;
 
 export default contentSlice.reducer;

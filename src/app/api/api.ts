@@ -5,7 +5,7 @@ import { IMaterial } from '../../features/materials/types';
 import { IPlayer } from '../../features/players/types';
 import { ISchedule } from '../../features/schedules/types';
 import { ILoginCredentials, IUser } from '../../features/users/types';
-import { ClubModel, CompetitionModel, MaterialModel, PlayerModel, ScheduleModel } from '../models/components';
+import { ClubModel, CompetitionModel, ContentSectionModel, MaterialModel, PlayerModel, ScheduleModel } from '../models/components';
 import { UserModel } from '../models/users';
 
 
@@ -51,3 +51,5 @@ export const createSchedule = (scheduleData: ScheduleModel) => API.post('/schedu
 export const getSchedules = (page?: number, itemsPerPage?: number, filterData?: any, sortData?: any) => API.get('/schedules', { params: { page, itemsPerPage, filterData, sortData } });
 export const updateSchedule = (scheduleToUpdate: ISchedule) => API.patch('/schedules', scheduleToUpdate);
 export const deleteSchedule = (id: string, page: number, itemsPerPage: number) => API.delete('/schedules', { params: { id, page, itemsPerPage } });
+
+export const createContentSection = (contentSectionData: ContentSectionModel) => API.post('/content', contentSectionData);

@@ -12,7 +12,7 @@ import {
    Players, Schedules, Users 
 } from './app/components/adminPanel/sections';
 import { 
-  ArticleForm, AuthorForm, ClubForm, CompetitionForm, 
+  ArticleForm, AuthorForm, ClubForm, CompetitionForm, ContentForm,
   NoteForm, PlayerForm, ScheduleForm, RealtimePostForm 
 } from './app/components/adminPanel/forms/creationForms';
 import { 
@@ -20,7 +20,7 @@ import {
   UpdatePlayerForm, UpdateScheduleForm, UpdateUserForm 
 } from './app/components/adminPanel/forms/updationForms';
 import Content from './app/components/adminPanel/sections/Content';
-import ContentSection from './app/components/adminPanel/forms/creationForms/ContentSection';
+import ContentSection from './app/components/adminPanel/forms/creationForms/ContentForm';
 
 
 const App: React.FC = () => {
@@ -62,7 +62,7 @@ const App: React.FC = () => {
                 <Route path='update-competition/:id' element={<UpdateCompetitionForm />} />
                 <Route path='update-schedule/:id' element={<UpdateScheduleForm />} />
                 <Route path='content' element={<Content />} />
-                <Route path='new-content-section' element={<ContentSection />} />
+                <Route path='new-content-section' element={<ContentForm />} />
               </Route>
               <Route path='*' element={<NotFound />} />
             </Routes>

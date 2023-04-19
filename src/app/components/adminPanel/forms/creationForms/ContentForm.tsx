@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { AppDispatch } from '../../../../../features/store';
@@ -9,6 +9,8 @@ import { Box, Button, Grid, styled } from '@mui/material';
 import BackLink from '../../ui/BackLink';
 import TextInput from '../../../ui/TextInput';
 import MaterialsTable from '../../tables/MaterialsTable/MaterialsTable';
+import { clearMaterialsToContent, handleEditingMode } from '../../../../../features/content/reducers';
+import { selectMaterialsToContent } from '../../../../../features/content/selectors';
 
 
 interface IContentSectionProps {
@@ -30,14 +32,23 @@ const ContentSection: React.FC<IContentSectionProps> = ({ sectionToUpdate }) => 
   const navigate = useNavigate();
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm<ContentSectionModel>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const addMaterial = (id: string) => {
-    
-  }
+  const materials = useSelector(selectMaterialsToContent);
 
   const handleFormSubmit = async (data: any) => {
-
+    // dispatch()
+    console.log({
+      name: data.name,
+      maxLength: data.maxLength,
+      materials
+    })
+    reset();
+    dispatch(clearMaterialsToContent());
   };
+
+  useEffect(() => {
+    dispatch(handleEditingMode(true));
+    return () => { dispatch(handleEditingMode(false)) };
+  }, []);
 
   return (
     <Box>
@@ -55,16 +66,19 @@ const ContentSection: React.FC<IContentSectionProps> = ({ sectionToUpdate }) => 
           </Grid>
           <Grid item xs={12} md={6}>
             <TextInput 
-              name='name'
-              label='Section Name'
+              name='maxLength'
+              label='Max Length'
               type='number'
               register={register}
-              registerOptions={{ required: 'The Section Name is required' }}
-              error={errors.name}
+              registerOptions={{ required: 'The Max Length is required' }}
+              error={errors.maxLength}
             />
           </Grid>
           <Grid item xs={12}>
             <MaterialsTable />
+          </Grid>
+          <Grid item xs={12} md={2}>
+            <SubmitBtn type='submit' variant='contained'>Submit</SubmitBtn>
           </Grid>
         </Grid>
       </Form>

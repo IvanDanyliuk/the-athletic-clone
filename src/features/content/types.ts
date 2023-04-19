@@ -4,7 +4,8 @@ import { IMaterial } from "../materials/types";
 export interface IContentSectionsInitialState {
   status: string,
   content: IContentSection[],
-  materialsToContent: IMaterial[],
+  materialsToContent: string[],
+  isContentEditingModeActive: boolean,
   error: null | string
 }
 
