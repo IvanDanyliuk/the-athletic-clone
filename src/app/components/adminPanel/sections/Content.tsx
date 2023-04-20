@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import { Box, Button, Typography, styled } from '@mui/material';
 import SubPageHeader from '../ui/SubPageHeader';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContent } from '../../../../features/content/selectors';
 import { AppDispatch } from '../../../../features/store';
 import { getContentSections } from '../../../../features/content/asyncActions';
+import ContentSectionsList from '../content/ContentSectionsList';
 
 
 const Content: React.FC = () => {
@@ -16,13 +16,15 @@ const Content: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <>
       <SubPageHeader 
         title='Content'
         link='content/new-content-section'
       />
-      
-    </div>
+      <ContentSectionsList 
+        sections={contentSections}
+      />
+    </>
   );
 };
 

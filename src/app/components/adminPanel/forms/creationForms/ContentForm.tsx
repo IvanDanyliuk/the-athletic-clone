@@ -9,9 +9,10 @@ import { Box, Button, Grid, styled } from '@mui/material';
 import BackLink from '../../ui/BackLink';
 import TextInput from '../../../ui/TextInput';
 import MaterialsTable from '../../tables/MaterialsTable/MaterialsTable';
-import { clearMaterialsToContent, handleEditingMode } from '../../../../../features/content/reducers';
+import { clearMaterialsToContent, handleEditingMode, setMaterialsToContentToUpdate } from '../../../../../features/content/reducers';
 import { selectMaterialsToContent } from '../../../../../features/content/selectors';
-import { createContentSection } from '../../../../../features/content/asyncActions';
+import { createContentSection, updateContentSection } from '../../../../../features/content/asyncActions';
+import BackdropLoader from '../../../ui/BackdropLoader';
 
 
 interface IContentSectionProps {
@@ -36,22 +37,40 @@ const ContentSection: React.FC<IContentSectionProps> = ({ sectionToUpdate }) => 
   const materials = useSelector(selectMaterialsToContent);
 
   const handleFormSubmit = async (data: any) => {
-    dispatch(createContentSection({
-      name: data.name,
-      maxLength: data.maxLength,
-      materials
-    }))
-    console.log({
-      name: data.name,
-      maxLength: data.maxLength,
-      materials
-    })
+    setIsLoading(true);
+    if(sectionToUpdate) {
+      console.log('Updated Content Section', {
+        name: data.name,
+        maxLength: data.maxLength,
+        materials
+      })
+      await dispatch(updateContentSection({
+        ...sectionToUpdate,
+        name: data.name,
+        maxLength: data.maxLength,
+        materials
+      }))
+    } else {
+      await dispatch(createContentSection({
+        name: data.name,
+        maxLength: data.maxLength,
+        materials
+      }));
+    }
+    setIsLoading(false);
     reset();
     dispatch(clearMaterialsToContent());
+    navigate('/admin/content')
   };
 
   useEffect(() => {
     dispatch(handleEditingMode(true));
+    if(sectionToUpdate) {
+      const { name, maxLength, materials } = sectionToUpdate;
+      reset({ name, maxLength });
+      const materialIds = materials.map(item => item._id);
+      dispatch(setMaterialsToContentToUpdate(materialIds));
+    }
     return () => { dispatch(handleEditingMode(false)) };
   }, []);
 
@@ -83,10 +102,16 @@ const ContentSection: React.FC<IContentSectionProps> = ({ sectionToUpdate }) => 
             <MaterialsTable />
           </Grid>
           <Grid item xs={12} md={2}>
-            <SubmitBtn type='submit' variant='contained'>Submit</SubmitBtn>
+            <SubmitBtn 
+              type='submit' 
+              variant='contained'
+            >
+              Submit
+            </SubmitBtn>
           </Grid>
         </Grid>
       </Form>
+      <BackdropLoader open={isLoading} />
     </Box>
   );
 };

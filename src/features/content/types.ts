@@ -17,6 +17,14 @@ export interface IContentSection {
   createdAt: string
 }
 
+export interface IContentSectionToUpdate {
+  _id: string,
+  name: string,
+  maxLength: number,
+  materials: string[],
+  createdAt: string
+}
+
 export interface IContentTableHeadCell {
   title: string, 
   isSortable: boolean,

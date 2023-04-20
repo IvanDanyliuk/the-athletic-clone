@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IContentSectionsInitialState } from './types';
-import { createContentSection, getContentSections } from './asyncActions';
+import { createContentSection, getContentSections, updateContentSection } from './asyncActions';
 
 
 const initialState: IContentSectionsInitialState = {
@@ -19,6 +19,9 @@ const contentSlice = createSlice({
       state.materialsToContent.includes(action.payload) ? 
         state.materialsToContent = state.materialsToContent.filter(id => id !== action.payload) : 
         state.materialsToContent.push(action.payload);
+    },
+    setMaterialsToContentToUpdate: (state, action) => {
+      state.materialsToContent = action.payload;
     },
     clearMaterialsToContent: (state) => {
       state.materialsToContent = [];
@@ -58,11 +61,23 @@ const contentSlice = createSlice({
         state.status = 'failed';
         state.error = action.payload.error;
       })
+      .addCase(updateContentSection.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(updateContentSection.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.content = state.content.map(item => item._id === action.payload._id ? action.payload : item);
+      })
+      .addCase(updateContentSection.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
   }
 });
 
 export const { 
   addMaterialToContent, 
+  setMaterialsToContentToUpdate,
   clearMaterialsToContent, 
   handleEditingMode, 
   setError, 

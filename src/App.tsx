@@ -21,6 +21,7 @@ import {
 } from './app/components/adminPanel/forms/updationForms';
 import Content from './app/components/adminPanel/sections/Content';
 import ContentSection from './app/components/adminPanel/forms/creationForms/ContentForm';
+import UpdateContentSection from './app/components/adminPanel/forms/updationForms/UpdateContentSection';
 
 
 const App: React.FC = () => {
@@ -61,6 +62,7 @@ const App: React.FC = () => {
                 <Route path='schedules/edit/:id' element={<UpdateScheduleForm />} />
                 <Route path='content' element={<Content />} />
                 <Route path='content/new-content-section' element={<ContentForm />} />
+                <Route path='content/edit/:id' element={<UpdateContentSection />} />
               </Route>
               <Route path='*' element={<NotFound />} />
             </Routes>

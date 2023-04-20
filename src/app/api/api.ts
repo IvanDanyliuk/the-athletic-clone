@@ -7,6 +7,7 @@ import { ISchedule } from '../../features/schedules/types';
 import { ILoginCredentials, IUser } from '../../features/users/types';
 import { ClubModel, CompetitionModel, ContentSectionModel, MaterialModel, PlayerModel, ScheduleModel } from '../models/components';
 import { UserModel } from '../models/users';
+import { IContentSectionToUpdate } from '../../features/content/types';
 
 
 const API = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL, withCredentials: true });
@@ -54,3 +55,4 @@ export const deleteSchedule = (id: string, page: number, itemsPerPage: number) =
 
 export const createContentSection = (contentSectionData: ContentSectionModel) => API.post('/content', contentSectionData);
 export const getContentSections = () => API.get('/content');
+export const updateContentSection = (contentSectionToUpdate: IContentSectionToUpdate) => API.patch('/content', contentSectionToUpdate);
