@@ -49,7 +49,7 @@ const ContentSectionListItem: React.FC<IContentSectionListItem> = ({ data }) => 
   };
 
   return (
-    <SectionBody elevation={4}>
+    <SectionBody elevation={4} data-testid='contentSectionListItem'>
       <Box component='div' sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <SectionTitle>
           <Typography variant='h6'>
