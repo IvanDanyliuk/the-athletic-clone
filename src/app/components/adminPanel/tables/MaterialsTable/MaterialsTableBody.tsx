@@ -52,7 +52,9 @@ const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials, page
             <TableCell>
               {
                 isContentEditMode ? (
-                  <AddBtn onClick={() => handleMaterialAddToContent(_id)}>
+                  <AddBtn
+                    data-testid='addBtn' 
+                    onClick={() => handleMaterialAddToContent(_id)}>
                     <FontAwesomeIcon icon={selectedMaterials.includes(_id) ? faXmark : faPlus} />
                   </AddBtn>
                 ) : (

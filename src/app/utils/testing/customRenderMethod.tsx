@@ -10,6 +10,7 @@ import clubsReducer from '../../../features/clubs/reducers';
 import competitionsReducer from '../../../features/competitions/reducers';
 import playersReducer from '../../../features/players/reducers';
 import schedulesReducer from '../../../features/schedules/reducers';
+import contentReducer from '../../../features/content/reducers';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { clubsStateSuccessMock } from './testDataMocks/clubs';
@@ -18,6 +19,7 @@ import { usersStateSuccessMock } from './testDataMocks/users';
 import { competitionsStateSuccessMock } from './testDataMocks/competitions';
 import { playersStateSuccessMock } from './testDataMocks/players';
 import { schedulesStateSuccessMock } from './testDataMocks/schedules';
+import { contentStateSuccessMock } from './testDataMocks/content';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: PreloadedState<RootState>,
@@ -35,6 +37,7 @@ export const renderWithProviders = (
       competitions: competitionsStateSuccessMock,
       players: playersStateSuccessMock,
       schedules: schedulesStateSuccessMock,
+      content: contentStateSuccessMock,
     },
     store = configureStore({
       reducer: combineReducers({
@@ -44,6 +47,7 @@ export const renderWithProviders = (
         competitions: competitionsReducer,
         players: playersReducer,
         schedules: schedulesReducer,
+        content: contentReducer,
       }),
       preloadedState
     }),

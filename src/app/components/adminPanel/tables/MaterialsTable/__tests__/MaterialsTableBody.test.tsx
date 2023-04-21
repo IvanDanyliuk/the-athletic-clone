@@ -4,6 +4,7 @@ import { setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serv
 import { materialsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/materials';
 import MaterialsTableBody from '../MaterialsTableBody';
 import { setupContentSuccessHandlers } from '../../../../../utils/testing/serverMocks/content';
+import { contentStateSuccessMock } from '../../../../../utils/testing/testDataMocks/content';
 
 
 const mockedUseDispatch = jest.fn();
@@ -44,6 +45,32 @@ describe('MaterialsTableBody tests', () => {
 
     const acceptBtn = screen.getByText(/Yes/);
     fireEvent.click(acceptBtn);
+
+    await waitFor(() => {
+      expect(mockedUseDispatch).toHaveBeenCalled();
+    });
+  });
+
+  test('should add a material to content section in the content section edit mode', async () => {
+    renderWithProviders(
+      <MaterialsTableBody 
+        page={0} 
+        itemsPerPage={10} 
+        materials={materialsStateSuccessMock.data.materials.slice(0, 2)} 
+      />,
+      {
+        preloadedState: {
+          materials: materialsStateSuccessMock,
+          content: {
+            ...contentStateSuccessMock,
+            isContentEditingModeActive: true
+          }
+        }
+      }
+    );
+    
+    const addBtn = screen.getAllByTestId('addBtn');
+    fireEvent.click(addBtn[0]);
 
     await waitFor(() => {
       expect(mockedUseDispatch).toHaveBeenCalled();
