@@ -1,13 +1,13 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Avatar, Box, Grid, List, ListItem, Paper, Typography, styled } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { IContentSection } from '../../../../features/content/types';
-import dayjs from 'dayjs';
-import { Link } from 'react-router-dom';
 import ConfirmAction from '../ui/ConfirmAction';
-import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../../../features/store';
 import { deleteContentSection } from '../../../../features/content/asyncActions';
 

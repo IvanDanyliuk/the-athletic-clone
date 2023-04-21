@@ -2,8 +2,8 @@ import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupMaterialsErrorHandlers, setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serverMocks/materials';
 import { materialsStateErrorMock, materialsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/materials';
-import MaterialsTable from '../MaterialsTable';
 import { setupContentErrorHandlers, setupContentSuccessHandlers } from '../../../../../utils/testing/serverMocks/content';
+import MaterialsTable from '../MaterialsTable';
 
 
 const materialsStateMock = {
