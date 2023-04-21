@@ -9,7 +9,7 @@ const Competitions: React.FC = () => {
     <>
       <SubPageHeader 
         title='Competitions' 
-        link='new-competition' 
+        link='competitions/new-competition' 
       />
       <CompetitionsFilters />
       <CompetitionsTable />

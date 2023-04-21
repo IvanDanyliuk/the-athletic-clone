@@ -60,13 +60,13 @@ const MaterialsHeader: React.FC = () => {
           }}
         >
           <MenuItem onClick={handleClose}>
-            <MenuLink to='/admin/new-article'>Article</MenuLink>
+            <MenuLink to='/admin/materials/new-article'>Article</MenuLink>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <MenuLink to='/admin/new-note'>Note</MenuLink>
+            <MenuLink to='/admin/materials/new-note'>Note</MenuLink>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <MenuLink to='/admin/new-realtime-post'>Realtime Post</MenuLink>
+            <MenuLink to='/admin/materials/new-realtime-post'>Realtime Post</MenuLink>
           </MenuItem>
         </Menu>
       </Box>

@@ -2,6 +2,7 @@ import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupMaterialsErrorHandlers, setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serverMocks/materials';
 import { materialsStateErrorMock, materialsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/materials';
+import { setupContentErrorHandlers, setupContentSuccessHandlers } from '../../../../../utils/testing/serverMocks/content';
 import MaterialsTable from '../MaterialsTable';
 
 
@@ -11,6 +12,7 @@ const materialsStateMock = {
     materials: [],
     materialsCount: 0
   },
+  authors: [],
   filters: null,
   error: null
 };
@@ -26,6 +28,7 @@ jest.mock('react-redux', () => ({
 describe('MaterialsTable tests', () => {
   beforeEach(() => {
     setupMaterialsSuccessHandlers();
+    setupContentSuccessHandlers();
   });
 
   afterEach(() => {
@@ -76,6 +79,7 @@ describe('MaterialsTable tests', () => {
 describe('MaterialsTable tests: error response', () => {
   beforeEach(() => {
     setupMaterialsErrorHandlers();
+    setupContentErrorHandlers();
     //eslint-disable-next-line
     renderWithProviders(
       <MaterialsTable />,

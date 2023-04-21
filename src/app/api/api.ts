@@ -5,8 +5,9 @@ import { IMaterial } from '../../features/materials/types';
 import { IPlayer } from '../../features/players/types';
 import { ISchedule } from '../../features/schedules/types';
 import { ILoginCredentials, IUser } from '../../features/users/types';
-import { ClubModel, CompetitionModel, MaterialModel, PlayerModel, ScheduleModel } from '../models/components';
+import { ClubModel, CompetitionModel, ContentSectionModel, MaterialModel, PlayerModel, ScheduleModel } from '../models/components';
 import { UserModel } from '../models/users';
+import { IContentSectionToUpdate } from '../../features/content/types';
 
 
 const API = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL, withCredentials: true });
@@ -15,6 +16,7 @@ export const login = (loginData: ILoginCredentials) => API.post('/users/login', 
 export const signup = (registerData: UserModel) => API.post('/users/signup', registerData);
 export const logout = () => API.post('/users/logout');
 export const createUser = (userData: UserModel) => API.post('/users/new-user', userData);
+export const getUsersByRole = (role: string) => API.get('/users/by-role', { params: { role } });
 export const getAuthenticatedUser = () => API.get('/users');
 export const getUsers = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/users/all', { params: { page, itemsPerPage, filterData, sortData } });
 export const getUsersLocations = () => API.get('/users/locations');
@@ -50,3 +52,8 @@ export const createSchedule = (scheduleData: ScheduleModel) => API.post('/schedu
 export const getSchedules = (page?: number, itemsPerPage?: number, filterData?: any, sortData?: any) => API.get('/schedules', { params: { page, itemsPerPage, filterData, sortData } });
 export const updateSchedule = (scheduleToUpdate: ISchedule) => API.patch('/schedules', scheduleToUpdate);
 export const deleteSchedule = (id: string, page: number, itemsPerPage: number) => API.delete('/schedules', { params: { id, page, itemsPerPage } });
+
+export const createContentSection = (contentSectionData: ContentSectionModel) => API.post('/content', contentSectionData);
+export const getContentSections = () => API.get('/content');
+export const updateContentSection = (contentSectionToUpdate: IContentSectionToUpdate) => API.patch('/content', contentSectionToUpdate);
+export const deleteContentSection = (id: string) => API.delete('/content', { params: { id } });

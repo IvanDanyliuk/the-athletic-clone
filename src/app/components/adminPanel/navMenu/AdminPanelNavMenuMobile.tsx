@@ -106,6 +106,9 @@ const AdminPanelNavMenuMobile: React.FC = () => {
         <MenuItem onClick={handleClose}>
           <MenuLink to='schedules'>Schedules</MenuLink>
         </MenuItem>
+        <MenuItem onClick={handleClose}>
+          <MenuLink to='content'>Content</MenuLink>
+        </MenuItem>
       </Menu>
     </NavMenuContainer>
   );

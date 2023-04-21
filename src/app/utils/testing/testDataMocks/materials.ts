@@ -256,6 +256,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
     dateTo: '',
     type: ''
   },
+  authors: ['John Doe'],
   error: null
 };
 
@@ -266,6 +267,7 @@ export const materialsStateErrorMock: IMaterialsState = {
     materialsCount: 0
   },
   filters: null,
+  authors: [],
   error: 'error'
 };
 

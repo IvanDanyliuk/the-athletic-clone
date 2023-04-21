@@ -9,7 +9,7 @@ const Users: React.FC = () => {
     <>
       <SubPageHeader 
         title='Users' 
-        link='new-author' 
+        link='users/new-author' 
       />
       <UserFilters />
       <UsersTable />
