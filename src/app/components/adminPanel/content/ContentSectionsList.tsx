@@ -15,7 +15,7 @@ const ContentSectionsList: React.FC<IContentSectionsListProps> = ({
 }) => {
 
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} sx={{ marginTop: '5px' }}>
       {sections.map(section => (
         <Grid item xs={12} key={uuid()}>
           <ContentSectionListItem 
