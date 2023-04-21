@@ -22,7 +22,7 @@ const ConfirmAction: React.FC<IConfirmActionProps> = ({ onDelete }) => {
 
   return (
     <Box>
-      <Button type='button' onClick={handleDialogOpen}>
+      <Button data-testid='closeBtn' type='button' onClick={handleDialogOpen}>
         <FontAwesomeIcon icon={faXmark} />
       </Button>
       <Dialog
@@ -34,6 +34,7 @@ const ConfirmAction: React.FC<IConfirmActionProps> = ({ onDelete }) => {
         </DialogTitle>
         <DialogActions>
           <Button 
+            data-testid='acceptBtn'
             type='button' 
             color='success' 
             variant='contained' 
@@ -42,6 +43,7 @@ const ConfirmAction: React.FC<IConfirmActionProps> = ({ onDelete }) => {
             Yes
           </Button>
           <Button 
+            data-testid='rejectBtn'
             type='button' 
             color='error' 
             variant='contained' 
