@@ -6,6 +6,10 @@ import { v4 as uuid } from 'uuid';
 import { IContentSection } from '../../../../features/content/types';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
+import ConfirmAction from '../ui/ConfirmAction';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../../../features/store';
+import { deleteContentSection } from '../../../../features/content/asyncActions';
 
 
 interface IContentSectionListItem {
@@ -38,9 +42,11 @@ const EditLink = styled(Link)`
 const ContentSectionListItem: React.FC<IContentSectionListItem> = ({ data }) => {
   const { _id, name, materials } = data;
 
-  const handleSectionDelete = (id: string) => { 
+  const dispatch = useDispatch<AppDispatch>();
 
-   };
+  const handleSectionDelete = async (id: string) => { 
+    await dispatch(deleteContentSection(id));
+  };
 
   return (
     <SectionBody elevation={4}>
@@ -53,9 +59,7 @@ const ContentSectionListItem: React.FC<IContentSectionListItem> = ({ data }) => 
             <FontAwesomeIcon icon={faPenToSquare} />
           </EditLink>
         </SectionTitle>
-        <Button type='button' onClick={() => handleSectionDelete(_id)}>
-          <FontAwesomeIcon icon={faXmark} />
-        </Button>
+        <ConfirmAction onDelete={() => handleSectionDelete(_id)} />
       </Box>
       <List>
         {materials.map(material => (

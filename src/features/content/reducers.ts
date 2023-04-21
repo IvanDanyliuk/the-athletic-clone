@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IContentSectionsInitialState } from './types';
-import { createContentSection, getContentSections, updateContentSection } from './asyncActions';
+import { createContentSection, deleteContentSection, getContentSections, updateContentSection } from './asyncActions';
 
 
 const initialState: IContentSectionsInitialState = {
@@ -69,6 +69,17 @@ const contentSlice = createSlice({
         state.content = action.payload;
       })
       .addCase(updateContentSection.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(deleteContentSection.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(deleteContentSection.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.content = state.content.filter(section => section._id !== action.payload);
+      })
+      .addCase(deleteContentSection.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })

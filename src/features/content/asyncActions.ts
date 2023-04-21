@@ -39,3 +39,15 @@ export const updateContentSection = createAsyncThunk(
     }
   }
 );
+
+export const deleteContentSection = createAsyncThunk(
+  'content/deleteContentSection',
+  async (id: string, thunkAPI) => {
+    try {
+      await api.deleteContentSection(id);
+      return id;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);

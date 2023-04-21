@@ -56,3 +56,4 @@ export const deleteSchedule = (id: string, page: number, itemsPerPage: number) =
 export const createContentSection = (contentSectionData: ContentSectionModel) => API.post('/content', contentSectionData);
 export const getContentSections = () => API.get('/content');
 export const updateContentSection = (contentSectionToUpdate: IContentSectionToUpdate) => API.patch('/content', contentSectionToUpdate);
+export const deleteContentSection = (id: string) => API.delete('/content', { params: { id } });
