@@ -39,11 +39,6 @@ const ContentSection: React.FC<IContentSectionProps> = ({ sectionToUpdate }) => 
   const handleFormSubmit = async (data: any) => {
     setIsLoading(true);
     if(sectionToUpdate) {
-      console.log('Updated Content Section', {
-        name: data.name,
-        maxLength: data.maxLength,
-        materials
-      })
       await dispatch(updateContentSection({
         ...sectionToUpdate,
         name: data.name,

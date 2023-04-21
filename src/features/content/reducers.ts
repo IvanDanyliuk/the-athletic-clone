@@ -66,7 +66,7 @@ const contentSlice = createSlice({
       })
       .addCase(updateContentSection.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.content = state.content.map(item => item._id === action.payload._id ? action.payload : item);
+        state.content = action.payload;
       })
       .addCase(updateContentSection.rejected, (state, action: any) => {
         state.status = 'failed';

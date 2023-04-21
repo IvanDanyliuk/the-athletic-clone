@@ -13,7 +13,7 @@ const Content: React.FC = () => {
 
   useEffect(() => {
     dispatch(getContentSections());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
