@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
 import { ContentSectionModel } from '../../app/models/components';
-import { IContentSection, IContentSectionToUpdate } from './types';
+import { IContentSectionToUpdate } from './types';
 
 
 export const createContentSection = createAsyncThunk(

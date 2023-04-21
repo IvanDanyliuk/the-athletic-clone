@@ -3,6 +3,7 @@ import { renderWithProviders } from '../../../../../utils/testing/customRenderMe
 import { setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serverMocks/materials';
 import { materialsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/materials';
 import MaterialsTableBody from '../MaterialsTableBody';
+import { setupContentSuccessHandlers } from '../../../../../utils/testing/serverMocks/content';
 
 
 const mockedUseDispatch = jest.fn();
@@ -16,6 +17,7 @@ jest.mock('react-redux', () => ({
 describe('MaterialsTableBody tests', () => {
   beforeEach(() => {
     setupMaterialsSuccessHandlers();
+    setupContentSuccessHandlers();
   });
 
   afterEach(() => {
