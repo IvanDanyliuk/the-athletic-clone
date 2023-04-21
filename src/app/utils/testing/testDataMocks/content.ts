@@ -1,5 +1,4 @@
 import { IContentSection, IContentSectionsInitialState } from "../../../../features/content/types";
-import { ContentSectionModel } from "../../../models/components";
 
 export const contentStateSuccessMock: IContentSectionsInitialState = {
   status: 'succeeded',

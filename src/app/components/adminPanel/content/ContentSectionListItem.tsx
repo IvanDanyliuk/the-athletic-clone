@@ -1,7 +1,7 @@
 import React from 'react';
-import { Avatar, Box, Button, Grid, List, ListItem, Paper, Typography, styled } from '@mui/material';
+import { Avatar, Box, Grid, List, ListItem, Paper, Typography, styled } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuid } from 'uuid';
 import { IContentSection } from '../../../../features/content/types';
 import dayjs from 'dayjs';

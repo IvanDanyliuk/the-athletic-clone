@@ -14,7 +14,6 @@ import BackdropLoader from '../../../ui/BackdropLoader';
 import { IMaterialsTableHeadCell, Order } from '../../../../../features/materials/types';
 import ErrorSnackbar from '../../../ui/ErrorSnackbar';
 import { clearError } from '../../../../../features/materials/reducers';
-import { selectContentModeStatus } from '../../../../../features/content/selectors';
 
 
 const MaterialsTable: React.FC = () => {
@@ -24,7 +23,6 @@ const MaterialsTable: React.FC = () => {
   const filterData = useSelector(selectFilters);
   const status = useSelector(selectMaterialsStatus);
   const error = useSelector(selectMaterialsError);
-  const isContentEditMode = useSelector(selectContentModeStatus);
 
   const [page, setPage] = useState<number>(0);
   const [activeCell, setActiveCell] = useState<IMaterialsTableHeadCell | null>(null);
