@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import sc from 'styled-components';
-import { Box, Grid, List, ListItem, ListItemText, Typography, styled } from '@mui/material';
+import { Box, Grid, List, ListItem, Typography, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
 

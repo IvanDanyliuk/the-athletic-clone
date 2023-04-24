@@ -1,9 +1,8 @@
+import React from 'react';
+import sc from 'styled-components';
 import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Typography, styled } from '@mui/material';
-import React from 'react';
-import sc from 'styled-components';
-
 
 
 interface IMaterialSecondaryInfoProps {

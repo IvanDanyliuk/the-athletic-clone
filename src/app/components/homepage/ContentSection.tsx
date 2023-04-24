@@ -1,8 +1,6 @@
 import React from 'react';
 import sc from 'styled-components';
 import { Avatar, Box, Grid, Typography, styled } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faComment } from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuid } from 'uuid';
 import { IContentSection } from '../../../features/content/types';
 import MaterialSecondaryInfo from './MaterialSecondaryInfo';
