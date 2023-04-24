@@ -21,6 +21,11 @@ export interface IMaterialsRequestData {
   } | null
 }
 
+export interface IRecentMaterialsRequestData {
+  materialsNumber: number,
+  materialTypes: string[]
+}
+
 export interface IMaterial {
   _id: string,
   author: { 
