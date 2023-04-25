@@ -23,7 +23,6 @@ import { getAllCompetitions } from '../../../../../features/competitions/asyncAc
 import MultiSelect from '../../../ui/MultiSelect';
 
 
-
 const Form = styled(Box)`
   margin-top: 20px;
 `;

@@ -3,13 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../features/store';
 import { getContentSections } from '../../features/content/asyncActions';
-import Headlines from '../components/homepage/Headlines';
 import { selectContent, selectContentStatus } from '../../features/content/selectors';
 import ContentSection from '../components/homepage/ContentSection';
 import { getRecentMaterials } from '../../features/materials/asyncActions';
 import { MaterialType } from '../models/components';
 import { selectMaterials, selectMaterialsStatus } from '../../features/materials/selectors';
-import { Box, Grid, styled } from '@mui/material';
+import { Box, Divider, styled } from '@mui/material';
 import TopContentSection from '../components/homepage/TopContentSection';
 
 
@@ -34,8 +33,7 @@ const Home: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log(contentSections, recentMaterials)
-    fetchData()
+    fetchData();
   }, []);
 
   if(contentStatus === 'loading' && recentMaterialsStatus === 'loading') {
@@ -45,6 +43,7 @@ const Home: React.FC = () => {
   return (
     <Container>
       <TopContentSection materials={recentMaterials} />
+      <Divider />
       {contentSections.map(section => (
         <ContentSection 
           key={uuid()} 

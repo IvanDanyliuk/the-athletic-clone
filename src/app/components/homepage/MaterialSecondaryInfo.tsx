@@ -14,7 +14,7 @@ const SecondaryInfo = sc.div`
   margin: 1em 0;
   display: flex;
   align-items: center;
-  font-size: .8em;
+  font-size: .7em;
 `;
 
 const Author = styled(Typography)`
