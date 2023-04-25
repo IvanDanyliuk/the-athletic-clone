@@ -16,6 +16,14 @@ const Container = styled(Box)`
   padding: 1em 0;
 `;
 
+const Section = styled(Box)`
+  margin-top: 2em;
+`;
+
+const SectionDivider = styled(Divider)`
+  margin-top: 1em;
+`;
+
 const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -45,10 +53,10 @@ const Home: React.FC = () => {
       <TopContentSection materials={recentMaterials} />
       <Divider />
       {contentSections.map(section => (
-        <ContentSection 
-          key={uuid()} 
-          data={section} 
-        />
+        <Section key={uuid()}>
+          <ContentSection data={section} />
+          <SectionDivider />
+        </Section>
       ))}
     </Container>
   );

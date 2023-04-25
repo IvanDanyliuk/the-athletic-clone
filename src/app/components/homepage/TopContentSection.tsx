@@ -27,7 +27,7 @@ const TopMaterialTitle = styled(Typography)`
 const TopMaterialPreviewText = styled(Typography)`
   font-family: 'Times New Roman', serif;
   font-size: 1em;
-  line-height: 1em;
+  line-height: 1.2em;
 `;
 
 const SecondaryMaterialTitle = styled(Typography)`
@@ -99,7 +99,6 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
           </Grid>
         </Grid>
       </Grid>
-      
       <Grid item xs={12} md={3}>
         <Headlines data={materials.slice(6)} />
       </Grid>
