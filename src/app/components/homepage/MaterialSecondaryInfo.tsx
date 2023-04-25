@@ -14,6 +14,7 @@ const SecondaryInfo = sc.div`
   margin: 1em 0;
   display: flex;
   align-items: center;
+  font-family: 'Roboto', sans-serif;
   font-size: .7em;
 `;
 

@@ -12,7 +12,8 @@ interface IContentSectionProps {
 
 const SectionTitle = styled(Typography)`
   margin-bottom: .8em;
-  font-family: 'Sanchez', serif;
+  font-family: 'Arvo', serif;
+  font-weight: 700;
   font-size: 1.7em;
 `;
 

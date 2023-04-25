@@ -18,19 +18,20 @@ const TopImage = sc.img`
 
 const TopMaterialTitle = styled(Typography)`
   margin: .5em 0;
-  font-family: 'Crimson Pro', serif;
+  font-family: 'Times New Roman', serif;
+  font-weight: 900;
   font-size: 1.8em;
   line-height: 1em;
 `;
 
 const TopMaterialPreviewText = styled(Typography)`
-  font-family: 'Crimson Pro', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 1em;
   line-height: 1em;
 `;
 
 const SecondaryMaterialTitle = styled(Typography)`
-  font-family: 'Crimson Pro', serif;
+  font-family: 'Times New Roman', serif;
   font-size: 1em;
 `;
 
