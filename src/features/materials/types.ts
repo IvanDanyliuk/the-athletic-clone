@@ -37,6 +37,7 @@ export interface IMaterial {
   type: string,
   title: string,
   content: string,
+  preview?: string,
   image?: any,
   status: string,
   views: number,

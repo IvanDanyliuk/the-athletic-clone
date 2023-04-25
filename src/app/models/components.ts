@@ -31,6 +31,7 @@ export interface MaterialModel {
   type: MaterialType,
   title: string,
   content: string,
+  preview?: string,
   image?: any,
   status: string,
   views: number,

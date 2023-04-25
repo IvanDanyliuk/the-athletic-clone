@@ -113,7 +113,8 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
         image: articleToUpdate.image,
         publicationDate: dayjs(articleToUpdate.publicationDate).subtract(1, 'day'),
         status: articleToUpdate.status,
-        content: articleToUpdate.content
+        content: articleToUpdate.content,
+        preview: articleToUpdate.preview,
       });
       setSelectedLabels(articleToUpdate.labels);
     }
@@ -141,6 +142,16 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
               type='file'
               register={register}
               
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextInput 
+              name='preview' 
+              label='Preview'
+              type='text' 
+              register={register}
+              registerOptions={{ required: 'Preview is required!' }}
+              error={errors.title}
             />
           </Grid>
           <Grid item xs={12} md={3}>

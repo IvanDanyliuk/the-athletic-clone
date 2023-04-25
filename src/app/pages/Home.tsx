@@ -10,6 +10,7 @@ import { getRecentMaterials } from '../../features/materials/asyncActions';
 import { MaterialType } from '../models/components';
 import { selectMaterials, selectMaterialsStatus } from '../../features/materials/selectors';
 import { Box, Grid, styled } from '@mui/material';
+import TopContentSection from '../components/homepage/TopContentSection';
 
 
 const Container = styled(Box)`
@@ -20,37 +21,31 @@ const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const contentSections = useSelector(selectContent);
-  const headlines = useSelector(selectMaterials);
+  const recentMaterials = useSelector(selectMaterials);
   const contentStatus = useSelector(selectContentStatus);
-  const headlinesStatus = useSelector(selectMaterialsStatus);
+  const recentMaterialsStatus = useSelector(selectMaterialsStatus);
 
   const fetchData = async () => {
     await dispatch(getContentSections());
     await dispatch(getRecentMaterials({ 
-      materialsNumber: 8, 
+      materialsNumber: 14, 
       materialTypes: [MaterialType.article, MaterialType.note] 
     }));
   };
 
   useEffect(() => {
+    console.log(contentSections, recentMaterials)
     fetchData()
   }, []);
 
-  if(contentStatus === 'loading' || headlinesStatus === 'loading') {
+  if(contentStatus === 'loading' && recentMaterialsStatus === 'loading') {
     return <div>Loading...</div>
   }
 
   return (
     <Container>
-      <Grid container>
-        <Grid item xs={12} md={9}>
-          <ContentSection data={contentSections[0]} />
-        </Grid>
-        <Grid item xs={12} md={3}>
-          <Headlines data={headlines} />
-        </Grid>
-      </Grid>
-      {contentSections.slice(1).map(section => (
+      <TopContentSection materials={recentMaterials} />
+      {contentSections.map(section => (
         <ContentSection 
           key={uuid()} 
           data={section} 
