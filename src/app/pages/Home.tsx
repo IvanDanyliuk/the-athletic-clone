@@ -13,7 +13,7 @@ import TopContentSection from '../components/homepage/TopContentSection';
 
 
 const Container = styled(Box)`
-  padding: 1em 0;
+  /* padding: 1em 0; */
 `;
 
 const Section = styled(Box)`

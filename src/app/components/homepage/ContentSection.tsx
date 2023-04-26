@@ -1,6 +1,6 @@
 import React from 'react';
 import sc from 'styled-components';
-import { Avatar, Box, Grid, List, ListItem, Typography, styled } from '@mui/material';
+import { Avatar, Box, Divider, Grid, List, ListItem, Typography, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IContentSection } from '../../../features/content/types';
 import MaterialSecondaryInfo from './MaterialSecondaryInfo';
@@ -54,6 +54,14 @@ const SecondaryMaterialTitle = styled(Typography)`
   font-size: 1em;
 `;
 
+const MaterialsList = styled(List)`
+  padding: 0;
+`;
+
+const MaterialsListItem = styled(ListItem)`
+  padding: 0;
+`;
+
 
 const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
   if(!data) {
@@ -63,51 +71,55 @@ const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
   return (
     <Section>
       <SectionTitle variant='inherit'>{data.name}</SectionTitle>
-      <Grid container spacing={3}>
-          <Grid item xs={12} md={6} sx={{ boxSizing: 'border-box', margin: 0 }}>
-            <MaterialLink to={`/materials/${data.materials[0]._id}`}>
-              <TopImage 
-                src={data.materials[0].image} 
-                alt={data.materials[0]._id} 
-              />
-              <TopMaterialTitle variant='inherit'>
-                {data.materials[0].title}
-              </TopMaterialTitle>
-              <TopMaterialPreviewText variant='inherit'>
-                {data.materials[0].preview}
-              </TopMaterialPreviewText>
-            </MaterialLink>
-          </Grid>
-          <Grid item xs={12} md={6}>
-            <List>
-              {data.materials.slice(1, 6).map((material, i) => (
-                <ListItem key={uuid()}>
-                  <MaterialLink to={`/materials/${material._id}`}>
-                    <Grid container>
-                      <Grid item xs={2}>
-                        <Avatar 
-                          src={material.image} 
-                          alt={material._id} 
-                          variant='square' 
-                          sx={{ width: 76, height: 76 }}
-                        />
-                      </Grid>
-                      <Grid item xs={10}>
-                        <SecondaryMaterialTitle variant='inherit'>
-                          {material.title}
-                        </SecondaryMaterialTitle>
-                        <MaterialSecondaryInfo 
-                          author={material.author.name} 
-                          views={material.views} 
-                        />
-                      </Grid>
-                    </Grid>
-                  </MaterialLink>
-                </ListItem>
-              ))}
-            </List>
-          </Grid>
+      <Grid container >
+        <Grid item xs={12} md={6} sx={{ margin: 0 }}>
+          <MaterialLink to={`/materials/${data.materials[0]._id}`}>
+            <TopImage 
+              src={data.materials[0].image} 
+              alt={data.materials[0]._id} 
+            />
+            <TopMaterialTitle variant='inherit'>
+              {data.materials[0].title}
+            </TopMaterialTitle>
+            <TopMaterialPreviewText variant='inherit'>
+              {data.materials[0].preview}
+            </TopMaterialPreviewText>
+          </MaterialLink>
         </Grid>
+        <Divider orientation='vertical' flexItem sx={{ margin: '0 1em' }} />
+        <Grid item xs={12} md>
+          <MaterialsList>
+            {data.materials.slice(1, 6).map((material, i) => (
+              <MaterialsListItem key={uuid()}>
+                <MaterialLink to={`/materials/${material._id}`}>
+                  <Grid container sx={{ paddingRight: 0 }}>
+                    <Grid item xs sx={{ display: 'flex' }}>
+                      <Avatar 
+                        src={material.image} 
+                        alt={material._id} 
+                        variant='square' 
+                        sx={{ width: '100%', height: 'auto' }}
+                      />
+                    </Grid>
+                    <Grid item xs={10}>
+                      <SecondaryMaterialTitle variant='inherit'>
+                        {material.title}
+                      </SecondaryMaterialTitle>
+                      <MaterialSecondaryInfo 
+                        author={material.author.name} 
+                        views={material.views} 
+                      />
+                    </Grid>
+                  </Grid>
+                  {i !== 4 && (
+                    <Divider orientation='horizontal' flexItem sx={{ margin: '1em 0' }} />
+                  )}
+                </MaterialLink>
+              </MaterialsListItem>
+            ))}
+          </MaterialsList>
+        </Grid>
+      </Grid>
     </Section>
   );
 };
