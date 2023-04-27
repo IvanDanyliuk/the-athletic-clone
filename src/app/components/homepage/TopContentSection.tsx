@@ -83,6 +83,10 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
               <TopMaterialPreviewText variant='inherit'>
                 {materials[0].preview}
               </TopMaterialPreviewText>
+              <MaterialSecondaryInfo 
+                author={materials[0].author.name} 
+                views={materials[0].views} 
+              />
             </MaterialLink>
           </Grid>
           <Divider orientation='vertical' flexItem sx={{ margin: '0 1em' }} />
