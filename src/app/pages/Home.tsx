@@ -5,7 +5,7 @@ import { AppDispatch } from '../../features/store';
 import { getContentSections } from '../../features/content/asyncActions';
 import { selectContent, selectContentStatus } from '../../features/content/selectors';
 import ContentSection from '../components/homepage/ContentSection';
-import { getRecentMaterials } from '../../features/materials/asyncActions';
+import { getHomepageSecondaryMaterials, getRecentMaterials } from '../../features/materials/asyncActions';
 import { MaterialType } from '../models/components';
 import { selectMaterials, selectMaterialsStatus } from '../../features/materials/selectors';
 import { Box, Divider, styled } from '@mui/material';
@@ -38,6 +38,7 @@ const Home: React.FC = () => {
       materialsNumber: 14, 
       materialTypes: [MaterialType.article, MaterialType.note] 
     }));
+    await dispatch(getHomepageSecondaryMaterials({ materialsNum: 8, postsNum: 3 }));
   };
 
   useEffect(() => {

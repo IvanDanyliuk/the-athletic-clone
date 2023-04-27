@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
 import { MaterialModel } from '../../app/models/components';
-import { IDeleteMaterialData, IMaterial, IMaterialsRequestData, IRecentMaterialsRequestData } from './types';
+import { IDeleteMaterialData, IMaterial, IMaterialsRequestData, IHomepageSecondaryMaterialsRequestData, IRecentMaterialsRequestData } from './types';
 import { IUser, UserRoles } from '../users/types';
 
 
@@ -36,6 +36,19 @@ export const getRecentMaterials = createAsyncThunk(
     const { materialsNumber, materialTypes } = requestData;
     try {
       const { data } = await api.getRecentMaterials(materialsNumber, materialTypes);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getHomepageSecondaryMaterials = createAsyncThunk(
+  'materials/getHomepageSecondaryMaterials',
+  async (requestData: IHomepageSecondaryMaterialsRequestData, thunkAPI) => {
+    const { materialsNum, postsNum } = requestData;
+    try {
+      const { data } = await api.getHomapageSecondaryMaterials(materialsNum, postsNum);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
