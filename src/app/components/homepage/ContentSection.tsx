@@ -62,6 +62,11 @@ const MaterialsListItem = styled(ListItem)`
   padding: 0;
 `;
 
+const SecondayMaterialImage = styled(Avatar)`
+  width: 100%;
+  height: 4em;
+`;
+
 
 const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
   if(!data) {
@@ -92,13 +97,12 @@ const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
             {data.materials.slice(1, 6).map((material, i) => (
               <MaterialsListItem key={uuid()}>
                 <MaterialLink to={`/materials/${material._id}`}>
-                  <Grid container sx={{ paddingRight: 0 }}>
+                  <Grid container spacing={3}>
                     <Grid item xs sx={{ display: 'flex' }}>
-                      <Avatar 
+                      <SecondayMaterialImage 
                         src={material.image} 
                         alt={material._id} 
                         variant='square' 
-                        sx={{ width: '100%', height: 'auto' }}
                       />
                     </Grid>
                     <Grid item xs={10}>
