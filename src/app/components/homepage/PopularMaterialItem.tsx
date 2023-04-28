@@ -43,10 +43,10 @@ const PopularMaterialItem: React.FC<IPopularMaterialItemProp> = ({ index, data }
         <Grid item xs={1}>
           <Index>{index}</Index>
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={8} md={9}>
           <Title>{data.title}</Title>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={3} md={2}>
           <Image 
             src={data.image} 
             alt={data._id} 

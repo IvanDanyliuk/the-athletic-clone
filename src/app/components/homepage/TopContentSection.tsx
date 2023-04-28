@@ -14,7 +14,7 @@ interface ITopContentSectionProps {
 
 const Container = styled(Grid)`
   margin-top: 0;
-  padding: 1em 0;
+  padding-top: 1em;
 `;
 
 const TopImage = sc.img`
@@ -61,6 +61,14 @@ const MaterialsListItem = styled(ListItem)`
   padding: 0;
 `;
 
+const HorizontalDivider = styled(Divider)`
+  margin: 1em 0;
+`;
+
+const VerticalDivider = styled(Divider)`
+  margin: 0 1em;
+`;
+
 
 const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => {
   if(materials.length === 0) {
@@ -89,7 +97,7 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
               />
             </MaterialLink>
           </Grid>
-          <Divider orientation='vertical' flexItem sx={{ margin: '0 1em' }} />
+          <VerticalDivider orientation='vertical' flexItem />
           <Grid item xs={12} md>
             <MaterialsList>
               {materials.slice(1, 6).map((material, i) => (
@@ -115,7 +123,7 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
                       </Grid>
                     </Grid>
                     {i !== 4 && (
-                      <Divider orientation='horizontal' flexItem sx={{ margin: '1em 0' }} />
+                      <HorizontalDivider orientation='horizontal' flexItem />
                     )}
                   </MaterialLink>
                 </MaterialsListItem>
@@ -124,7 +132,7 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
           </Grid>
         </Grid>
       </Grid>
-      <Divider orientation='vertical' flexItem sx={{ margin: '0 1em' }} />
+      <VerticalDivider orientation='vertical' flexItem />
       <Grid item xs={12} md>
         <Headlines data={materials.slice(6)} />
       </Grid>

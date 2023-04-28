@@ -105,7 +105,7 @@ const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
                         variant='square' 
                       />
                     </Grid>
-                    <Grid item xs={10}>
+                    <Grid item xs={9} md={10}>
                       <SecondaryMaterialTitle variant='inherit'>
                         {material.title}
                       </SecondaryMaterialTitle>

@@ -13,16 +13,12 @@ import TopContentSection from '../components/homepage/TopContentSection';
 import PopularMaterials from '../components/homepage/PopularMaterials';
 
 
-const Container = styled(Box)`
-  /* padding: 1em 0; */
-`;
-
 const Section = styled(Box)`
   margin-top: 2em;
 `;
 
 const SectionDivider = styled(Divider)`
-  margin-top: 1em;
+  margin: 2em 0;
 `;
 
 const Home: React.FC = () => {
@@ -52,18 +48,18 @@ const Home: React.FC = () => {
   }
 
   return (
-    <Container>
+    <Box>
       <TopContentSection materials={recentMaterials} />
-      <Divider />
-      {contentSections.map(section => (
+      <SectionDivider />
+      {contentSections.map((section, i) => (
         <Section key={uuid()}>
           <ContentSection data={section} />
-          <SectionDivider />
+          {i < contentSections.length - 1 && <SectionDivider />}
         </Section>
       ))}
-      <Divider />
+      <SectionDivider />
       <PopularMaterials materials={secondaryMaterials.topMaterials} />
-    </Container>
+    </Box>
   );
 };
 

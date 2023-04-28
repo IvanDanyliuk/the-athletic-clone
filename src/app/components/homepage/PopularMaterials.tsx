@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar, Divider, Grid, List, ListItem, Typography, styled } from '@mui/material';
+import { Divider, Grid, Typography, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
 import PopularMaterialItem from './PopularMaterialItem';
@@ -9,13 +9,9 @@ interface IPopularMaterialsProps {
   materials: IMaterial[]
 }
 
-const Materials = styled(Grid)`
-  padding: 1em 0;
-`;
-
-const MaterialListItem = styled(ListItem)`
-  display: flex;
-  flex-direction: column;
+const SectionTitle = styled(Typography)`
+  font-family: 'Train One', cursive;
+  font-size: 2em;
 `;
 
 const MaterialsDivider = styled(Divider)`
@@ -24,45 +20,27 @@ const MaterialsDivider = styled(Divider)`
 
 
 const PopularMaterials: React.FC<IPopularMaterialsProps> = ({ materials }) => {
-  const middleItemIndex = Math.ceil(materials.length / 2);
-
   if(materials.length === 0) {
     return <div>Cannot find any popular materials</div>
   };
 
   return (
-    <Materials container spacing={3}>
-      <Grid item xs={12} md={6}>
-        <List>
-          {materials.slice(0, middleItemIndex).map((material, i) => (
-            <MaterialListItem key={uuid()}>
-              <PopularMaterialItem 
-                index={i + 1} 
-                data={material} 
-              />
-              {i + 1 < middleItemIndex && (
-                <MaterialsDivider orientation='horizontal' flexItem />
-              )}
-            </MaterialListItem>
-          ))}
-        </List>
+    <>
+      <SectionTitle>Most Popular</SectionTitle>
+      <Grid container spacing={3}>
+        {materials.map((material, i) => (
+          <Grid item key={uuid()} xs={12} md={6} sx={{ width: '100%' }}>
+            <PopularMaterialItem 
+              index={i + 1} 
+              data={material} 
+            />
+            {i + 1 < materials.length && (
+              <MaterialsDivider orientation='horizontal' flexItem />
+            )}
+          </Grid>
+        ))}
       </Grid>
-      <Grid item xs={12} md={6}>
-        <List>
-          {materials.slice(middleItemIndex).map((material, i) => (
-            <MaterialListItem key={uuid()}>
-              <PopularMaterialItem 
-                index={middleItemIndex + i + 1} 
-                data={material} 
-              />
-              {middleItemIndex + i + 1 < materials.length && (
-                <MaterialsDivider orientation='horizontal' flexItem />
-              )}
-            </MaterialListItem>
-          ))}
-        </List>
-      </Grid>
-    </Materials>
+    </>
   );
 };
 
