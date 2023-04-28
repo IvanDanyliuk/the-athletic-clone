@@ -46,9 +46,9 @@ export const getRecentMaterials = createAsyncThunk(
 export const getHomepageSecondaryMaterials = createAsyncThunk(
   'materials/getHomepageSecondaryMaterials',
   async (requestData: IHomepageSecondaryMaterialsRequestData, thunkAPI) => {
-    const { materialsNum, postsNum } = requestData;
+    const { topMaterialsNum, postsNum } = requestData;
     try {
-      const { data } = await api.getHomapageSecondaryMaterials(materialsNum, postsNum);
+      const { data } = await api.getHomapageSecondaryMaterials(topMaterialsNum, postsNum);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);

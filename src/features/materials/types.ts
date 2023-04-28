@@ -38,7 +38,7 @@ export interface IRecentMaterialsRequestData {
 }
 
 export interface IHomepageSecondaryMaterialsRequestData {
-  materialsNum: number,
+  topMaterialsNum: number,
   postsNum: number
 }
 

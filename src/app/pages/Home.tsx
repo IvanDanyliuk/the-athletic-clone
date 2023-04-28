@@ -7,9 +7,10 @@ import { selectContent, selectContentStatus } from '../../features/content/selec
 import ContentSection from '../components/homepage/ContentSection';
 import { getHomepageSecondaryMaterials, getRecentMaterials } from '../../features/materials/asyncActions';
 import { MaterialType } from '../models/components';
-import { selectMaterials, selectMaterialsStatus } from '../../features/materials/selectors';
+import { selectHomepageSecondaryMaterials, selectMaterials, selectMaterialsStatus } from '../../features/materials/selectors';
 import { Box, Divider, styled } from '@mui/material';
 import TopContentSection from '../components/homepage/TopContentSection';
+import PopularMaterials from '../components/homepage/PopularMaterials';
 
 
 const Container = styled(Box)`
@@ -29,6 +30,7 @@ const Home: React.FC = () => {
 
   const contentSections = useSelector(selectContent);
   const recentMaterials = useSelector(selectMaterials);
+  const secondaryMaterials = useSelector(selectHomepageSecondaryMaterials);
   const contentStatus = useSelector(selectContentStatus);
   const recentMaterialsStatus = useSelector(selectMaterialsStatus);
 
@@ -38,7 +40,7 @@ const Home: React.FC = () => {
       materialsNumber: 14, 
       materialTypes: [MaterialType.article, MaterialType.note] 
     }));
-    await dispatch(getHomepageSecondaryMaterials({ materialsNum: 8, postsNum: 3 }));
+    await dispatch(getHomepageSecondaryMaterials({ topMaterialsNum: 8, postsNum: 3 }));
   };
 
   useEffect(() => {
@@ -59,6 +61,8 @@ const Home: React.FC = () => {
           <SectionDivider />
         </Section>
       ))}
+      <Divider />
+      <PopularMaterials materials={secondaryMaterials.topMaterials} />
     </Container>
   );
 };
