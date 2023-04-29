@@ -7,10 +7,11 @@ import { selectContent, selectContentStatus } from '../../features/content/selec
 import ContentSection from '../components/homepage/ContentSection';
 import { getHomepageSecondaryMaterials, getRecentMaterials } from '../../features/materials/asyncActions';
 import { MaterialType } from '../models/components';
-import { selectHomepageSecondaryMaterials, selectMaterials, selectMaterialsStatus } from '../../features/materials/selectors';
+import { selectHomepageSecondaryMaterials, selectLeagueMaterials, selectMaterials, selectMaterialsStatus } from '../../features/materials/selectors';
 import { Box, Divider, styled } from '@mui/material';
 import TopContentSection from '../components/homepage/TopContentSection';
 import PopularMaterials from '../components/homepage/PopularMaterials';
+import LeagueMaterials from '../components/homepage/LeagueMaterials';
 
 
 const Section = styled(Box)`
@@ -27,6 +28,7 @@ const Home: React.FC = () => {
   const contentSections = useSelector(selectContent);
   const recentMaterials = useSelector(selectMaterials);
   const secondaryMaterials = useSelector(selectHomepageSecondaryMaterials);
+  const leagueMaterials = useSelector(selectLeagueMaterials);
   const contentStatus = useSelector(selectContentStatus);
   const recentMaterialsStatus = useSelector(selectMaterialsStatus);
 
@@ -59,6 +61,8 @@ const Home: React.FC = () => {
       ))}
       <SectionDivider />
       <PopularMaterials materials={secondaryMaterials.topMaterials} />
+      <SectionDivider />
+      <LeagueMaterials materials={leagueMaterials} leaguesNumToShow={4} />
     </Box>
   );
 };
