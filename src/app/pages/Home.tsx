@@ -1,5 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import styled from '@mui/styled-engine-sc';
+import { Box, Divider } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../features/store';
 import { getContentSections } from '../../features/content/asyncActions';
@@ -8,7 +10,6 @@ import ContentSection from '../components/homepage/ContentSection';
 import { getHomepageSecondaryMaterials, getRecentMaterials } from '../../features/materials/asyncActions';
 import { MaterialType } from '../models/components';
 import { selectHomepageSecondaryMaterials, selectMaterials, selectMaterialsStatus } from '../../features/materials/selectors';
-import { Box, Divider, styled } from '@mui/material';
 import TopContentSection from '../components/homepage/TopContentSection';
 import PopularMaterials from '../components/homepage/PopularMaterials';
 import LeagueMaterials from '../components/homepage/LeagueMaterials';
@@ -42,7 +43,7 @@ const Home: React.FC = () => {
       materialsNumber: 14, 
       materialTypes: [MaterialType.article, MaterialType.note] 
     }));
-    await dispatch(getHomepageSecondaryMaterials({ topMaterialsNum: 8, postsNum: 3 }));
+    await dispatch(getHomepageSecondaryMaterials({ topMaterialsNum: 8, postsNum: 8 }));
   };
 
   useEffect(() => {

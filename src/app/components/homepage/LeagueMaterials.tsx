@@ -1,7 +1,8 @@
 import React from 'react';
+import styled from '@mui/styled-engine-sc';
 import { 
-  Avatar, Divider, Grid, IconButton, List, 
-  ListItem, Typography, styled 
+  Avatar, Divider, Grid, IconButton, 
+  List, ListItem, Typography 
 } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';

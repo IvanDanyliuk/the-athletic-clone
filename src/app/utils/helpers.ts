@@ -33,3 +33,12 @@ export const checkScheduleData = (schedule: ScheduleModel) => {
 };
 
 export const capitalizeString = (value: string) => value[0].toUpperCase() + value.slice(1);
+
+export const divideArrayIntoChunks = (array: any[], itemsPerChunk: number) => {
+  let chunks = [];
+  for (let i = 0; i < array.length; i += itemsPerChunk) {
+    const chunk = array.slice(i, i + itemsPerChunk);
+    chunks.push(chunk);
+  }
+  return chunks;
+};
