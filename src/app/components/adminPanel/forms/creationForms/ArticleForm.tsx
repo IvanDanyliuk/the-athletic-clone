@@ -21,6 +21,7 @@ import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
 import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
+import CheckboxInput from '../../../ui/Checkbox';
 
 
 const Form = styled(Box)`
@@ -45,15 +46,28 @@ interface INewArticleFormProps {
 const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { register, handleSubmit, control, formState: { errors }, reset } = useForm<MaterialModel>();
+  const { 
+    register, 
+    handleSubmit, 
+    control, 
+    formState: { errors }, 
+    getValues,
+    reset 
+  } = useForm<MaterialModel>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
 
   const user = useSelector(selectUser);
   const clubsData = useSelector(selectClubsByCountry);
-  const clubs = clubsData.map(club => ({ label: club.commonName, value: club.commonName }));
+  const clubs = clubsData.map(club => ({ 
+    label: club.commonName, 
+    value: club.commonName 
+  }));
   const competitionsData = useSelector(selectAllCompetitions);
-  const competitions = competitionsData.map(competition => ({ label: competition.fullName, value: competition.fullName }));
+  const competitions = competitionsData.map(competition => ({ 
+    label: competition.fullName, 
+    value: competition.fullName 
+  }));
 
   const handleLabelSelect = (event: any) => {
     const {
@@ -71,6 +85,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
         ...articleToUpdate,
         title: data.title,
         image: data.image,
+        isMain: data.isMain,
         publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
         status: data.status,
         content: data.content,
@@ -92,7 +107,6 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
         type: MaterialType.article,
         image: imageUrl,
         publicationDate: dayjs(data.publicationDate).add(1, 'day'),
-        content: data.content,
         views: 0,
         likes: 0,
         labels: selectedLabels,
@@ -111,6 +125,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
       reset({
         title: articleToUpdate.title,
         image: articleToUpdate.image,
+        isMain: articleToUpdate.isMain,
         publicationDate: dayjs(articleToUpdate.publicationDate).subtract(1, 'day'),
         status: articleToUpdate.status,
         content: articleToUpdate.content,
@@ -141,10 +156,9 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
               label='Image'
               type='file'
               register={register}
-              
             />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={11}>
             <TextInput 
               name='preview' 
               label='Preview'
@@ -152,6 +166,15 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
               register={register}
               registerOptions={{ required: 'Preview is required!' }}
               error={errors.title}
+            />
+          </Grid>
+          <Grid item xs={1}>
+            <CheckboxInput 
+              name='isMain'
+              label='Main Article'
+              control={control}
+              checked={getValues('isMain')}
+              register={register}
             />
           </Grid>
           <Grid item xs={12} md={3}>
