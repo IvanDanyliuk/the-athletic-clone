@@ -30,7 +30,7 @@ describe('MaterialsTableBody tests', () => {
       <MaterialsTableBody 
         page={0} 
         itemsPerPage={10} 
-        materials={materialsStateSuccessMock.data.materials.slice(0, 2)} 
+        materials={materialsStateSuccessMock.data.main.materials.slice(0, 2)} 
       />
     );
 
@@ -56,7 +56,7 @@ describe('MaterialsTableBody tests', () => {
       <MaterialsTableBody 
         page={0} 
         itemsPerPage={10} 
-        materials={materialsStateSuccessMock.data.materials.slice(0, 2)} 
+        materials={materialsStateSuccessMock.data.main.materials.slice(0, 2)} 
       />,
       {
         preloadedState: {
