@@ -32,6 +32,7 @@ describe('NoteForm tests', () => {
 
     const titleField = screen.getAllByTestId('textField');
     fireEvent.change(titleField[0], { target: { value: 'Test Title' } });
+    fireEvent.change(titleField[2], { target: { value: 'Test Preview' } });
 
     const select = screen.getAllByTestId('multiSelect');
     //eslint-disable-next-line

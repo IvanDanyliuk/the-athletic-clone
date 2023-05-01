@@ -81,7 +81,6 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
   const handleFormSubmit = async (data: any) => {
     if(articleToUpdate) {
       setIsLoading(true);
-      console.log('Update Article', data)
       await dispatch(updateMaterial({
         ...articleToUpdate,
         title: data.title,
@@ -90,6 +89,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
         publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
         status: data.status,
         content: data.content,
+        preview: data.preview,
         labels: selectedLabels,
       }));
       setIsLoading(false);
