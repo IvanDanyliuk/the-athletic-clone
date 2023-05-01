@@ -12,6 +12,7 @@ interface IContentMainArticle {
 }
 
 const SectionBody = styled(Paper)`
+  margin-top: 1em;
   padding: 1em;
 `;
 
@@ -35,7 +36,7 @@ const Text = styled(Typography)`
 
 const ContentMainArticle: React.FC<IContentMainArticle> = ({ article }) => {
   return (
-    <SectionBody>
+    <SectionBody elevation={4}>
       <SectionTitle>
         <Typography variant='h6'>Must Read</Typography>
         <EditLink to={'/admin/materials'}>
