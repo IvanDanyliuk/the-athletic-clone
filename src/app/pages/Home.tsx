@@ -31,6 +31,7 @@ const Home: React.FC = () => {
   const { 
     topMaterials, 
     latestPosts, 
+    mustRead, 
     leagueMaterials 
   } = useSelector(selectHomepageSecondaryMaterials);
   const contentStatus = useSelector(selectContentStatus);

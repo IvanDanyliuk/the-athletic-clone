@@ -62,12 +62,13 @@ const CheckboxInput: React.FC<ICheckboxInputProps> = ({
         control={control}
         defaultValue={false}
         render={({
-          field: { value, name, ref },
+          field: { value, name, ref, ...rest },
         }) => (
           <Checkbox 
             checked={value}
             inputRef={ref}
             {...register(name, registerOptions)}
+            {...rest}
           />
         )}
       />

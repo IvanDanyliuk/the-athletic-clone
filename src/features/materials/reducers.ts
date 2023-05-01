@@ -13,6 +13,7 @@ const initialState: IMaterialsState = {
     homepage: {
       topMaterials: [],
       latestPosts: [],
+      mustRead: null,
       leagueMaterials: []
     }
   },

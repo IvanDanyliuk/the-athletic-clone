@@ -32,7 +32,7 @@ const SubmitBtn = styled(Button)`
 const ContentSection: React.FC<IContentSectionProps> = ({ sectionToUpdate }) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { register, handleSubmit, control, formState: { errors }, reset } = useForm<ContentSectionModel>();
+  const { register, handleSubmit, formState: { errors }, reset } = useForm<ContentSectionModel>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const materials = useSelector(selectMaterialsToContent);
 

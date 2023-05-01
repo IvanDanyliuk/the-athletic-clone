@@ -5,13 +5,18 @@ import { selectContent } from '../../../../features/content/selectors';
 import { AppDispatch } from '../../../../features/store';
 import { getContentSections } from '../../../../features/content/asyncActions';
 import ContentSectionsList from '../content/ContentSectionsList';
+import ContentMainArticle from '../content/ContentMainArticle';
+import { selectHomepageSecondaryMaterials } from '../../../../features/materials/selectors';
+import { getHomepageSecondaryMaterials } from '../../../../features/materials/asyncActions';
 
 
 const Content: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const contentSections = useSelector(selectContent);
+  const { mustRead } = useSelector(selectHomepageSecondaryMaterials);
 
   useEffect(() => {
+    dispatch(getHomepageSecondaryMaterials({ topMaterialsNum: 8, postsNum: 8 }));
     dispatch(getContentSections());
   }, [dispatch]);
 
@@ -21,6 +26,7 @@ const Content: React.FC = () => {
         title='Content'
         link='content/new-content-section'
       />
+      <ContentMainArticle article={mustRead} />
       <ContentSectionsList 
         sections={contentSections}
       />

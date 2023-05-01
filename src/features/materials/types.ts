@@ -10,6 +10,7 @@ export interface IMaterialsState {
     homepage: {
       topMaterials: IMaterial[],
       latestPosts: IMaterial[],
+      mustRead: IMaterial | null,
       leagueMaterials: {
         league: string,
         logo: string,

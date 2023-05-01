@@ -254,6 +254,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
     homepage: {
       topMaterials: [],
       latestPosts: [],
+      mustRead: null,
       leagueMaterials: []
     }
   },
@@ -277,6 +278,7 @@ export const materialsStateErrorMock: IMaterialsState = {
     homepage: {
       topMaterials: [],
       latestPosts: [],
+      mustRead: null,
       leagueMaterials: []
     }
   },

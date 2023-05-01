@@ -81,6 +81,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
   const handleFormSubmit = async (data: any) => {
     if(articleToUpdate) {
       setIsLoading(true);
+      console.log('Update Article', data)
       await dispatch(updateMaterial({
         ...articleToUpdate,
         title: data.title,
@@ -173,7 +174,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
               name='isMain'
               label='Main Article'
               control={control}
-              checked={getValues('isMain')}
+              checked={getValues('isMain')!}
               register={register}
             />
           </Grid>
