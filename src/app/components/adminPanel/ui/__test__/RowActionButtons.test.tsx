@@ -1,8 +1,8 @@
-import { cleanup, fireEvent, render, screen } from '@testing-library/react';
+import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import RowActionButtons, { EssenseType } from '../RowActionButtons';
 
-
+const setMainArticle = jest.fn();
 const deleteFunc = jest.fn();
 
 const openMenu = () => {
@@ -56,5 +56,25 @@ describe('RowActionButtons tests', () => {
     const confirmBtn = screen.getByRole('button', { name: /No/ });
     fireEvent.click(confirmBtn);
     expect(deleteFunc).not.toHaveBeenCalled();
+  });
+});
+
+describe('RowActionButtons tests: Materials Table case', () => {
+  test('should call the onSetMainArticle handler function after clicking the Set as Main button', async () => {
+    render(
+      <MemoryRouter>
+        <RowActionButtons 
+          id='test_id' 
+          type={EssenseType.materials} 
+          materialType='article'
+          onSetMainArticle={setMainArticle}
+          onDelete={deleteFunc} 
+        />
+      </MemoryRouter>
+    );
+    openMenu();
+    const setMainArticleBtn = screen.getByText(/Set as Main/);
+    fireEvent.click(setMainArticleBtn);
+    expect(setMainArticle).toHaveBeenCalled();
   });
 });
