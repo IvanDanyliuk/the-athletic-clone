@@ -1,6 +1,9 @@
 import React from 'react';
 import sc from 'styled-components';
-import { Avatar, Box, Divider, Grid, List, ListItem, Typography, styled } from '@mui/material';
+import { 
+  Avatar, Box, Divider, Grid, List, 
+  ListItem, Typography, styled 
+} from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IContentSection } from '../../../features/content/types';
 import MaterialSecondaryInfo from './MaterialSecondaryInfo';

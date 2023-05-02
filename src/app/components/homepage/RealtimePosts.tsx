@@ -10,7 +10,7 @@ import Carousel from 'react-material-ui-carousel';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
 import { divideArrayIntoChunks } from '../../utils/helpers';
-import { ThumbUp, ThumbDown, ChatBubbleOutline, ThumbUpOffAlt } from '@mui/icons-material';
+import { ChatBubbleOutline, ThumbUpOffAlt } from '@mui/icons-material';
 
 
 interface IRealtimePostsProps {
