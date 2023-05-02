@@ -14,6 +14,13 @@ jest.mock('react-redux', () => ({
   useDispatch: () => mockedUseDispatch,
 }));
 
+const mockedUseNavigate = jest.fn();
+
+jest.mock('react-router-dom', () => ({
+   ...jest.requireActual('react-router-dom') as any,
+  useNavigate: () => mockedUseNavigate,
+}));
+
 
 describe('MaterialsTableBody tests', () => {
   beforeEach(() => {
@@ -74,6 +81,34 @@ describe('MaterialsTableBody tests', () => {
 
     await waitFor(() => {
       expect(mockedUseDispatch).toHaveBeenCalled();
+    });
+  });
+
+  test('should set the main article after clicking the Set as Main button', async () => {
+    renderWithProviders(
+      <MaterialsTableBody 
+        page={0} 
+        itemsPerPage={10} 
+        materials={materialsStateSuccessMock.data.main.materials.slice(0, 2)} 
+      />,
+      {
+        preloadedState: {
+          materials: materialsStateSuccessMock,
+          content: {
+            ...contentStateSuccessMock,
+            isContentEditingModeActive: false
+          }
+        }
+      }
+    );
+    
+    const rowBtn = screen.getAllByTestId('rowActionBtn');
+    fireEvent.click(rowBtn[0]);
+    const setMainArticleBtn = screen.getByText(/Set as Main/);
+    fireEvent.click(setMainArticleBtn);
+
+    await waitFor(() => {
+      expect(mockedUseNavigate).toHaveBeenCalled();
     });
   });
 });
