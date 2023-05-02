@@ -13,6 +13,7 @@ import TopContentSection from '../components/homepage/TopContentSection';
 import PopularMaterials from '../components/homepage/PopularMaterials';
 import LeagueMaterials from '../components/homepage/LeagueMaterials';
 import RealtimePosts from '../components/homepage/RealtimePosts';
+import MustReadSection from '../components/homepage/MustReadSection';
 
 
 const Section = styled(Box)`
@@ -69,6 +70,12 @@ const Home: React.FC = () => {
       <SectionDivider />
       <PopularMaterials materials={topMaterials} />
       <SectionDivider />
+      {mustRead && (
+        <>
+          <MustReadSection article={mustRead} />
+          <SectionDivider />
+        </>
+      )}
       <LeagueMaterials materials={leagueMaterials} leaguesNumToShow={4} />
     </Box>
   );

@@ -10,7 +10,7 @@ import Carousel from 'react-material-ui-carousel';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
 import { divideArrayIntoChunks } from '../../utils/helpers';
-import { ThumbUp, ThumbDown } from '@mui/icons-material';
+import { ThumbUp, ThumbDown, ChatBubbleOutline, ThumbUpOffAlt } from '@mui/icons-material';
 
 
 interface IRealtimePostsProps {
@@ -52,6 +52,19 @@ const LatestIcon = styled(Typography)`
   line-height: 1em;
 `;
 
+const ActionBtn = styled(Button)`
+  svg {
+    font-size: 1.2em;
+    color: #000000;
+  }
+`;
+
+const BtnLabel = styled(Typography)`
+  margin-left: .5em;
+  font-size: .9em;
+  color: #000000;
+`;
+
 
 const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
   if(materials.length < 1) {
@@ -59,7 +72,6 @@ const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
   }
 
   const dividedMaterials = divideArrayIntoChunks(materials!, 4);
-  console.log(dividedMaterials)
 
   return (
     <Box>
@@ -91,7 +103,7 @@ const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
         >
           {dividedMaterials.map(group => (
             <Grid key={uuid()} container spacing={3}>
-              {group.map(post => (
+              {group.map((post: IMaterial) => (
                 <Grid item xs={12} md={3}>
                   <Card key={uuid()} sx={{ height: '100%' }}>
                     <CardHeader
@@ -105,12 +117,14 @@ const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button>
-                        <Icon component={ThumbUp} />
-                      </Button>
-                      <Button>
-                        <Icon component={ThumbDown} />
-                      </Button>
+                      <ActionBtn>
+                        <Icon component={ThumbUpOffAlt} />
+                        <BtnLabel>{post.likes}</BtnLabel>
+                      </ActionBtn>
+                      <ActionBtn>
+                        <Icon component={ChatBubbleOutline} />
+                        <BtnLabel>{post.comments.length}</BtnLabel>
+                      </ActionBtn>
                     </CardActions>
                   </Card>
                 </Grid>
