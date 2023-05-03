@@ -1,11 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import sc from 'styled-components';
 import styled from '@mui/styled-engine-sc';
 import { Avatar, Divider, Grid, List, ListItem, Typography } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
 import MaterialSecondaryInfo from './MaterialSecondaryInfo';
-import { Link } from 'react-router-dom';
 import Headlines from './Headlines';
 import SkeletonLoader from '../ui/SkeletonLoader';
 

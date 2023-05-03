@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@mui/styled-engine-sc';
-import { Divider, Grid, Typography, capitalize } from '@mui/material';
+import { Divider, Grid, Typography } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
 import PopularMaterialItem from './PopularMaterialItem';
