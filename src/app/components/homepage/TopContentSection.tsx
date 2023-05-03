@@ -7,6 +7,7 @@ import { IMaterial } from '../../../features/materials/types';
 import MaterialSecondaryInfo from './MaterialSecondaryInfo';
 import { Link } from 'react-router-dom';
 import Headlines from './Headlines';
+import SkeletonLoader from '../ui/SkeletonLoader';
 
 
 interface ITopContentSectionProps {
@@ -58,7 +59,7 @@ const VerticalDivider = styled(Divider)`
 
 const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => {
   if(materials.length === 0) {
-    return <div>Loading...</div>;
+    return <SkeletonLoader variant='section' />;
   }
 
   return (

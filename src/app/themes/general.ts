@@ -13,8 +13,7 @@ export const theme = createTheme({
       color: '#121212',
     },
     body2: {
-      fontFamily: `'Roboto', sans-serif`,
-      fontSize: '.7em'
+      
     },
     //Must Read article title
     h1: {
@@ -54,6 +53,20 @@ export const theme = createTheme({
       fontFamily: `'Roboto Serif', serif`,
       fontSize: '1em',
       color: '#121212',
-    }
+    },
+    subtitle2: {
+      fontFamily: `'Roboto', sans-serif`,
+      fontSize: '1em',
+      fontWeight: 700,
+      color: '#121212',
+    },
+    caption: {
+      fontFamily: `'Roboto', sans-serif`,
+      fontSize: '.7em',
+    },
+    overline: {
+      fontFamily: `'Train One', cursive`,
+      fontSize: '2em',
+    },
   }
 })

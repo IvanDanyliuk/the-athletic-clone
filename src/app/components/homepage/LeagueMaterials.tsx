@@ -26,10 +26,6 @@ const HeaderItem = styled(Grid)`
   align-items: center;
 `;
 
-const LeagueTitle = styled(Typography)`
-  font-weight: 600;
-`;
-
 const LeagueDivider = styled(Divider)`
   margin: 1em 0 .5em 0;
   background: #000000;
@@ -37,7 +33,7 @@ const LeagueDivider = styled(Divider)`
 
 const MaterialLink = styled(Link)`
   text-decoration: none;
-  color: #000000;
+  color: #121212;
 `;
 
 const LinkBtn = styled(IconButton)`
@@ -58,7 +54,7 @@ const LeagueMaterials: React.FC<ILeagueMaterialsProps> = ({ materials, leaguesNu
               <Avatar src={league.logo} alt={league.league} variant='square' />
             </HeaderItem>
             <HeaderItem item xs={9}>
-              <LeagueTitle variant='inherit'>{league.league}</LeagueTitle>
+              <Typography variant='subtitle2'>{league.league}</Typography>
             </HeaderItem>
             <HeaderItem item xs={1}>
               <MaterialLink to={`/materials/${setUrl(league.league)}`}>
@@ -73,7 +69,7 @@ const LeagueMaterials: React.FC<ILeagueMaterialsProps> = ({ materials, leaguesNu
             {league.materials.slice(0, 4).map(material => (
               <ListItem key={uuid()} sx={{ paddingLeft: 0 }}>
                 <MaterialLink to={`/materials/${setUrl(league.league)}/${material._id}`}>
-                  {material.title}
+                  <Typography variant='body2'>{material.title}</Typography>
                 </MaterialLink>
               </ListItem>
             ))}

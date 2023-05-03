@@ -11,9 +11,6 @@ interface IMustReadSectionProps {
 
 const SectionTitle = styled(Typography)`
   margin-bottom: .8em;
-  font-family: 'Arvo', serif;
-  font-weight: 700;
-  font-size: 1.7em;
 `;
 
 const ArticleLink = styled(Link)`
@@ -31,24 +28,16 @@ const ArticleContent = styled(Grid)`
 
 const Image = styled('img')`
   width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const Date = styled(Typography)`
-  font-size: .7em;
   color: #939393;
 `;
 
 const ArticleTitle = styled(Typography)`
   margin-bottom: 1em;
-  font-family: 'Crimson Pro', serif;
-  font-size: 2em;
-  line-height: 1em;
-`;
-
-const ArticlePreview = styled(Typography)`
-  font-family: 'Crimson Pro', serif;
-  font-size: 1.2em;
-  line-height: 1.2em;
 `;
 
 const AuthorName = styled(Typography)`
@@ -60,21 +49,21 @@ const AuthorName = styled(Typography)`
 const MustReadSection: React.FC<IMustReadSectionProps> = ({ article }) => {
   return (
     <>
-      <SectionTitle>Must Read</SectionTitle>
+      <SectionTitle variant='h2'>Must Read</SectionTitle>
       <ArticleLink to={`/materials/${article._id}`}>
         <Paper>
           <Grid container sx={{position: 'relative' }}>
             <ArticleContent item xs={12} md={6}>
-              <Date>
+              <Date variant='caption'>
                 {dayjs(article.publicationDate).subtract(1, 'day').format('DD/MM/YYYY')}
               </Date>
               <Box>
-                <ArticleTitle>{article.title}</ArticleTitle>
-                <ArticlePreview>{article.preview}</ArticlePreview>
+                <ArticleTitle variant='h3'>{article.title}</ArticleTitle>
+                <Typography variant='subtitle1'>{article.preview}</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Avatar src={article.author.photoUrl} alt={article.author.name} />
-                <AuthorName>{article.author.name}</AuthorName>
+                <AuthorName variant='caption'>by {article.author.name}</AuthorName>
               </Box>
             </ArticleContent>
             <Grid item xs={12} md={6}>

@@ -2,12 +2,13 @@ import React from 'react';
 import sc from 'styled-components';
 import { 
   Avatar, Box, Divider, Grid, List, 
-  ListItem, Skeleton, Typography, styled 
+  ListItem, Typography, styled 
 } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IContentSection } from '../../../features/content/types';
 import MaterialSecondaryInfo from './MaterialSecondaryInfo';
 import { Link } from 'react-router-dom';
+import SkeletonLoader from '../ui/SkeletonLoader';
 
 
 interface IContentSectionProps {
@@ -56,16 +57,7 @@ const SecondayMaterialImage = styled(Avatar)`
 
 const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
   if(!data) {
-    return <Grid container spacing={3}>
-      <Grid item xs={6}>
-        <Skeleton />
-      </Grid>
-      <Grid item xs={6}>
-        <Skeleton />
-        <Skeleton />
-        <Skeleton />
-      </Grid>
-    </Grid>
+    return <SkeletonLoader variant='section' />;
   } 
 
   return (

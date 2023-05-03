@@ -11,6 +11,7 @@ import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
 import { divideArrayIntoChunks } from '../../utils/helpers';
 import { ChatBubbleOutline, ThumbUpOffAlt } from '@mui/icons-material';
+import SkeletonLoader from '../ui/SkeletonLoader';
 
 
 interface IRealtimePostsProps {
@@ -62,7 +63,7 @@ const BtnLabel = styled(Typography)`
 
 const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
   if(materials.length < 1) {
-    return <div>Loading...</div>
+    return <SkeletonLoader variant='row' />;
   }
 
   const dividedMaterials = divideArrayIntoChunks(materials!, 4);
@@ -102,11 +103,11 @@ const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
                   <Card key={uuid()} sx={{ height: '100%' }}>
                     <CardHeader
                       avatar={<Avatar src={post.author.photoUrl} />}
-                      title={<Typography>{post.author.name}</Typography>}
+                      title={<Typography variant='subtitle2'>{post.author.name}</Typography>}
                       subheader={`${post.author.organization}, ${post.author.position}`}
                     />
                     <CardContent>
-                      <Typography>
+                      <Typography variant='body2'>
                         {post.content.replace(/(<([^>]+)>)/ig, '')}
                       </Typography>
                     </CardContent>

@@ -14,10 +14,12 @@ import PopularMaterials from '../components/homepage/PopularMaterials';
 import LeagueMaterials from '../components/homepage/LeagueMaterials';
 import RealtimePosts from '../components/homepage/RealtimePosts';
 import MustReadSection from '../components/homepage/MustReadSection';
+import SkeletonLoader from '../components/ui/SkeletonLoader';
 
 
 const Section = styled(Box)`
   margin-top: 2em;
+  width: 100%;
 `;
 
 const SectionDivider = styled(Divider)`
@@ -52,11 +54,11 @@ const Home: React.FC = () => {
   }, []);
 
   if(contentStatus === 'loading' && recentMaterialsStatus === 'loading') {
-    return <div>Loading...</div>
+    return <SkeletonLoader variant='section' />;
   }
 
   return (
-    <Box>
+    <Box sx={{ width: '100%' }}>
       <TopContentSection materials={recentMaterials} />
       <SectionDivider />
       {contentSections.map((section, i) => (

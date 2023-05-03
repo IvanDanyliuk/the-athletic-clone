@@ -29,8 +29,8 @@ const Views = styled(Typography)`
 const MaterialSecondaryInfo: React.FC<IMaterialSecondaryInfoProps> = ({ author, views }) => {
   return (
     <SecondaryInfo>
-      <Author variant='body2'>{author}</Author>
-      <Views variant='body2'>
+      <Author variant='caption'>{author}</Author>
+      <Views variant='caption'>
         <Icon component={ChatBubble} />
         {views}
       </Views>

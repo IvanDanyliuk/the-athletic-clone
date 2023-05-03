@@ -12,7 +12,6 @@ interface IHeadlinesProps {
 const HeadlinesList = styled(List)`
   padding-left: 1em;
   list-style-type: square;
-  // list-style-position: inside
 `;
 
 const HeadlineListItem = styled(ListItem)`
@@ -20,9 +19,7 @@ const HeadlineListItem = styled(ListItem)`
   display: list-item;
 `;
 
-const HeadlineItemLink = styled(Link)`
-  /* font-family: 'Times New Roman', serif;
-  font-size: 1em; */
+const HeadlineLink = styled(Link)`
   text-decoration: none;
   color: #000000;
   transition: .5s;
@@ -40,17 +37,17 @@ const Headlines: React.FC<IHeadlinesProps> = ({ data }) => {
           <Typography variant='h5'>Headlines</Typography>
         </Grid>
         <Grid item xs={2}>
-          <Link to='/materials'>
+          <HeadlineLink to='/materials'>
             See all
-          </Link>
+          </HeadlineLink>
         </Grid>
       </Grid>
       <HeadlinesList>
         {data.map(material => (
           <HeadlineListItem key={uuid()}>
-            <HeadlineItemLink to={`/materials/${material._id}`}>
+            <HeadlineLink to={`/materials/${material._id}`}>
               <Typography variant='h6'>{material.title}</Typography>
-            </HeadlineItemLink>
+            </HeadlineLink>
           </HeadlineListItem>
         ))}
       </HeadlinesList>

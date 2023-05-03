@@ -10,11 +10,6 @@ interface IPopularMaterialsProps {
   materials: IMaterial[]
 }
 
-const SectionTitle = styled(Typography)`
-  font-family: 'Train One', cursive;
-  font-size: 2em;
-`;
-
 const MaterialsDivider = styled(Divider)`
   width: 100%;
 `;
@@ -27,7 +22,7 @@ const PopularMaterials: React.FC<IPopularMaterialsProps> = ({ materials }) => {
 
   return (
     <>
-      <SectionTitle>Most Popular</SectionTitle>
+      <Typography variant='overline'>Most Popular</Typography>
       <Grid container spacing={3}>
         {materials.map((material, i) => (
           <Grid item key={uuid()} xs={12} md={6} sx={{ width: '100%' }}>

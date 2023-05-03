@@ -21,15 +21,6 @@ const MaterialContainer = styled(Grid)`
   align-items: center;
 `;
 
-const Index = styled(Typography)`
-  font-family: 'Train One', cursive;
-  font-size: 2em;
-`;
-
-const Title = styled(Typography)`
-  
-`;
-
 const Image = styled(Avatar)`
   width: 100%;
   height: 4em;
@@ -41,10 +32,10 @@ const PopularMaterialItem: React.FC<IPopularMaterialItemProp> = ({ index, data }
     <LinkContainer to={`/materials/${data._id}`}>
       <MaterialContainer container spacing={3}>
         <Grid item xs={1}>
-          <Index>{index}</Index>
+          <Typography variant='overline'>{index}</Typography>
         </Grid>
         <Grid item xs={8} md={9}>
-          <Title>{data.title}</Title>
+          <Typography variant='body1'>{data.title}</Typography>
         </Grid>
         <Grid item xs={3} md={2}>
           <Image 
