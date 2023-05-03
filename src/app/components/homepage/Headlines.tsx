@@ -21,8 +21,8 @@ const HeadlineListItem = styled(ListItem)`
 `;
 
 const HeadlineItemLink = styled(Link)`
-  font-family: 'Times New Roman', serif;
-  font-size: 1em;
+  /* font-family: 'Times New Roman', serif;
+  font-size: 1em; */
   text-decoration: none;
   color: #000000;
   transition: .5s;
@@ -37,7 +37,7 @@ const Headlines: React.FC<IHeadlinesProps> = ({ data }) => {
     <Box sx={{ width: '100%' }}>
       <Grid container>
         <Grid item xs={10}>
-          <Typography>Headlines</Typography>
+          <Typography variant='h5'>Headlines</Typography>
         </Grid>
         <Grid item xs={2}>
           <Link to='/materials'>
@@ -49,7 +49,7 @@ const Headlines: React.FC<IHeadlinesProps> = ({ data }) => {
         {data.map(material => (
           <HeadlineListItem key={uuid()}>
             <HeadlineItemLink to={`/materials/${material._id}`}>
-              <Typography variant='inherit'>{material.title}</Typography>
+              <Typography variant='h6'>{material.title}</Typography>
             </HeadlineItemLink>
           </HeadlineListItem>
         ))}

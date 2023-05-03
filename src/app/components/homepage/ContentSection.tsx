@@ -2,7 +2,7 @@ import React from 'react';
 import sc from 'styled-components';
 import { 
   Avatar, Box, Divider, Grid, List, 
-  ListItem, Typography, styled 
+  ListItem, Skeleton, Typography, styled 
 } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IContentSection } from '../../../features/content/types';
@@ -16,9 +16,6 @@ interface IContentSectionProps {
 
 const SectionTitle = styled(Typography)`
   margin-bottom: .8em;
-  font-family: 'Arvo', serif;
-  font-weight: 700;
-  font-size: 1.7em;
 `;
 
 const Section = styled(Box)`
@@ -41,20 +38,6 @@ const TopImage = sc.img`
 
 const TopMaterialTitle = styled(Typography)`
   margin: .5em 0;
-  font-family: 'Crimson Pro', serif;
-  font-size: 1.8em;
-  line-height: 1em;
-`;
-
-const TopMaterialPreviewText = styled(Typography)`
-  font-family: 'Crimson Pro', serif;
-  font-size: 1em;
-  line-height: 1.2em;
-`;
-
-const SecondaryMaterialTitle = styled(Typography)`
-  font-family: 'Crimson Pro', serif;
-  font-size: 1em;
 `;
 
 const MaterialsList = styled(List)`
@@ -73,12 +56,21 @@ const SecondayMaterialImage = styled(Avatar)`
 
 const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
   if(!data) {
-    return <div>Loading...</div>
+    return <Grid container spacing={3}>
+      <Grid item xs={6}>
+        <Skeleton />
+      </Grid>
+      <Grid item xs={6}>
+        <Skeleton />
+        <Skeleton />
+        <Skeleton />
+      </Grid>
+    </Grid>
   } 
 
   return (
     <Section>
-      <SectionTitle variant='inherit'>{data.name}</SectionTitle>
+      <SectionTitle variant='h2'>{data.name}</SectionTitle>
       <Grid container >
         <Grid item xs={12} md={6} sx={{ margin: 0 }}>
           <MaterialLink to={`/materials/${data.materials[0]._id}`}>
@@ -86,12 +78,12 @@ const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
               src={data.materials[0].image} 
               alt={data.materials[0]._id} 
             />
-            <TopMaterialTitle variant='inherit'>
+            <TopMaterialTitle variant='h3'>
               {data.materials[0].title}
             </TopMaterialTitle>
-            <TopMaterialPreviewText variant='inherit'>
+            <Typography variant='subtitle1'>
               {data.materials[0].preview}
-            </TopMaterialPreviewText>
+            </Typography>
           </MaterialLink>
         </Grid>
         <Divider orientation='vertical' flexItem sx={{ margin: '0 1em' }} />
@@ -109,9 +101,9 @@ const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
                       />
                     </Grid>
                     <Grid item xs={9} md={10}>
-                      <SecondaryMaterialTitle variant='inherit'>
+                      <Typography variant='h4'>
                         {material.title}
-                      </SecondaryMaterialTitle>
+                      </Typography>
                       <MaterialSecondaryInfo 
                         author={material.author.name} 
                         views={material.views} 

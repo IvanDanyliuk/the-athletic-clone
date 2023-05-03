@@ -24,21 +24,6 @@ const TopImage = sc.img`
 
 const TopMaterialTitle = styled(Typography)`
   margin: .5em 0;
-  font-family: 'Times New Roman', serif;
-  font-weight: 900;
-  font-size: 1.8em;
-  line-height: 1em;
-`;
-
-const TopMaterialPreviewText = styled(Typography)`
-  font-family: 'Times New Roman', serif;
-  font-size: 1em;
-  line-height: 1.2em;
-`;
-
-const SecondaryMaterialTitle = styled(Typography)`
-  font-family: 'Times New Roman', serif;
-  font-size: 1em;
 `;
 
 const MaterialLink = styled(Link)`
@@ -86,12 +71,12 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
                 src={materials[0].image} 
                 alt={materials[0]._id} 
               />
-              <TopMaterialTitle variant='inherit'>
+              <TopMaterialTitle variant='h3'>
                 {materials[0].title}
               </TopMaterialTitle>
-              <TopMaterialPreviewText variant='inherit'>
+              <Typography variant='subtitle1'>
                 {materials[0].preview}
-              </TopMaterialPreviewText>
+              </Typography>
               <MaterialSecondaryInfo 
                 author={materials[0].author.name} 
                 views={materials[0].views} 
@@ -106,9 +91,9 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
                   <MaterialLink to={`/materials/${material._id}`}>
                     <Grid container sx={{ paddingLeft: 0 }}>
                       <Grid item xs={10} sx={{ paddingRight: '1em' }}>
-                        <SecondaryMaterialTitle variant='inherit'>
+                        <Typography variant='h4'>
                           {material.title}
-                        </SecondaryMaterialTitle>
+                        </Typography>
                         <MaterialSecondaryInfo 
                           author={material.author.name} 
                           views={material.views} 

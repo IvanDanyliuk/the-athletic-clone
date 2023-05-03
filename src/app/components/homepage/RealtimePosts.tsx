@@ -17,12 +17,6 @@ interface IRealtimePostsProps {
   materials: IMaterial[]
 }
 
-const Title = styled(Typography)`
-  font-family: 'Arvo', serif;
-  font-weight: 700;
-  font-size: 1.7em;
-`;
-
 const HeaderDivider = styled(Divider)`
   margin: 0 1em;
 `;
@@ -76,7 +70,7 @@ const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
   return (
     <Box>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Title variant='inherit'>Real Time</Title>
+        <Typography variant='h2'>Real Time</Typography>
         <HeaderDivider orientation='vertical' flexItem />
         <CustomChip 
           icon={

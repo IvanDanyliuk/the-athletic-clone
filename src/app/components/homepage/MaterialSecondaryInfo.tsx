@@ -1,8 +1,7 @@
 import React from 'react';
 import sc from 'styled-components';
-import { faComment } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Typography, styled } from '@mui/material';
+import { Icon, Typography, styled } from '@mui/material';
+import { ChatBubble } from '@mui/icons-material';
 
 
 interface IMaterialSecondaryInfoProps {
@@ -14,8 +13,6 @@ const SecondaryInfo = sc.div`
   margin: 1em 0;
   display: flex;
   align-items: center;
-  font-family: 'Roboto', sans-serif;
-  font-size: .7em;
 `;
 
 const Author = styled(Typography)`
@@ -25,15 +22,16 @@ const Author = styled(Typography)`
 const Views = styled(Typography)`
   svg {
     margin-right: 5px;
+    font-size: 1em;
   }
 `;
 
 const MaterialSecondaryInfo: React.FC<IMaterialSecondaryInfoProps> = ({ author, views }) => {
   return (
     <SecondaryInfo>
-      <Author variant='inherit'>{author}</Author>
-      <Views variant='inherit'>
-        <FontAwesomeIcon icon={faComment} />
+      <Author variant='body2'>{author}</Author>
+      <Views variant='body2'>
+        <Icon component={ChatBubble} />
         {views}
       </Views>
     </SecondaryInfo>

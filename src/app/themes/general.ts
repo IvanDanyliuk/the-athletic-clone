@@ -1,0 +1,59 @@
+import { createTheme } from '@mui/material';
+
+export const theme = createTheme({
+  // palette: {
+  //   primary: {},
+  //   secondary: {},
+  // },
+  typography: {
+    //regular text of website materials
+    body1: {
+      fontFamily: `'Roboto Serif', serif`,
+      fontSize: '1em',
+      color: '#121212',
+    },
+    body2: {
+      fontFamily: `'Roboto', sans-serif`,
+      fontSize: '.7em'
+    },
+    //Must Read article title
+    h1: {
+      fontFamily: `'Roboto Serif', serif`,
+      fontSize: '2em',
+    },
+    //Section title
+    h2: {
+      fontFamily: `'Arvo', serif`,
+      fontWeight: 700,
+      fontSize: '1.7em',
+      color: '#121212',
+    },
+    //Title of the main material of the section
+    h3: {
+      fontFamily: `'Roboto Serif', serif`,
+      fontSize: '2em',
+      fontWeight: 700,
+      color: '#121212',
+    },
+    //Title of the secondary material of the section
+    h4: {
+      fontFamily: `'Roboto Serif', serif`,
+      fontSize: '1em',
+      color: '#121212',
+    },
+    h5: {
+      fontFamily: `'Roboto', sans-serif`,
+      fontSize: '1em'
+    },
+    h6: {
+      fontFamily: `'Roboto Serif', serif`,
+      fontSize: '.9em',
+      color: '#121212',
+    },
+    subtitle1: {
+      fontFamily: `'Roboto Serif', serif`,
+      fontSize: '1em',
+      color: '#121212',
+    }
+  }
+})
