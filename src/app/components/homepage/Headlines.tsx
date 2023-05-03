@@ -34,7 +34,7 @@ const Headlines: React.FC<IHeadlinesProps> = ({ data }) => {
     <Box sx={{ width: '100%' }}>
       <Grid container>
         <Grid item xs={10}>
-          <Typography variant='h5'>Headlines</Typography>
+          <Typography variant='overline'>Headlines</Typography>
         </Grid>
         <Grid item xs={2}>
           <HeadlineLink to='/materials'>

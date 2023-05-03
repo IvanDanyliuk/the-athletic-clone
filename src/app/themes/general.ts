@@ -41,8 +41,8 @@ export const theme = createTheme({
       color: '#121212',
     },
     h5: {
-      fontFamily: `'Roboto', sans-serif`,
-      fontSize: '1em'
+      fontFamily: `'Train One', cursive`,
+      fontSize: '2em',
     },
     h6: {
       fontFamily: `'Roboto Serif', serif`,
@@ -65,8 +65,8 @@ export const theme = createTheme({
       fontSize: '.7em',
     },
     overline: {
-      fontFamily: `'Train One', cursive`,
-      fontSize: '2em',
+      fontFamily: `'Roboto', sans-serif`,
+      fontSize: '1em'
     },
   }
 })

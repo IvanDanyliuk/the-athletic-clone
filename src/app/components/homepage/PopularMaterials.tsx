@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@mui/styled-engine-sc';
-import { Divider, Grid, Typography } from '@mui/material';
+import { Divider, Grid, Typography, capitalize } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
 import PopularMaterialItem from './PopularMaterialItem';
@@ -22,7 +22,7 @@ const PopularMaterials: React.FC<IPopularMaterialsProps> = ({ materials }) => {
 
   return (
     <>
-      <Typography variant='overline'>Most Popular</Typography>
+      <Typography variant='h5'>Most Popular</Typography>
       <Grid container spacing={3}>
         {materials.map((material, i) => (
           <Grid item key={uuid()} xs={12} md={6} sx={{ width: '100%' }}>
