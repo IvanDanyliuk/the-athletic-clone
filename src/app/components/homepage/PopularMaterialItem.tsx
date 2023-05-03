@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Avatar, Grid, Typography, styled } from '@mui/material';
 import { IMaterial } from '../../../features/materials/types';
-import { Link } from 'react-router-dom';
 
 
 interface IPopularMaterialItemProp {

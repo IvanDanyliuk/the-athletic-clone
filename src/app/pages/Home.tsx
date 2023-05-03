@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Box, Divider, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../features/store';
 import { getContentSections } from '../../features/content/asyncActions';
@@ -8,7 +9,6 @@ import ContentSection from '../components/homepage/ContentSection';
 import { getHomepageSecondaryMaterials, getRecentMaterials } from '../../features/materials/asyncActions';
 import { MaterialType } from '../models/components';
 import { selectHomepageSecondaryMaterials, selectMaterials, selectMaterialsStatus } from '../../features/materials/selectors';
-import { Box, Divider, styled } from '@mui/material';
 import TopContentSection from '../components/homepage/TopContentSection';
 import PopularMaterials from '../components/homepage/PopularMaterials';
 import LeagueMaterials from '../components/homepage/LeagueMaterials';

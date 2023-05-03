@@ -1,10 +1,10 @@
 import React from 'react';
-import { Avatar, Box, Grid, Paper, Typography, styled } from '@mui/material';
-import dayjs from 'dayjs';
-import { IMaterial } from '../../../../features/materials/types';
 import { Link } from 'react-router-dom';
+import { Avatar, Box, Grid, Paper, Typography, styled } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import dayjs from 'dayjs';
+import { IMaterial } from '../../../../features/materials/types';
 
 
 interface IContentMainArticle {

@@ -38,7 +38,7 @@ const LinkBtn = styled(Link)`
 const SubPageHeader: React.FC<ISubPageHeaderProps> = ({ title, link }) => {
   return (
     <Container>
-      <Typography variant='h4'>
+      <Typography variant='h3'>
         {title}
       </Typography>
       <LinkBtn to={`/admin/${link}`}>
