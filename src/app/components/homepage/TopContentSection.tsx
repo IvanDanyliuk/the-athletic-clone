@@ -7,7 +7,6 @@ import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
 import MaterialSecondaryInfo from './MaterialSecondaryInfo';
 import Headlines from './Headlines';
-import SkeletonLoader from '../ui/SkeletonLoader';
 
 
 interface ITopContentSectionProps {
@@ -15,8 +14,10 @@ interface ITopContentSectionProps {
 }
 
 const Container = styled(Grid)`
-  margin-top: 0;
-  padding-top: 1em;
+  margin: 0;
+  &:first-child {
+    padding-right: 1em;
+  }
 `;
 
 const TopImage = sc.img`
@@ -48,25 +49,21 @@ const MaterialsListItem = styled(ListItem)`
   padding: 0;
 `;
 
-const HorizontalDivider = styled(Divider)`
-  margin: 1em 0;
-`;
-
 const VerticalDivider = styled(Divider)`
   margin: 0 1em;
 `;
 
+const HorizontalDivider = styled(Divider)`
+  margin: 1em 0;
+`;
+
 
 const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => {
-  if(materials.length === 0) {
-    return <SkeletonLoader variant='section' />;
-  }
-
   return (
     <Container container>
       <Grid item xs={12} md={9}>
-        <Grid container sx={{ padding: 0 }}>
-          <Grid item xs={12} md={6} sx={{ padding: 0 }}>
+        <Grid container>
+          <Grid item xs={12} md={6}>
             <MaterialLink to={`/materials/${materials[0]._id}`}>
               <TopImage 
                 src={materials[0].image} 

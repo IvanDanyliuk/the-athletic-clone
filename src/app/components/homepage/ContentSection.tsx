@@ -1,5 +1,5 @@
 import React from 'react';
-import sc from 'styled-components';
+import { Link } from 'react-router-dom';
 import { 
   Avatar, Box, Divider, Grid, List, 
   ListItem, Typography, styled 
@@ -7,8 +7,6 @@ import {
 import { v4 as uuid } from 'uuid';
 import { IContentSection } from '../../../features/content/types';
 import MaterialSecondaryInfo from './MaterialSecondaryInfo';
-import { Link } from 'react-router-dom';
-import SkeletonLoader from '../ui/SkeletonLoader';
 
 
 interface IContentSectionProps {
@@ -33,7 +31,7 @@ const MaterialLink = styled(Link)`
   }
 `;
 
-const TopImage = sc.img`
+const TopImage = styled('img')`
   width: 100%;
 `;
 
@@ -56,10 +54,6 @@ const SecondayMaterialImage = styled(Avatar)`
 
 
 const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
-  if(!data) {
-    return <SkeletonLoader variant='section' />;
-  } 
-
   return (
     <Section>
       <SectionTitle variant='h2'>{data.name}</SectionTitle>

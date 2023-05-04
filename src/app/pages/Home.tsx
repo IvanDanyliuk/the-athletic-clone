@@ -4,11 +4,11 @@ import { Box, Divider, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../features/store';
 import { getContentSections } from '../../features/content/asyncActions';
-import { selectContent, selectContentStatus } from '../../features/content/selectors';
+import { selectContent } from '../../features/content/selectors';
 import ContentSection from '../components/homepage/ContentSection';
 import { getHomepageSecondaryMaterials, getRecentMaterials } from '../../features/materials/asyncActions';
 import { MaterialType } from '../models/components';
-import { selectHomepageSecondaryMaterials, selectMaterials, selectMaterialsStatus } from '../../features/materials/selectors';
+import { selectHomepageSecondaryMaterials, selectMaterials } from '../../features/materials/selectors';
 import TopContentSection from '../components/homepage/TopContentSection';
 import PopularMaterials from '../components/homepage/PopularMaterials';
 import LeagueMaterials from '../components/homepage/LeagueMaterials';
@@ -37,8 +37,6 @@ const Home: React.FC = () => {
     mustRead, 
     leagueMaterials 
   } = useSelector(selectHomepageSecondaryMaterials);
-  const contentStatus = useSelector(selectContentStatus);
-  const recentMaterialsStatus = useSelector(selectMaterialsStatus);
 
   const fetchData = async () => {
     await dispatch(getContentSections());
@@ -53,12 +51,12 @@ const Home: React.FC = () => {
     fetchData();
   }, []);
 
-  if(contentStatus === 'loading' && recentMaterialsStatus === 'loading') {
+  if(contentSections.length === 0 || recentMaterials.length === 0) {
     return <SkeletonLoader variant='section' />;
   }
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', padding: '1em 0' }}>
       <TopContentSection materials={recentMaterials} />
       <SectionDivider />
       {contentSections.map((section, i) => (

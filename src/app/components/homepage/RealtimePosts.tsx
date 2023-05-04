@@ -11,7 +11,6 @@ import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
 import { divideArrayIntoChunks } from '../../utils/helpers';
 import { ChatBubbleOutline, ThumbUpOffAlt } from '@mui/icons-material';
-import SkeletonLoader from '../ui/SkeletonLoader';
 
 
 interface IRealtimePostsProps {
@@ -62,12 +61,7 @@ const BtnLabel = styled(Typography)`
 
 
 const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
-  if(materials.length < 1) {
-    return <SkeletonLoader variant='row' />;
-  }
-
   const dividedMaterials = divideArrayIntoChunks(materials!, 4);
-
   return (
     <Box>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
