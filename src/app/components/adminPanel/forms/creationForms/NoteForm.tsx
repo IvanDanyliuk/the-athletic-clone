@@ -23,7 +23,6 @@ import { getAllCompetitions } from '../../../../../features/competitions/asyncAc
 import MultiSelect from '../../../ui/MultiSelect';
 
 
-
 const Form = styled(Box)`
   margin-top: 20px;
 `;
@@ -75,6 +74,7 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
         publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
         status: data.status,
         content: data.content,
+        preview: data.preview,
         labels: selectedLabels,
       }));
       setIsLoading(false);
@@ -93,7 +93,6 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
         type: MaterialType.note,
         image: imageUrl,
         publicationDate: dayjs(data.publicationDate).add(1, 'day'),
-        content: data.content,
         views: 0,
         likes: 0,
         labels: selectedLabels,
@@ -114,7 +113,8 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
         image: noteToUpdate.image,
         publicationDate: dayjs(noteToUpdate.publicationDate).subtract(1, 'day'),
         status: noteToUpdate.status,
-        content: noteToUpdate.content
+        content: noteToUpdate.content,
+        preview: noteToUpdate.preview,
       });
       setSelectedLabels(noteToUpdate.labels);
     }
@@ -141,7 +141,16 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
               label='Image'
               type='file'
               register={register}
-              
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextInput 
+              name='preview' 
+              label='Preview'
+              type='text' 
+              register={register}
+              registerOptions={{ required: 'Preview is required!' }}
+              error={errors.title}
             />
           </Grid>
           <Grid item xs={12} md={3}>

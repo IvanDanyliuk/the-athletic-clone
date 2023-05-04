@@ -6,6 +6,7 @@ import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMo
 import { setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
 import { articleToUpdate } from '../../../../../utils/testing/testDataMocks/materials';
 import ArticleForm from '../ArticleForm';
+import { setupContentSuccessHandlers } from '../../../../../utils/testing/serverMocks/content';
 
 
 const mockedUseNavigate = jest.fn();
@@ -21,6 +22,7 @@ describe('ArticleForm tests', () => {
     setupCompetitionsSuccessHandlers();
     setupClubsSuccessHandlers();
     setupMaterialsSuccessHandlers();
+    setupContentSuccessHandlers()
   });
 
   afterEach(() => {
@@ -32,14 +34,16 @@ describe('ArticleForm tests', () => {
 
     const titleField = screen.getAllByTestId('textField');
     fireEvent.change(titleField[0], { target: { value: 'Test Title' } });
+    fireEvent.change(titleField[2], { target: { value: 'Test Preview' } });
 
     const select = screen.getAllByTestId('multiSelect');
     //eslint-disable-next-line
     fireEvent.change(select[0].querySelector('input')!, { target: { value: 'Premier League' } });
     
+    
     const submitBtn = screen.getByRole('button', { name: 'Submit' });
     fireEvent.click(submitBtn);
-
+    
     await waitFor(() => {
       expect(mockedUseNavigate).toHaveBeenCalled();
     });
@@ -48,8 +52,9 @@ describe('ArticleForm tests', () => {
   test('should call useNavigate after submiting an updation form', async () => {
     renderWithProviders(<ArticleForm articleToUpdate={articleToUpdate} />);
 
-    const titleField = screen.getAllByTestId('textField')[0];
-    userEvent.type(titleField, 'Test Title');
+    const titleField = screen.getAllByTestId('textField');
+    userEvent.type(titleField[0], 'Test Title');
+    userEvent.type(titleField[2], 'Test Preview');
 
     const select = screen.getAllByTestId('multiSelect');
     //eslint-disable-next-line

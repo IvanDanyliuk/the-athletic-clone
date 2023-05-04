@@ -1,4 +1,5 @@
 import { IContentSection, IContentSectionsInitialState } from "../../../../features/content/types";
+import { materialsStateSuccessMock } from "./materials";
 
 export const contentStateSuccessMock: IContentSectionsInitialState = {
   status: 'succeeded',
@@ -178,3 +179,40 @@ export const contentSection: IContentSection = {
   createdAt: '2023-04-05T14:34:56.462Z'
 };
 
+export const leagueMaterialsPropsMock = [
+  {
+    league: 'Premier League',
+    logo: 'https://www.storage.com/1.png',
+    materials: materialsStateSuccessMock.data.main.materials
+  },
+  {
+    league: 'Premier League',
+    logo: 'https://www.storage.com/1.png',
+    materials: materialsStateSuccessMock.data.main.materials
+  },
+  {
+    league: 'Premier League',
+    logo: 'https://www.storage.com/1.png',
+    materials: materialsStateSuccessMock.data.main.materials
+  },
+  {
+    league: 'Premier League',
+    logo: 'https://www.storage.com/1.png',
+    materials: materialsStateSuccessMock.data.main.materials
+  },
+  {
+    league: 'Premier League',
+    logo: 'https://www.storage.com/1.png',
+    materials: materialsStateSuccessMock.data.main.materials
+  },
+  {
+    league: 'Premier League',
+    logo: 'https://www.storage.com/1.png',
+    materials: materialsStateSuccessMock.data.main.materials
+  },
+  {
+    league: 'Premier League',
+    logo: 'https://www.storage.com/1.png',
+    materials: materialsStateSuccessMock.data.main.materials
+  }
+];

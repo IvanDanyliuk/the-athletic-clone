@@ -45,7 +45,7 @@ const MaterialsHeader: React.FC = () => {
 
   return (
     <Container>
-      <Typography variant='h4'>Materials</Typography>
+      <Typography variant='h3'>Materials</Typography>
       <Box>
         <MenuBtn onClick={handleClick}>
           <FontAwesomeIcon icon={faPlus} />

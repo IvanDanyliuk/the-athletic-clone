@@ -4,13 +4,22 @@ import { setupMaterialsErrorHandlers, setupMaterialsSuccessHandlers } from '../.
 import { materialsStateErrorMock, materialsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/materials';
 import { setupContentErrorHandlers, setupContentSuccessHandlers } from '../../../../../utils/testing/serverMocks/content';
 import MaterialsTable from '../MaterialsTable';
+import { IMaterialsState } from '../../../../../../features/materials/types';
 
 
-const materialsStateMock = {
+const materialsStateMock: IMaterialsState = {
   status: 'loading',
   data: {
-    materials: [],
-    materialsCount: 0
+    main: {
+      materials: [],
+      materialsCount: 0
+    },
+    homepage: {
+      latestPosts: [],
+      topMaterials: [],
+      mustRead: null,
+      leagueMaterials: []
+    }
   },
   authors: [],
   filters: null,
@@ -63,7 +72,7 @@ describe('MaterialsTable tests', () => {
     });
   })
 
-  test('should render the CompetitionsTable component: loading status case', async () => {
+  test('should render the MaterialsTable component: loading status case', async () => {
     renderWithProviders(
       <MaterialsTable />,
       {

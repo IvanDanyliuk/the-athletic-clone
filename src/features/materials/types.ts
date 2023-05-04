@@ -3,8 +3,20 @@ import { MaterialModel } from "../../app/models/components";
 export interface IMaterialsState {
   status: string,
   data: {
-    materials: IMaterial[],
-    materialsCount: number
+    main: {
+      materials: IMaterial[],
+      materialsCount: number
+    },
+    homepage: {
+      topMaterials: IMaterial[],
+      latestPosts: IMaterial[],
+      mustRead: IMaterial | null,
+      leagueMaterials: {
+        league: string,
+        logo: string,
+        materials: IMaterial[]
+      }[]
+    }
   },
   filters: MaterialFilterData | null,
   authors: string[],
@@ -21,6 +33,16 @@ export interface IMaterialsRequestData {
   } | null
 }
 
+export interface IRecentMaterialsRequestData {
+  materialsNumber: number,
+  materialTypes: string[]
+}
+
+export interface IHomepageSecondaryMaterialsRequestData {
+  topMaterialsNum: number,
+  postsNum: number
+}
+
 export interface IMaterial {
   _id: string,
   author: { 
@@ -32,7 +54,9 @@ export interface IMaterial {
   type: string,
   title: string,
   content: string,
+  preview?: string,
   image?: any,
+  isMain?: boolean,
   status: string,
   views: number,
   likes: number,

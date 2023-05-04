@@ -1,13 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createMaterial, deleteMaterial, getAuthors, getMaterials, updateMaterial } from './asyncActions';
+import { createMaterial, deleteMaterial, getAuthors, getHomepageSecondaryMaterials, getMaterials, getRecentMaterials, updateMaterial } from './asyncActions';
 import { IMaterialsState } from './types';
 
 
 const initialState: IMaterialsState = {
   status: 'idle',
   data: {
-    materials: [],
-    materialsCount: 0
+    main: {
+      materials: [],
+      materialsCount: 0
+    },
+    homepage: {
+      topMaterials: [],
+      latestPosts: [],
+      mustRead: null,
+      leagueMaterials: []
+    }
   },
   filters: null,
   authors: [],
@@ -35,7 +43,7 @@ const materialsSlice = createSlice({
       })
       .addCase(createMaterial.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data.materials.push(action.payload);
+        state.data.main.materials.push(action.payload);
       })
       .addCase(createMaterial.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -46,9 +54,31 @@ const materialsSlice = createSlice({
       })
       .addCase(getMaterials.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data.main = action.payload;
       })
       .addCase(getMaterials.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(getRecentMaterials.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getRecentMaterials.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data.main.materials = action.payload;
+      })
+      .addCase(getRecentMaterials.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(getHomepageSecondaryMaterials.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getHomepageSecondaryMaterials.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data.homepage = action.payload;
+      })
+      .addCase(getHomepageSecondaryMaterials.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })
@@ -68,7 +98,7 @@ const materialsSlice = createSlice({
       })
       .addCase(updateMaterial.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data.materials = state.data.materials.map(material => material._id === action.payload._id ? action.payload : material);
+        state.data.main.materials = state.data.main.materials.map(material => material._id === action.payload._id ? action.payload : material);
       })
       .addCase(updateMaterial.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -79,7 +109,7 @@ const materialsSlice = createSlice({
       })
       .addCase(deleteMaterial.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data.main = action.payload;
       })
       .addCase(deleteMaterial.rejected, (state, action: any) => {
         state.status = 'failed';

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Box, Button, Dialog, DialogActions, DialogTitle, Menu, MenuItem, styled } from '@mui/material';
+import { Box, Button, Dialog, DialogActions, DialogTitle, Menu, MenuItem, Typography, styled } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
@@ -17,6 +17,8 @@ export enum EssenseType {
 interface IRowActionButtonsProps {
   id: string,
   type: EssenseType, 
+  materialType?: string,
+  onSetMainArticle?: () => void,
   onDelete: () => void
 }
 
@@ -26,7 +28,7 @@ const EditLink = styled(Link)`
 `;
 
 
-const RowActionButtons: React.FC<IRowActionButtonsProps> = ({ id, type, onDelete }) => {
+const RowActionButtons: React.FC<IRowActionButtonsProps> = ({ id, type, materialType, onSetMainArticle, onDelete }) => {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLButtonElement>(null);
   const open = Boolean(anchorEl);
@@ -104,6 +106,14 @@ const RowActionButtons: React.FC<IRowActionButtonsProps> = ({ id, type, onDelete
         <MenuItem>
           <EditLink to={`/admin/${type}/edit/${id}`}>Edit</EditLink>
         </MenuItem>
+        {
+          type === EssenseType.materials && 
+          materialType === 'article' && (
+            <MenuItem>
+              <Typography onClick={onSetMainArticle}>Set as Main</Typography>
+            </MenuItem>
+          )
+        }
         <MenuItem>
           {DeleteBtn}
         </MenuItem>

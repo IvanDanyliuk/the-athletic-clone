@@ -17,7 +17,7 @@ interface IContentSectionListItem {
 }
 
 const SectionBody = styled(Paper)`
-  padding: 5px 10px;
+  padding: 1em;
 `;
 
 const Text = styled(Typography)`

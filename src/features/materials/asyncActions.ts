@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
 import { MaterialModel } from '../../app/models/components';
-import { IDeleteMaterialData, IMaterial, IMaterialsRequestData } from './types';
+import { IDeleteMaterialData, IMaterial, IMaterialsRequestData, IHomepageSecondaryMaterialsRequestData, IRecentMaterialsRequestData } from './types';
 import { IUser, UserRoles } from '../users/types';
 
 
@@ -23,6 +23,32 @@ export const getMaterials = createAsyncThunk(
     const { page, itemsPerPage, filterData, sortData } = requestData;
     try {
       const { data } = await api.getMaterials(page, itemsPerPage, filterData, sortData);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getRecentMaterials = createAsyncThunk(
+  'materials/getRecentMaterials',
+  async (requestData: IRecentMaterialsRequestData, thunkAPI) => {
+    const { materialsNumber, materialTypes } = requestData;
+    try {
+      const { data } = await api.getRecentMaterials(materialsNumber, materialTypes);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getHomepageSecondaryMaterials = createAsyncThunk(
+  'materials/getHomepageSecondaryMaterials',
+  async (requestData: IHomepageSecondaryMaterialsRequestData, thunkAPI) => {
+    const { topMaterialsNum, postsNum } = requestData;
+    try {
+      const { data } = await api.getHomapageSecondaryMaterials(topMaterialsNum, postsNum);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
