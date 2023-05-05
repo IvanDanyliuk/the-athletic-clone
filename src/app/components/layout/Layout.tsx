@@ -6,6 +6,8 @@ import Header from './Header';
 import Footer from './Footer';
 import { AppDispatch } from '../../../features/store';
 import { getAuthenticatedUser } from '../../../features/users/asyncActions';
+import { useLocation } from 'react-router-dom';
+import SubscribeSection from '../common/SubscribeSection';
 
 
 interface ILayout {
@@ -20,14 +22,17 @@ const Wrapper = styled(Box)`
   background: #ffffff;
 `;
 
-const Content = styled(Container)`
+const Main = styled(Box)`
   padding-top: 7vh;
+  width: 100%;
   display: flex;
   flex: 1;
+  flex-direction: column;
 `;
 
 const Layout: React.FC<ILayout> = ({ children }) => {
   const dispatch = useDispatch<AppDispatch>();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(getAuthenticatedUser());
@@ -36,9 +41,14 @@ const Layout: React.FC<ILayout> = ({ children }) => {
   return (
     <Wrapper>
       <Header />
-      <Content maxWidth='xl'>
-        {children}
-      </Content>
+      <Main component='main'>
+        {pathname === '/' && (
+          <SubscribeSection />
+        )}
+        <Container maxWidth='xl'>
+          {children}
+        </Container>
+      </Main>
       <Footer />
     </Wrapper>
   )
