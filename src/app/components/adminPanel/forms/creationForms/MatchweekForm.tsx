@@ -4,10 +4,13 @@ import { useForm } from 'react-hook-form';
 import { v4 as uuid } from 'uuid';
 import TextInput from '../../../ui/TextInput';
 import ScheduleContext, { ScheduleContextType } from '../../../../context/scheduleContext';
+import ControlledDatePicker from '../../../ui/ControlledDatePicker';
 
 
 interface ITitle {
-  matchweekName: string
+  matchweekName: string,
+  matchweekStart: string,
+  matchweekEnd: string
 }
 
 const Form = styled(Box)`
@@ -30,7 +33,7 @@ const SubmitBtn = styled(Button)`
 
 
 const MatchweekForm: React.FC = () => {
-  const { register, handleSubmit, formState: { errors }, reset } = useForm<ITitle>();
+  const { register, handleSubmit, control, formState: { errors }, reset } = useForm<ITitle>();
   const { schedule, addMatchweek } = useContext(ScheduleContext) as ScheduleContextType;
 
   const handleMatchweekTitle = (data: any) => {
@@ -54,6 +57,22 @@ const MatchweekForm: React.FC = () => {
               register={register}
               registerOptions={{ required: 'Matchweek name is required!' }} 
               error={errors.matchweekName}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <ControlledDatePicker
+              name='matchweekStart'
+              label='Matchweek Start'
+              control={control}
+              register={register}
+            />
+          </Grid>
+          <Grid item xs={12} md={3}>
+            <ControlledDatePicker 
+              name='matchweekEnd'
+              label='Matchweek End'
+              control={control}
+              register={register}
             />
           </Grid>
           <BtnWrapper item xs={12} md={2}>
