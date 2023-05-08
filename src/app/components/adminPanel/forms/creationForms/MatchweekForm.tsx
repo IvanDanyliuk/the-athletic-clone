@@ -9,8 +9,8 @@ import ControlledDatePicker from '../../../ui/ControlledDatePicker';
 
 interface ITitle {
   matchweekName: string,
-  matchweekStart: string,
-  matchweekEnd: string
+  dateStart: string,
+  dateEnd: string
 }
 
 const Form = styled(Box)`
@@ -61,7 +61,7 @@ const MatchweekForm: React.FC = () => {
           </Grid>
           <Grid item xs={12} md={3}>
             <ControlledDatePicker
-              name='matchweekStart'
+              name='dateStart'
               label='Matchweek Start'
               control={control}
               register={register}
@@ -69,7 +69,7 @@ const MatchweekForm: React.FC = () => {
           </Grid>
           <Grid item xs={12} md={3}>
             <ControlledDatePicker 
-              name='matchweekEnd'
+              name='dateEnd'
               label='Matchweek End'
               control={control}
               register={register}
