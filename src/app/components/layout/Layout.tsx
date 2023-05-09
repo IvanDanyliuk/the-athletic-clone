@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Box, Container } from '@mui/material';
 import Header from './Header';
 import Footer from './Footer';
 import { AppDispatch } from '../../../features/store';
 import { getAuthenticatedUser } from '../../../features/users/asyncActions';
-import { useLocation } from 'react-router-dom';
 import SubscribeSection from '../common/SubscribeSection';
 import ScoresSection from '../common/ScoresSection';
-import { selectAllSchedules } from '../../../features/schedules/selectors';
+import { selectLatestMatches } from '../../../features/schedules/selectors';
 import { getRecentMatches } from '../../../features/schedules/asyncActions';
 import { getCurrentSeasonValue } from '../../utils/helpers';
 
@@ -37,7 +37,9 @@ const Main = styled(Box)`
 const Layout: React.FC<ILayout> = ({ children }) => {
   const dispatch = useDispatch<AppDispatch>();
   const { pathname } = useLocation();
+
   const season = getCurrentSeasonValue();
+  const latestMatches = useSelector(selectLatestMatches);
 
   useEffect(() => {
     dispatch(getAuthenticatedUser());
@@ -51,16 +53,16 @@ const Layout: React.FC<ILayout> = ({ children }) => {
         {pathname === '/' && (
           <SubscribeSection />
         )}
-        {/* {pathname !== '/admin' && (
-          // <ScoresSection matches={} />
-        )} */}
+        {!pathname.includes('admin') && (
+          <ScoresSection matches={latestMatches} />
+        )}
         <Container maxWidth='xl'>
           {children}
         </Container>
       </Main>
       <Footer />
     </Wrapper>
-  )
-}
+  );
+};
 
 export default Layout;
