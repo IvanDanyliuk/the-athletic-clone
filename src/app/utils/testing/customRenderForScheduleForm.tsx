@@ -46,8 +46,11 @@ export const renderWithProvidersForSchedules = (
       schedules: {
         status: 'succeeded',
         data: {
-          schedules: [],
-          schedulesCount: 0
+          main: {
+            schedules: [],
+            schedulesCount: 0
+          },
+          latestMatches: []
         },
         filters: null,
         error: null

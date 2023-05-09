@@ -29,6 +29,32 @@ export const getSchedules = createAsyncThunk(
   }
 );
 
+export const getRecentMatches = createAsyncThunk(
+  'schedules/getRecentMatches',
+  async (requestData: ISchedulesRequestData, thunkAPI) => {
+    const { filterData } = requestData;
+    const currentDate = new Date();
+    try {
+      const { data } = await api.getSchedules(undefined, undefined, filterData);
+      const matches = data.map((schedule: ISchedule) => ({
+        league: schedule.competition.shortName,
+        matches: schedule.fixture
+          .filter(mw => new Date(mw.dateStart) <= currentDate && new Date(mw.dateEnd) >= currentDate)
+          .map(mw => mw.games)
+          .flat()
+      }));
+      return matches.length > 0 ? 
+        matches : 
+        data.map((schedule: ISchedule) => ({
+          league: schedule.competition.shortName,
+          matches: schedule.fixture[schedule.fixture.length - 1]
+        }));
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+)
+
 export const updateSchedule = createAsyncThunk(
   'schedules/updateSchedule',
   async (scheduleToUpdate: ISchedule, thunkAPI) => {
