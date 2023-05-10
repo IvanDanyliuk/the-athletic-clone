@@ -36,19 +36,26 @@ export const getRecentMatches = createAsyncThunk(
     const currentDate = new Date();
     try {
       const { data } = await api.getSchedules(undefined, undefined, filterData);
-      const matches = data.map((schedule: ISchedule) => ({
+      const leagueMatches = data.map((schedule: ISchedule) => ({
         league: schedule.competition.shortName,
-        matches: schedule.fixture
-          .filter(mw => new Date(mw.dateStart) <= currentDate && new Date(mw.dateEnd) >= currentDate)
-          .map(mw => mw.games)
-          .flat()
-      }));
-      return matches.length > 0 ? 
-        matches : 
-        data.map((schedule: ISchedule) => ({
-          league: schedule.competition.shortName,
-          matches: schedule.fixture[schedule.fixture.length - 1]
-        }));
+        matches: []
+      }))
+      return leagueMatches
+      // const matches = data
+      //   .map((schedule: ISchedule) => ({
+      //     league: schedule.competition.shortName,
+      //     matches: schedule.fixture
+      //       .filter(mw => new Date(mw.dateStart) <= currentDate && new Date(mw.dateEnd) >= currentDate)
+      //       .map(mw => mw.games)
+      //       .flat()
+      //   }))
+      //   .filter((fixture: any) => fixture.matches.length > 0);
+      // return matches.length > 0 ? 
+      //   matches : 
+      //   data.map((schedule: ISchedule) => ({
+      //     league: schedule.competition.shortName,
+      //     matches: schedule.fixture.map(item => item.games)[schedule.fixture.length - 1]
+      //   }));
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
     }

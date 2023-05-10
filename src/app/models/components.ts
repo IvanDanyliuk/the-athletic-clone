@@ -68,8 +68,7 @@ export interface ScheduleModel {
   fixture: {
     id: string,
     matchweekName: string,
-    dateStart: string,
-    dateEnd: string,
+    basicDate: string,
     games: {
       id: string,
       home: IClub,

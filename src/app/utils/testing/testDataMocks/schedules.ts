@@ -50,8 +50,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 1',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -87,8 +86,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 2',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -168,8 +166,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 1',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -205,8 +202,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 2',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -286,8 +282,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 1',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -323,8 +318,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 2',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -404,8 +398,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 1',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -441,8 +434,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 2',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -522,8 +514,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 1',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -559,8 +550,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 2',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -640,8 +630,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 1',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -677,8 +666,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 2',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -758,8 +746,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 1',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -795,8 +782,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 2',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -876,8 +862,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 1',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -913,8 +898,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 2',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -994,8 +978,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 1',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -1031,8 +1014,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 2',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -1112,8 +1094,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 1',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -1149,8 +1130,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
             {
               id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
               matchweekName: 'Matchweek 2',
-              dateStart: '2023-03-29T21:00:00.000Z',
-              dateEnd: '2023-03-29T21:00:00.000Z',
+              basicDate: '2023-03-29T21:00:00.000Z',
               games: [
                 {
                   id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -1252,8 +1232,7 @@ export const newSchedule: ScheduleModel = {
     {
       id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
       matchweekName: 'Matchweek 1',
-      dateStart: '2023-03-29T21:00:00.000Z',
-      dateEnd: '2023-03-29T21:00:00.000Z',
+      basicDate: '2023-03-29T21:00:00.000Z',
       games: [
         {
           id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -1288,8 +1267,7 @@ export const newSchedule: ScheduleModel = {
     {
       id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
       matchweekName: 'Matchweek 2',
-      dateStart: '2023-03-29T21:00:00.000Z',
-      dateEnd: '2023-03-29T21:00:00.000Z',
+      basicDate: '2023-03-29T21:00:00.000Z',
       games: [
         {
           id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -1365,8 +1343,7 @@ export const scheduleToUpdate: ISchedule = {
     {
       id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
       matchweekName: 'Matchweek 1',
-      dateStart: '2023-03-29T21:00:00.000Z',
-      dateEnd: '2023-03-29T21:00:00.000Z',
+      basicDate: '2023-03-29T21:00:00.000Z',
       games: [
         {
           id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
@@ -1402,8 +1379,7 @@ export const scheduleToUpdate: ISchedule = {
     {
       id: '881ae563-d76c-4d3b-bbe2-14d1144ba390',
       matchweekName: 'Matchweek 2',
-      dateStart: '2023-03-29T21:00:00.000Z',
-      dateEnd: '2023-03-29T21:00:00.000Z',
+      basicDate: '2023-03-29T21:00:00.000Z',
       games: [
         {
           id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',

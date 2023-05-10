@@ -22,8 +22,7 @@ export interface IMatchweek {
   _id?: string,
   id: string,
   matchweekName: string,
-  dateStart: string,
-  dateEnd: string,
+  basicDate: string,
   games: IMatch[]
 }
 export interface ISchedulesInitialState {
