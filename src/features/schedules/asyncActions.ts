@@ -33,34 +33,23 @@ export const getRecentMatches = createAsyncThunk(
   'schedules/getRecentMatches',
   async (requestData: ISchedulesRequestData, thunkAPI) => {
     const { filterData } = requestData;
-    const currentDate = new Date();
+    const currentDate = new Date().getTime();
     try {
       const { data } = await api.getSchedules(undefined, undefined, filterData);
       const leagueMatches = data.map((schedule: ISchedule) => ({
         league: schedule.competition.shortName,
-        matches: []
-      }))
-      return leagueMatches
-      // const matches = data
-      //   .map((schedule: ISchedule) => ({
-      //     league: schedule.competition.shortName,
-      //     matches: schedule.fixture
-      //       .filter(mw => new Date(mw.dateStart) <= currentDate && new Date(mw.dateEnd) >= currentDate)
-      //       .map(mw => mw.games)
-      //       .flat()
-      //   }))
-      //   .filter((fixture: any) => fixture.matches.length > 0);
-      // return matches.length > 0 ? 
-      //   matches : 
-      //   data.map((schedule: ISchedule) => ({
-      //     league: schedule.competition.shortName,
-      //     matches: schedule.fixture.map(item => item.games)[schedule.fixture.length - 1]
-      //   }));
+        matches: schedule.fixture.reduce((prev, curr) => {
+          const a = Math.abs(new Date(curr.basicDate).getTime() - currentDate);
+          const b = Math.abs(new Date(prev.basicDate).getTime() - currentDate);
+          return a - b < 0 ? curr : prev;
+        }).games
+      }));
+      return leagueMatches;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
-)
+);
 
 export const updateSchedule = createAsyncThunk(
   'schedules/updateSchedule',
