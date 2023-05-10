@@ -51,10 +51,10 @@ const Layout: React.FC<ILayout> = ({ children }) => {
       <Header />
       <Main component='main'>
         {pathname === '/' && (
-          <SubscribeSection />
-        )}
-        {!pathname.includes('admin') && (
-          <ScoresSection matches={latestMatches} />
+          <>
+            <SubscribeSection />
+            <ScoresSection matches={latestMatches} />
+          </>
         )}
         <Container maxWidth='xl'>
           {children}

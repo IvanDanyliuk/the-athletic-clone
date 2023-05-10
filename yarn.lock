@@ -9014,6 +9014,11 @@
     "@mui/system" "^5.4.1"
     "framer-motion" "^4.1.17"
 
+"react-multi-carousel@^2.8.3":
+  "integrity" "sha512-wpHwq9Y/ydX+5yxpW8250jMOtg8NuBVlFrDTuS5/MdN0uD0zFIHxVbXhzzc4WFeQl6bn9ZLo8Fef2Ik5aBRgmw=="
+  "resolved" "https://registry.npmjs.org/react-multi-carousel/-/react-multi-carousel-2.8.3.tgz"
+  "version" "2.8.3"
+
 "react-quill@^2.0.0":
   "integrity" "sha512-4qQtv1FtCfLgoD3PXAur5RyxuUbPXQGOHgTlFie3jtxp43mXDtzCKaOgQ3mLyZfi1PUlyjycfivKelFhy13QUg=="
   "resolved" "https://registry.npmjs.org/react-quill/-/react-quill-2.0.0.tgz"

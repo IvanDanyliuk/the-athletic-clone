@@ -1,9 +1,12 @@
 import React from 'react';
-import Carousel from 'react-material-ui-carousel';
-import { Box, Card, CardContent, CardHeader, Container, Grid, List, ListItem, Typography, styled } from '@mui/material';
+import Carousel from 'react-multi-carousel';
+import "react-multi-carousel/lib/styles.css";
+import { Box, Button, Container, Grid, Typography, styled } from '@mui/material';
+import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { IMatch } from '../../../features/schedules/types';
-import dayjs from 'dayjs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 
 
 interface IScoresSectionProps {
@@ -12,6 +15,12 @@ interface IScoresSectionProps {
     matches: IMatch[]
   }[]
 }
+
+const ScoreCarousel = styled(Carousel)`
+  &.react-multi-carousel-list {
+    padding: 1em 5em .5em 5em;
+  }
+`;
 
 const LeagueName = styled(Typography)`
   height: 100%;
@@ -31,14 +40,76 @@ const MatchText = styled(Typography)`
   font-size: .7em;
 `;
 
+const ArrowBtn = styled(Button)`
+  position: absolute;
+  width: 2em;
+  height: 100%;
+`;
+
+const CustomRightArrow = ({ onClick, ...rest }: any) => {
+  const {
+    onMove,
+    carouselState: { currentSlide, deviceType }
+  } = rest;
+  return (
+    <ArrowBtn onClick={() => onClick()} sx={{ right: 0 }}>
+      <FontAwesomeIcon icon={faAngleRight} />
+    </ArrowBtn>
+  );
+};
+
+const CustomLeftArrow = ({ onClick, ...rest }: any) => {
+  const {
+    onMove,
+    carouselState: { currentSlide, deviceType }
+  } = rest;
+  // onMove means if dragging or swiping in progress.
+  return (
+    <ArrowBtn onClick={() => onClick()} sx={{ left: 0 }}>
+      <FontAwesomeIcon icon={faAngleLeft} />
+    </ArrowBtn>
+  );
+};
+
 
 const ScoresSection: React.FC<IScoresSectionProps> = ({ matches }) => {
+  const responsive = {
+    seperLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: matches.length
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: matches.length
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: matches.length
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: matches.length
+    }
+  }
   return (
     <Container maxWidth='xl'>
-      <Carousel
-        indicators={false}
-        autoPlay={false}
-        sx={{ marginTop: '1em', padding: '0 4em'}}
+      <ScoreCarousel
+        swipeable={false}
+        draggable={false}
+        showDots={false}
+        responsive={responsive}
+        infinite={true}
+        autoPlaySpeed={1000}
+        keyBoardControl={true}
+        customTransition="all .5"
+        customLeftArrow={<CustomLeftArrow />}
+        customRightArrow={<CustomRightArrow />}
+        renderButtonGroupOutside={true}
+        transitionDuration={500}
+        containerClass="carousel-container"
+        removeArrowOnDeviceType={["tablet", "mobile"]}
+        dotListClass="custom-dot-list-style"
+        itemClass="carousel-item-padding-40-px"
       >
         {matches.map(item => (
           <Grid key={uuid()} container>
@@ -66,7 +137,7 @@ const ScoresSection: React.FC<IScoresSectionProps> = ({ matches }) => {
             </Grid>
           </Grid>
         ))}
-      </Carousel>
+      </ScoreCarousel>
     </Container>
   );
 };
