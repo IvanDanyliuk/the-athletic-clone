@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
-import "react-multi-carousel/lib/styles.css";
-import { Box, Button, Container, Grid, Typography, styled } from '@mui/material';
+import 'react-multi-carousel/lib/styles.css';
+import { Avatar, Box, Button, Container, Grid, Typography, styled } from '@mui/material';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { IMatch } from '../../../features/schedules/types';
@@ -44,6 +44,15 @@ const ArrowBtn = styled(Button)`
   position: absolute;
   width: 2em;
   height: 100%;
+`;
+
+const ClubData = styled(Grid)`
+  display: flex;
+  align-items: center;
+`;
+
+const ClubLogo = styled('img')`
+  height: 1.5em;
 `;
 
 const CustomRightArrow = ({ onClick, ...rest }: any) => {
@@ -101,20 +110,22 @@ const ScoresSection: React.FC<IScoresSectionProps> = ({ matches }) => {
         infinite={true}
         autoPlaySpeed={1000}
         keyBoardControl={true}
-        customTransition="all .5"
+        customTransition='all .5'
         customLeftArrow={<CustomLeftArrow />}
         customRightArrow={<CustomRightArrow />}
         renderButtonGroupOutside={true}
         transitionDuration={500}
-        containerClass="carousel-container"
-        removeArrowOnDeviceType={["tablet", "mobile"]}
-        dotListClass="custom-dot-list-style"
-        itemClass="carousel-item-padding-40-px"
+        containerClass='carousel-container'
+        removeArrowOnDeviceType={['tablet', 'mobile']}
+        dotListClass='custom-dot-list-style'
+        itemClass='carousel-item-padding-40-px'
       >
         {matches.map(item => (
           <Grid key={uuid()} container>
             <Grid item xs={1} sx={{ margin: 0, padding: 0 }}>
-              <LeagueName variant='inherit'>{item.league}</LeagueName>
+              <LeagueName variant='inherit'>
+                {item.league}
+              </LeagueName>
             </Grid>
             <Grid item xs sx={{ display: 'flex' }}>
               {item.matches.map(match => (
@@ -122,16 +133,34 @@ const ScoresSection: React.FC<IScoresSectionProps> = ({ matches }) => {
                   <Date variant='inherit'>
                     {dayjs(match.date).format('DD/MM/YYYY')}
                   </Date>
-                  <Grid container spacing={3}>
-                    <Grid item xs={6}>
-                      <MatchText variant='inherit'>{match.home.shortName}</MatchText>
-                      <MatchText variant='inherit'>{match.away.shortName}</MatchText>
+                  <Box >
+                    <Grid container spacing={5} alignItems='center'>
+                      <ClubData item xs={6}>
+                        <ClubLogo src={match.home.clubLogoUrl} />
+                        <MatchText variant='inherit'>
+                          {match.home.shortName}
+                        </MatchText>
+                      </ClubData>
+                      <Grid item xs={6}>
+                        <MatchText variant='inherit'>
+                          {match.score.split(':')[0]}
+                        </MatchText>
+                      </Grid>
                     </Grid>
-                    <Grid item xs={6}>
-                      <MatchText variant='inherit'>{match.score.split(':')[0]}</MatchText>
-                      <MatchText variant='inherit'>{match.score.split(':')[1]}</MatchText>
+                    <Grid container spacing={5} alignItems='center'>
+                      <ClubData item xs={6}>
+                        <ClubLogo src={match.away.clubLogoUrl} />
+                        <MatchText variant='inherit'>
+                          {match.away.shortName}
+                        </MatchText>
+                      </ClubData>
+                      <Grid item xs={6}>
+                        <MatchText variant='inherit'>
+                          {match.score.split(':')[1]}
+                        </MatchText>
+                      </Grid>
                     </Grid>
-                  </Grid>
+                  </Box>
                 </Box>
               ))}
             </Grid>

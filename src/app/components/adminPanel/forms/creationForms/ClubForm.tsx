@@ -40,9 +40,11 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
   const handleFormSubmit = async (data: any) => {
     if(clubToUpdate) {
       setIsLoading(true);
+      const clubLogoUrl = data.clubLogoUrl.length > 0 ? await uploadImage(data.clubLogoUrl[0]) : clubToUpdate.clubLogoUrl;
       await dispatch(updateClub({
+        ...data,
         _id: clubToUpdate._id,
-        ...data
+        clubLogoUrl
       }));
       setIsLoading(false);
       navigate('/admin/clubs');
@@ -61,6 +63,7 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
 
   useEffect(() => {
     if(clubToUpdate) {
+      console.log(clubToUpdate)
       reset({
         fullName: clubToUpdate.fullName,
         commonName: clubToUpdate.commonName,
