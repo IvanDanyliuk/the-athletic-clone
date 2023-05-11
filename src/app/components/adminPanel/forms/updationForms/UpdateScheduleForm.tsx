@@ -9,7 +9,7 @@ const NewScheduleForm: React.FC = () => {
   const { id } = useParams();
   const schedules = useSelector(selectAllSchedules);
   const scheduleToUpdate = schedules.find(schedule => schedule._id === id);
-
+  
   return (
     <ScheduleForm scheduleToUpdate={scheduleToUpdate} />
   );

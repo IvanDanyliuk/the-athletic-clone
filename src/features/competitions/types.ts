@@ -11,19 +11,6 @@ export interface ICompetition {
   createdAt: string
 }
 
-// export interface ICompetitionsInitialState {
-//   status: string,
-//   data: {
-//     competitions: ICompetition[],
-//     competitionsCount: number
-//   },
-//   filters: {
-//     country?: string,
-//     type?: string
-//   } | null,
-//   error: string | null
-// }
-
 export enum Order {
   asc = 'asc',
   desc = 'desc'

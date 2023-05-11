@@ -18,7 +18,6 @@ import { IClub } from '../../../../../features/clubs/types';
 import MultiSelect from '../../../ui/MultiSelect';
 
 
-
 const Form = styled(Box)`
   margin-top: 20px;
 `;
@@ -75,15 +74,18 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
   const handleFormSubmit = async (data: any) => {
     if(competitionToUpdate) {
       setIsLoading(true);
+      const logoUrl = data.logoUrl.length > 0 ? await uploadImage(data.logoUrl[0]) : competitionToUpdate.logoUrl;
+
       await dispatch(updateCompetition({
+        ...data,
         _id: competitionToUpdate._id,
-        ...data
+        logoUrl
       }));
       setIsLoading(false);
       navigate('/admin/competitions');
     } else {
       setIsLoading(true);
-      const logoUrl = data.clubLogoUrl.length > 0 ? await uploadImage(data.clubLogoUrl[0]) : '';
+      const logoUrl = data.logoUrl.length > 0 ? await uploadImage(data.logoUrl[0]) : '';
       await dispatch(createCompetition({
         ...data,
         logoUrl,
@@ -98,14 +100,15 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
 
   useEffect(() => {
     if(competitionToUpdate) {
+      console.log(competitionToUpdate)
       reset({
         fullName: competitionToUpdate.fullName,
         shortName: competitionToUpdate.shortName,
         country: competitionToUpdate.country,
         clubs: competitionToUpdate.clubs,
-        logoUrl: competitionToUpdate.logoUrl,
+        // logoUrl: competitionToUpdate.logoUrl,
         type: competitionToUpdate.type
-      })
+      });
     }
   }, []);
 
@@ -178,7 +181,7 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
           </Grid>
           <Grid item xs={12} md={6}>
             <TextInput 
-              name='clubLogoUrl' 
+              name='logoUrl' 
               label='Image'
               type='file'
               register={register}
