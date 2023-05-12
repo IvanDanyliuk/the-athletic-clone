@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { Avatar, Box, Button, Container, Grid, Typography, styled } from '@mui/material';
+import { Button, Container, Grid, Typography, styled } from '@mui/material';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { IMatch } from '../../../features/schedules/types';
@@ -18,7 +18,7 @@ interface IScoresSectionProps {
 
 const ScoreCarousel = styled(Carousel)`
   &.react-multi-carousel-list {
-    padding: 1em 5em .5em 5em;
+    padding: 1em 4em .5em 4em;
   }
 `;
 
@@ -44,9 +44,19 @@ const ArrowBtn = styled(Button)`
   position: absolute;
   width: 2em;
   height: 100%;
+  background: #ffffff;
+  &:hover {
+    background: #ffffff;
+  }
 `;
 
-const ClubData = styled(Grid)`
+const ClubCommonData = styled(Grid)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const ClubName = styled(Grid)`
   display: flex;
   align-items: center;
 `;
@@ -115,54 +125,71 @@ const ScoresSection: React.FC<IScoresSectionProps> = ({ matches }) => {
         customRightArrow={<CustomRightArrow />}
         renderButtonGroupOutside={true}
         transitionDuration={500}
+        partialVisbile={false}
         containerClass='carousel-container'
         removeArrowOnDeviceType={['tablet', 'mobile']}
         dotListClass='custom-dot-list-style'
         itemClass='carousel-item-padding-40-px'
       >
         {matches.map(item => (
-          <Grid key={uuid()} container>
-            <Grid item xs={1} sx={{ margin: 0, padding: 0 }}>
+          <Grid key={uuid()} container spacing={1}>
+            <Grid item xs='auto'>
               <LeagueName variant='inherit'>
                 {item.league}
               </LeagueName>
             </Grid>
             <Grid item xs sx={{ display: 'flex' }}>
-              {item.matches.map(match => (
-                <Box key={uuid()} sx={{ marginRight: '1em' }}>
-                  <Date variant='inherit'>
-                    {dayjs(match.date).format('DD/MM/YYYY')}
-                  </Date>
-                  <Box >
-                    <Grid container spacing={5} alignItems='center'>
-                      <ClubData item xs={6}>
-                        <ClubLogo src={match.home.clubLogoUrl} />
-                        <MatchText variant='inherit'>
-                          {match.home.shortName}
-                        </MatchText>
-                      </ClubData>
-                      <Grid item xs={6}>
-                        <MatchText variant='inherit'>
-                          {match.score.split(':')[0]}
-                        </MatchText>
+              <Grid container spacing={2} sx={{ width: 'fix-content' }}>
+                {item.matches.map(match => (
+                  <Grid item key={uuid()} xs>
+                    <Grid container spacing={0.7}>
+                      <Grid item xs={12}>
+                        <Date variant='inherit'>
+                          {dayjs(match.date).format('DD/MM/YYYY')}
+                        </Date>
+                      </Grid>
+                      <Grid item xs={12}>
+                        <Grid container spacing={1}>
+                          <Grid item xs={12}>
+                            <Grid container spacing={1}>
+                              <ClubCommonData item xs={4}>
+                                <ClubLogo src={match.home.clubLogoUrl} />
+                              </ClubCommonData>
+                              <ClubName item xs>
+                                <MatchText variant='inherit'>
+                                  {match.home.shortName}
+                                </MatchText>
+                              </ClubName>
+                              <ClubCommonData item xs={2}>
+                                <MatchText variant='inherit'>
+                                  {match.score.split(':')[0]}
+                                </MatchText>
+                              </ClubCommonData>
+                            </Grid>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <Grid container spacing={1}>
+                              <ClubCommonData item xs={4}>
+                                <ClubLogo src={match.away.clubLogoUrl} />
+                              </ClubCommonData>
+                              <ClubName item xs>
+                                <MatchText variant='inherit'>
+                                  {match.away.shortName}
+                                </MatchText>
+                              </ClubName>
+                              <ClubCommonData item xs={2}>
+                                <MatchText variant='inherit'>
+                                  {match.score.split(':')[1]}
+                                </MatchText>
+                              </ClubCommonData>
+                            </Grid>
+                          </Grid>
+                        </Grid>
                       </Grid>
                     </Grid>
-                    <Grid container spacing={5} alignItems='center'>
-                      <ClubData item xs={6}>
-                        <ClubLogo src={match.away.clubLogoUrl} />
-                        <MatchText variant='inherit'>
-                          {match.away.shortName}
-                        </MatchText>
-                      </ClubData>
-                      <Grid item xs={6}>
-                        <MatchText variant='inherit'>
-                          {match.score.split(':')[1]}
-                        </MatchText>
-                      </Grid>
-                    </Grid>
-                  </Box>
-                </Box>
-              ))}
+                  </Grid>
+                ))}
+              </Grid>
             </Grid>
           </Grid>
         ))}
