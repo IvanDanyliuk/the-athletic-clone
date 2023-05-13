@@ -1416,6 +1416,42 @@ export const scheduleToUpdate: ISchedule = {
   createdAt: '2023-03-31T15:14:58.641Z',
 };
 
+export const latestMatechesMock = [
+  {
+    league: 'EPL',
+    matches: [
+      {
+        id: 'b5fb278e-4a5d-45cb-9a15-1406f09fae0c',
+        home: {
+          _id: '6419a26d6e0212a0462b4dd2',
+          fullName: 'Arsenal FC',
+          commonName: 'Arsenal',
+          shortName: 'ARS',
+          country: 'United Kingdom',
+          clubLogoUrl: 'https://res.cloudinary.com/dsda5p1om/image/upload/v1679401593/r3ci6rp4umjhlnduimtp.svg',
+          stadium: 'Emirates Stadium',
+          createdAt: '2023-03-21T12:26:21.895Z',
+          updatedAt: '2023-03-21T12:26:21.895Z',
+        },
+        away: {
+          _id: '6419f57b1f12d2111b413ffc',
+          fullName: 'Chelsea FC',
+          commonName: 'Chelsea',
+          shortName: 'CHE',
+          country: 'United Kingdom',
+          clubLogoUrl: 'https://res.cloudinary.com/dsda5p1om/image/upload/v1679422856/vr0isj4q0v3qg5cgkp9s.png',
+          stadium: 'Stamford Bridge',
+          createdAt: '2023-03-21T18:20:43.873Z',
+          updatedAt: '2023-03-21T18:20:43.873Z',
+        },
+        date: '',
+        location: 'Emirates Stadium',
+        score: '0:0',
+      },
+    ]
+  }
+]
+
 export const addScheduleTitleMock = jest.fn();
 export const addMatchweekMock = jest.fn();
 export const addMatchMock = jest.fn();
