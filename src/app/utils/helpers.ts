@@ -42,3 +42,13 @@ export const divideArrayIntoChunks = (array: any[], itemsPerChunk: number) => {
   }
   return chunks;
 };
+
+export const getCurrentSeasonValue = () => {
+  const currentMonthIndex = new Date().getMonth() + 1;
+  const currentYear = new Date().getFullYear();
+  if(currentMonthIndex >= 8) {
+    return `${currentYear}/${currentYear + 1}`
+  } else {
+    return `${currentYear - 1}/${currentYear}`
+  }
+};

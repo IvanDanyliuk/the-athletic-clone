@@ -1,17 +1,15 @@
 import React, { useContext, useEffect, useState} from 'react';
+import { useSelector } from 'react-redux';
 import { Box, Button, Dialog, Grid, styled, Tooltip } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuid } from 'uuid';
 import SelectField from '../../../ui/SelectField';
 import ControlledDatePicker from '../../../ui/ControlledDatePicker';
 import TextInput from '../../../ui/TextInput';
 import ScheduleContext, { ScheduleContextType } from '../../../../context/scheduleContext';
-import { useDispatch, useSelector } from 'react-redux';
 import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
-import { AppDispatch } from '../../../../../features/store';
-import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 
 interface IMatchFormProps {
@@ -56,7 +54,6 @@ const SubmitBtn = styled(Button)`
 
 
 const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
-  const dispatch = useDispatch<AppDispatch>();
   const { register, handleSubmit, control, formState: { errors }, getValues, watch, setValue } = useForm<IFormData>();
   const { schedule, addMatch } = useContext(ScheduleContext) as ScheduleContextType;
 
@@ -85,10 +82,6 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
       away: clubs!.find(club => club._id === data.away),
     });
   };
-
-  useEffect(() => {
-    dispatch(getAllCompetitions());
-  }, []);
 
   useEffect(() => {
     const homeClub = clubs?.find(club => club._id === getValues().home)

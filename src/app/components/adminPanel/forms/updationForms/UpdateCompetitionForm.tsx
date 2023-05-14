@@ -9,7 +9,7 @@ const NewCompetitionForm: React.FC = () => {
   const { id } = useParams();
   const competitions = useSelector(selectAllCompetitions);
   const competitionToUpdate = competitions.find(competition => competition._id === id);
-
+  
   return (
     <CompetitionForm 
       competitionToUpdate={competitionToUpdate} 

@@ -47,14 +47,18 @@ describe('ClubForm tests', () => {
 
     const textFields = screen.getAllByRole('textbox');
     const selectField = screen.getByTestId('selectField');
-    const submitBtn = screen.getByRole('button', { name: 'Submit' });
+    
 
-    fireEvent.change(textFields[0], { target: { value: 'Test Full Name' } });
+    
+
+    const fullNameInput = screen.getByLabelText('Full Name')
+    fireEvent.change(fullNameInput, { target: { value: 'Test Full Name' } });
     fireEvent.change(textFields[1], { target: { value: 'Test Common Name' } });
     fireEvent.change(textFields[2], { target: { value: 'TSN' } });
     fireEvent.change(textFields[3], { target: { value: 'Test Stadium' } });
-    //eslint-disable-next-line
+    // eslint-disable-next-line
     fireEvent.change(selectField.querySelector('input')!, { target: { value: 'Test Country' } });
+    const submitBtn = screen.getByRole('button', { name: 'Submit' });
     fireEvent.click(submitBtn);
 
     await waitFor(() => {

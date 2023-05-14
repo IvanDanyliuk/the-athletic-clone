@@ -116,6 +116,7 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
   useEffect(() => {
     dispatch(getAllCompetitions());
     if(scheduleToUpdate) {
+      console.log('Schedule to Update', scheduleToUpdate)
       setSchedule(scheduleToUpdate);
     }
   }, []);

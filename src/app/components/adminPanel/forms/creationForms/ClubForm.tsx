@@ -40,19 +40,31 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
   const handleFormSubmit = async (data: any) => {
     if(clubToUpdate) {
       setIsLoading(true);
+
+      const clubLogoUrl = data.clubLogoUrl.length > 0 ? 
+        await uploadImage(data.clubLogoUrl[0]) : 
+        clubToUpdate.clubLogoUrl;
+
       await dispatch(updateClub({
+        ...data,
         _id: clubToUpdate._id,
-        ...data
+        clubLogoUrl
       }));
+
       setIsLoading(false);
       navigate('/admin/clubs');
     } else {
       setIsLoading(true);
-      const clubLogoUrl = data.clubLogoUrl.length > 0 ? await uploadImage(data.clubLogoUrl[0]) : '';
+
+      const clubLogoUrl = data.clubLogoUrl.length > 0 ? 
+        await uploadImage(data.clubLogoUrl[0]) : 
+        '';
+
       await dispatch(createClub({
         ...data,
         clubLogoUrl
       }));
+      
       setIsLoading(false);
       navigate('/admin/clubs');
     }
@@ -66,7 +78,6 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
         commonName: clubToUpdate.commonName,
         shortName: clubToUpdate.shortName,
         stadium: clubToUpdate.stadium,
-        clubLogoUrl: clubToUpdate.clubLogoUrl,
         country: clubToUpdate.country
       })
     }

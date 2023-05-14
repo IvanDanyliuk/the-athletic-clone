@@ -1,13 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createSchedule, updateSchedule, deleteSchedule, getSchedules } from './asyncActions';
+import { createSchedule, updateSchedule, deleteSchedule, getSchedules, getRecentMatches } from './asyncActions';
 import { ISchedulesInitialState } from './types';
 
 
 const initialState: ISchedulesInitialState = {
   status: 'idle',
   data: {
-    schedules: [],
-    schedulesCount: 0
+    main: {
+      schedules: [],
+      schedulesCount: 0
+    },
+    latestMatches: []
   },
   filters: null,
   error: null
@@ -35,7 +38,7 @@ const schedulesSlice = createSlice({
       })
       .addCase(createSchedule.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data.schedules.push(action.payload);
+        state.data.main.schedules.push(action.payload);
       })
       .addCase(createSchedule.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -46,9 +49,20 @@ const schedulesSlice = createSlice({
       })
       .addCase(getSchedules.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data.main = action.payload;
       })
       .addCase(getSchedules.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(getRecentMatches.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getRecentMatches.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data.latestMatches = action.payload;
+      })
+      .addCase(getRecentMatches.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })
@@ -57,7 +71,7 @@ const schedulesSlice = createSlice({
       })
       .addCase(updateSchedule.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data.schedules = state.data.schedules.map(schedule => schedule._id === action.payload._id ? action.payload : schedule);
+        state.data.main.schedules = state.data.main.schedules.map(schedule => schedule._id === action.payload._id ? action.payload : schedule);
       })
       .addCase(updateSchedule.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -68,7 +82,7 @@ const schedulesSlice = createSlice({
       })
       .addCase(deleteSchedule.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data.main = action.payload;
       })
       .addCase(deleteSchedule.rejected, (state, action: any) => {
         state.status = 'failed';

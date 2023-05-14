@@ -1,4 +1,4 @@
-import { ICLubsInitialState } from '../../../../features/clubs/types';
+import { ICLubsInitialState, IClub } from '../../../../features/clubs/types';
 import { ClubModel } from '../../../models/components';
 
 export const clubsStateSuccessMock: ICLubsInitialState = {
@@ -199,7 +199,7 @@ export const newClub: ClubModel = {
   stadium: 'Emirates Stadium',
 };
 
-export const clubToUpdate = {
+export const clubToUpdate: IClub = {
   _id: '6419a26d6e0212a0462b4dd2',
   fullName: 'Arsenal FC',
   commonName: 'Arsenal',

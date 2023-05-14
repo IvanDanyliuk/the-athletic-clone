@@ -93,8 +93,8 @@ const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
           {dividedMaterials.map(group => (
             <Grid key={uuid()} container spacing={3}>
               {group.map((post: IMaterial) => (
-                <Grid item xs={12} md={3}>
-                  <Card key={uuid()} sx={{ height: '100%' }}>
+                <Grid key={uuid()} item xs={12} md={3}>
+                  <Card sx={{ height: '100%' }}>
                     <CardHeader
                       avatar={<Avatar src={post.author.photoUrl} />}
                       title={<Typography variant='subtitle2'>{post.author.name}</Typography>}

@@ -22,13 +22,20 @@ export interface IMatchweek {
   _id?: string,
   id: string,
   matchweekName: string,
+  basicDate: string,
   games: IMatch[]
 }
 export interface ISchedulesInitialState {
   status: string,
   data: {
-    schedules: ISchedule[],
-    schedulesCount: number
+    main: {
+      schedules: ISchedule[],
+      schedulesCount: number
+    },
+    latestMatches: {
+      league: string,
+      matches: IMatch[]
+    }[]
   },
   filters: {} | null,
   error: string | null
@@ -49,15 +56,16 @@ export interface ISchedulesTableHeadCell {
 export interface ISchedulesFilters {
   competition?: string,
   country?: string,
+  season?: string,
   dateFrom?: string,
   dateTo?: string,
 }
 
 export interface ISchedulesRequestData {
-  page: number,
-  itemsPerPage: number,
-  filterData: ISchedulesFilters | null, 
-  sortData: {
+  page?: number,
+  itemsPerPage?: number,
+  filterData?: ISchedulesFilters | null, 
+  sortData?: {
     indicator: string,
     order: string
   } | null
