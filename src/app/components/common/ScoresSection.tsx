@@ -148,7 +148,7 @@ const ScoresSection: React.FC<IScoresSectionProps> = ({ matches }) => {
               </LeagueNameSection>
               <LeagueMatchesSection>
                 {item.matches.map(match => (
-                  <Match>
+                  <Match key={uuid()}>
                     <MatchDate>
                       <Date variant='inherit'>
                         {dayjs(match.date).format('DD/MM/YYYY')}

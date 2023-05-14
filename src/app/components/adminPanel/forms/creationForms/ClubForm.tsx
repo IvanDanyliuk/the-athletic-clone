@@ -73,13 +73,11 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
 
   useEffect(() => {
     if(clubToUpdate) {
-      console.log(clubToUpdate)
       reset({
         fullName: clubToUpdate.fullName,
         commonName: clubToUpdate.commonName,
         shortName: clubToUpdate.shortName,
         stadium: clubToUpdate.stadium,
-        clubLogoUrl: clubToUpdate.clubLogoUrl,
         country: clubToUpdate.country
       })
     }

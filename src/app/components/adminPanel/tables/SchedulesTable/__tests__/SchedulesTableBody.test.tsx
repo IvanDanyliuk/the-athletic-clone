@@ -27,7 +27,7 @@ describe('SchedulesTableBody tests', () => {
       <SchedulesTableBody 
         page={0} 
         itemsPerPage={10} 
-        schedules={schedulesStateSuccessMock.data.schedules.slice(0, 2)} 
+        schedules={schedulesStateSuccessMock.data.main.schedules.slice(0, 2)} 
       />
     );
 

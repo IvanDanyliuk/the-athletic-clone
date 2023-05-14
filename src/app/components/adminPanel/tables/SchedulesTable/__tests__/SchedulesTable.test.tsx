@@ -8,8 +8,11 @@ import SchedulesTable from '../SchedulesTable';
 const schedulesStateMock = {
   status: 'loading',
   data: {
-    schedules: [],
-    schedulesCount: 0
+    main: {
+      schedules: [],
+      schedulesCount: 0
+    },
+    latestMatches: []
   },
   filters: null,
   error: null
