@@ -5,7 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import Layout from './app/components/layout/Layout';
 import { 
   Admin, Checkout, Home, Login, News, 
-  NotFound, Realtime, Register, Search 
+  NotFound, Realtime, RecentMaterials, Register, Search 
 } from './app/pages';
 import {
    Clubs, Competitions, Materials, 
@@ -20,7 +20,6 @@ import {
   UpdatePlayerForm, UpdateScheduleForm, UpdateUserForm 
 } from './app/components/adminPanel/forms/updationForms';
 import Content from './app/components/adminPanel/sections/Content';
-import ContentSection from './app/components/adminPanel/forms/creationForms/ContentForm';
 import UpdateContentSection from './app/components/adminPanel/forms/updationForms/UpdateContentSection';
 
 
@@ -32,6 +31,7 @@ const App: React.FC = () => {
           <Layout>
             <Routes>
               <Route path='/' element={<Home />} />
+              <Route path='/materials' element={<RecentMaterials />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/checkout' element={<Checkout />} />
