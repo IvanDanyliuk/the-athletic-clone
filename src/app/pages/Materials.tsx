@@ -42,6 +42,15 @@ const SecondaryMaterialTitle = styled(Typography)`
   }
 `;
 
+const OtherMaterialTitle = styled(Typography)`
+  margin: .5em 0;
+  font-size: 1em;
+
+  @media (max-width: 768px) {
+    font-size: 1.1em;
+  }
+`;
+
 const PreviewText = styled(Typography)`
   @media (max-width: 768px) {
     font-size: .7em;
@@ -54,6 +63,7 @@ const LabelsContainer = styled(Box)`
 
 const Label = styled(Typography)`
   margin-right: 1em;
+  font-size: .7em;
   text-transform: uppercase;
 
   @media (max-width: 768px) {
@@ -67,6 +77,12 @@ const MaterialCard = styled(Card)`
   box-shadow: none;
 `;
 
+const OtherMaterials = styled(Box)`
+  margin-top: 1em;
+  padding: 2em 1em;
+  background: #f7f7f4;
+`;
+
 
 const Materials: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -74,7 +90,7 @@ const Materials: React.FC = () => {
 
   useEffect(() => {
     dispatch(getRecentMaterials({ 
-      materialsNumber: 10, 
+      materialsNumber: 21, 
       materialTypes: [ 'article', 'note' ] 
     }));
   }, []);
@@ -109,8 +125,8 @@ const Materials: React.FC = () => {
       </Grid>
       <Grid item xs={12}>
         <Grid container spacing={3}>
-          {materials.slice(1).map(material => (
-            <Grid key={uuid()} item xs={12} md={4}>
+          {materials.slice(1, 9).map(material => (
+            <Grid key={uuid()} item xs={12} md={3}>
               <MaterialLink to={`/materials/${material._id}`}>
                 <MaterialCard>
                   <CardMedia
@@ -137,6 +153,31 @@ const Materials: React.FC = () => {
             </Grid>
           ))}
         </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <OtherMaterials>
+          <Grid container spacing={6}>
+            {materials.slice(9).map(material => (
+              <Grid key={uuid()} item xs={4}>
+                <Grid container spacing={3} sx={{ height: '100%' }}>
+                  <Grid item xs={8}>
+                    <LabelsContainer>
+                      {material.labels.map(label => (
+                        <Label key={uuid()} variant='body2'>{label}</Label>
+                      ))}
+                    </LabelsContainer>
+                    <OtherMaterialTitle variant='h3'>
+                      {material.title}
+                    </OtherMaterialTitle>
+                  </Grid>
+                  <Grid item xs={4}>
+                    <MaterialImage src={material.image} />
+                  </Grid>
+                </Grid>
+              </Grid>
+            ))}
+          </Grid>
+        </OtherMaterials>
       </Grid>
     </Grid>
   );
