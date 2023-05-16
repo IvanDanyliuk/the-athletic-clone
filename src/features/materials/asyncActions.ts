@@ -56,6 +56,18 @@ export const getHomepageSecondaryMaterials = createAsyncThunk(
   }
 );
 
+export const getMaterial = createAsyncThunk(
+  'materials/getMaterial',
+  async (id: string, thunkAPI) => {
+    try {
+      const { data } = await api.getMaterial(id);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const getAuthors = createAsyncThunk(
   'materials/getAuthors',
   async (_: void, thunkAPI) => {

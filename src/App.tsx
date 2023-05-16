@@ -4,7 +4,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import Layout from './app/components/layout/Layout';
 import { 
-  Admin, Checkout, Home, Login, News, 
+  Admin, Checkout, Home, Login, Material, News, 
   NotFound, Realtime, RecentMaterials, Register, Search 
 } from './app/pages';
 import {
@@ -32,6 +32,7 @@ const App: React.FC = () => {
             <Routes>
               <Route path='/' element={<Home />} />
               <Route path='/materials' element={<RecentMaterials />} />
+              <Route path='/materials/:id' element={<Material />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/checkout' element={<Checkout />} />

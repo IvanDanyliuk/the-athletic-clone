@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createMaterial, deleteMaterial, getAuthors, getHomepageSecondaryMaterials, getMaterials, getRecentMaterials, updateMaterial } from './asyncActions';
+import { 
+  createMaterial, deleteMaterial, getAuthors, getHomepageSecondaryMaterials, 
+  getMaterial, getMaterials, getRecentMaterials, updateMaterial 
+} from './asyncActions';
 import { IMaterialsState } from './types';
 
 
@@ -10,6 +13,7 @@ const initialState: IMaterialsState = {
       materials: [],
       materialsCount: 0
     },
+    material: null,
     homepage: {
       topMaterials: [],
       latestPosts: [],
@@ -26,6 +30,9 @@ const materialsSlice = createSlice({
   name: 'materials',
   initialState,
   reducers: {
+    clearMaterial: (state) => {
+      state.data.material = null;
+    },
     setFilters: (state, action) => {
       state.filters = action.payload;
     },
@@ -57,6 +64,17 @@ const materialsSlice = createSlice({
         state.data.main = action.payload;
       })
       .addCase(getMaterials.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(getMaterial.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getMaterial.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data.material = action.payload;
+      })
+      .addCase(getMaterial.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })
@@ -118,6 +136,6 @@ const materialsSlice = createSlice({
   }
 });
 
-export const { setFilters, clearFilters, clearError } = materialsSlice.actions;
+export const { clearMaterial, setFilters, clearFilters, clearError } = materialsSlice.actions;
 
 export default materialsSlice.reducer;

@@ -1,6 +1,7 @@
 import { RootState } from '../store';
 
 export const selectMaterials = (state: RootState) => state.materials.data.main.materials;
+export const selectMaterial = (state: RootState) => state.materials.data.material;
 export const selectHomepageSecondaryMaterials = (state: RootState) => state.materials.data.homepage;
 export const selectMaterialsCount = (state: RootState) => state.materials.data.main.materialsCount;
 export const selectMaterialsStatus = (state: RootState) => state.materials.status;

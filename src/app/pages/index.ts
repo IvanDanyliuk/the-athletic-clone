@@ -3,6 +3,7 @@ export { default as Checkout } from './Checkout';
 export { default as Home } from './Home';
 export { default as RecentMaterials } from './Materials';
 export { default as Login } from './Login';
+export { default as Material } from './Material';
 export { default as News } from './News';
 export { default as NotFound } from './NotFound';
 export { default as Realtime } from './Realtime';

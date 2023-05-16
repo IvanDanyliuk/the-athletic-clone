@@ -7,6 +7,7 @@ export interface IMaterialsState {
       materials: IMaterial[],
       materialsCount: number
     },
+    material: IMaterial | null,
     homepage: {
       topMaterials: IMaterial[],
       latestPosts: IMaterial[],

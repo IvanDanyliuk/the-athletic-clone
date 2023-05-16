@@ -271,6 +271,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
       ],
       materialsCount: 12
     },
+    material: null,
     homepage: {
       topMaterials: [],
       latestPosts: [],
@@ -295,6 +296,7 @@ export const materialsStateErrorMock: IMaterialsState = {
       materials: [],
       materialsCount: 0
     },
+    material: null,
     homepage: {
       topMaterials: [],
       latestPosts: [],
