@@ -1,7 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
 import { MaterialModel } from '../../app/models/components';
-import { IDeleteMaterialData, IMaterial, IMaterialsRequestData, IHomepageSecondaryMaterialsRequestData, IRecentMaterialsRequestData } from './types';
+import { 
+  IDeleteMaterialData, IMaterial, IMaterialsRequestData, 
+  IHomepageSecondaryMaterialsRequestData, IRecentMaterialsRequestData 
+} from './types';
 import { IUser, UserRoles } from '../users/types';
 
 
