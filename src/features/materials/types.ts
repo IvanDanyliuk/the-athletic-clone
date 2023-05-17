@@ -60,7 +60,7 @@ export interface IMaterial {
   isMain?: boolean,
   status: string,
   views: number,
-  likes: number,
+  likes: string[],
   publicationDate: string | any,
   comments: {
     user: string, 

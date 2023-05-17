@@ -1,12 +1,13 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { IMaterial } from '../../../features/materials/types';
 import { Avatar, Box, Button, Grid, List, ListItem, Typography, styled } from '@mui/material';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-import { useSelector } from 'react-redux';
 import { selectUser } from '../../../features/users/selectors';
+import { AppDispatch } from '../../../features/store';
 
 
 interface ICommonMaterialProps {
@@ -94,6 +95,7 @@ const CommonMaterial: React.FC<ICommonMaterialProps> = ({ material }) => {
     publicationDate, title, views, image 
   } = material;
 
+  const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
 
   return (
