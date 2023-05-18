@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
 import { selectUser } from '../../../features/users/selectors';
 import { AppDispatch } from '../../../features/store';
+import { likeMaterial } from '../../../features/materials/asyncActions';
 
 
 interface ICommonMaterialProps {
@@ -53,7 +54,7 @@ const Title = styled(Typography)`
   text-align: center;
 `;
 
-const CommentSection = styled(List)`
+const CommentList = styled(List)`
 
 `;
 
@@ -72,6 +73,12 @@ const LikeButton = styled(Button)`
   display: flex;
   font-size: 1.2em;
   color: #000000;
+
+  &[data-liked='true'] {
+    background: #b4b4b4;
+    color: #3d3d3d;
+  }
+
   svg {
     margin-right: .5em;
   }
@@ -91,12 +98,20 @@ const ViewsInfo = styled(Box)`
 
 const CommonMaterial: React.FC<ICommonMaterialProps> = ({ material }) => {
   const { 
-    _id, author, comments, content, labels, likes, 
+    _id, author, comments, content, likes, 
     publicationDate, title, views, image 
   } = material;
 
   const dispatch = useDispatch<AppDispatch>();
   const user = useSelector(selectUser);
+  const isLiked = likes.includes(user?._id!);
+
+  const handleLikeMaterial = () => {
+    dispatch(likeMaterial({ 
+      userId: user?._id!, 
+      materialId: material._id 
+    }));
+  };
 
   return (
     <Container>
@@ -118,41 +133,45 @@ const CommonMaterial: React.FC<ICommonMaterialProps> = ({ material }) => {
       />
       <FeedbackSection>
         {user && (
-          <LikeButton>
+          <LikeButton data-liked={isLiked} onClick={handleLikeMaterial}>
             <FontAwesomeIcon icon={faThumbsUp} />
             <Typography variant='caption'>
-              {material.likes}
+              {likes.length}
             </Typography>
           </LikeButton>
         )}
         <ViewsInfo>
           <FontAwesomeIcon icon={faEye} />
           <Typography variant='caption'>
-            {material.views}
+            {views}
           </Typography>
         </ViewsInfo>
       </FeedbackSection>
-      <CommentSection>
-        {comments.map(comment => (
-          <Comment key={uuid()}>
-            <Grid container>
-              <Grid item xs={2}>
-                <Avatar src={comment.user} />
-              </Grid>
-              <Grid item xs={10}>
-                <Typography variant='caption'>
-                  {comment.user}
-                </Typography>
-              </Grid>
-              <Grid item xs={12}>
-                <Typography>
-                  {comment.message}
-                </Typography>
-              </Grid>
-            </Grid>
-          </Comment>
-        ))}
-      </CommentSection>
+      <Box>
+        {comments && (
+          <CommentList>
+            {comments.map(comment => (
+              <Comment key={uuid()}>
+                <Grid container>
+                  <Grid item xs={2}>
+                    <Avatar src={comment.user} />
+                  </Grid>
+                  <Grid item xs={10}>
+                    <Typography variant='caption'>
+                      {comment.user}
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography>
+                      {comment.message}
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </Comment>
+            ))}
+          </CommentList>
+        )}
+      </Box>
     </Container>
   );
 };

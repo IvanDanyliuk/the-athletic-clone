@@ -108,11 +108,11 @@ const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
                     <CardActions>
                       <ActionBtn>
                         <Icon component={ThumbUpOffAlt} />
-                        <BtnLabel>{post.likes}</BtnLabel>
+                        <BtnLabel>{post.likes.length}</BtnLabel>
                       </ActionBtn>
                       <ActionBtn>
                         <Icon component={ChatBubbleOutline} />
-                        <BtnLabel>{post.comments.length}</BtnLabel>
+                        <BtnLabel>{post.comments ? post.comments.length : '0'}</BtnLabel>
                       </ActionBtn>
                     </CardActions>
                   </Card>

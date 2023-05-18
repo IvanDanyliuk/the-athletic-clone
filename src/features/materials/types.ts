@@ -76,6 +76,11 @@ export interface ISortMaterialRequestData {
   order: string
 }
 
+export interface ILikeMaterialData {
+  userId: string,
+  materialId: string
+}
+
 export interface IDeleteMaterialData {
   id: string,
   page: number,
