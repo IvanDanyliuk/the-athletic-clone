@@ -3,7 +3,7 @@ import * as api from '../../app/api/api';
 import { MaterialModel } from '../../app/models/components';
 import { 
   IDeleteMaterialData, IMaterial, IMaterialsRequestData, 
-  IHomepageSecondaryMaterialsRequestData, IRecentMaterialsRequestData, ILikeMaterialData 
+  IHomepageSecondaryMaterialsRequestData, IRecentMaterialsRequestData
 } from './types';
 import { IUser, UserRoles } from '../users/types';
 
@@ -86,10 +86,21 @@ export const getAuthors = createAsyncThunk(
 
 export const likeMaterial = createAsyncThunk(
   'materials/likeMaterial',
-  async (requestData: ILikeMaterialData, thunkAPI) => {
-    const { userId, materialId } = requestData;
+  async (materialToUpdate: IMaterial, thunkAPI) => {
     try {
-      const { data } = await api.likeMaterial(userId, materialId);
+      const { data } = await api.updateMaterial(materialToUpdate);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const commentMaterial = createAsyncThunk(
+  'materials/commentMaterial',
+  async (materialToUpdate: IMaterial, thunkAPI) => {
+    try {
+      const { data } = await api.updateMaterial(materialToUpdate);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);

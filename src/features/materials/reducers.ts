@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { 
+  commentMaterial,
   createMaterial, deleteMaterial, getAuthors, getHomepageSecondaryMaterials, 
   getMaterial, getMaterials, getRecentMaterials, likeMaterial, updateMaterial 
 } from './asyncActions';
@@ -119,6 +120,17 @@ const materialsSlice = createSlice({
         state.data.material = action.payload;
       })
       .addCase(likeMaterial.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(commentMaterial.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(commentMaterial.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data.material = action.payload;
+      })
+      .addCase(commentMaterial.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })

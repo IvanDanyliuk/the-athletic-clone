@@ -32,7 +32,6 @@ export const getRecentMaterials = (materialsNumber: number, materialTypes: strin
 export const getHomapageSecondaryMaterials = (topMaterialsNum: number, postsNum: number) => API.get('/materials/homepage', { params: { topMaterialsNum, postsNum } });
 export const getMaterial = (id: string) => API.get(`/materials/${id}`);
 export const updateMaterial = (materialToUpdate: IMaterial) => API.patch('/materials', materialToUpdate);
-export const likeMaterial = (userId: string, materialId: string) => API.patch('/materials/like', { userId, materialId });
 export const deleteMaterial = (id: string, page: number, itemsPerPage: number) => API.delete('/materials', { params: { id, page, itemsPerPage } });
 
 export const createClub = (clubData: ClubModel) => API.post('/clubs', clubData);

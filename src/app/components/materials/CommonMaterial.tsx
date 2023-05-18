@@ -1,14 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { IMaterial } from '../../../features/materials/types';
+import { useForm } from 'react-hook-form';
 import { Avatar, Box, Button, Grid, List, ListItem, Typography, styled } from '@mui/material';
-import dayjs from 'dayjs';
-import { v4 as uuid } from 'uuid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import dayjs from 'dayjs';
+import { v4 as uuid } from 'uuid';
+import { IComment, IMaterial } from '../../../features/materials/types';
 import { selectUser } from '../../../features/users/selectors';
 import { AppDispatch } from '../../../features/store';
-import { likeMaterial } from '../../../features/materials/asyncActions';
+import { commentMaterial, likeMaterial } from '../../../features/materials/asyncActions';
+import TextInput from '../ui/TextInput';
 
 
 interface ICommonMaterialProps {
@@ -54,6 +56,19 @@ const Title = styled(Typography)`
   text-align: center;
 `;
 
+const FeedbackSection = styled(Box)`
+  margin: 3em 0;
+`;
+
+const ActivityInfo = styled(Box)`
+  display: flex;
+`;
+
+const CommentsSection = styled(Box)`
+  margin-top: 2em;
+  width: 100%;
+`;
+
 const CommentList = styled(List)`
 
 `;
@@ -62,9 +77,18 @@ const Comment = styled(ListItem)`
 
 `;
 
-const FeedbackSection = styled(Box)`
-  margin: 3em 0;
+const CommentForm = styled(Box)`
+  width: 100%;
+`;
+
+const CommentFormColumn = styled(Grid)`
   display: flex;
+  align-items: flex-end;
+`;
+
+const CommentBtn = styled(Button)`
+  width: 100%;
+  height: 4em;
 `;
 
 const LikeButton = styled(Button)`
@@ -103,14 +127,46 @@ const CommonMaterial: React.FC<ICommonMaterialProps> = ({ material }) => {
   } = material;
 
   const dispatch = useDispatch<AppDispatch>();
+  const { 
+    register, 
+    handleSubmit,
+    formState: { errors }, 
+    reset 
+  } = useForm<IComment>();
+
   const user = useSelector(selectUser);
   const isLiked = likes.includes(user?._id!);
 
   const handleLikeMaterial = () => {
-    dispatch(likeMaterial({ 
-      userId: user?._id!, 
-      materialId: material._id 
+    const isLiked = material.likes.includes(user?._id!);
+    let materialToUpdate;
+    if(isLiked) {
+      materialToUpdate = {
+        ...material,
+        likes: material.likes.filter(id => id !== user?._id!)
+      };
+    } else {
+      materialToUpdate = {
+        ...material,
+        likes: [ ...material.likes, user?._id! ]
+      }
+    }
+    dispatch(likeMaterial(materialToUpdate));
+  };
+
+  const handleCommentMaterial = async (data: any) => {
+    await dispatch(commentMaterial({
+      ...material,
+      comments: [ 
+        ...material.comments, 
+        {
+          ...data,
+          id: uuid(),
+          user: `${user?.firstName} ${user?.lastName}`
+        }
+      ]
     }));
+    reset();
   };
 
   return (
@@ -131,47 +187,70 @@ const CommonMaterial: React.FC<ICommonMaterialProps> = ({ material }) => {
         component='div' 
         dangerouslySetInnerHTML={{ __html: content }} 
       />
-      <FeedbackSection>
-        {user && (
-          <LikeButton data-liked={isLiked} onClick={handleLikeMaterial}>
-            <FontAwesomeIcon icon={faThumbsUp} />
+      <FeedbackSection sx={{ width: '100%' }}>
+        <ActivityInfo>
+          {user && (
+            <LikeButton data-liked={isLiked} onClick={handleLikeMaterial}>
+              <FontAwesomeIcon icon={faThumbsUp} />
+              <Typography variant='caption'>
+                {likes.length}
+              </Typography>
+            </LikeButton>
+          )}
+          <ViewsInfo>
+            <FontAwesomeIcon icon={faEye} />
             <Typography variant='caption'>
-              {likes.length}
+              {views}
             </Typography>
-          </LikeButton>
-        )}
-        <ViewsInfo>
-          <FontAwesomeIcon icon={faEye} />
-          <Typography variant='caption'>
-            {views}
-          </Typography>
-        </ViewsInfo>
-      </FeedbackSection>
-      <Box>
+          </ViewsInfo>
+        </ActivityInfo>
         {comments && (
-          <CommentList>
-            {comments.map(comment => (
-              <Comment key={uuid()}>
-                <Grid container>
-                  <Grid item xs={2}>
-                    <Avatar src={comment.user} />
-                  </Grid>
-                  <Grid item xs={10}>
-                    <Typography variant='caption'>
-                      {comment.user}
-                    </Typography>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Typography>
-                      {comment.message}
-                    </Typography>
-                  </Grid>
+          <CommentsSection>
+            <CommentForm component='form' onSubmit={handleSubmit(handleCommentMaterial)}>
+              <Grid container spacing={3} alignItems='flex-end'>
+                <Grid item xs={12} md={10}>
+                  <TextInput 
+                    name='message' 
+                    label='Comment'
+                    type='text' 
+                    register={register}
+                    error={errors.message}
+                  />
                 </Grid>
-              </Comment>
-            ))}
-          </CommentList>
+                <Grid item xs={12} md={2}>
+                  <CommentBtn 
+                    type='submit' 
+                    variant='contained'
+                  >
+                    Comment
+                  </CommentBtn>
+                </Grid>
+              </Grid>
+            </CommentForm>
+            <CommentList>
+              {comments.map(comment => (
+                <Comment key={uuid()}>
+                  <Grid container>
+                    <Grid item xs={1}>
+                      <Avatar src={comment.user} />
+                    </Grid>
+                    <Grid item xs={11}>
+                      <Typography variant='caption'>
+                        {comment.user}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12}>
+                      <Typography>
+                        {comment.message}
+                      </Typography>
+                    </Grid>
+                  </Grid>
+                </Comment>
+              ))}
+            </CommentList>
+          </CommentsSection>
         )}
-      </Box>
+      </FeedbackSection>
     </Container>
   );
 };

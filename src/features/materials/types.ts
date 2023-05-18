@@ -62,10 +62,7 @@ export interface IMaterial {
   views: number,
   likes: string[],
   publicationDate: string | any,
-  comments: {
-    user: string, 
-    message: string
-  }[],
+  comments: IComment[],
   labels: string[],
   createdAt: string,
   updatedAt: string
@@ -104,4 +101,10 @@ export interface MaterialFilterData {
   dateFrom?: string,
   dateTo?: string,
   author?: string
+}
+
+export interface IComment {
+  id: string,
+  user: string,
+  message: string
 }
