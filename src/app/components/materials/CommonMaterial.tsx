@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Avatar, Box, Button, Grid, List, ListItem, Typography, styled } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faThumbsUp } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faPenToSquare, faThumbsUp, faXmark } from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { IComment, IMaterial } from '../../../features/materials/types';
 import { selectUser } from '../../../features/users/selectors';
 import { AppDispatch } from '../../../features/store';
-import { commentMaterial, likeMaterial } from '../../../features/materials/asyncActions';
+import { updateViewedMaterial } from '../../../features/materials/asyncActions';
 import TextInput from '../ui/TextInput';
 
 
@@ -74,22 +74,52 @@ const CommentList = styled(List)`
 `;
 
 const Comment = styled(ListItem)`
+  display: flex;
+  flex-direction: column;
+`;
 
+const CommentHeader = styled(Grid)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const CommentAuthor = styled(Box)`
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 3em;
+    height: 3em;
+  }
+
+  p {
+    margin-left: 1em;
+    font-weight: 600;
+  }
+`;
+
+const CommentContent = styled(Grid)`
+  padding: .5em 0;
 `;
 
 const CommentForm = styled(Box)`
   width: 100%;
 `;
 
-const CommentFormColumn = styled(Grid)`
-  display: flex;
-  align-items: flex-end;
-`;
-
 const CommentBtn = styled(Button)`
   width: 100%;
   height: 4em;
 `;
+
+const CommentActionBtns = styled(Box)`
+  display: flex;
+
+  button {
+    margin-left: .5em;
+  }
+`;
+
 
 const LikeButton = styled(Button)`
   margin-right: 1em;
@@ -134,6 +164,7 @@ const CommonMaterial: React.FC<ICommonMaterialProps> = ({ material }) => {
     reset 
   } = useForm<IComment>();
 
+  const [editedCommentId, setEditedCommentId] = useState<string | null>(null);
   const user = useSelector(selectUser);
   const isLiked = likes.includes(user?._id!);
 
@@ -151,22 +182,50 @@ const CommonMaterial: React.FC<ICommonMaterialProps> = ({ material }) => {
         likes: [ ...material.likes, user?._id! ]
       }
     }
-    dispatch(likeMaterial(materialToUpdate));
+    dispatch(updateViewedMaterial(materialToUpdate));
   };
 
   const handleCommentMaterial = async (data: any) => {
-    await dispatch(commentMaterial({
+    if(editedCommentId) {
+      await dispatch(updateViewedMaterial({
+        ...material,
+        comments: material.comments
+          .map(comment => comment.id === editedCommentId ? 
+            ({ ...comment, message: data.message }) : 
+            comment)
+      }));
+      setEditedCommentId(null);
+    } else {
+      await dispatch(updateViewedMaterial({
+        ...material,
+        comments: [ 
+          ...material.comments, 
+          {
+            ...data,
+            id: uuid(),
+            userId: user?._id,
+            userImage: user?.userPhotoUrl,
+            userName: `${user?.firstName} ${user?.lastName}`
+          }
+        ]
+      }));
+    }
+    reset({ message: '' });
+  };
+
+  const handleCommentEdit = (id: string) => {
+    setEditedCommentId(id);
+    const comment = material.comments.find(comment => comment.id === id);
+    reset({
+      message: comment?.message
+    });
+  };
+
+  const handleCommentDelete = (id: string) => {
+    dispatch(updateViewedMaterial({
       ...material,
-      comments: [ 
-        ...material.comments, 
-        {
-          ...data,
-          id: uuid(),
-          user: `${user?.firstName} ${user?.lastName}`
-        }
-      ]
+      comments: material.comments.filter(comment => id !== comment.id)
     }));
-    reset();
   };
 
   return (
@@ -222,7 +281,7 @@ const CommonMaterial: React.FC<ICommonMaterialProps> = ({ material }) => {
                     type='submit' 
                     variant='contained'
                   >
-                    Comment
+                    {editedCommentId ? 'Submit' : 'Comment'}
                   </CommentBtn>
                 </Grid>
               </Grid>
@@ -231,19 +290,27 @@ const CommonMaterial: React.FC<ICommonMaterialProps> = ({ material }) => {
               {comments.map(comment => (
                 <Comment key={uuid()}>
                   <Grid container>
-                    <Grid item xs={1}>
-                      <Avatar src={comment.user} />
-                    </Grid>
-                    <Grid item xs={11}>
-                      <Typography variant='caption'>
-                        {comment.user}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                      <Typography>
+                    <CommentHeader item xs={12}>
+                      <CommentAuthor>
+                        <Avatar src={comment.userImage} />
+                        <Typography variant='body2'>
+                          {comment.userName}
+                        </Typography>
+                      </CommentAuthor>
+                      <CommentActionBtns>
+                        <Button onClick={() => handleCommentEdit(comment.id)}>
+                          <FontAwesomeIcon icon={faPenToSquare} />
+                        </Button>
+                        <Button onClick={() => handleCommentDelete(comment.id)}>
+                          <FontAwesomeIcon icon={faXmark} />
+                        </Button>
+                      </CommentActionBtns>
+                    </CommentHeader>
+                    <CommentContent item xs={12}>
+                      <Typography variant='body2'>
                         {comment.message}
                       </Typography>
-                    </Grid>
+                    </CommentContent>
                   </Grid>
                 </Comment>
               ))}

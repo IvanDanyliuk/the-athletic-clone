@@ -105,6 +105,8 @@ export interface MaterialFilterData {
 
 export interface IComment {
   id: string,
-  user: string,
+  userId: string,
+  userImage: string,
+  userName: string,
   message: string
 }

@@ -84,20 +84,8 @@ export const getAuthors = createAsyncThunk(
   }
 );
 
-export const likeMaterial = createAsyncThunk(
+export const updateViewedMaterial = createAsyncThunk(
   'materials/likeMaterial',
-  async (materialToUpdate: IMaterial, thunkAPI) => {
-    try {
-      const { data } = await api.updateMaterial(materialToUpdate);
-      return data;
-    } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
-
-export const commentMaterial = createAsyncThunk(
-  'materials/commentMaterial',
   async (materialToUpdate: IMaterial, thunkAPI) => {
     try {
       const { data } = await api.updateMaterial(materialToUpdate);
