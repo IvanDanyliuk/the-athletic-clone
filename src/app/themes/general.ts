@@ -12,7 +12,6 @@ declare module "@mui/material/styles" {
     h5_custom:  React.CSSProperties;
   }
 
-  // allow configuration using `createTheme`
   interface TypographyVariantsOptions {
     h3_custom?: React.CSSProperties;
     body1_custom?: React.CSSProperties;
@@ -25,7 +24,6 @@ declare module "@mui/material/styles" {
   }
 }
 
-// Update the Typography's variant prop options
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
     h3_custom: true;
