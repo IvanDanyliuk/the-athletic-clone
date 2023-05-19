@@ -60,12 +60,9 @@ export interface IMaterial {
   isMain?: boolean,
   status: string,
   views: number,
-  likes: number,
+  likes: string[],
   publicationDate: string | any,
-  comments: {
-    user: string, 
-    message: string
-  }[],
+  comments: IComment[],
   labels: string[],
   createdAt: string,
   updatedAt: string
@@ -74,6 +71,11 @@ export interface IMaterial {
 export interface ISortMaterialRequestData {
   indicator: string,
   order: string
+}
+
+export interface ILikeMaterialData {
+  userId: string,
+  materialId: string
 }
 
 export interface IDeleteMaterialData {
@@ -99,4 +101,12 @@ export interface MaterialFilterData {
   dateFrom?: string,
   dateTo?: string,
   author?: string
+}
+
+export interface IComment {
+  id: string,
+  userId: string,
+  userImage: string,
+  userName: string,
+  message: string
 }

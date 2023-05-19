@@ -109,7 +109,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
         image: imageUrl,
         publicationDate: dayjs(data.publicationDate).add(1, 'day'),
         views: 0,
-        likes: 0,
+        likes: [],
         labels: selectedLabels,
         comments: []
       }));

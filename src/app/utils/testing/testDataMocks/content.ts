@@ -24,7 +24,7 @@ export const contentStateSuccessMock: IContentSectionsInitialState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -48,7 +48,7 @@ export const contentStateSuccessMock: IContentSectionsInitialState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -80,7 +80,7 @@ export const contentStateSuccessMock: IContentSectionsInitialState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -104,7 +104,7 @@ export const contentStateSuccessMock: IContentSectionsInitialState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -142,7 +142,7 @@ export const contentSection: IContentSection = {
       status: 'published',
       publicationDate: '2023-04-05T21:00:00.000Z',
       views: 0,
-      likes: 0,
+      likes: [],
       labels: [
         'Premier League',
         'Arsenal'
@@ -166,7 +166,7 @@ export const contentSection: IContentSection = {
       status: 'published',
       publicationDate: '2023-04-05T21:00:00.000Z',
       views: 0,
-      likes: 0,
+      likes: [],
       labels: [
         'Premier League',
         'Arsenal'

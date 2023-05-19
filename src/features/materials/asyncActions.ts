@@ -1,7 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
 import { MaterialModel } from '../../app/models/components';
-import { IDeleteMaterialData, IMaterial, IMaterialsRequestData, IHomepageSecondaryMaterialsRequestData, IRecentMaterialsRequestData } from './types';
+import { 
+  IDeleteMaterialData, IMaterial, IMaterialsRequestData, 
+  IHomepageSecondaryMaterialsRequestData, IRecentMaterialsRequestData
+} from './types';
 import { IUser, UserRoles } from '../users/types';
 
 
@@ -75,6 +78,18 @@ export const getAuthors = createAsyncThunk(
       const { data } = await api.getUsersByRole(UserRoles.author);
       const authors = data.map((author: IUser) => `${author.firstName} ${author.lastName}`);
       return authors;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const updateViewedMaterial = createAsyncThunk(
+  'materials/likeMaterial',
+  async (materialToUpdate: IMaterial, thunkAPI) => {
+    try {
+      const { data } = await api.updateMaterial(materialToUpdate);
+      return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
     }

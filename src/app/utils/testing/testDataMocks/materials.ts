@@ -25,7 +25,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -51,7 +51,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -77,7 +77,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -103,7 +103,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -129,7 +129,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -155,7 +155,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -181,7 +181,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -207,7 +207,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -233,7 +233,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -259,7 +259,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
           status: 'published',
           publicationDate: '2023-04-05T21:00:00.000Z',
           views: 0,
-          likes: 0,
+          likes: [],
           labels: [
             'Premier League',
             'Arsenal'
@@ -324,7 +324,7 @@ export const newArticle: MaterialModel = {
   isMain: false,
   status: 'published',
   views: 10,
-  likes: 10,
+  likes: ['sdfsadf'],
   publicationDate: new Date(),
   comments: [
     {
@@ -352,7 +352,7 @@ export const articleToUpdate = {
   status: 'published',
   publicationDate: '2023-04-05T21:00:00.000Z',
   views: 0,
-  likes: 0,
+  likes: [],
   labels: [
     'Premier League',
     'Arsenal'
@@ -376,7 +376,7 @@ export const newNote: MaterialModel = {
   image: 'http://www.storage.com/materials/1.png',
   status: 'published',
   views: 10,
-  likes: 10,
+  likes: ['sdfsadf'],
   publicationDate: new Date(),
   comments: [
     {
@@ -426,7 +426,7 @@ export const newPost: MaterialModel = {
   image: 'http://www.storage.com/materials/1.png',
   status: 'published',
   views: 10,
-  likes: 10,
+  likes: ['dfsafsa'],
   publicationDate: new Date(),
   comments: [
     {
@@ -452,7 +452,7 @@ export const postToUpdate = {
   status: 'published',
   publicationDate: '2023-04-05T21:00:00.000Z',
   views: 0,
-  likes: 0,
+  likes: [],
   labels: [
     'Premier League',
     'Arsenal'

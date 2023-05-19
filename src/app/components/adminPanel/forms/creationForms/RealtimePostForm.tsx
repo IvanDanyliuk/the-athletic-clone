@@ -84,7 +84,7 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
         content: data.content,
         labels: selectedLabels,
         views: 0,
-        likes: 0,
+        likes: [],
         comments: []
       }));
       setIsLoading(false);
