@@ -22,7 +22,7 @@ const PopularMaterials: React.FC<IPopularMaterialsProps> = ({ materials }) => {
 
   return (
     <>
-      <Typography variant='h5'>Most Popular</Typography>
+      <Typography variant='h5_custom'>Most Popular</Typography>
       <Grid container spacing={3}>
         {materials.map((material, i) => (
           <Grid item key={uuid()} xs={12} md={6} sx={{ width: '100%' }}>

@@ -252,7 +252,7 @@ const CommonMaterial: React.FC<ICommonMaterialProps> = ({ material }) => {
           {dayjs(publicationDate).format('DD/MM/YYYY')}
         </PublicationDate>
       </AuthorInfo>
-      <Title variant='h2'>
+      <Title variant='h2_custom'>
         {title}
       </Title>
       <Box 

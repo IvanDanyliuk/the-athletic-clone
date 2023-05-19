@@ -69,10 +69,10 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
                 src={materials[0].image} 
                 alt={materials[0]._id} 
               />
-              <TopMaterialTitle variant='h3'>
+              <TopMaterialTitle variant='h3_custom'>
                 {materials[0].title}
               </TopMaterialTitle>
-              <Typography variant='subtitle1'>
+              <Typography variant='subtitle1_custom'>
                 {materials[0].preview}
               </Typography>
               <MaterialSecondaryInfo 
@@ -89,7 +89,7 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
                   <MaterialLink to={`/materials/${material._id}`}>
                     <Grid container sx={{ paddingLeft: 0 }}>
                       <Grid item xs={10} sx={{ paddingRight: '1em' }}>
-                        <Typography variant='h4'>
+                        <Typography variant='h4_custom'>
                           {material.title}
                         </Typography>
                         <MaterialSecondaryInfo 

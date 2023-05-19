@@ -49,7 +49,7 @@ const AuthorName = styled(Typography)`
 const MustReadSection: React.FC<IMustReadSectionProps> = ({ article }) => {
   return (
     <>
-      <SectionTitle variant='h2'>Must Read</SectionTitle>
+      <SectionTitle variant='h2_custom'>Must Read</SectionTitle>
       <ArticleLink to={`/materials/${article._id}`}>
         <Paper>
           <Grid container sx={{position: 'relative' }}>
@@ -58,8 +58,8 @@ const MustReadSection: React.FC<IMustReadSectionProps> = ({ article }) => {
                 {dayjs(article.publicationDate).subtract(1, 'day').format('DD/MM/YYYY')}
               </Date>
               <Box>
-                <ArticleTitle variant='h3'>{article.title}</ArticleTitle>
-                <Typography variant='subtitle1'>{article.preview}</Typography>
+                <ArticleTitle variant='h3_top_section'>{article.title}</ArticleTitle>
+                <Typography variant='subtitle1_custom'>{article.preview}</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Avatar src={article.author.photoUrl} alt={article.author.name} />

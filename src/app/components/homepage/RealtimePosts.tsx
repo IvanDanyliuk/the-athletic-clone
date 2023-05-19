@@ -65,7 +65,7 @@ const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
   return (
     <Box>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Typography variant='h2'>Real Time</Typography>
+        <Typography variant='h2_custom'>Real Time</Typography>
         <HeaderDivider orientation='vertical' flexItem />
         <CustomChip 
           icon={

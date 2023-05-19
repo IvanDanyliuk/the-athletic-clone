@@ -56,7 +56,7 @@ const SecondayMaterialImage = styled(Avatar)`
 const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
   return (
     <Section>
-      <SectionTitle variant='h2'>{data.name}</SectionTitle>
+      <SectionTitle variant='h2_custom'>{data.name}</SectionTitle>
       <Grid container >
         <Grid item xs={12} md={6} sx={{ margin: 0 }}>
           <MaterialLink to={`/materials/${data.materials[0]._id}`}>
@@ -64,10 +64,10 @@ const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
               src={data.materials[0].image} 
               alt={data.materials[0]._id} 
             />
-            <TopMaterialTitle variant='h3'>
+            <TopMaterialTitle variant='h3_top_section'>
               {data.materials[0].title}
             </TopMaterialTitle>
-            <Typography variant='subtitle1'>
+            <Typography variant='subtitle1_custom'>
               {data.materials[0].preview}
             </Typography>
           </MaterialLink>
@@ -87,7 +87,7 @@ const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
                       />
                     </Grid>
                     <Grid item xs={9} md={10}>
-                      <Typography variant='h4'>
+                      <Typography variant='h4_custom'>
                         {material.title}
                       </Typography>
                       <MaterialSecondaryInfo 

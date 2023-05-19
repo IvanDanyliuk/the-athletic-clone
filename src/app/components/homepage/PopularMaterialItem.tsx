@@ -32,10 +32,10 @@ const PopularMaterialItem: React.FC<IPopularMaterialItemProp> = ({ index, data }
     <LinkContainer to={`/materials/${data._id}`}>
       <MaterialContainer container spacing={3}>
         <Grid item xs={1}>
-          <Typography variant='h5'>{index}</Typography>
+          <Typography variant='h5_custom'>{index}</Typography>
         </Grid>
         <Grid item xs={8} md={9}>
-          <Typography variant='body1'>{data.title}</Typography>
+          <Typography variant='body1_custom'>{data.title}</Typography>
         </Grid>
         <Grid item xs={3} md={2}>
           <Image 

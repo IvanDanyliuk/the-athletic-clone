@@ -42,7 +42,7 @@ const SubscriptionLink = styled(Link)`
 const SubscribeSection: React.FC = () => {
   return (
     <SectionContainer>
-      <Typography variant='h2'>
+      <Typography variant='h2_custom'>
         Access sports reporting that sets the standard.
       </Typography>
       <SubscriptionLink to='/subscribe'>

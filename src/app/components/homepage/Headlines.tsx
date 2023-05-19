@@ -46,7 +46,7 @@ const Headlines: React.FC<IHeadlinesProps> = ({ data }) => {
         {data.map(material => (
           <HeadlineListItem key={uuid()}>
             <HeadlineLink to={`/materials/${material._id}`}>
-              <Typography variant='h6'>{material.title}</Typography>
+              <Typography variant='h6_custom'>{material.title}</Typography>
             </HeadlineLink>
           </HeadlineListItem>
         ))}
