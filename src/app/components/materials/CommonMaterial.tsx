@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
-import { Avatar, Box, Button, Grid, List, ListItem, Typography, styled } from '@mui/material';
+import { Avatar, Box, Button, Divider, Grid, List, ListItem, Paper, Typography, styled } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faPenToSquare, faThumbsUp, faXmark } from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
@@ -69,11 +69,13 @@ const CommentsSection = styled(Box)`
   width: 100%;
 `;
 
-const CommentList = styled(List)`
-
+const CommentListContainer = styled(Paper)`
+  margin-top: 1em;
+  padding: 0 1em;
 `;
 
 const Comment = styled(ListItem)`
+  margin: .5em 0;
   display: flex;
   flex-direction: column;
 `;
@@ -110,6 +112,11 @@ const CommentForm = styled(Box)`
 const CommentBtn = styled(Button)`
   width: 100%;
   height: 4em;
+  background: #121212;
+
+  &:hover {
+    background: #3b3b3b;
+  }
 `;
 
 const CommentActionBtns = styled(Box)`
@@ -130,7 +137,7 @@ const LikeButton = styled(Button)`
 
   &[data-liked='true'] {
     background: #b4b4b4;
-    color: #3d3d3d;
+    color: #333333;
   }
 
   svg {
@@ -147,6 +154,12 @@ const ViewsInfo = styled(Box)`
   svg {
     margin-right: .5em;
   }
+`;
+
+const EmptyCommentsListContainer = styled(Box)`
+  padding: 2em 0;
+  width: 100%;
+  text-align: center;
 `;
 
 
@@ -263,11 +276,11 @@ const CommonMaterial: React.FC<ICommonMaterialProps> = ({ material }) => {
             </Typography>
           </ViewsInfo>
         </ActivityInfo>
-        {comments && (
-          <CommentsSection>
+        <CommentsSection>
+          {user && (
             <CommentForm component='form' onSubmit={handleSubmit(handleCommentMaterial)}>
               <Grid container spacing={3} alignItems='flex-end'>
-                <Grid item xs={12} md={10}>
+                <Grid item xs={12} md={11}>
                   <TextInput 
                     name='message' 
                     label='Comment'
@@ -276,7 +289,7 @@ const CommonMaterial: React.FC<ICommonMaterialProps> = ({ material }) => {
                     error={errors.message}
                   />
                 </Grid>
-                <Grid item xs={12} md={2}>
+                <Grid item xs={12} md={1}>
                   <CommentBtn 
                     type='submit' 
                     variant='contained'
@@ -286,37 +299,50 @@ const CommonMaterial: React.FC<ICommonMaterialProps> = ({ material }) => {
                 </Grid>
               </Grid>
             </CommentForm>
-            <CommentList>
-              {comments.map(comment => (
-                <Comment key={uuid()}>
-                  <Grid container>
-                    <CommentHeader item xs={12}>
-                      <CommentAuthor>
-                        <Avatar src={comment.userImage} />
-                        <Typography variant='body2'>
-                          {comment.userName}
-                        </Typography>
-                      </CommentAuthor>
-                      <CommentActionBtns>
-                        <Button onClick={() => handleCommentEdit(comment.id)}>
-                          <FontAwesomeIcon icon={faPenToSquare} />
-                        </Button>
-                        <Button onClick={() => handleCommentDelete(comment.id)}>
-                          <FontAwesomeIcon icon={faXmark} />
-                        </Button>
-                      </CommentActionBtns>
-                    </CommentHeader>
-                    <CommentContent item xs={12}>
-                      <Typography variant='body2'>
-                        {comment.message}
-                      </Typography>
-                    </CommentContent>
-                  </Grid>
-                </Comment>
-              ))}
-            </CommentList>
-          </CommentsSection>
-        )}
+          )}
+          <CommentListContainer>
+            {comments && comments.length > 0 ? (
+              <List>
+                {comments.map((comment, i) => (
+                  <>
+                    <Comment key={uuid()}>
+                      <Grid container>
+                        <CommentHeader item xs={12}>
+                          <CommentAuthor>
+                            <Avatar src={comment.userImage} />
+                            <Typography variant='body2'>
+                              {comment.userName}
+                            </Typography>
+                          </CommentAuthor>
+                          {((user && user.role === 'admin') || (user && user._id === comment.userId)) && (
+                            <CommentActionBtns>
+                              <Button onClick={() => handleCommentEdit(comment.id)}>
+                                <FontAwesomeIcon icon={faPenToSquare} />
+                              </Button>
+                              <Button onClick={() => handleCommentDelete(comment.id)}>
+                                <FontAwesomeIcon icon={faXmark} />
+                              </Button>
+                            </CommentActionBtns>
+                          )}
+                        </CommentHeader>
+                        <CommentContent item xs={12}>
+                          <Typography variant='body2'>
+                            {comment.message}
+                          </Typography>
+                        </CommentContent>
+                      </Grid>
+                    </Comment>
+                    {i !== comments.length - 1 && <Divider />}
+                  </>
+                ))}
+              </List>
+            ) : (
+              <EmptyCommentsListContainer>
+                <Typography>Leave your comment</Typography>
+              </EmptyCommentsListContainer>
+            )}
+          </CommentListContainer>
+        </CommentsSection>
       </FeedbackSection>
     </Container>
   );
