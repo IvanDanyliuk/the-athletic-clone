@@ -7,6 +7,7 @@ import BackdropLoader from '../components/ui/BackdropLoader';
 import { getMaterial } from '../../features/materials/asyncActions';
 import { clearMaterial } from '../../features/materials/reducers';
 import CommonMaterial from '../components/materials/CommonMaterial';
+import Post from '../components/materials/Post';
 
 
 const Material: React.FC = () => {
@@ -29,7 +30,7 @@ const Material: React.FC = () => {
       {material.type !== 'post' ? (
         <CommonMaterial material={material} />
       ) : (
-        <div>{id}</div>
+        <Post post={material} />
       )}
     </>
   );

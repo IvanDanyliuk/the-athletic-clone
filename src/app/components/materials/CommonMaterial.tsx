@@ -14,7 +14,7 @@ import TextInput from '../ui/TextInput';
 
 
 interface ICommonMaterialProps {
-  material: IMaterial
+  material: IMaterial;
 }
 
 const Container = styled(Box)`

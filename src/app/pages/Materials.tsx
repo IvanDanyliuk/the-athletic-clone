@@ -113,10 +113,10 @@ const Materials: React.FC = () => {
                   <Label key={uuid()} variant='body2'>{label}</Label>
                 ))}
               </LabelsContainer>
-              <MainMaterialTitle variant='h2'>
+              <MainMaterialTitle variant='h2_custom'>
                 {materials[0].title}
               </MainMaterialTitle>
-              <PreviewText variant='body1'>
+              <PreviewText variant='body1_custom'>
                 {materials[0].preview}
               </PreviewText>
             </Grid>
@@ -141,10 +141,10 @@ const Materials: React.FC = () => {
                         <Label key={uuid()} variant='body2'>{label}</Label>
                       ))}
                     </LabelsContainer>
-                    <SecondaryMaterialTitle variant='h2'>
+                    <SecondaryMaterialTitle variant='h2_custom'>
                       {material.title}
                     </SecondaryMaterialTitle>
-                    <PreviewText variant='body1'>
+                    <PreviewText variant='body1_custom'>
                       {material.preview}
                     </PreviewText>
                   </CardContent>
@@ -166,7 +166,7 @@ const Materials: React.FC = () => {
                         <Label key={uuid()} variant='body2'>{label}</Label>
                       ))}
                     </LabelsContainer>
-                    <OtherMaterialTitle variant='h3'>
+                    <OtherMaterialTitle variant='h3_custom'>
                       {material.title}
                     </OtherMaterialTitle>
                   </Grid>

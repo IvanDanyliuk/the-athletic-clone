@@ -1,15 +1,14 @@
 import React from 'react';
-import sc from 'styled-components';
 import { Icon, Typography, styled } from '@mui/material';
 import { ChatBubble } from '@mui/icons-material';
 
 
 interface IMaterialSecondaryInfoProps {
-  author: string,
-  views: number
+  author: string;
+  commentsNum: number;
 }
 
-const SecondaryInfo = sc.div`
+const SecondaryInfo = styled('div')`
   margin: 1em 0;
   display: flex;
   align-items: center;
@@ -26,13 +25,13 @@ const Views = styled(Typography)`
   }
 `;
 
-const MaterialSecondaryInfo: React.FC<IMaterialSecondaryInfoProps> = ({ author, views }) => {
+const MaterialSecondaryInfo: React.FC<IMaterialSecondaryInfoProps> = ({ author, commentsNum }) => {
   return (
     <SecondaryInfo>
       <Author variant='caption'>{author}</Author>
       <Views variant='caption'>
         <Icon component={ChatBubble} />
-        {views}
+        {commentsNum}
       </Views>
     </SecondaryInfo>
   );
