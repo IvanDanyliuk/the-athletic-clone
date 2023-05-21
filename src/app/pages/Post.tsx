@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
-import { useForm } from 'react-hook-form';
+import { useParams } from 'react-router-dom';
 import { 
   Avatar, Box, Button, Card, CardActions, CardContent, 
   CardHeader, Grid, Icon, Typography, styled 
 } from '@mui/material';
 import { ChatBubbleOutlined, ThumbUpOutlined } from '@mui/icons-material';
-import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../features/store';
 import { getMaterial, getRecentMaterials, updateViewedMaterial } from '../../features/materials/asyncActions';
 import { selectMaterial, selectMaterials } from '../../features/materials/selectors';
-import Headlines from '../components/homepage/Headlines';
-import { useParams } from 'react-router-dom';
-import { clearMaterial } from '../../features/materials/reducers';
-import BackdropLoader from '../components/ui/BackdropLoader';
 import { selectUser } from '../../features/users/selectors';
-import { IComment } from '../../features/materials/types';
+import { clearMaterial } from '../../features/materials/reducers';
+import Headlines from '../components/homepage/Headlines';
+import BackdropLoader from '../components/ui/BackdropLoader';
+import Comments from '../components/materials/Comments';
 
 
 const ActionBtn = styled(Button)`
@@ -40,22 +38,20 @@ const ActionBtn = styled(Button)`
   }
 `;
 
+const CommentsSection = styled(Box)`
+  margin-top: 1em;
+  width: 100%;
+`;
+
 
 const Post: React.FC = () => {
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
-  const { 
-    register, 
-    handleSubmit,
-    formState: { errors }, 
-    reset 
-  } = useForm<IComment>();
 
   const post = useSelector(selectMaterial);
   const headlines = useSelector(selectMaterials);
    const user = useSelector(selectUser);
 
-  const [editedCommentId, setEditedCommentId] = useState<string | null>(null);
   const isLiked = post?.likes.includes(user?._id!);
 
   const handleLikeMaterial = () => {
@@ -73,49 +69,6 @@ const Post: React.FC = () => {
       }
     }
     dispatch(updateViewedMaterial(materialToUpdate));
-  };
-
-  const handleCommentMaterial = async (data: any) => {
-    if(editedCommentId) {
-      await dispatch(updateViewedMaterial({
-        ...post!,
-        comments: post!.comments!
-          .map(comment => comment.id === editedCommentId ? 
-            ({ ...comment, message: data.message }) : 
-            comment)
-      }));
-      setEditedCommentId(null);
-    } else {
-      await dispatch(updateViewedMaterial({
-        ...post!,
-        comments: [ 
-          ...post!.comments, 
-          {
-            ...data,
-            id: uuid(),
-            userId: user?._id,
-            userImage: user?.userPhotoUrl,
-            userName: `${user?.firstName} ${user?.lastName}`
-          }
-        ]
-      }));
-    }
-    reset({ message: '' });
-  };
-
-  const handleCommentEdit = (id: string) => {
-    setEditedCommentId(id);
-    const comment = post!.comments.find(comment => comment.id === id);
-    reset({
-      message: comment?.message
-    });
-  };
-
-  const handleCommentDelete = (id: string) => {
-    dispatch(updateViewedMaterial({
-      ...post!,
-      comments: post!.comments.filter(comment => id !== comment.id)
-    }));
   };
 
   useEffect(() => {
@@ -169,6 +122,9 @@ const Post: React.FC = () => {
             </Grid>
           </CardActions>
         </Card>
+        <CommentsSection>
+          {user && <Comments material={post} user={user} />}
+        </CommentsSection>
       </Grid>
       <Grid item xs={12} md={3}>
         <Headlines data={headlines} />
