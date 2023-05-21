@@ -1,17 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Carousel from 'react-material-ui-carousel';
 import styled from '@mui/styled-engine-sc';
 import { 
   Box, Typography, Divider, Chip, Button, Avatar, Grid, 
   Card, CardHeader, CardContent, CardActions, Icon 
 } from '@mui/material';
+import { ChatBubbleOutline, ThumbUpOffAlt } from '@mui/icons-material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
-import Carousel from 'react-material-ui-carousel';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
 import { divideArrayIntoChunks } from '../../utils/helpers';
-import { ChatBubbleOutline, ThumbUpOffAlt } from '@mui/icons-material';
-import { Link } from 'react-router-dom';
+
 
 
 interface IRealtimePostsProps {

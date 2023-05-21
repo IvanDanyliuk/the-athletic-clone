@@ -7,7 +7,7 @@ import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 interface ITextInputProps {
   name: string,
-  label: string,
+  label?: string,
   register: UseFormRegister<any>,
   registerOptions?: RegisterOptions,
   error?: FieldError,

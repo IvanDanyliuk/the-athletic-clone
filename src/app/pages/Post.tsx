@@ -14,6 +14,7 @@ import { clearMaterial } from '../../features/materials/reducers';
 import Headlines from '../components/homepage/Headlines';
 import BackdropLoader from '../components/ui/BackdropLoader';
 import Comments from '../components/materials/Comments';
+import PostsSearch from '../components/materials/PostsSearch';
 
 
 const ActionBtn = styled(Button)`
@@ -50,7 +51,7 @@ const Post: React.FC = () => {
 
   const post = useSelector(selectMaterial);
   const headlines = useSelector(selectMaterials);
-   const user = useSelector(selectUser);
+  const user = useSelector(selectUser);
 
   const isLiked = post?.likes.includes(user?._id!);
 
@@ -87,44 +88,48 @@ const Post: React.FC = () => {
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={3}>
-        Search & Filters
+        <PostsSearch />
       </Grid>
       <Grid item xs={12} md={6}>
-        <Card>
-          <CardHeader 
-            avatar={<Avatar src={post?.author.photoUrl} alt={post?.author.name} />} 
-            title={post?.author.name}  
-          />
-          <CardContent>
-            <Box 
-              component='div' 
-              dangerouslySetInnerHTML={{ __html: post!.content }} 
-            />
-          </CardContent>
-          <CardActions>
-            <Grid container>
-              <Grid item xs={6}>
-                <ActionBtn data-liked={isLiked} disabled={!Boolean(user)} onClick={handleLikeMaterial}>
-                  <Icon component={ThumbUpOutlined} />
-                  <Typography>
-                    {post?.likes.length}
-                  </Typography>
-                </ActionBtn>
-              </Grid>
-              <Grid item xs={6}>
-                <ActionBtn>
-                  <Icon component={ChatBubbleOutlined} />
-                  <Typography>
-                    {post?.comments.length}
-                  </Typography>
-                </ActionBtn>
-              </Grid>
-            </Grid>
-          </CardActions>
-        </Card>
-        <CommentsSection>
-          {user && <Comments material={post} user={user} />}
-        </CommentsSection>
+        {post && (
+          <>
+            <Card>
+              <CardHeader 
+                avatar={<Avatar src={post?.author.photoUrl} alt={post?.author.name} />} 
+                title={post?.author.name}  
+              />
+              <CardContent>
+                <Box 
+                  component='div' 
+                  dangerouslySetInnerHTML={{ __html: post!.content }} 
+                />
+              </CardContent>
+              <CardActions>
+                <Grid container>
+                  <Grid item xs={6}>
+                    <ActionBtn data-liked={isLiked} disabled={!Boolean(user)} onClick={handleLikeMaterial}>
+                      <Icon component={ThumbUpOutlined} />
+                      <Typography>
+                        {post?.likes.length}
+                      </Typography>
+                    </ActionBtn>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <ActionBtn>
+                      <Icon component={ChatBubbleOutlined} />
+                      <Typography>
+                        {post?.comments.length}
+                      </Typography>
+                    </ActionBtn>
+                  </Grid>
+                </Grid>
+              </CardActions>
+            </Card>
+            <CommentsSection>
+              {user && <Comments material={post} user={user} />}
+            </CommentsSection>
+          </>
+        )}
       </Grid>
       <Grid item xs={12} md={3}>
         <Headlines data={headlines} />
