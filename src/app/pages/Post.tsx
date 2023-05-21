@@ -5,17 +5,14 @@ import {
   CardHeader, Grid, Icon, Typography, styled 
 } from '@mui/material';
 import { ChatBubbleOutlined, ThumbUpOutlined } from '@mui/icons-material';
-import { IMaterial } from '../../../features/materials/types';
+import { AppDispatch } from '../../features/store';
+import { getMaterial, getRecentMaterials } from '../../features/materials/asyncActions';
+import { selectMaterial, selectMaterials } from '../../features/materials/selectors';
+import Headlines from '../components/homepage/Headlines';
+import { useParams } from 'react-router-dom';
+import { clearMaterial } from '../../features/materials/reducers';
+import BackdropLoader from '../components/ui/BackdropLoader';
 
-import { AppDispatch } from '../../../features/store';
-import { getRecentMaterials } from '../../../features/materials/asyncActions';
-import { selectMaterials } from '../../../features/materials/selectors';
-import Headlines from '../homepage/Headlines';
-
-
-interface IPostProps {
-  post: IMaterial;
-}
 
 const ActionBtn = styled(Button)`
   width: 100%;
@@ -35,11 +32,11 @@ const ActionBtn = styled(Button)`
 `;
 
 
-const Post: React.FC<IPostProps> = ({ post }) => {
-  const { author, content, comments, likes } = post;
-
+const Post: React.FC = () => {
+  const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
 
+  const post = useSelector(selectMaterial);
   const headlines = useSelector(selectMaterials);
 
   useEffect(() => {
@@ -47,7 +44,13 @@ const Post: React.FC<IPostProps> = ({ post }) => {
       materialsNumber: 10, 
       materialTypes: ['note'] 
     }));
+    dispatch(getMaterial(id!));
+    return () => { dispatch(clearMaterial()) };
   }, []);
+
+  if(!post) {
+    return <BackdropLoader open={true} />;
+  }
 
   return (
     <Grid container spacing={3}>
@@ -57,13 +60,13 @@ const Post: React.FC<IPostProps> = ({ post }) => {
       <Grid item xs={12} md={6}>
         <Card>
           <CardHeader 
-            avatar={<Avatar src={author.photoUrl} alt={author.name} />} 
-            title={post.author.name}  
+            avatar={<Avatar src={post?.author.photoUrl} alt={post?.author.name} />} 
+            title={post?.author.name}  
           />
           <CardContent>
             <Box 
               component='div' 
-              dangerouslySetInnerHTML={{ __html: content }} 
+              dangerouslySetInnerHTML={{ __html: post!.content }} 
             />
           </CardContent>
           <CardActions>
@@ -72,7 +75,7 @@ const Post: React.FC<IPostProps> = ({ post }) => {
                 <ActionBtn>
                   <Icon component={ThumbUpOutlined} />
                   <Typography>
-                    {likes.length}
+                    {post?.likes.length}
                   </Typography>
                 </ActionBtn>
               </Grid>
@@ -80,7 +83,7 @@ const Post: React.FC<IPostProps> = ({ post }) => {
                 <ActionBtn>
                   <Icon component={ChatBubbleOutlined} />
                   <Typography>
-                    {comments.length}
+                    {post?.comments.length}
                   </Typography>
                 </ActionBtn>
               </Grid>

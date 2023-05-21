@@ -21,6 +21,7 @@ import {
 } from './app/components/adminPanel/forms/updationForms';
 import Content from './app/components/adminPanel/sections/Content';
 import UpdateContentSection from './app/components/adminPanel/forms/updationForms/UpdateContentSection';
+import Post from './app/pages/Post';
 
 
 const App: React.FC = () => {
@@ -33,6 +34,7 @@ const App: React.FC = () => {
               <Route path='/' element={<Home />} />
               <Route path='/materials' element={<RecentMaterials />} />
               <Route path='/materials/:id' element={<Material />} />
+              <Route path='/posts/:id' element={<Post />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/checkout' element={<Checkout />} />

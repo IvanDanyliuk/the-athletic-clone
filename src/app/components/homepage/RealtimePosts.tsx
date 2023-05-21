@@ -100,7 +100,7 @@ const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
             <Grid key={uuid()} container spacing={3}>
               {group.map((post: IMaterial) => (
                 <Grid key={uuid()} item xs={12} md={3}>
-                  <PostLink to={`/materials/${post._id}`}>
+                  <PostLink to={`/posts/${post._id}`}>
                     <Card sx={{ height: '100%' }}>
                       <CardHeader
                         avatar={<Avatar src={post.author.photoUrl} />}
