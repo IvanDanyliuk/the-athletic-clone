@@ -166,9 +166,6 @@ const EmptyCommentsListContainer = styled(Box)`
 const Material: React.FC = () => {
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
-
-  const material = useSelector(selectMaterial);
-
   const { 
     register, 
     handleSubmit,
@@ -176,8 +173,10 @@ const Material: React.FC = () => {
     reset 
   } = useForm<IComment>();
 
-  const [editedCommentId, setEditedCommentId] = useState<string | null>(null);
+  const material = useSelector(selectMaterial);
   const user = useSelector(selectUser);
+
+  const [editedCommentId, setEditedCommentId] = useState<string | null>(null);
   const isLiked = material?.likes.includes(user?._id!);
 
   const handleLikeMaterial = () => {
