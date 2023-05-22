@@ -20,6 +20,8 @@ export interface IMaterialsState {
     }
   },
   filters: MaterialFilterData | null,
+  searchValues: any,
+  search: IMaterial[] | null,
   authors: string[],
   error: string | null
 }

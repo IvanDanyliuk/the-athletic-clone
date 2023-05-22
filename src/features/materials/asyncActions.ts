@@ -84,6 +84,18 @@ export const getAuthors = createAsyncThunk(
   }
 );
 
+export const getSearchValues = createAsyncThunk(
+  'materials/getSearchValues',
+  async (value: string, thunkAPI) => {
+    try {
+      const { data } = await api.getSearchValues(value);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+)
+
 export const updateViewedMaterial = createAsyncThunk(
   'materials/likeMaterial',
   async (materialToUpdate: IMaterial, thunkAPI) => {
