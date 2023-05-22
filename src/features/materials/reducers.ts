@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { 
   createMaterial, deleteMaterial, getAuthors, getHomepageSecondaryMaterials, 
-  getMaterial, getMaterials, getRecentMaterials, getSearchValues, updateMaterial, updateViewedMaterial 
+  getMaterial, getMaterials, getRecentMaterials, getSearchValues, searchMaterials, 
+  updateMaterial, updateViewedMaterial 
 } from './asyncActions';
 import { IMaterialsState } from './types';
 
@@ -43,6 +44,9 @@ const materialsSlice = createSlice({
     },
     clearSearchValues: (state) => {
       state.searchValues = null;
+    },
+    clearSearch: (state) => {
+      state.search = null;
     },
     clearError: (state) => {
       state.error = null;
@@ -127,6 +131,17 @@ const materialsSlice = createSlice({
         state.status = 'failed';
         state.error = action.payload.error;
       })
+      .addCase(searchMaterials.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(searchMaterials.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.search = action.payload;
+      })
+      .addCase(searchMaterials.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
       .addCase(updateViewedMaterial.pending, (state, action) => {
         state.status = 'loading';
       })
@@ -163,6 +178,6 @@ const materialsSlice = createSlice({
   }
 });
 
-export const { clearMaterial, setFilters, clearFilters, clearSearchValues, clearError } = materialsSlice.actions;
+export const { clearMaterial, setFilters, clearFilters, clearSearchValues, clearSearch, clearError } = materialsSlice.actions;
 
 export default materialsSlice.reducer;

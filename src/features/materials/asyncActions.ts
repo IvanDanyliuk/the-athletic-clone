@@ -3,7 +3,7 @@ import * as api from '../../app/api/api';
 import { MaterialModel } from '../../app/models/components';
 import { 
   IDeleteMaterialData, IMaterial, IMaterialsRequestData, 
-  IHomepageSecondaryMaterialsRequestData, IRecentMaterialsRequestData
+  IHomepageSecondaryMaterialsRequestData, IRecentMaterialsRequestData, IMaterialSearchData
 } from './types';
 import { IUser, UserRoles } from '../users/types';
 
@@ -94,7 +94,20 @@ export const getSearchValues = createAsyncThunk(
       return thunkAPI.rejectWithValue(error.response.data);
     }
   }
-)
+);
+
+export const searchMaterials = createAsyncThunk(
+  'materials/searchMaterials',
+  async (searchData: IMaterialSearchData, thunkAPI) => {
+    const { value, type } = searchData;
+    try {
+      const { data } = await api.searchMaterials(value, type);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
 
 export const updateViewedMaterial = createAsyncThunk(
   'materials/likeMaterial',

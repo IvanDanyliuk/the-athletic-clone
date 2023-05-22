@@ -8,7 +8,7 @@ import { ChevronLeft, Close, Search, TrendingUp } from '@mui/icons-material';
 import { v4 as uuid } from 'uuid';
 import { selectSearchValues } from '../../../features/materials/selectors';
 import { AppDispatch } from '../../../features/store';
-import { getSearchValues } from '../../../features/materials/asyncActions';
+import { getSearchValues, searchMaterials } from '../../../features/materials/asyncActions';
 import { ICompetition } from '../../../features/competitions/types';
 import { IClub } from '../../../features/clubs/types';
 import { IUser } from '../../../features/users/types';
@@ -64,8 +64,9 @@ const LatestIcon = styled(Typography)`
 
 const SearchListItem = styled(ListItem)`
   transition: .5s;
-  
+
   &:hover {
+    cursor: pointer;
     background: #f4f4f4;
   }
 `;
@@ -91,8 +92,10 @@ const PostsSearch: React.FC = () => {
     dispatch(clearSearchValues());
   };
 
-  const handleSearchPosts = (value: string, type?: string) => {
-    console.log(value, type)
+  const handleSearchPosts = async (value: string, type?: string) => {
+    if(type) {
+      await dispatch(searchMaterials({ value, type }));
+    }
   };
 
   useEffect(() => {
