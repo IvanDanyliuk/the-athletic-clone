@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Avatar, Box, Button, Icon, IconButton, List, ListItem, TextField, Typography, styled } from '@mui/material';
+import { 
+  Box, Button, Icon, IconButton, List, ListItem, 
+  TextField, Typography, styled 
+} from '@mui/material';
 import { ChevronLeft, Close, Search, TrendingUp } from '@mui/icons-material';
 import { v4 as uuid } from 'uuid';
 import { selectSearchValues } from '../../../features/materials/selectors';
@@ -10,6 +13,7 @@ import { ICompetition } from '../../../features/competitions/types';
 import { IClub } from '../../../features/clubs/types';
 import { IUser } from '../../../features/users/types';
 import { clearSearchValues } from '../../../features/materials/reducers';
+import SearchItem from './SearchItem';
 
 
 const Container = styled(Box)`
@@ -58,6 +62,14 @@ const LatestIcon = styled(Typography)`
   line-height: 1em;
 `;
 
+const SearchListItem = styled(ListItem)`
+  transition: .5s;
+  
+  &:hover {
+    background: #f4f4f4;
+  }
+`;
+
 
 const PostsSearch: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -77,6 +89,10 @@ const PostsSearch: React.FC = () => {
   const handleClearSearchValues = () => {
     setSearchRequest('');
     dispatch(clearSearchValues());
+  };
+
+  const handleSearchPosts = (value: string, type?: string) => {
+    console.log(value, type)
   };
 
   useEffect(() => {
@@ -129,22 +145,31 @@ const PostsSearch: React.FC = () => {
       {searchValues && (
         <List>
           {searchValues.competitions.length > 0 && searchValues.competitions.map((competition: ICompetition) => (
-            <ListItem key={uuid()}>
-              <Avatar src={competition.logoUrl} alt={competition.shortName} />
-              <Typography>{competition.fullName}</Typography>
-            </ListItem>
+            <SearchListItem key={uuid()} onClick={() => handleSearchPosts(competition.fullName, 'post')}>
+              <SearchItem 
+                image={competition.logoUrl} 
+                label={competition.fullName} 
+                altText={competition.shortName} 
+              />
+            </SearchListItem>
           ))}
           {searchValues.clubs.length > 0 && searchValues.clubs.map((club: IClub) => (
-            <ListItem key={uuid()}>
-              <Avatar src={club.clubLogoUrl} alt={club.shortName} />
-              <Typography>{club.commonName}</Typography>
-            </ListItem>
+            <SearchListItem key={uuid()} onClick={() => handleSearchPosts(club.commonName, 'post')}>
+              <SearchItem 
+                image={club.clubLogoUrl} 
+                label={club.commonName} 
+                altText={club.shortName} 
+              />
+            </SearchListItem>
           ))}
           {searchValues.authors.length > 0 && searchValues.authors.map((author: IUser) => (
-            <ListItem key={uuid()}>
-              <Avatar src={author.userPhotoUrl} alt={author._id} />
-              <Typography>{`${author.firstName} ${author.lastName}`}</Typography>
-            </ListItem>
+            <SearchListItem key={uuid()} onClick={() => handleSearchPosts(`${author.firstName} ${author.lastName}`, 'post')}>
+              <SearchItem 
+                image={author.userPhotoUrl!} 
+                label={`${author.firstName} ${author.lastName}`} 
+                altText={author.lastName} 
+              />
+            </SearchListItem>
           ))}
         </List>
       )}
