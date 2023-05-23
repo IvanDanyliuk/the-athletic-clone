@@ -11,7 +11,6 @@ import { AppDispatch } from '../../../features/store';
 import { updateViewedMaterial } from '../../../features/materials/asyncActions';
 
 
-
 interface IPostCardProps {
   post: IMaterial;
   user?: IUser;

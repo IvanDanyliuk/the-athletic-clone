@@ -26,6 +26,7 @@ const SectionDivider = styled(Divider)`
   margin: 2em 0;
 `;
 
+
 const Home: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -76,7 +77,10 @@ const Home: React.FC = () => {
           <SectionDivider />
         </>
       )}
-      <LeagueMaterials materials={leagueMaterials} leaguesNumToShow={4} />
+      <LeagueMaterials 
+        materials={leagueMaterials} 
+        leaguesNumToShow={4} 
+      />
     </Box>
   );
 };

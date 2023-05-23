@@ -109,6 +109,18 @@ export const searchMaterials = createAsyncThunk(
   }
 );
 
+export const searchRecentMaterials = createAsyncThunk(
+  'materials/searchRecentMaterials',
+  async (types: string[], thunkAPI) => {
+    try {
+      const { data } = await api.getRecentMaterials(10, types);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const updateViewedMaterial = createAsyncThunk(
   'materials/likeMaterial',
   async (materialToUpdate: IMaterial, thunkAPI) => {

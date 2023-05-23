@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { 
   createMaterial, deleteMaterial, getAuthors, getHomepageSecondaryMaterials, 
   getMaterial, getMaterials, getRecentMaterials, getSearchValues, searchMaterials, 
+  searchRecentMaterials, 
   updateMaterial, updateViewedMaterial 
 } from './asyncActions';
 import { IMaterialsState } from './types';
@@ -139,6 +140,17 @@ const materialsSlice = createSlice({
         state.search = action.payload;
       })
       .addCase(searchMaterials.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(searchRecentMaterials.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(searchRecentMaterials.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.search = action.payload;
+      })
+      .addCase(searchRecentMaterials.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })

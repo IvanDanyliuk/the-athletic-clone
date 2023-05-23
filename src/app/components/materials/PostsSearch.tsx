@@ -8,7 +8,7 @@ import { ChevronLeft, Close, Search, TrendingUp } from '@mui/icons-material';
 import { v4 as uuid } from 'uuid';
 import { selectSearchValues } from '../../../features/materials/selectors';
 import { AppDispatch } from '../../../features/store';
-import { getSearchValues, searchMaterials } from '../../../features/materials/asyncActions';
+import { getSearchValues, searchMaterials, searchRecentMaterials } from '../../../features/materials/asyncActions';
 import { ICompetition } from '../../../features/competitions/types';
 import { IClub } from '../../../features/clubs/types';
 import { IUser } from '../../../features/users/types';
@@ -101,6 +101,11 @@ const PostsSearch: React.FC = () => {
     }
   };
 
+  const searchLatestPosts = async () => {
+    await dispatch(searchRecentMaterials(['post']));
+    navigate('/posts/search');
+  };
+
   useEffect(() => {
     const searchRequestTimeout = setTimeout(() => {
       if(searchRequest !== '') {
@@ -143,7 +148,7 @@ const PostsSearch: React.FC = () => {
           <Icon component={TrendingUp} />
           <Typography>Trending</Typography>
         </FilterButton>
-        <FilterButton>
+        <FilterButton onClick={searchLatestPosts}>
           <LatestIcon variant='inherit'>A</LatestIcon>
           <Typography>Latest</Typography>
         </FilterButton>
