@@ -7,5 +7,6 @@ export const selectMaterialsCount = (state: RootState) => state.materials.data.m
 export const selectMaterialsStatus = (state: RootState) => state.materials.status;
 export const selectFilters = (state: RootState) => state.materials.filters;
 export const selectSearchValues = (state: RootState) => state.materials.searchValues;
+export const selectSearchedMaterials = (state: RootState) => state.materials.search;
 export const selectAuthors = (state: RootState) => state.materials.authors;
 export const selectMaterialsError = (state: RootState) => state.materials.error;

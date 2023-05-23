@@ -17,6 +17,10 @@ interface IPostCardProps {
   user?: IUser;
 }
 
+const CardContainer = styled(Card)`
+  width: 100%;
+`;
+
 const ActionBtn = styled(Button)`
   width: 100%;
   display: flex;
@@ -63,7 +67,7 @@ const PostCard: React.FC<IPostCardProps> = ({ post, user }) => {
   };
 
   return (
-    <Card>
+    <CardContainer>
       <CardHeader 
         avatar={<Avatar src={post.author.photoUrl} alt={post.author.name} />} 
         title={post?.author.name}  
@@ -94,7 +98,7 @@ const PostCard: React.FC<IPostCardProps> = ({ post, user }) => {
           </Grid>
         </Grid>
       </CardActions>
-    </Card>
+    </CardContainer>
   );
 };
 

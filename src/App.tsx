@@ -22,6 +22,7 @@ import {
 import Content from './app/components/adminPanel/sections/Content';
 import UpdateContentSection from './app/components/adminPanel/forms/updationForms/UpdateContentSection';
 import PostCard from './app/components/materials/Post';
+import PostList from './app/components/materials/PostList';
 
 
 const App: React.FC = () => {
@@ -36,7 +37,7 @@ const App: React.FC = () => {
               <Route path='/materials/:id' element={<Material />} />
               <Route path='/posts' element={<Posts />}>
                 <Route path='/posts/:id' element={<PostCard />} />
-                <Route path='/posts/search' element={<div>Searched Posts</div>} />
+                <Route path='/posts/search' element={<PostList />} />
               </Route>
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
