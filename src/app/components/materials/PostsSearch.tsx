@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import { ChevronLeft, Close, Search, TrendingUp } from '@mui/icons-material';
 import { v4 as uuid } from 'uuid';
-import { selectSearchValues } from '../../../features/materials/selectors';
+import { selectMaterial, selectSearchValues } from '../../../features/materials/selectors';
 import { AppDispatch } from '../../../features/store';
 import { getSearchValues, searchMaterials, searchRecentMaterials } from '../../../features/materials/asyncActions';
 import { ICompetition } from '../../../features/competitions/types';
@@ -80,6 +80,7 @@ const PostsSearch: React.FC = () => {
   const [searchRequest, setSearchRequest] = useState<string>('');
 
   const searchValues = useSelector(selectSearchValues);
+  const post = useSelector(selectMaterial);
 
   const handleSearchMode = () => {
     setIsSearchModeActive(!isSearchModeActive);
@@ -97,6 +98,13 @@ const PostsSearch: React.FC = () => {
   const handleSearchPosts = async (value: string, type?: string) => {
     if(type) {
       await dispatch(searchMaterials({ value, type }));
+      navigate('/posts/search');
+    }
+  };
+
+  const searchTrendingPosts = async () => {
+    if(post) {
+      await dispatch(searchMaterials({ value: post.labels, type: 'post' }));
       navigate('/posts/search');
     }
   };
@@ -144,7 +152,7 @@ const PostsSearch: React.FC = () => {
         )}
       </SearchSection>
       <Box>
-        <FilterButton>
+        <FilterButton onClick={searchTrendingPosts}>
           <Icon component={TrendingUp} />
           <Typography>Trending</Typography>
         </FilterButton>

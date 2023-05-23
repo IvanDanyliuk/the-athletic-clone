@@ -114,6 +114,6 @@ export interface IComment {
 }
 
 export interface IMaterialSearchData {
-  value: string;
+  value: string | string[];
   type: string;
 }
