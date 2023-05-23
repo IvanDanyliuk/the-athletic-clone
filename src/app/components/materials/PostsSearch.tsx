@@ -14,6 +14,7 @@ import { IClub } from '../../../features/clubs/types';
 import { IUser } from '../../../features/users/types';
 import { clearSearchValues } from '../../../features/materials/reducers';
 import SearchItem from './SearchItem';
+import { useNavigate } from 'react-router-dom';
 
 
 const Container = styled(Box)`
@@ -74,6 +75,7 @@ const SearchListItem = styled(ListItem)`
 
 const PostsSearch: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
   const [isSearchModeActive, setIsSearchModeActive] = useState<boolean>(false);
   const [searchRequest, setSearchRequest] = useState<string>('');
 
@@ -95,6 +97,7 @@ const PostsSearch: React.FC = () => {
   const handleSearchPosts = async (value: string, type?: string) => {
     if(type) {
       await dispatch(searchMaterials({ value, type }));
+      navigate('/posts/search');
     }
   };
 

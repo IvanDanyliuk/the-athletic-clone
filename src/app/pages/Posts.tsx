@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import { 
   Avatar, Box, Button, Card, CardActions, CardContent, 
   CardHeader, Grid, Icon, Typography, styled 
@@ -46,42 +46,40 @@ const CommentsSection = styled(Box)`
 
 
 const Post: React.FC = () => {
-  const { id } = useParams();
+  // const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();
 
-  const post = useSelector(selectMaterial);
+  // const post = useSelector(selectMaterial);
   const headlines = useSelector(selectMaterials);
-  const user = useSelector(selectUser);
+  // const user = useSelector(selectUser);
 
-  const isLiked = post?.likes.includes(user?._id!);
+  // const isLiked = post?.likes.includes(user?._id!);
 
-  const handleLikeMaterial = () => {
-    const isLiked = post!.likes.includes(user!._id!);
-    let materialToUpdate;
-    if(isLiked) {
-      materialToUpdate = {
-        ...post!,
-        likes: post!.likes.filter(id => id !== user!._id!)
-      };
-    } else {
-      materialToUpdate = {
-        ...post!,
-        likes: [ ...post!.likes!, user?._id! ]
-      }
-    }
-    dispatch(updateViewedMaterial(materialToUpdate));
-  };
+  // const handleLikeMaterial = () => {
+  //   const isLiked = post!.likes.includes(user!._id!);
+  //   let materialToUpdate;
+  //   if(isLiked) {
+  //     materialToUpdate = {
+  //       ...post!,
+  //       likes: post!.likes.filter(id => id !== user!._id!)
+  //     };
+  //   } else {
+  //     materialToUpdate = {
+  //       ...post!,
+  //       likes: [ ...post!.likes!, user?._id! ]
+  //     }
+  //   }
+  //   dispatch(updateViewedMaterial(materialToUpdate));
+  // };
 
   useEffect(() => {
     dispatch(getRecentMaterials({ 
       materialsNumber: 10, 
       materialTypes: ['note'] 
     }));
-    dispatch(getMaterial(id!));
-    return () => { dispatch(clearMaterial()) };
   }, []);
 
-  if(!post) {
+  if(!headlines) {
     return <BackdropLoader open={true} />;
   }
 
@@ -91,7 +89,7 @@ const Post: React.FC = () => {
         <PostsSearch />
       </Grid>
       <Grid item xs={12} md={6}>
-        {post && (
+        {/* {post && (
           <>
             <Card>
               <CardHeader 
@@ -129,7 +127,8 @@ const Post: React.FC = () => {
               {user && <Comments material={post} user={user} />}
             </CommentsSection>
           </>
-        )}
+        )} */}
+        <Outlet />
       </Grid>
       <Grid item xs={12} md={3}>
         <Headlines data={headlines} />

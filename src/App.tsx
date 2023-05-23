@@ -4,8 +4,8 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import Layout from './app/components/layout/Layout';
 import { 
-  Admin, Checkout, Home, Login, Material, News, 
-  NotFound, Realtime, RecentMaterials, Register, Search 
+  Admin, Checkout, Home, Login, Material, News, NotFound, 
+  Posts, Realtime, RecentMaterials, Register, Search 
 } from './app/pages';
 import {
    Clubs, Competitions, Materials, 
@@ -21,7 +21,7 @@ import {
 } from './app/components/adminPanel/forms/updationForms';
 import Content from './app/components/adminPanel/sections/Content';
 import UpdateContentSection from './app/components/adminPanel/forms/updationForms/UpdateContentSection';
-import Post from './app/pages/Post';
+import PostCard from './app/components/materials/Post';
 
 
 const App: React.FC = () => {
@@ -34,7 +34,10 @@ const App: React.FC = () => {
               <Route path='/' element={<Home />} />
               <Route path='/materials' element={<RecentMaterials />} />
               <Route path='/materials/:id' element={<Material />} />
-              <Route path='/posts/:id' element={<Post />} />
+              <Route path='/posts' element={<Posts />}>
+                <Route path='/posts/:id' element={<PostCard />} />
+                <Route path='/posts/search' element={<div>Searched Posts</div>} />
+              </Route>
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/checkout' element={<Checkout />} />
