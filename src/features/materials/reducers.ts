@@ -1,7 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { 
   createMaterial, deleteMaterial, getAuthors, getHomepageSecondaryMaterials, 
-  getMaterial, getMaterials, getRecentMaterials, updateMaterial, updateViewedMaterial 
+  getMaterial, getMaterials, getRecentMaterials, getSearchValues, searchMaterials, 
+  searchRecentMaterials, 
+  updateMaterial, updateViewedMaterial 
 } from './asyncActions';
 import { IMaterialsState } from './types';
 
@@ -22,6 +24,8 @@ const initialState: IMaterialsState = {
     }
   },
   filters: null,
+  searchValues: null,
+  search: null,
   authors: [],
   error: null
 }
@@ -38,6 +42,12 @@ const materialsSlice = createSlice({
     },
     clearFilters: (state) => {
       state.filters = null;
+    },
+    clearSearchValues: (state) => {
+      state.searchValues = null;
+    },
+    clearSearch: (state) => {
+      state.search = null;
     },
     clearError: (state) => {
       state.error = null;
@@ -111,6 +121,39 @@ const materialsSlice = createSlice({
         state.status = 'failed';
         state.error = action.payload.error;
       })
+      .addCase(getSearchValues.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getSearchValues.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.searchValues = action.payload;
+      })
+      .addCase(getSearchValues.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(searchMaterials.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(searchMaterials.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.search = action.payload;
+      })
+      .addCase(searchMaterials.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(searchRecentMaterials.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(searchRecentMaterials.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.search = action.payload;
+      })
+      .addCase(searchRecentMaterials.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
       .addCase(updateViewedMaterial.pending, (state, action) => {
         state.status = 'loading';
       })
@@ -147,6 +190,6 @@ const materialsSlice = createSlice({
   }
 });
 
-export const { clearMaterial, setFilters, clearFilters, clearError } = materialsSlice.actions;
+export const { clearMaterial, setFilters, clearFilters, clearSearchValues, clearSearch, clearError } = materialsSlice.actions;
 
 export default materialsSlice.reducer;

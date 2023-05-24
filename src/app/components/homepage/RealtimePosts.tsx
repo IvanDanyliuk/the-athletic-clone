@@ -1,20 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Carousel from 'react-material-ui-carousel';
 import styled from '@mui/styled-engine-sc';
 import { 
   Box, Typography, Divider, Chip, Button, Avatar, Grid, 
   Card, CardHeader, CardContent, CardActions, Icon 
 } from '@mui/material';
+import { ChatBubbleOutline, ThumbUpOffAlt } from '@mui/icons-material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowTrendUp } from '@fortawesome/free-solid-svg-icons';
-import Carousel from 'react-material-ui-carousel';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
 import { divideArrayIntoChunks } from '../../utils/helpers';
-import { ChatBubbleOutline, ThumbUpOffAlt } from '@mui/icons-material';
+
 
 
 interface IRealtimePostsProps {
-  materials: IMaterial[]
+  materials: IMaterial[];
 }
 
 const HeaderDivider = styled(Divider)`
@@ -38,6 +40,11 @@ const ChipIcon = styled('div')`
     font-size: .8em;
     color: #000000;
   }
+`;
+
+const PostLink = styled(Link)`
+  text-decoration: none;
+  color: #000000;
 `;
 
 const LatestIcon = styled(Typography)`
@@ -94,28 +101,30 @@ const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
             <Grid key={uuid()} container spacing={3}>
               {group.map((post: IMaterial) => (
                 <Grid key={uuid()} item xs={12} md={3}>
-                  <Card sx={{ height: '100%' }}>
-                    <CardHeader
-                      avatar={<Avatar src={post.author.photoUrl} />}
-                      title={<Typography variant='subtitle2'>{post.author.name}</Typography>}
-                      subheader={`${post.author.organization}, ${post.author.position}`}
-                    />
-                    <CardContent>
-                      <Typography variant='body2'>
-                        {post.content.replace(/(<([^>]+)>)/ig, '')}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <ActionBtn>
-                        <Icon component={ThumbUpOffAlt} />
-                        <BtnLabel>{post.likes.length}</BtnLabel>
-                      </ActionBtn>
-                      <ActionBtn>
-                        <Icon component={ChatBubbleOutline} />
-                        <BtnLabel>{post.comments ? post.comments.length : '0'}</BtnLabel>
-                      </ActionBtn>
-                    </CardActions>
-                  </Card>
+                  <PostLink to={`/posts/${post._id}`}>
+                    <Card sx={{ height: '100%' }}>
+                      <CardHeader
+                        avatar={<Avatar src={post.author.photoUrl} />}
+                        title={<Typography variant='subtitle2'>{post.author.name}</Typography>}
+                        subheader={`${post.author.organization}, ${post.author.position}`}
+                      />
+                      <CardContent>
+                        <Typography variant='body2'>
+                          {post.content.replace(/(<([^>]+)>)/ig, '')}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <ActionBtn>
+                          <Icon component={ThumbUpOffAlt} />
+                          <BtnLabel>{post.likes.length}</BtnLabel>
+                        </ActionBtn>
+                        <ActionBtn>
+                          <Icon component={ChatBubbleOutline} />
+                          <BtnLabel>{post.comments ? post.comments.length : '0'}</BtnLabel>
+                        </ActionBtn>
+                      </CardActions>
+                    </Card>
+                  </PostLink>
                 </Grid>
               ))}
             </Grid>

@@ -285,6 +285,8 @@ export const materialsStateSuccessMock: IMaterialsState = {
     dateTo: '',
     type: ''
   },
+  searchValues: null,
+  search: null,
   authors: ['John Doe'],
   error: null
 };
@@ -305,6 +307,8 @@ export const materialsStateErrorMock: IMaterialsState = {
     }
   },
   filters: null,
+  searchValues: null,
+  search: null,
   authors: [],
   error: 'error'
 };
@@ -457,7 +461,13 @@ export const postToUpdate = {
     'Premier League',
     'Arsenal'
   ],
-  comments: [],
+  comments: [{
+    id: 'user_comment_id_1',
+    userId: 'user_id_1',
+    userImage: 'https://www.storage.com/users/user_1.png',
+    userName: 'John Doe',
+    message: 'This is a comment!'
+  }],
   createdAt: '2023-04-05T14:34:56.462Z',
   updatedAt: '2023-04-05T14:35:57.574Z',
 };

@@ -77,7 +77,7 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
               </Typography>
               <MaterialSecondaryInfo 
                 author={materials[0].author.name} 
-                views={materials[0].views} 
+                commentsNum={materials[0].comments.length} 
               />
             </MaterialLink>
           </Grid>
@@ -94,7 +94,7 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
                         </Typography>
                         <MaterialSecondaryInfo 
                           author={material.author.name} 
-                          views={material.views} 
+                          commentsNum={material.comments.length} 
                         />
                       </Grid>
                       <Grid item xs sx={{ display: 'flex' }}>

@@ -92,7 +92,7 @@ const ContentSection: React.FC<IContentSectionProps> = ({ data }) => {
                       </Typography>
                       <MaterialSecondaryInfo 
                         author={material.author.name} 
-                        views={material.views} 
+                        commentsNum={material.comments.length} 
                       />
                     </Grid>
                   </Grid>
