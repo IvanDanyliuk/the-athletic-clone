@@ -1,10 +1,10 @@
-import { cleanup, screen, waitFor } from '@testing-library/react';
+import { cleanup, screen } from '@testing-library/react';
 import { setupMaterialsSuccessHandlers } from '../../../utils/testing/serverMocks/materials';
 import { renderWithProviders } from '../../../utils/testing/customRenderMethod';
-import Post from '../Post';
 import { materialsStateSuccessMock } from '../../../utils/testing/testDataMocks/materials';
 import { postToUpdate } from '../../../utils/testing/testDataMocks/materials';
 import { usersStateSuccessMock } from '../../../utils/testing/testDataMocks/users';
+import Post from '../Post';
 
 
 describe('Post tests', () => {
