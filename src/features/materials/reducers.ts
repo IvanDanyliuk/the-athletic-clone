@@ -2,8 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { 
   createMaterial, deleteMaterial, getAuthors, getHomepageSecondaryMaterials, 
   getMaterial, getMaterials, getRecentMaterials, getSearchValues, searchMaterials, 
-  searchRecentMaterials, 
-  updateMaterial, updateViewedMaterial 
+  searchRecentMaterials, updateMaterial, updateViewedMaterial 
 } from './asyncActions';
 import { IMaterialsState } from './types';
 
