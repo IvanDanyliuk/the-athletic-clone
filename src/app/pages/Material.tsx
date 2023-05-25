@@ -92,7 +92,6 @@ const ViewsInfo = styled(Box)`
     margin-right: .5em;
   }
 `;
-
 const Material: React.FC = () => {
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();

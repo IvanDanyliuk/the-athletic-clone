@@ -24,6 +24,10 @@ import UpdateContentSection from './app/components/adminPanel/forms/updationForm
 import PostCard from './app/components/materials/Post';
 import PostList from './app/components/materials/PostList';
 import Competition from './app/pages/Competition';
+import CompetitionHome from './app/components/competitions/CompetitionHome';
+import CompetitionScores from './app/components/competitions/CompetitionScores';
+import CompetitionTable from './app/components/competitions/CompetitionStandings';
+import CompetitionTeams from './app/components/competitions/CompetitionTeams';
 
 
 const App: React.FC = () => {
@@ -37,10 +41,16 @@ const App: React.FC = () => {
               <Route path='/materials' element={<RecentMaterials />} />
               <Route path='/materials/:id' element={<Material />} />
               <Route path='/posts' element={<Posts />}>
-                <Route path='/posts/:id' element={<PostCard />} />
-                <Route path='/posts/search' element={<PostList />} />
+                <Route path=':id' element={<PostCard />} />
+                <Route path='search' element={<PostList />} />
               </Route>
-              <Route path='/comptetions/:id' element={<Competition />} />
+              <Route path='/competitions/:id' element={<Competition />}>
+                <Route index element={<CompetitionHome />} />
+                <Route path='home' element={<CompetitionHome />} />
+                <Route path='scores-and-schedules' element={<CompetitionScores />} />
+                <Route path='standings' element={<CompetitionTable />} />
+                <Route path='teams' element={<CompetitionTeams />} />
+              </Route>
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/checkout' element={<Checkout />} />
