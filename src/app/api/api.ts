@@ -45,6 +45,7 @@ export const deleteClub = (id: string, page: number, itemsPerPage: number) => AP
 export const createCompetition = (competitionData: CompetitionModel) => API.post('/competitions', competitionData);
 export const getCompetitions = (page?: number, itemsPerPage?: number, filterData?: any, sortData?: any) => API.get('/competitions', { params: { page, itemsPerPage, filterData, sortData } });
 export const getAllCompetitions = () => API.get('/competitions/all');
+export const getCompetition = (id: string) => API.get(`/competitions/${id}`);
 export const updateCompetition = (competitionToUpdate: ICompetition) => API.patch('/competitions', competitionToUpdate);
 export const deleteCompetition = (id: string, page: number, itemsPerPage: number) => API.delete('/competitions', { params: { id, page, itemsPerPage } });
 

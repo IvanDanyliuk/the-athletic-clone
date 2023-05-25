@@ -26,8 +26,11 @@ export interface ICompetitionsTableHeadCell {
 export interface ICompetitionsInitialState {
   status: string,
   data: {
-    competitions: ICompetition[],
-    competitionsCount: number
+    main: {
+      competitions: ICompetition[],
+      competitionsCount: number
+    },
+    competition: ICompetition | null
   },
   filters: ICompetitionsFilters | null,
   error: string | null

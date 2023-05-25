@@ -23,6 +23,7 @@ import Content from './app/components/adminPanel/sections/Content';
 import UpdateContentSection from './app/components/adminPanel/forms/updationForms/UpdateContentSection';
 import PostCard from './app/components/materials/Post';
 import PostList from './app/components/materials/PostList';
+import Competition from './app/pages/Competition';
 
 
 const App: React.FC = () => {
@@ -39,6 +40,7 @@ const App: React.FC = () => {
                 <Route path='/posts/:id' element={<PostCard />} />
                 <Route path='/posts/search' element={<PostList />} />
               </Route>
+              <Route path='/comptetions/:id' element={<Competition />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/checkout' element={<Checkout />} />

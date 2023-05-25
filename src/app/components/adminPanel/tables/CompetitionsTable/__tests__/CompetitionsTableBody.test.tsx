@@ -27,7 +27,7 @@ describe('CompetitionsTableBody tests', () => {
       <CompetitionsTableBody 
         page={0} 
         itemsPerPage={10} 
-        competitions={competitionsStateSuccessMock.data.competitions.slice(0, 2)} 
+        competitions={competitionsStateSuccessMock.data.main.competitions.slice(0, 2)} 
       />
     );
 

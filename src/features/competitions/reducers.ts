@@ -6,8 +6,11 @@ import { ICompetitionsInitialState } from './types';
 const initialState: ICompetitionsInitialState = {
   status: 'idle',
   data: {
-    competitions: [],
-    competitionsCount: 0
+    main: {
+      competitions: [],
+      competitionsCount: 0
+    },
+    competition: null
   },
   filters: null,
   error: null
@@ -34,7 +37,7 @@ const competitionSlice = createSlice({
       })
       .addCase(createCompetition.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data.competitions.push(action.payload);
+        state.data.main.competitions.push(action.payload);
       })
       .addCase(createCompetition.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -45,7 +48,7 @@ const competitionSlice = createSlice({
       })
       .addCase(getCompetitions.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data.main = action.payload;
       })
       .addCase(getCompetitions.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -56,7 +59,7 @@ const competitionSlice = createSlice({
       })
       .addCase(getAllCompetitions.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data.main = action.payload;
       })
       .addCase(getAllCompetitions.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -67,7 +70,7 @@ const competitionSlice = createSlice({
       })
       .addCase(updateCompetition.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data.competitions = state.data.competitions.map(competition => competition._id === action.payload._id ? action.payload : competition);
+        state.data.main.competitions = state.data.main.competitions.map(competition => competition._id === action.payload._id ? action.payload : competition);
       })
       .addCase(updateCompetition.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -78,7 +81,7 @@ const competitionSlice = createSlice({
       })
       .addCase(deleteCompetition.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data.main = action.payload;
       })
       .addCase(deleteCompetition.rejected, (state, action: any) => {
         state.status = 'failed';
