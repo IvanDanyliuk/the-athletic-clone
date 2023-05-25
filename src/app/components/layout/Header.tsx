@@ -65,13 +65,11 @@ const Header: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const leagues = useSelector(selectAllCompetitions);
+  const user = useSelector(selectUser);
   const sortedLeagues = [...leagues].sort((a, b) => new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1);
   const isMobile = useMediaQuery('(max-width:640px)');
 
-  const user = useSelector(selectUser);
-  console.log(leagues)
   useEffect(() => {
-    
     dispatch(getAllCompetitions());
   }, []);
 

@@ -2,17 +2,13 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Box, Container, Divider, Drawer, List, ListItem, styled, Typography } from '@mui/material';
 import { v4 as uuid } from 'uuid';
-import { CompetitionModel } from '../../models/components';
-import { setUrl } from '../../utils/helpers';
+import { ICompetition } from '../../../features/competitions/types';
 
 
 interface INavigationProps {
-  links: CompetitionModel[]
+  links: ICompetition[]
 }
 
-const Wrapper = styled(Box)`
-
-`;
 
 const NavLinkList = styled(List)`
   display: flex;
@@ -30,10 +26,6 @@ const Link = styled(NavLink)`
   font-size: 1.1em;
   text-decoration: none;
   color: #ffffff;
-`;
-
-const DropDownListWrapper = styled(Box)`
-
 `;
 
 const TopLinkList = styled(List)`
@@ -82,7 +74,7 @@ const BottomLink = styled(NavLink)`
 
 const Navigation: React.FC<INavigationProps> = ({ links }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [activeLink, setActiveLink] = useState<CompetitionModel | null>(null);
+  const [activeLink, setActiveLink] = useState<ICompetition | null>(null);
 
   const handleMenuOpen = (value: string) => {
     setIsOpen(true);
@@ -96,12 +88,12 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
   };
 
   return (
-    <Wrapper component='nav'>
+    <Box component='nav'>
       <NavLinkList>
         {links.slice(0, 6).map(link => (
           <NavLinkListItem key={uuid()}>
             <Link 
-              to={setUrl(link.fullName)} 
+              to={`competitions/${link._id}`} 
               onMouseEnter={() => handleMenuOpen(link.fullName)}
             >
               {link.fullName}
@@ -128,27 +120,27 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
         transitionDuration={0}
         onClose={handleMenuClose}
       >
-        <DropDownListWrapper onMouseLeave={handleMenuClose}>
+        <Box onMouseLeave={handleMenuClose}>
           {activeLink && (
             <Container maxWidth='xl'>
               <TopLinkList>
                 <TopLinkListItem>
-                  <TopLink to={setUrl(activeLink?.fullName!)}>
+                  <TopLink to={`competitions/${activeLink._id}`}>
                     Home
                   </TopLink>
                 </TopLinkListItem>
                 <TopLinkListItem>
-                  <TopLink to={`${setUrl(activeLink?.fullName!)}/schedule`}>
+                  <TopLink to={`competitions/${activeLink._id}/schedule`}>
                     Scores & Schedule
                   </TopLink>
                 </TopLinkListItem>
                 <TopLinkListItem>
-                  <TopLink to={`${setUrl(activeLink?.fullName!)}/standings/`}>
+                  <TopLink to={`competitions/${activeLink._id}/standings/`}>
                     Standings
                   </TopLink>
                 </TopLinkListItem>
                 <TopLinkListItem>
-                  <TopLink to={`${setUrl(activeLink?.fullName!)}/news/`}>
+                  <TopLink to={`competitions/${activeLink._id}/news/`}>
                     News
                   </TopLink>
                 </TopLinkListItem>
@@ -157,7 +149,7 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
               <BottomLinkList>
                 {activeLink.clubs.map(club => (
                   <BottomLinkListItem key={uuid()}>
-                    <BottomLink to={`${setUrl(activeLink.fullName)}/${setUrl(club.commonName)}`}>
+                    <BottomLink to={`clubs/${club._id}`}>
                       <img src={club.clubLogoUrl} alt={club.commonName} />
                       <Typography variant='inherit'>
                         {club.commonName}
@@ -168,10 +160,10 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
               </BottomLinkList>
             </Container>
           )}
-        </DropDownListWrapper>
+        </Box>
       </Drawer>
-    </Wrapper>
-  )
-}
+    </Box>
+  );
+};
 
-export default Navigation
+export default Navigation;

@@ -4,13 +4,11 @@ import { Box, Button, Container, Divider, Drawer, Grid, List, ListItem, styled, 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuid } from 'uuid';
-import { CompetitionModel } from '../../models/components';
-import { setUrl } from '../../utils/helpers';
-
+import { ICompetition } from '../../../features/competitions/types';
 
 
 interface IMainMenuProps {
-  links: CompetitionModel[],
+  links: ICompetition[],
 }
 
 const NavbarButton = styled(Button)`
@@ -56,10 +54,6 @@ const CommonLinks = styled(List)`
   list-style: none;
 `;
 
-const CommonListItem = styled(ListItem)`
-
-`;
-
 const CommonLink = styled(NavLink)`
   text-decoration: none;
   color: #333333;
@@ -102,7 +96,7 @@ const BtnMenu: React.FC<IMainMenuProps> = ({ links }) => {
                 <CompetitionLinks>
                   {links.map(link => (
                     <CompetitionListItem key={uuid()}>
-                      <CompetitionLink to={setUrl(link.fullName)}>
+                      <CompetitionLink to={`/competitions/${link._id}`}>
                         <img src={link.logoUrl} alt={link.fullName} />
                         <Typography variant='inherit'>
                           {link.fullName}
@@ -114,27 +108,27 @@ const BtnMenu: React.FC<IMainMenuProps> = ({ links }) => {
               </Grid>
               <Grid item sm={12} md={4}>
                 <CommonLinks>
-                  <CommonListItem>
+                  <ListItem>
                     <CommonLink to='/login'>Log In</CommonLink>
-                  </CommonListItem>
-                  <CommonListItem>
+                  </ListItem>
+                  <ListItem>
                     <CommonLink to='/subscribe'>Subscribe Now</CommonLink>
-                  </CommonListItem>
+                  </ListItem>
                 </CommonLinks>
                 <Divider />
                 <CommonLinks>
-                  <CommonListItem>
+                  <ListItem>
                     <CommonLink to='/search'>Search</CommonLink>
-                  </CommonListItem>
-                  <CommonListItem>
+                  </ListItem>
+                  <ListItem>
                     <CommonLink to='/news'>Top News</CommonLink>
-                  </CommonListItem>
-                  <CommonListItem>
+                  </ListItem>
+                  <ListItem>
                     <CommonLink to='/podcasts'>Podcasts</CommonLink>
-                  </CommonListItem>
-                  <CommonListItem>
+                  </ListItem>
+                  <ListItem>
                     <CommonLink to='/real-time'>Real Time</CommonLink>
-                  </CommonListItem>
+                  </ListItem>
                 </CommonLinks>
               </Grid>
             </Grid>
