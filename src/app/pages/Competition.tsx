@@ -63,7 +63,7 @@ const Competition: React.FC = () => {
   useEffect(() => {
     dispatch(getCompetition(id!));
     return () => { dispatch(clearCompetition()) };
-  }, []);
+  }, [dispatch, id]);
 
   if(!league) {
     return <BackdropLoader open={true} />;

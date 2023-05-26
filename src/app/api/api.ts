@@ -31,7 +31,7 @@ export const getRealtimePosts = (page: number, itemsPerPage: number, filterData?
 export const getRecentMaterials = (materialsNumber: number, materialTypes: string[]) => API.get('/materials/recent', { params: { materialsNumber, materialTypes } });
 export const getHomapageSecondaryMaterials = (topMaterialsNum: number, postsNum: number) => API.get('/materials/homepage', { params: { topMaterialsNum, postsNum } });
 export const getSearchValues = (value: string) => API.get('/materials/search-values', { params: { value } });
-export const searchMaterials = (value: string | string[], type: string) => API.get('/materials/search', { params: { value, type } });
+export const searchMaterials = (value: string | string[], type: string | string[], materialsNum?: number) => API.get('/materials/search', { params: { value, type, materialsNum } });
 export const getMaterial = (id: string) => API.get(`/materials/${id}`);
 export const updateMaterial = (materialToUpdate: IMaterial) => API.patch('/materials', materialToUpdate);
 export const deleteMaterial = (id: string, page: number, itemsPerPage: number) => API.delete('/materials', { params: { id, page, itemsPerPage } });
