@@ -50,6 +50,7 @@ export const renderWithProvidersForSchedules = (
             schedules: [],
             schedulesCount: 0
           },
+          schedule: null,
           latestMatches: []
         },
         filters: null,

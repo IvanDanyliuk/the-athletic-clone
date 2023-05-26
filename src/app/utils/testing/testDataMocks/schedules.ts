@@ -1169,6 +1169,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
       ],
       schedulesCount: 12
     },
+    schedule: null,
     latestMatches: [],
   },
   filters: {
@@ -1187,6 +1188,7 @@ export const schedulesStateErrorMock: ISchedulesInitialState = {
       schedules: [],
       schedulesCount: 0
     },
+    schedule: null,
     latestMatches: []
   },
   filters: null,

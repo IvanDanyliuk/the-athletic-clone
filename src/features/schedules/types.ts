@@ -32,6 +32,7 @@ export interface ISchedulesInitialState {
       schedules: ISchedule[],
       schedulesCount: number
     },
+    schedule: ISchedule | null,
     latestMatches: {
       league: string,
       matches: IMatch[]
@@ -75,4 +76,9 @@ export interface IDeleteScheduleData {
   id: string,
   page: number,
   itemsPerPage: number
+}
+
+export interface IGetScheduleQuery {
+  season: string;
+  leagueId: string;
 }

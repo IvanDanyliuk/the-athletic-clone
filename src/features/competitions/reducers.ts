@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createCompetition, deleteCompetition, getCompetitions, getAllCompetitions, updateCompetition, getCompetition } from './asyncActions';
+import { 
+  createCompetition, deleteCompetition, getCompetitions, getAllCompetitions, 
+  updateCompetition, getCompetition 
+} from './asyncActions';
 import { ICompetitionsInitialState } from './types';
 
 
