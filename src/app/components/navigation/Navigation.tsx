@@ -93,7 +93,7 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
         {links.slice(0, 6).map(link => (
           <NavLinkListItem key={uuid()}>
             <Link 
-              to={`competitions/${link._id}`} 
+              to={`competitions/${link._id}/home`} 
               onMouseEnter={() => handleMenuOpen(link.fullName)}
             >
               {link.fullName}
@@ -130,17 +130,17 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
                   </TopLink>
                 </TopLinkListItem>
                 <TopLinkListItem>
-                  <TopLink to={`competitions/${activeLink._id}/schedule`}>
+                  <TopLink to={`competitions/${activeLink._id}/scores-and-schedules`}>
                     Scores & Schedule
                   </TopLink>
                 </TopLinkListItem>
                 <TopLinkListItem>
-                  <TopLink to={`competitions/${activeLink._id}/standings/`}>
+                  <TopLink to={`competitions/${activeLink._id}/standings`}>
                     Standings
                   </TopLink>
                 </TopLinkListItem>
                 <TopLinkListItem>
-                  <TopLink to={`competitions/${activeLink._id}/news/`}>
+                  <TopLink to={`competitions/${activeLink._id}/news`}>
                     News
                   </TopLink>
                 </TopLinkListItem>

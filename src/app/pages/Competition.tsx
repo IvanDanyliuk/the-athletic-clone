@@ -29,10 +29,6 @@ const MenuList = styled(List)`
   width: 100%;
   display: flex;
   justify-content: space-between;
-
-  /* @media (max-width: 480px) {
-    justify-content: space-between;
-  } */
 `;
 
 const MenuListItem = styled(ListItem)`

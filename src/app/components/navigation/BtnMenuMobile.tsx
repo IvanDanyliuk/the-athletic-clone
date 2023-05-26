@@ -176,7 +176,7 @@ const BtnMenuMobile: React.FC<IBtnMenuMobileProps> = ({ links }) => {
                         </DetailsLink>
                       </DetailsListItem>
                       <DetailsListItem>
-                        <DetailsLink to={`competitions/${link._id}/schedule`}>
+                        <DetailsLink to={`competitions/${link._id}/scores-and-schedules`}>
                           Scores & Schedule
                         </DetailsLink>
                       </DetailsListItem>
