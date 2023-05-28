@@ -1,6 +1,7 @@
-import { Box, Tabs, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Box, Tab, Tabs } from '@mui/material';
+import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../../features/store';
 import { getCurrentSeasonValue } from '../../utils/helpers';
 import { getSchedule } from '../../../features/schedules/asyncActions';
@@ -10,6 +11,7 @@ import BackdropLoader from '../ui/BackdropLoader';
 import DataNotFoundMessage from '../ui/DataNotFoundMessage';
 import { IMatchweek } from '../../../features/schedules/types';
 import MatchweekPicker from './MatchweekPicker';
+import MatchweekTable from './MatchweekTable';
 
 
 const CompetitionScores: React.FC = () => {
@@ -24,7 +26,7 @@ const CompetitionScores: React.FC = () => {
   const [currentMatchweek, setCurrentMatchweek] = useState<IMatchweek | null>(null);
   const [tabs, setTabs] = useState<IMatchweek[]>([]);
 
-  const handleCurrentMatchweekChange = (currentMatchweek: IMatchweek) => {
+  const handleCurrentMatchweekChange = (event: React.SyntheticEvent, currentMatchweek: IMatchweek) => {
     setCurrentMatchweek(currentMatchweek);
   };
 
@@ -78,16 +80,23 @@ const CompetitionScores: React.FC = () => {
   return (
     <Box>
       <Box>
-        <Typography>{currentMatchweek?.matchweekName}</Typography>
+        <Tabs value={currentMatchweek} onChange={handleCurrentMatchweekChange}>
+          {tabs.map(tab => (
+            <Tab key={uuid()} value={tab} label={tab.matchweekName} />
+          ))}
+        </Tabs>
         {currentMatchweek && activeSchedule && (
           <MatchweekPicker 
             matchweeks={activeSchedule!.fixture!} 
-            setMatchweek={handleCurrentMatchweekChange} 
+            setMatchweek={setCurrentMatchweek} 
           />
         )}
       </Box>
       {currentMatchweek && (
-        <Box>{currentMatchweek?.matchweekName!}</Box>
+        <>
+          <Box>{currentMatchweek?.matchweekName!}</Box>
+          <MatchweekTable matchweek={currentMatchweek} />
+        </>
       )}
     </Box>
   );
