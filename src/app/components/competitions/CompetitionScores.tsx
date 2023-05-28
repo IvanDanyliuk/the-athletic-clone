@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Tab, Tabs } from '@mui/material';
+import { Box, Tab, Tabs, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../../features/store';
 import { getCurrentSeasonValue } from '../../utils/helpers';
@@ -14,6 +14,13 @@ import MatchweekPicker from './MatchweekPicker';
 import MatchweekTable from './MatchweekTable';
 
 
+const SetMatchweekSection = styled(Box)`
+  margin-bottom: 1em;
+  display: flex;
+  align-items: center;
+`;
+
+
 const CompetitionScores: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
@@ -22,7 +29,6 @@ const CompetitionScores: React.FC = () => {
   const scheduleStatus = useSelector(selectSchedulesStatus);
   const activeSchedule = useSelector(selectSchedule);
   
-
   const [currentMatchweek, setCurrentMatchweek] = useState<IMatchweek | null>(null);
   const [tabs, setTabs] = useState<IMatchweek[]>([]);
 
@@ -79,7 +85,7 @@ const CompetitionScores: React.FC = () => {
 
   return (
     <Box>
-      <Box>
+      <SetMatchweekSection>
         <Tabs value={currentMatchweek} onChange={handleCurrentMatchweekChange}>
           {tabs.map(tab => (
             <Tab key={uuid()} value={tab} label={tab.matchweekName} />
@@ -91,12 +97,9 @@ const CompetitionScores: React.FC = () => {
             setMatchweek={setCurrentMatchweek} 
           />
         )}
-      </Box>
+      </SetMatchweekSection>
       {currentMatchweek && (
-        <>
-          <Box>{currentMatchweek?.matchweekName!}</Box>
-          <MatchweekTable matchweek={currentMatchweek} />
-        </>
+        <MatchweekTable matchweek={currentMatchweek} />
       )}
     </Box>
   );
