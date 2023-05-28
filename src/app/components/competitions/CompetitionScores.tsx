@@ -8,7 +8,7 @@ import { selectCompetition } from '../../../features/competitions/selectors';
 import { selectSchedule, selectSchedulesStatus } from '../../../features/schedules/selectors';
 import BackdropLoader from '../ui/BackdropLoader';
 import DataNotFoundMessage from '../ui/DataNotFoundMessage';
-import { IMatch, IMatchweek } from '../../../features/schedules/types';
+import { IMatchweek } from '../../../features/schedules/types';
 import MatchweekPicker from './MatchweekPicker';
 
 
@@ -19,12 +19,39 @@ const CompetitionScores: React.FC = () => {
   const league = useSelector(selectCompetition);
   const scheduleStatus = useSelector(selectSchedulesStatus);
   const activeSchedule = useSelector(selectSchedule);
+  
 
   const [currentMatchweek, setCurrentMatchweek] = useState<IMatchweek | null>(null);
+  const [tabs, setTabs] = useState<IMatchweek[]>([]);
 
   const handleCurrentMatchweekChange = (currentMatchweek: IMatchweek) => {
     setCurrentMatchweek(currentMatchweek);
   };
+
+  useEffect(() => {
+    if(activeSchedule && currentMatchweek) {
+      const mwIds = activeSchedule?.fixture.map(mw => mw._id);
+      const middlePos = mwIds!.indexOf(currentMatchweek!._id);
+      const left = activeSchedule.fixture.slice(0, middlePos);
+      const right = activeSchedule.fixture.slice(middlePos! + 1);
+
+      if(left.length >= 2 && right.length >= 2) {
+        const leftSide = left.reverse().slice(0, 2).reverse();
+        const rightSide = right.slice(0, 2);
+        setTabs([...leftSide, activeSchedule.fixture[middlePos], ...rightSide])
+      } else {
+        if(left.length < right.length) {
+          const leftSide = left.reverse().slice(0, 2).reverse();
+          const rightSide = right.slice(0, 5 - leftSide.length - 1);
+          setTabs([...leftSide, activeSchedule.fixture[middlePos], ...rightSide])
+        } else {
+          const rightSide = right.slice(0, 2);
+          const leftSide = left.reverse().slice(0, 5 - rightSide.length - 1).reverse();
+          setTabs([...leftSide, activeSchedule.fixture[middlePos], ...rightSide])
+        }
+      }
+    }
+  }, [activeSchedule, currentMatchweek]);
 
   useEffect(() => {
     if(activeSchedule) {
@@ -52,7 +79,7 @@ const CompetitionScores: React.FC = () => {
     <Box>
       <Box>
         <Typography>{currentMatchweek?.matchweekName}</Typography>
-        {currentMatchweek && (
+        {currentMatchweek && activeSchedule && (
           <MatchweekPicker 
             matchweeks={activeSchedule!.fixture!} 
             setMatchweek={handleCurrentMatchweekChange} 
