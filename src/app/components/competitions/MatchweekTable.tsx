@@ -12,6 +12,10 @@ interface IMatchweekTable {
   matchweek: IMatchweek;
 }
 
+const Cell = styled(TableCell)`
+  min-width: 10em;
+`;
+
 const ClubLogo = styled('img')`
   height: 1.5em;
 `;
@@ -20,7 +24,7 @@ const ClubLogo = styled('img')`
 const MatchweekTable: React.FC<IMatchweekTable> = ({ matchweek }) => {
   return (
     <TableContainer component={Paper}>
-      <Table>
+      <Table stickyHeader>
         <TableHead>
           <TableRow>
             <TableCell>Home</TableCell>
@@ -35,7 +39,7 @@ const MatchweekTable: React.FC<IMatchweekTable> = ({ matchweek }) => {
             const { home, away, score, date, location } = match;
             return (
               <TableRow key={uuid()}>
-                <TableCell>
+                <Cell>
                   <Grid container spacing={5} alignItems='center'>
                     <Grid item xs={1} justifyContent='center'>
                       <ClubLogo src={home.clubLogoUrl} alt={home.shortName} />
@@ -44,8 +48,8 @@ const MatchweekTable: React.FC<IMatchweekTable> = ({ matchweek }) => {
                       {home.commonName}
                     </Grid>
                   </Grid>
-                </TableCell>
-                <TableCell>
+                </Cell>
+                <Cell>
                   <Grid container spacing={5} alignItems='center'>
                     <Grid item xs={1} justifyContent='center'>
                       <ClubLogo src={away.clubLogoUrl} alt={away.shortName} />
@@ -54,10 +58,10 @@ const MatchweekTable: React.FC<IMatchweekTable> = ({ matchweek }) => {
                       {away.commonName}
                     </Grid>
                   </Grid>
-                </TableCell>
-                <TableCell>{score}</TableCell>
-                <TableCell>{dayjs(date).format('DD/MM/YYYY')}</TableCell>
-                <TableCell>{location}</TableCell>
+                </Cell>
+                <Cell>{score}</Cell>
+                <Cell>{dayjs(date).format('DD/MM/YYYY')}</Cell>
+                <Cell>{location}</Cell>
               </TableRow>
             )
           })}

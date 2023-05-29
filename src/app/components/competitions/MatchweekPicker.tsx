@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import { Box, Button, Dialog, Grid, Icon, IconButton, Typography, styled } from '@mui/material';
-import { CalendarMonth } from '@mui/icons-material';
+import { Box, Button, Dialog, DialogContent, DialogTitle, Grid, Icon, IconButton, Typography, styled } from '@mui/material';
+import { CalendarMonth, Close } from '@mui/icons-material';
 import { v4 as uuid } from 'uuid';
 import { IMatchweek } from '../../../features/schedules/types';
 import dayjs from 'dayjs';
 
 
 interface IMatchweekPickerProps {
+  season: string;
   matchweeks: IMatchweek[];
   setMatchweek: (mw: IMatchweek) => void;
 }
-
-const DialogContainer = styled(Grid)`
-  padding: 1em;
-`;
 
 const MatchweekBtn = styled(Button)`
   display: flex;
@@ -22,14 +19,21 @@ const MatchweekBtn = styled(Button)`
 
 const MatchweekName = styled(Typography)`
   font-size: 1em;
+
+  @media(max-width: 480px) {
+    font-size: .6em;
+  }
 `;
 
 const MatchweekDate = styled(Typography)`
   font-size: .7em;
+  @media(max-width: 480px) {
+    font-size: .5em;
+  }
 `;
 
 
-const MatchweekPicker: React.FC<IMatchweekPickerProps> = ({ matchweeks, setMatchweek }) => {
+const MatchweekPicker: React.FC<IMatchweekPickerProps> = ({ season, matchweeks, setMatchweek }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handlePickerOpen = () => {
@@ -47,16 +51,24 @@ const MatchweekPicker: React.FC<IMatchweekPickerProps> = ({ matchweeks, setMatch
         <Icon component={CalendarMonth} />
       </IconButton>
       <Dialog onClose={handlePickerOpen} open={isOpen}>
-        <DialogContainer container spacing={3}>
-          {matchweeks.map(mw => (
-            <Grid key={uuid()} item xs={3}>
-              <MatchweekBtn onClick={() => handleSetMatchweek(mw)}>
-                <MatchweekName>{mw.matchweekName}</MatchweekName>
-                <MatchweekDate>{dayjs(mw.basicDate).format('DD/MM/YYYY')}</MatchweekDate>
-              </MatchweekBtn>
-            </Grid>
-          ))}
-        </DialogContainer>
+        <DialogTitle display='flex' justifyContent='space-between' alignItems='center'>
+          <Typography>{`Season: ${season}`}</Typography>
+          <IconButton onClick={handlePickerOpen}>
+            <Icon component={Close} />
+          </IconButton>
+        </DialogTitle>
+        <DialogContent>
+          <Grid container spacing={3}>
+            {matchweeks.map(mw => (
+              <Grid key={uuid()} item xs={4} md={3}>
+                <MatchweekBtn onClick={() => handleSetMatchweek(mw)}>
+                  <MatchweekName>{mw.matchweekName}</MatchweekName>
+                  <MatchweekDate>{dayjs(mw.basicDate).format('DD/MM/YYYY')}</MatchweekDate>
+                </MatchweekBtn>
+              </Grid>
+            ))}
+          </Grid>
+        </DialogContent>
       </Dialog>
     </Box>
   );

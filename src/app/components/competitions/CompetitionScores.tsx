@@ -20,6 +20,10 @@ const SetMatchweekSection = styled(Box)`
   align-items: center;
 `;
 
+const CalendarContainer = styled(Box)`
+  margin-left: 1em;
+`;
+
 
 const CompetitionScores: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -86,17 +90,29 @@ const CompetitionScores: React.FC = () => {
   return (
     <Box>
       <SetMatchweekSection>
-        <Tabs value={currentMatchweek} onChange={handleCurrentMatchweekChange}>
+        <Tabs 
+          variant='scrollable' 
+          scrollButtons='auto' 
+          value={currentMatchweek} 
+          onChange={handleCurrentMatchweekChange}
+        >
           {tabs.map(tab => (
-            <Tab key={uuid()} value={tab} label={tab.matchweekName} />
+            <Tab 
+              key={uuid()} 
+              value={tab} 
+              label={tab.matchweekName} 
+            />
           ))}
         </Tabs>
-        {currentMatchweek && activeSchedule && (
-          <MatchweekPicker 
-            matchweeks={activeSchedule!.fixture!} 
-            setMatchweek={setCurrentMatchweek} 
-          />
-        )}
+        <CalendarContainer>
+          {currentMatchweek && activeSchedule && (
+            <MatchweekPicker 
+              season={activeSchedule.season}
+              matchweeks={activeSchedule!.fixture!} 
+              setMatchweek={setCurrentMatchweek} 
+            />
+          )}
+        </CalendarContainer>
       </SetMatchweekSection>
       {currentMatchweek && (
         <MatchweekTable matchweek={currentMatchweek} />
