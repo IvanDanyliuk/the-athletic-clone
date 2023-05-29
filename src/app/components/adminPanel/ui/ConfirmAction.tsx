@@ -1,11 +1,11 @@
+import React, { useState } from 'react';
+import { Box, Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Box, Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
-import React, { useState } from 'react';
 
 
 interface IConfirmActionProps {
-  onDelete: () => void
+  onDelete: () => void;
 }
 
 const ConfirmAction: React.FC<IConfirmActionProps> = ({ onDelete }) => {
