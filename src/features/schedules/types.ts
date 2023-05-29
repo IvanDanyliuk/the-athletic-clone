@@ -11,8 +11,14 @@ export interface ISchedule {
 
 export interface IMatch {
   id: string,
-  home: IClub,
-  away: IClub,
+  home: {
+    club: IClub,
+    points: number,
+  },
+  away: {
+    club: IClub,
+    points: number,
+  },
   date: string,
   location: string,
   score: string

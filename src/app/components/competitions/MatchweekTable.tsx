@@ -42,20 +42,20 @@ const MatchweekTable: React.FC<IMatchweekTable> = ({ matchweek }) => {
                 <Cell>
                   <Grid container spacing={5} alignItems='center'>
                     <Grid item xs={1} justifyContent='center'>
-                      <ClubLogo src={home.clubLogoUrl} alt={home.shortName} />
+                      <ClubLogo src={home.club.clubLogoUrl} alt={home.club.shortName} />
                     </Grid>
                     <Grid item xs>
-                      {home.commonName}
+                      {home.club.commonName}
                     </Grid>
                   </Grid>
                 </Cell>
                 <Cell>
                   <Grid container spacing={5} alignItems='center'>
                     <Grid item xs={1} justifyContent='center'>
-                      <ClubLogo src={away.clubLogoUrl} alt={away.shortName} />
+                      <ClubLogo src={away.club.clubLogoUrl} alt={away.club.shortName} />
                     </Grid>
                     <Grid item xs>
-                      {away.commonName}
+                      {away.club.commonName}
                     </Grid>
                   </Grid>
                 </Cell>
