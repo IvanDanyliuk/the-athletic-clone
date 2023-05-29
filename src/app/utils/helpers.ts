@@ -1,3 +1,4 @@
+import { IMatchweek } from "../../features/schedules/types";
 import { ScheduleModel } from "../models/components";
 
 export const setUrl = (title: string) => {
@@ -50,5 +51,31 @@ export const getCurrentSeasonValue = () => {
     return `${currentYear}/${currentYear + 1}`
   } else {
     return `${currentYear - 1}/${currentYear}`
+  }
+};
+
+export const setCompetitionTabs = (matchweeks: IMatchweek[], currentMatchweek: IMatchweek) => {
+  const mwIds = matchweeks.map(mw => mw._id);
+  const middlePos = mwIds.indexOf(currentMatchweek!._id!);
+  const left = matchweeks.slice(0, middlePos);
+  const right = matchweeks.slice(middlePos! + 1);
+
+  if(left.length >= 2 && right.length >= 2) {
+    const leftSide = left.reverse().slice(0, 2).reverse();
+    const rightSide = right.slice(0, 2);
+    console.log({leftSide, middle: matchweeks[middlePos], rightSide})
+    return [...leftSide, matchweeks[middlePos!], ...rightSide];
+  } else {
+    if(left.length < right.length) {
+      const leftSide = left.reverse().slice(0, 2).reverse();
+      const rightSide = right.slice(0, 5 - leftSide.length - 1);
+      console.log({leftSide, middle: matchweeks[middlePos], rightSide})
+      return [...leftSide, matchweeks[middlePos!], ...rightSide];
+    } else {
+      const rightSide = right.slice(0, 2);
+      const leftSide = left.reverse().slice(0, 5 - rightSide.length - 1).reverse();
+      console.log({leftSide, middle: matchweeks[middlePos], rightSide})
+      return [...leftSide, matchweeks[middlePos!], ...rightSide];
+    }
   }
 };

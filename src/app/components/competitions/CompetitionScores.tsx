@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Box, Tab, Tabs, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../../features/store';
-import { getCurrentSeasonValue } from '../../utils/helpers';
+import { getCurrentSeasonValue, setCompetitionTabs } from '../../utils/helpers';
 import { getSchedule } from '../../../features/schedules/asyncActions';
 import { selectCompetition } from '../../../features/competitions/selectors';
 import { selectSchedule, selectSchedulesStatus } from '../../../features/schedules/selectors';
@@ -12,6 +12,7 @@ import DataNotFoundMessage from '../ui/DataNotFoundMessage';
 import { IMatchweek } from '../../../features/schedules/types';
 import MatchweekPicker from './MatchweekPicker';
 import MatchweekTable from './MatchweekTable';
+import { clearSchedule } from '../../../features/schedules/reducers';
 
 
 const SetMatchweekSection = styled(Box)`
@@ -42,26 +43,8 @@ const CompetitionScores: React.FC = () => {
 
   useEffect(() => {
     if(activeSchedule && currentMatchweek) {
-      const mwIds = activeSchedule?.fixture.map(mw => mw._id);
-      const middlePos = mwIds!.indexOf(currentMatchweek!._id);
-      const left = activeSchedule.fixture.slice(0, middlePos);
-      const right = activeSchedule.fixture.slice(middlePos! + 1);
-
-      if(left.length >= 2 && right.length >= 2) {
-        const leftSide = left.reverse().slice(0, 2).reverse();
-        const rightSide = right.slice(0, 2);
-        setTabs([...leftSide, activeSchedule.fixture[middlePos], ...rightSide])
-      } else {
-        if(left.length < right.length) {
-          const leftSide = left.reverse().slice(0, 2).reverse();
-          const rightSide = right.slice(0, 5 - leftSide.length - 1);
-          setTabs([...leftSide, activeSchedule.fixture[middlePos], ...rightSide])
-        } else {
-          const rightSide = right.slice(0, 2);
-          const leftSide = left.reverse().slice(0, 5 - rightSide.length - 1).reverse();
-          setTabs([...leftSide, activeSchedule.fixture[middlePos], ...rightSide])
-        }
-      }
+      const tabsData = setCompetitionTabs(activeSchedule.fixture, currentMatchweek);
+      setTabs(tabsData);
     }
   }, [activeSchedule, currentMatchweek]);
 
@@ -79,6 +62,7 @@ const CompetitionScores: React.FC = () => {
 
   useEffect(() => {
     dispatch(getSchedule({ season: currentSeason, leagueId: league?._id! }));
+    return () => { dispatch(clearSchedule()) }
   }, []);
 
   if(!league && !activeSchedule) {
@@ -100,7 +84,7 @@ const CompetitionScores: React.FC = () => {
             <Tab 
               key={uuid()} 
               value={tab} 
-              label={tab.matchweekName} 
+              label={tab.matchweekName!} 
             />
           ))}
         </Tabs>
