@@ -14,10 +14,12 @@ export interface IMatch {
   home: {
     club: IClub,
     points: number,
+    goals: number,
   },
   away: {
     club: IClub,
     points: number,
+    goals: number,
   },
   date: string,
   location: string,

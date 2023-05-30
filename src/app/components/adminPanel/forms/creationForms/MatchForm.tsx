@@ -81,16 +81,21 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
     const awayClubPoints = data.score !== '-:-' ? 
       +score[1] > +score[0] ? 3 : +score[1] === +score[0] ? 1 : 0 : 0;
 
+    const homeGoals = score[0] !== '-' ? +score[0] : 0;
+    const awayGoals = score[1] !== '-' ? +score[1] : 0;
+
     addMatch(mwId, {
       ...data,
       id: uuid(),
       home: {
         club: clubs!.find(club => club._id === data.home),
-        points: homeClubPoints
+        points: homeClubPoints,
+        goals: homeGoals
       },
       away: {
         club: clubs!.find(club => club._id === data.away),
-        points: awayClubPoints
+        points: awayClubPoints,
+        goals: awayGoals
       },
     });
   };
