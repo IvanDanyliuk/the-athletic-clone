@@ -63,18 +63,15 @@ export const setCompetitionTabs = (matchweeks: IMatchweek[], currentMatchweek: I
   if(left.length >= 2 && right.length >= 2) {
     const leftSide = left.reverse().slice(0, 2).reverse();
     const rightSide = right.slice(0, 2);
-    console.log({leftSide, middle: matchweeks[middlePos], rightSide})
     return [...leftSide, matchweeks[middlePos!], ...rightSide];
   } else {
     if(left.length < right.length) {
       const leftSide = left.reverse().slice(0, 2).reverse();
       const rightSide = right.slice(0, 5 - leftSide.length - 1);
-      console.log({leftSide, middle: matchweeks[middlePos], rightSide})
       return [...leftSide, matchweeks[middlePos!], ...rightSide];
     } else {
       const rightSide = right.slice(0, 2);
       const leftSide = left.reverse().slice(0, 5 - rightSide.length - 1).reverse();
-      console.log({leftSide, middle: matchweeks[middlePos], rightSide})
       return [...leftSide, matchweeks[middlePos!], ...rightSide];
     }
   }

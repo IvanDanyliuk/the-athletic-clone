@@ -90,12 +90,16 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
       home: {
         club: clubs!.find(club => club._id === data.home),
         points: homeClubPoints,
-        goals: homeGoals
+        goalsFor: homeGoals,
+        goalsAgainst: awayGoals,
+        final: homeGoals > awayGoals ? 'W' : homeGoals === awayGoals ? 'D' : 'L'
       },
       away: {
         club: clubs!.find(club => club._id === data.away),
         points: awayClubPoints,
-        goals: awayGoals
+        goalsFor: awayGoals,
+        goalsAgainst: homeGoals,
+        final: awayGoals > homeGoals ? 'W' : homeGoals === awayGoals ? 'D' : 'L'
       },
     });
   };

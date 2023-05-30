@@ -67,7 +67,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -82,7 +84,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -111,7 +115,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -126,7 +132,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -199,7 +207,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -214,7 +224,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -243,7 +255,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -258,7 +272,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -331,7 +347,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -346,7 +364,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -375,7 +395,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -390,7 +412,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -463,7 +487,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -478,7 +504,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -507,7 +535,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -522,7 +552,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -595,7 +627,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -610,7 +644,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -639,7 +675,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -654,7 +692,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -727,7 +767,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -742,7 +784,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -771,7 +815,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -786,7 +832,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -859,7 +907,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -874,7 +924,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -903,7 +955,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -918,7 +972,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -991,7 +1047,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -1006,7 +1064,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -1035,7 +1095,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -1050,7 +1112,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -1123,7 +1187,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -1138,7 +1204,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -1167,7 +1235,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -1182,7 +1252,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -1255,7 +1327,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -1270,7 +1344,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -1299,7 +1375,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T12:26:21.895Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   away: {
                     club: {
@@ -1314,7 +1392,9 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
                       updatedAt: '2023-03-21T18:20:43.873Z',
                     },
                     points: 1,
-                    goals: 0,
+                    goalsFor: 0,
+                    goalsAgainst: 0,
+                    final: 'D'
                   },
                   date: '2023-03-29T21:00:00.000Z',
                   location: 'Emirates Stadium',
@@ -1411,7 +1491,9 @@ export const newSchedule: ScheduleModel = {
               updatedAt: '2023-03-21T12:26:21.895Z',
             },
             points: 1,
-            goals: 0,
+            goalsFor: 0,
+            goalsAgainst: 0,
+            final: 'D'
           },
           away: {
             club: {
@@ -1426,7 +1508,9 @@ export const newSchedule: ScheduleModel = {
               updatedAt: '2023-03-21T18:20:43.873Z',
             },
             points: 1,
-            goals: 0,
+            goalsFor: 0,
+            goalsAgainst: 0,
+            final: 'D'
           },
           date: '2023-03-29T21:00:00.000Z',
           location: 'Emirates Stadium',
@@ -1454,7 +1538,9 @@ export const newSchedule: ScheduleModel = {
               updatedAt: '2023-03-21T12:26:21.895Z',
             },
             points: 1,
-            goals: 0,
+            goalsFor: 0,
+            goalsAgainst: 0,
+            final: 'D'
           },
           away: {
             club: {
@@ -1469,7 +1555,9 @@ export const newSchedule: ScheduleModel = {
               updatedAt: '2023-03-21T18:20:43.873Z',
             },
             points: 1,
-            goals: 0,
+            goalsFor: 0,
+            goalsAgainst: 0,
+            final: 'D'
           },
           date: '2023-03-29T21:00:00.000Z',
           location: 'Emirates Stadium',
@@ -1538,7 +1626,9 @@ export const scheduleToUpdate: ISchedule = {
               updatedAt: '2023-03-21T12:26:21.895Z',
             },
             points: 1,
-            goals: 0,
+            goalsFor: 0,
+            goalsAgainst: 0,
+            final: 'D'
           },
           away: {
             club: {
@@ -1553,7 +1643,9 @@ export const scheduleToUpdate: ISchedule = {
               updatedAt: '2023-03-21T18:20:43.873Z',
             },
             points: 1,
-            goals: 0,
+            goalsFor: 0,
+            goalsAgainst: 0,
+            final: 'D'
           },
           date: '2023-03-29T21:00:00.000Z',
           location: 'Emirates Stadium',
@@ -1582,7 +1674,9 @@ export const scheduleToUpdate: ISchedule = {
               updatedAt: '2023-03-21T12:26:21.895Z',
             },
             points: 1,
-            goals: 0,
+            goalsFor: 0,
+            goalsAgainst: 0,
+            final: 'D'
           },
           away: {
             club: {
@@ -1597,7 +1691,9 @@ export const scheduleToUpdate: ISchedule = {
               updatedAt: '2023-03-21T18:20:43.873Z',
             },
             points: 1,
-            goals: 0,
+            goalsFor: 0,
+            goalsAgainst: 0,
+            final: 'D'
           },
           date: '',
           location: 'Emirates Stadium',
@@ -1629,7 +1725,9 @@ export const latestMatechesMock = [
             updatedAt: '2023-03-21T12:26:21.895Z',
           },
           points: 1,
-          goals: 0,
+          goalsFor: 0,
+          goalsAgainst: 0,
+          final: 'D'
         },
         away: {
           club: {
@@ -1644,7 +1742,9 @@ export const latestMatechesMock = [
             updatedAt: '2023-03-21T18:20:43.873Z',
           },
           points: 1,
-          goals: 0,
+          goalsFor: 0,
+          goalsAgainst: 0,
+          final: 'D'
         },
         date: '',
         location: 'Emirates Stadium',
