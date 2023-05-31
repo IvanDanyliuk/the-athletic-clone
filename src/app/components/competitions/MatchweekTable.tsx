@@ -6,6 +6,7 @@ import {
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { IMatchweek } from '../../../features/schedules/types';
+import ClubLabel from '../ui/ClubLabel';
 
 
 interface IMatchweekTable {
@@ -40,24 +41,18 @@ const MatchweekTable: React.FC<IMatchweekTable> = ({ matchweek }) => {
             return (
               <TableRow key={uuid()}>
                 <Cell>
-                  <Grid container spacing={5} alignItems='center'>
-                    <Grid item xs={1} justifyContent='center'>
-                      <ClubLogo src={home.club.clubLogoUrl} alt={home.club.shortName} />
-                    </Grid>
-                    <Grid item xs>
-                      {home.club.commonName}
-                    </Grid>
-                  </Grid>
+                  <ClubLabel 
+                    logo={home.club.clubLogoUrl} 
+                    name={home.club.commonName} 
+                    altText={home.club.shortName} 
+                  />
                 </Cell>
                 <Cell>
-                  <Grid container spacing={5} alignItems='center'>
-                    <Grid item xs={1} justifyContent='center'>
-                      <ClubLogo src={away.club.clubLogoUrl} alt={away.club.shortName} />
-                    </Grid>
-                    <Grid item xs>
-                      {away.club.commonName}
-                    </Grid>
-                  </Grid>
+                  <ClubLabel 
+                    logo={away.club.clubLogoUrl} 
+                    name={away.club.commonName} 
+                    altText={away.club.shortName} 
+                  />
                 </Cell>
                 <Cell>{score}</Cell>
                 <Cell>{dayjs(date).format('DD/MM/YYYY')}</Cell>
