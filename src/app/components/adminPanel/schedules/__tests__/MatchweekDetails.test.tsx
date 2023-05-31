@@ -6,6 +6,7 @@ import ScheduleContext from '../../../../context/scheduleContext';
 const matchweek = {
   id: 'test_id',
   matchweekName: 'Test Matchweek',
+  basicDate: '2023-03-21T12:26:21.895Z',
   games: [
     {
       id: 'test_match_id',
