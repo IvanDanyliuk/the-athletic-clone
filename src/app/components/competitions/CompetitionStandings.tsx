@@ -37,7 +37,7 @@ const ClubLogo = styled('img')`
 `;
 
 
-const CompetitionTable: React.FC = () => {
+const CompetitionStandings: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const currentSeason = getCurrentSeasonValue();
@@ -107,4 +107,4 @@ const CompetitionTable: React.FC = () => {
   );
 };
 
-export default CompetitionTable;
+export default CompetitionStandings;
