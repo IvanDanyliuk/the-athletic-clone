@@ -28,7 +28,7 @@ const MatchweelDetails: React.FC<IMatchweekDetailsProps> = ({ matchweek }) => {
         <ListItem key={uuid()}>
           <Grid container spacing={3}>
             <Grid item xs={5}>
-              <Typography>{`${home.commonName} ${score} ${away.commonName}`}</Typography>
+              <Typography>{`${home.club.commonName} ${score} ${away.club.commonName}`}</Typography>
             </Grid>
             <Grid item xs={3}>
               <Typography>{location}</Typography>

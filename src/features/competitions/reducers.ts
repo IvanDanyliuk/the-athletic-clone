@@ -1,13 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createCompetition, deleteCompetition, getCompetitions, getAllCompetitions, updateCompetition } from './asyncActions';
+import { 
+  createCompetition, deleteCompetition, getCompetitions, getAllCompetitions, 
+  updateCompetition, getCompetition 
+} from './asyncActions';
 import { ICompetitionsInitialState } from './types';
 
 
 const initialState: ICompetitionsInitialState = {
   status: 'idle',
   data: {
-    competitions: [],
-    competitionsCount: 0
+    main: {
+      competitions: [],
+      competitionsCount: 0
+    },
+    competition: null
   },
   filters: null,
   error: null
@@ -23,6 +29,9 @@ const competitionSlice = createSlice({
     clearFilters: (state) => {
       state.filters = null;
     },
+    clearCompetition: (state) => {
+      state.data.competition = null;
+    },
     clearError: (state) => {
       state.error = null;
     }
@@ -34,7 +43,7 @@ const competitionSlice = createSlice({
       })
       .addCase(createCompetition.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data.competitions.push(action.payload);
+        state.data.main.competitions.push(action.payload);
       })
       .addCase(createCompetition.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -45,7 +54,7 @@ const competitionSlice = createSlice({
       })
       .addCase(getCompetitions.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data.main = action.payload;
       })
       .addCase(getCompetitions.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -56,9 +65,20 @@ const competitionSlice = createSlice({
       })
       .addCase(getAllCompetitions.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data.main = action.payload;
       })
       .addCase(getAllCompetitions.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(getCompetition.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getCompetition.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data.competition = action.payload;
+      })
+      .addCase(getCompetition.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })
@@ -67,7 +87,7 @@ const competitionSlice = createSlice({
       })
       .addCase(updateCompetition.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data.competitions = state.data.competitions.map(competition => competition._id === action.payload._id ? action.payload : competition);
+        state.data.main.competitions = state.data.main.competitions.map(competition => competition._id === action.payload._id ? action.payload : competition);
       })
       .addCase(updateCompetition.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -78,7 +98,7 @@ const competitionSlice = createSlice({
       })
       .addCase(deleteCompetition.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data.main = action.payload;
       })
       .addCase(deleteCompetition.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -87,6 +107,6 @@ const competitionSlice = createSlice({
   }
 });
 
-export const { setFilters, clearFilters, clearError } = competitionSlice.actions;
+export const { setFilters, clearFilters, clearCompetition, clearError } = competitionSlice.actions;
 
 export default competitionSlice.reducer;

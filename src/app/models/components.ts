@@ -71,8 +71,20 @@ export interface ScheduleModel {
     basicDate: string,
     games: {
       id: string,
-      home: IClub,
-      away: IClub,
+      home: {
+        club: IClub,
+        points: number,
+        goalsFor: number,
+        goalsAgainst: number,
+        final: string,
+      },
+      away: {
+        club: IClub,
+        points: number,
+        goalsFor: number,
+        goalsAgainst: number,
+        final: string,
+      },
       date: string,
       location: string,
       score: string,

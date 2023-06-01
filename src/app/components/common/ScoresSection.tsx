@@ -159,11 +159,11 @@ const ScoresSection: React.FC<IScoresSectionProps> = ({ matches }) => {
                         <Grid item xs={12}>
                           <Grid container spacing={1}>
                             <ClubCommonData item xs={4}>
-                              <ClubLogo src={match.home.clubLogoUrl} />
+                              <ClubLogo src={match.home.club.clubLogoUrl} />
                             </ClubCommonData>
                             <ClubName item xs>
                               <MatchText variant='inherit'>
-                                {match.home.shortName}
+                                {match.home.club.shortName}
                               </MatchText>
                             </ClubName>
                             <ClubCommonData item xs={2}>
@@ -176,11 +176,11 @@ const ScoresSection: React.FC<IScoresSectionProps> = ({ matches }) => {
                         <Grid item xs={12}>
                           <Grid container spacing={1}>
                             <ClubCommonData item xs={4}>
-                              <ClubLogo src={match.away.clubLogoUrl} />
+                              <ClubLogo src={match.away.club.clubLogoUrl} />
                             </ClubCommonData>
                             <ClubName item xs>
                               <MatchText variant='inherit'>
-                                {match.away.shortName}
+                                {match.away.club.shortName}
                               </MatchText>
                             </ClubName>
                             <ClubCommonData item xs={2}>

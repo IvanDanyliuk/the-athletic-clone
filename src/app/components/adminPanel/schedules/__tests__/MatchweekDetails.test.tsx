@@ -6,26 +6,39 @@ import ScheduleContext from '../../../../context/scheduleContext';
 const matchweek = {
   id: 'test_id',
   matchweekName: 'Test Matchweek',
+  basicDate: '2023-03-21T12:26:21.895Z',
   games: [
     {
       id: 'test_match_id',
       home: {
-        _id: 'test_club_id_1',
-        fullName: 'Test Club 1',
-        commonName: 'Club 1',
-        shortName: 'TC1',
-        country: 'Test Country',
-        clubLogoUrl: '',
-        stadium: 'Test Stadium',
+        club: {
+          _id: 'test_club_id_1',
+          fullName: 'Test Club 1',
+          commonName: 'Club 1',
+          shortName: 'TC1',
+          country: 'Test Country',
+          clubLogoUrl: '',
+          stadium: 'Test Stadium',
+        },
+        points: 3,
+        goalsFor: 2,
+        goalsAgainst: 0, 
+        final: 'W'
       },
       away: {
-        _id: 'test_club_id_2',
-        fullName: 'Test Club 2',
-        commonName: 'Club 2',
-        shortName: 'TC2',
-        country: 'Test Country',
-        clubLogoUrl: '',
-        stadium: 'Test Stadium',
+        club: {
+          _id: 'test_club_id_2',
+          fullName: 'Test Club 2',
+          commonName: 'Club 2',
+          shortName: 'TC2',
+          country: 'Test Country',
+          clubLogoUrl: '',
+          stadium: 'Test Stadium',
+        },
+        points: 0,
+        goalsFor: 0,
+        goalsAgainst: 2,
+        final: 'L'
       },
       date: new Date().toISOString(),
       location: 'Test Location',

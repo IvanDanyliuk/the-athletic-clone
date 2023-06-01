@@ -117,3 +117,9 @@ export interface IMaterialSearchData {
   value: string | string[];
   type: string;
 }
+
+export interface IGetLeagueMaterialsRequest {
+  value: string | string[];
+  type: string[];
+  materialsNum?: number;
+}

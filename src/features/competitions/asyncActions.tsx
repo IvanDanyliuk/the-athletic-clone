@@ -41,6 +41,18 @@ export const getAllCompetitions = createAsyncThunk(
   }
 );
 
+export const getCompetition = createAsyncThunk(
+  'competitions/getCompetition',
+  async (id: string, thunkAPI) => {
+    try {
+      const { data } = await api.getCompetition(id);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const updateCompetition = createAsyncThunk(
   'competitions/updateCompetition',
   async (competitionToUpdate: ICompetition, thunkAPI) => {

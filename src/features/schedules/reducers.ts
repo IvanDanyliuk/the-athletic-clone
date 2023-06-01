@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createSchedule, updateSchedule, deleteSchedule, getSchedules, getRecentMatches } from './asyncActions';
+import { createSchedule, updateSchedule, deleteSchedule, getSchedules, getRecentMatches, getSchedule } from './asyncActions';
 import { ISchedulesInitialState } from './types';
 
 
@@ -10,6 +10,7 @@ const initialState: ISchedulesInitialState = {
       schedules: [],
       schedulesCount: 0
     },
+    schedule: null,
     latestMatches: []
   },
   filters: null,
@@ -23,6 +24,9 @@ const schedulesSlice = createSlice({
   reducers: {
     setFilters: (state, action) => {
       state.filters = action.payload;
+    },
+    clearSchedule: (state) => {
+      state.data.schedule = null;
     },
     clearFilters: (state) => {
       state.filters = null;
@@ -52,6 +56,17 @@ const schedulesSlice = createSlice({
         state.data.main = action.payload;
       })
       .addCase(getSchedules.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(getSchedule.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getSchedule.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data.schedule = action.payload;
+      })
+      .addCase(getSchedule.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })
@@ -91,6 +106,6 @@ const schedulesSlice = createSlice({
   }
 });
 
-export const { setFilters, clearFilters, clearError } = schedulesSlice.actions;
+export const { setFilters, clearSchedule, clearFilters, clearError } = schedulesSlice.actions;
 
 export default schedulesSlice.reducer;

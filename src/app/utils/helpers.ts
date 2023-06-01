@@ -1,3 +1,5 @@
+import { IClub } from "../../features/clubs/types";
+import { IMatchweek, ISchedule } from "../../features/schedules/types";
 import { ScheduleModel } from "../models/components";
 
 export const setUrl = (title: string) => {
@@ -51,4 +53,59 @@ export const getCurrentSeasonValue = () => {
   } else {
     return `${currentYear - 1}/${currentYear}`
   }
+};
+
+export const setCompetitionTabs = (matchweeks: IMatchweek[], currentMatchweek: IMatchweek) => {
+  const mwIds = matchweeks.map(mw => mw._id);
+  const middlePos = mwIds.indexOf(currentMatchweek!._id!);
+  const left = matchweeks.slice(0, middlePos);
+  const right = matchweeks.slice(middlePos! + 1);
+
+  if(left.length >= 2 && right.length >= 2) {
+    const leftSide = left.reverse().slice(0, 2).reverse();
+    const rightSide = right.slice(0, 2);
+    return [...leftSide, matchweeks[middlePos!], ...rightSide];
+  } else {
+    if(left.length < right.length) {
+      const leftSide = left.reverse().slice(0, 2).reverse();
+      const rightSide = right.slice(0, 5 - leftSide.length - 1);
+      return [...leftSide, matchweeks[middlePos!], ...rightSide];
+    } else {
+      const rightSide = right.slice(0, 2);
+      const leftSide = left.reverse().slice(0, 5 - rightSide.length - 1).reverse();
+      return [...leftSide, matchweeks[middlePos!], ...rightSide];
+    }
+  }
+};
+
+export const countStandingTableData = (schedule: ISchedule) => {
+  const clubs = schedule.competition.clubs.map((club: IClub) => ({ club, points: 0, goals: 0 }));
+  const matches = schedule.fixture.map(mw => mw.games.map(club => ([club.home, club.away])))
+  const flattedMatches = matches.flat(2);
+
+  const standing = clubs.map((club: any) => {
+    const participants = flattedMatches.filter(item => item.club._id === club.club._id);
+    const points = participants.reduce((acc, cur) => acc + cur.points, 0);
+    const goalsFor = participants.reduce((acc, cur) => acc + cur.goalsFor, 0);
+    const goalsAgainst = participants.reduce((acc, cur) => acc + cur.goalsAgainst, 0);
+    const goalDifference = goalsFor - goalsAgainst;
+    const wins = flattedMatches.filter(item => club.club._id === item.club._id && item.final === 'W');
+    const loses = flattedMatches.filter(item => club.club._id === item.club._id && item.final === 'L');
+    const draws = flattedMatches.filter(item => club.club._id === item.club._id && item.final === 'D');
+    const latestGames = flattedMatches.filter(item => club.club._id === item.club._id).map(item => item.final).reverse().slice(0, 5).reverse();
+    return { 
+      club: club.club, 
+      playedMatches: participants.length, 
+      points, 
+      goalsFor, 
+      goalsAgainst, 
+      goalDifference, 
+      wins: wins.length, 
+      loses: loses.length, 
+      draws: draws.length, 
+      latestGames
+    };
+  }).sort((acc: any, cur: any) => cur.points - acc.points);
+  
+  return standing;
 };

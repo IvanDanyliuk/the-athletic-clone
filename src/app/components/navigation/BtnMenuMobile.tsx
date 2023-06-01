@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Accordion, AccordionDetails, AccordionSummary, Box, Button, Divider, Drawer, List, ListItem, styled, Typography } from '@mui/material';
+import { 
+  Accordion, AccordionDetails, AccordionSummary, Box, Button, 
+  Divider, Drawer, List, ListItem, styled, Typography 
+} from '@mui/material';
 import { faAngleDown, faBars, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuid } from 'uuid';
-import { CompetitionModel } from '../../models/components';
-import { setUrl } from '../../utils/helpers';
+import { ICompetition } from '../../../features/competitions/types';
 
 
 interface IBtnMenuMobileProps {
-  links: CompetitionModel[],
+  links: ICompetition[],
 }
 
 const NavbarButton = styled(Button)`
@@ -169,22 +171,22 @@ const BtnMenuMobile: React.FC<IBtnMenuMobileProps> = ({ links }) => {
                   <CompetitionDetails>
                     <DetailsList>
                       <DetailsListItem>
-                        <DetailsLink to={setUrl(link.fullName)}>
+                        <DetailsLink to={`competitions/${link._id}`}>
                           Home
                         </DetailsLink>
                       </DetailsListItem>
                       <DetailsListItem>
-                        <DetailsLink to={`${setUrl(link.fullName)}/schedule`}>
+                        <DetailsLink to={`competitions/${link._id}/scores-and-schedules`}>
                           Scores & Schedule
                         </DetailsLink>
                       </DetailsListItem>
                       <DetailsListItem>
-                        <DetailsLink to={`${setUrl(link.fullName)}/standings`}>
+                        <DetailsLink to={`competitions/${link._id}/standings`}>
                           Standings
                         </DetailsLink>
                       </DetailsListItem>
                       <DetailsListItem>
-                        <DetailsLink to={`${setUrl(link.fullName)}/news`}>
+                        <DetailsLink to={`competitions/${link._id}/news`}>
                           News
                         </DetailsLink>
                       </DetailsListItem>
@@ -193,7 +195,7 @@ const BtnMenuMobile: React.FC<IBtnMenuMobileProps> = ({ links }) => {
                     <DetailsList>
                       {link.clubs.map(club => (
                         <DetailsListItem key={uuid()}>
-                          <DetailsLink to={`${setUrl(link.fullName)}/${setUrl(club.commonName)}`}>
+                          <DetailsLink to={`clubs/${club._id}`}>
                             {club.commonName}
                           </DetailsLink>
                         </DetailsListItem>

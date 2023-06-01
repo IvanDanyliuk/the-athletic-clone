@@ -29,9 +29,16 @@ const Wrapper = styled(Box)`
 const Main = styled(Box)`
   padding-top: 7vh;
   width: 100%;
+  min-height: 100%;
   display: flex;
   flex: 1;
   flex-direction: column;
+  background: #ffffff;
+`;
+
+const ContentContainer = styled(Container)`
+  position: relative;
+  flex: 1;
 `;
 
 const Layout: React.FC<ILayout> = ({ children }) => {
@@ -56,9 +63,9 @@ const Layout: React.FC<ILayout> = ({ children }) => {
             <ScoresSection matches={latestMatches} />
           </>
         )}
-        <Container maxWidth='xl'>
+        <ContentContainer maxWidth='xl'>
           {children}
-        </Container>
+        </ContentContainer>
       </Main>
       <Footer />
     </Wrapper>

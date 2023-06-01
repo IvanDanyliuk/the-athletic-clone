@@ -75,11 +75,32 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
   };
 
   const handleMatchCreate = (data: any) => {
+    const score = data.score.split(':');
+    const homeClubPoints = data.score !== '-:-' ? 
+      +score[0] > +score[1] ? 3 : +score[0] === +score[1] ? 1 : 0 : 0;
+    const awayClubPoints = data.score !== '-:-' ? 
+      +score[1] > +score[0] ? 3 : +score[1] === +score[0] ? 1 : 0 : 0;
+
+    const homeGoals = score[0] !== '-' ? +score[0] : 0;
+    const awayGoals = score[1] !== '-' ? +score[1] : 0;
+
     addMatch(mwId, {
       ...data,
       id: uuid(),
-      home: clubs!.find(club => club._id === data.home),
-      away: clubs!.find(club => club._id === data.away),
+      home: {
+        club: clubs!.find(club => club._id === data.home),
+        points: homeClubPoints,
+        goalsFor: homeGoals,
+        goalsAgainst: awayGoals,
+        final: homeGoals > awayGoals ? 'W' : homeGoals === awayGoals ? 'D' : 'L'
+      },
+      away: {
+        club: clubs!.find(club => club._id === data.away),
+        points: awayClubPoints,
+        goalsFor: awayGoals,
+        goalsAgainst: homeGoals,
+        final: awayGoals > homeGoals ? 'W' : homeGoals === awayGoals ? 'D' : 'L'
+      },
     });
   };
 
@@ -142,7 +163,7 @@ const MatchForm: React.FC<IMatchFormProps> = ({ mwId }) => {
                 name='score' 
                 label='Score'
                 type='text' 
-                defaultValue='0:0'
+                defaultValue='-:-'
                 register={register}
                 error={errors.score}
               />

@@ -31,7 +31,7 @@ export const getRealtimePosts = (page: number, itemsPerPage: number, filterData?
 export const getRecentMaterials = (materialsNumber: number, materialTypes: string[]) => API.get('/materials/recent', { params: { materialsNumber, materialTypes } });
 export const getHomapageSecondaryMaterials = (topMaterialsNum: number, postsNum: number) => API.get('/materials/homepage', { params: { topMaterialsNum, postsNum } });
 export const getSearchValues = (value: string) => API.get('/materials/search-values', { params: { value } });
-export const searchMaterials = (value: string | string[], type: string) => API.get('/materials/search', { params: { value, type } });
+export const searchMaterials = (value: string | string[], type: string | string[], materialsNum?: number) => API.get('/materials/search', { params: { value, type, materialsNum } });
 export const getMaterial = (id: string) => API.get(`/materials/${id}`);
 export const updateMaterial = (materialToUpdate: IMaterial) => API.patch('/materials', materialToUpdate);
 export const deleteMaterial = (id: string, page: number, itemsPerPage: number) => API.delete('/materials', { params: { id, page, itemsPerPage } });
@@ -45,6 +45,7 @@ export const deleteClub = (id: string, page: number, itemsPerPage: number) => AP
 export const createCompetition = (competitionData: CompetitionModel) => API.post('/competitions', competitionData);
 export const getCompetitions = (page?: number, itemsPerPage?: number, filterData?: any, sortData?: any) => API.get('/competitions', { params: { page, itemsPerPage, filterData, sortData } });
 export const getAllCompetitions = () => API.get('/competitions/all');
+export const getCompetition = (id: string) => API.get(`/competitions/${id}`);
 export const updateCompetition = (competitionToUpdate: ICompetition) => API.patch('/competitions', competitionToUpdate);
 export const deleteCompetition = (id: string, page: number, itemsPerPage: number) => API.delete('/competitions', { params: { id, page, itemsPerPage } });
 
@@ -55,6 +56,7 @@ export const deletePlayer = (id: string, page: number, itemsPerPage: number) => 
 
 export const createSchedule = (scheduleData: ScheduleModel) => API.post('/schedules', scheduleData);
 export const getSchedules = (page?: number, itemsPerPage?: number, filterData?: any, sortData?: any) => API.get('/schedules', { params: { page, itemsPerPage, filterData, sortData } });
+export const getSchedule = (season: string, leagueId: string) => API.get('/schedules/schedule', { params: { season, leagueId } });
 export const updateSchedule = (scheduleToUpdate: ISchedule) => API.patch('/schedules', scheduleToUpdate);
 export const deleteSchedule = (id: string, page: number, itemsPerPage: number) => API.delete('/schedules', { params: { id, page, itemsPerPage } });
 

@@ -9,8 +9,11 @@ import { setupCompetitionsErrorHandlers, setupCompetitionsSuccessHandlers } from
 const competitionsStateMock = {
   status: 'loading',
   data: {
-    competitions: [],
-    competitionsCount: 0
+    main: {
+      competitions: [],
+      competitionsCount: 0
+    },
+    competition: null
   },
   filters: null,
   clubsByCountry: [],

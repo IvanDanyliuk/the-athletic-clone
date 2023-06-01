@@ -1,13 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { Box, Button, Container, styled, useMediaQuery } from '@mui/material';
-import { competitions } from '../../../data';
 import BtnMenu from '../navigation/BtnMenu';
 import Navigation from '../navigation/Navigation';
 import BtnMenuMobile from '../navigation/BtnMenuMobile';
 import UserHeaderMenu from '../user/UserHeaderMenu';
-import { useSelector } from 'react-redux';
 import { selectUser } from '../../../features/users/selectors';
+import { selectAllCompetitions } from '../../../features/competitions/selectors';
+import { AppDispatch } from '../../../features/store';
+import { getAllCompetitions } from '../../../features/competitions/asyncActions';
 
 
 const Wrapper = styled(Box)`
@@ -60,10 +62,16 @@ const LoginLink = styled(Link)`
 
 
 const Header: React.FC = () => {
-  const data = competitions
+  const dispatch = useDispatch<AppDispatch>();
+
+  const leagues = useSelector(selectAllCompetitions);
+  const user = useSelector(selectUser);
+  const sortedLeagues = [...leagues].sort((a, b) => new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1);
   const isMobile = useMediaQuery('(max-width:640px)');
 
-  const user = useSelector(selectUser);
+  useEffect(() => {
+    dispatch(getAllCompetitions());
+  }, []);
 
   return (
     <Wrapper component='header'>
@@ -71,13 +79,13 @@ const Header: React.FC = () => {
         <Section>
           {
             isMobile ? 
-              <BtnMenuMobile links={data} /> : 
-              <BtnMenu links={data} />
+              <BtnMenuMobile links={sortedLeagues} /> : 
+              <BtnMenu links={sortedLeagues} />
           }
           <Logo to={'/'}>The Athletic</Logo>
         </Section>
         {
-          !isMobile && <Navigation links={data} />
+          !isMobile && <Navigation links={sortedLeagues} />
         }
         {
           user ? (
