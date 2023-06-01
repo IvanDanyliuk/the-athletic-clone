@@ -10,7 +10,7 @@ const propsMock = {
 }
 
 describe('MatchweekDatePicker tests', () => {
-  test('should call the handler function after picking the matchweek', async () => {
+  test('should call the handler function after picking the matchweek', () => {
     render(
       <MatchweekPicker 
         season={propsMock.season} 

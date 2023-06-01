@@ -17,10 +17,6 @@ const Cell = styled(TableCell)`
   min-width: 10em;
 `;
 
-const ClubLogo = styled('img')`
-  height: 1.5em;
-`;
-
 
 const MatchweekTable: React.FC<IMatchweekTable> = ({ matchweek }) => {
   return (
