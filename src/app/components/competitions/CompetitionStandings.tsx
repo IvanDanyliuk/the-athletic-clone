@@ -12,7 +12,7 @@ import { clearSchedule } from '../../../features/schedules/reducers';
 import { selectCompetition } from '../../../features/competitions/selectors';
 import { IClub } from '../../../features/clubs/types';
 import { selectSchedule } from '../../../features/schedules/selectors';
-import LastGamesScores from './LastGamesScores';
+import LatestGamesScores from './LatestGamesScores';
 
 
 interface StandingItem {
@@ -97,7 +97,7 @@ const CompetitionStandings: React.FC = () => {
               <TableCell>{item.goalDifference}</TableCell>
               <TableCell>{item.points}</TableCell>
               <CustomCell>
-                <LastGamesScores scores={item.latestGames} />
+                <LatestGamesScores scores={item.latestGames} />
               </CustomCell>
             </TableRow>
           ))}

@@ -3,7 +3,7 @@ import { Box, Typography, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 
 
-interface ILastGamesScoresProps {
+interface ILatestGamesScoresProps {
   scores: string[];
 }
 
@@ -40,7 +40,7 @@ const ScoreIcon = styled(Box)`
   }
 `;
 
-const LastGamesScores: React.FC<ILastGamesScoresProps> = ({ scores }) => {
+const LatestGamesScores: React.FC<ILatestGamesScoresProps> = ({ scores }) => {
   return (
     <Container>
       {scores.map(match => (
@@ -52,4 +52,4 @@ const LastGamesScores: React.FC<ILastGamesScoresProps> = ({ scores }) => {
   );
 };
 
-export default LastGamesScores;
+export default LatestGamesScores;
