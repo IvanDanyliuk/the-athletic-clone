@@ -4,7 +4,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import Layout from './app/components/layout/Layout';
 import { 
-  Admin, Checkout, Competition, Home, Login, Material, News, NotFound, 
+  Admin, Checkout, Club, Competition, Home, Login, Material, News, NotFound, 
   Posts, Realtime, RecentMaterials, Register, Search 
 } from './app/pages';
 import {
@@ -22,6 +22,8 @@ import {
 import { Content } from './app/components/adminPanel/sections/';
 import { Post, PostList } from './app/components/materials/';
 import { CompetitionHome, CompetitionScores, CompetitionStandings, CompetitionTeams } from './app/components/competitions/';
+import ClubHome from './app/components/clubs/ClubHome';
+import { ClubRoster, ClubSchedule } from './app/components/clubs';
 
 
 const App: React.FC = () => {
@@ -44,6 +46,12 @@ const App: React.FC = () => {
                 <Route path='scores-and-schedules' element={<CompetitionScores />} />
                 <Route path='standings' element={<CompetitionStandings />} />
                 <Route path='teams' element={<CompetitionTeams />} />
+              </Route>
+              <Route path='/clubs' element={<Club />}>
+                <Route index element={<ClubHome />} />
+                <Route path='home' element={<ClubHome />} />
+                <Route path='scores-and-schedule' element={<ClubSchedule />} />
+                <Route path='roster' element={<ClubRoster />} />
               </Route>
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
