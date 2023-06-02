@@ -1,7 +1,7 @@
 import { fireEvent, screen, waitFor } from '@testing-library/react';
 import { renderWithProviders } from '../../../../utils/testing/customRenderMethod';
 import { contentSection } from '../../../../utils/testing/testDataMocks/content';
-import ContentSectionListItem from '../ContentSectionListItem';
+import { ContentSectionListItem } from '../';
 
 
 const mockedUseDispatch = jest.fn();

@@ -2,7 +2,7 @@ import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupClubsErrorHandlers, setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
 import { clubsStateErrorMock, clubsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/clubs';
-import ClubsTable from '../ClubsTable';
+import { ClubsTable } from '../';
 
 
 const clubsStateMock = {

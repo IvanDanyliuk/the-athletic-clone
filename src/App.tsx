@@ -4,7 +4,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import Layout from './app/components/layout/Layout';
 import { 
-  Admin, Checkout, Home, Login, Material, News, NotFound, 
+  Admin, Checkout, Competition, Home, Login, Material, News, NotFound, 
   Posts, Realtime, RecentMaterials, Register, Search 
 } from './app/pages';
 import {
@@ -16,18 +16,12 @@ import {
   NoteForm, PlayerForm, ScheduleForm, RealtimePostForm 
 } from './app/components/adminPanel/forms/creationForms';
 import { 
-  UpdateClubForm, UpdateCompetitionForm, UpdateMaterialForm, 
+  UpdateClubForm, UpdateCompetitionForm, UpdateContentSection, UpdateMaterialForm, 
   UpdatePlayerForm, UpdateScheduleForm, UpdateUserForm 
 } from './app/components/adminPanel/forms/updationForms';
-import Content from './app/components/adminPanel/sections/Content';
-import UpdateContentSection from './app/components/adminPanel/forms/updationForms/UpdateContentSection';
-import PostCard from './app/components/materials/Post';
-import PostList from './app/components/materials/PostList';
-import Competition from './app/pages/Competition';
-import CompetitionHome from './app/components/competitions/CompetitionHome';
-import CompetitionScores from './app/components/competitions/CompetitionScores';
-import CompetitionTable from './app/components/competitions/CompetitionStandings';
-import CompetitionTeams from './app/components/competitions/CompetitionTeams';
+import { Content } from './app/components/adminPanel/sections/';
+import { Post, PostList } from './app/components/materials/';
+import { CompetitionHome, CompetitionScores, CompetitionStandings, CompetitionTeams } from './app/components/competitions/';
 
 
 const App: React.FC = () => {
@@ -41,14 +35,14 @@ const App: React.FC = () => {
               <Route path='/materials' element={<RecentMaterials />} />
               <Route path='/materials/:id' element={<Material />} />
               <Route path='/posts' element={<Posts />}>
-                <Route path=':id' element={<PostCard />} />
+                <Route path=':id' element={<Post />} />
                 <Route path='search' element={<PostList />} />
               </Route>
               <Route path='/competitions/:id' element={<Competition />}>
                 <Route index element={<CompetitionHome />} />
                 <Route path='home' element={<CompetitionHome />} />
                 <Route path='scores-and-schedules' element={<CompetitionScores />} />
-                <Route path='standings' element={<CompetitionTable />} />
+                <Route path='standings' element={<CompetitionStandings />} />
                 <Route path='teams' element={<CompetitionTeams />} />
               </Route>
               <Route path='/login' element={<Login />} />

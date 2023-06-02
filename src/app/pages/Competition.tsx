@@ -6,7 +6,7 @@ import { AppDispatch } from '../../features/store';
 import { getCompetition } from '../../features/competitions/asyncActions';
 import { clearCompetition } from '../../features/competitions/reducers';
 import { selectCompetition } from '../../features/competitions/selectors';
-import BackdropLoader from '../components/ui/BackdropLoader';
+import { BackdropLoader } from '../components/ui/';
 
 
 const LeagueTitle = styled(Box)`

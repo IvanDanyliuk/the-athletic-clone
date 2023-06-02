@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Alert, Box, Button, Dialog, DialogContent, DialogTitle } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import TextInput from '../../../ui/TextInput';
+import { TextInput } from '../../../ui/';
 
 
 interface IUpdatePasswordModalProps {

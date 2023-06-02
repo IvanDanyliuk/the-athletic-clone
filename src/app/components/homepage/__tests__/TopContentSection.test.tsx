@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import TopContentSection from '../TopContentSection';
 import { materialsStateSuccessMock } from '../../../utils/testing/testDataMocks/materials';
+import { TopContentSection } from '../';
 
 
 describe('TopContentSection tests', () => {

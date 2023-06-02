@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { contentStateSuccessMock } from '../../../../utils/testing/testDataMocks/content';
 import { renderWithProviders } from '../../../../utils/testing/customRenderMethod';
-import ContentSectionsList from '../ContentSectionsList';
+import { ContentSectionsList } from '../';
 
 
 describe('ContentSectionList tests', () => {

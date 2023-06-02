@@ -1,6 +1,6 @@
 import React from 'react';
-import ClubsFilters from '../filters/ClubsFilters';
-import ClubsTable from '../tables/ClubsTable/ClubsTable';
+import { ClubsFilters } from '../filters/';
+import { ClubsTable } from '../tables/ClubsTable/';
 import SubPageHeader from '../ui/SubPageHeader';
 
 

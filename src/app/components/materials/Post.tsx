@@ -7,9 +7,8 @@ import { selectMaterial } from '../../../features/materials/selectors';
 import { selectUser } from '../../../features/users/selectors';
 import { getMaterial } from '../../../features/materials/asyncActions';
 import { clearMaterial } from '../../../features/materials/reducers';
-import BackdropLoader from '../ui/BackdropLoader';
-import Comments from './Comments';
-import PostCard from './PostCard';
+import { BackdropLoader } from '../ui/';
+import { Comments, PostCard } from './';
 
 
 const CommentsSection = styled(Box)`

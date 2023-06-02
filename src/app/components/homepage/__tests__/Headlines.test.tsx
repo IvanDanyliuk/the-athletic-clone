@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import Headlines from '../Headlines';
 import { contentSection } from '../../../utils/testing/testDataMocks/content';
+import { Headlines } from '../';
 
 
 describe('Headlines tests', () => {

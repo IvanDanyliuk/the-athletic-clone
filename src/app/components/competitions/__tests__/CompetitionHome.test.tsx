@@ -3,7 +3,7 @@ import { setupMaterialsSuccessHandlers } from '../../../utils/testing/serverMock
 import { setupCompetitionsSuccessHandlers } from '../../../utils/testing/serverMocks/competitions';
 import { renderWithProviders } from '../../../utils/testing/customRenderMethod';
 import { materialsStateSuccessMock } from '../../../utils/testing/testDataMocks/materials';
-import CompetitionHome from '../CompetitionHome';
+import { CompetitionHome } from '../';
 
 
 describe('CompetitionHome tests', () => {

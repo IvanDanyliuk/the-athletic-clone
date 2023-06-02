@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
-import CompetitionsTableHead from './CompetitionsTableHead';
+import { CompetitionsTableHead, CompetitionsTableBody, CompetitionsTableFooter } from './';
 import { AppDispatch } from '../../../../../features/store';
 import { 
   selectCompetitionsFilters, selectAllCompetitions, selectCompetitionsCount, 
   selectCompetitionsStatus, selectCompetitionsError 
 } from '../../../../../features/competitions/selectors';
-import CompetitionsTableBody from './CompetitionsTableBody';
-import CompetitionsTableFooter from './CompetitionsTableFooter';
-import BackdropLoader from '../../../ui/BackdropLoader';
+import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
 import { ICompetitionsTableHeadCell, Order } from '../../../../../features/competitions/types';
 import { getCompetitions } from '../../../../../features/competitions/asyncActions';
 import { clearError } from '../../../../../features/competitions/reducers';
-import ErrorSnackbar from '../../../ui/ErrorSnackbar';
 
 
 const CompetitionsTable: React.FC = () => {

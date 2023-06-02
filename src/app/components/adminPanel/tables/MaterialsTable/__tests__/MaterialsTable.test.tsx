@@ -3,8 +3,8 @@ import { renderWithProviders } from '../../../../../utils/testing/customRenderMe
 import { setupMaterialsErrorHandlers, setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serverMocks/materials';
 import { materialsStateErrorMock, materialsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/materials';
 import { setupContentErrorHandlers, setupContentSuccessHandlers } from '../../../../../utils/testing/serverMocks/content';
-import MaterialsTable from '../MaterialsTable';
 import { IMaterialsState } from '../../../../../../features/materials/types';
+import { MaterialsTable } from '../';
 
 
 const materialsStateMock: IMaterialsState = {
@@ -14,6 +14,7 @@ const materialsStateMock: IMaterialsState = {
       materials: [],
       materialsCount: 0
     },
+    material: null,
     homepage: {
       latestPosts: [],
       topMaterials: [],
@@ -21,6 +22,8 @@ const materialsStateMock: IMaterialsState = {
       leagueMaterials: []
     }
   },
+  searchValues: [],
+  search: null,
   authors: [],
   filters: null,
   error: null

@@ -7,8 +7,7 @@ import { Box, Button, Grid, IconButton, Snackbar, styled, Tooltip } from '@mui/m
 import dayjs from 'dayjs';
 import { clearFilters, setFilters } from '../../../../features/users/reducers';
 import { AppDispatch } from '../../../../features/store';
-import ControlledDatePicker from '../../ui/ControlledDatePicker';
-import SelectField from '../../ui/SelectField';
+import { ControlledDatePicker, SelectField } from '../../ui/';
 import { checkFilterTimeInterval } from '../../../utils/helpers';
 import { IUserFiltersData } from '../../../../features/users/types';
 import { selectUserLocations } from '../../../../features/users/selectors';

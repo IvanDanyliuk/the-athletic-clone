@@ -3,20 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Box, Button, Grid, styled } from '@mui/material';
+import dayjs from 'dayjs';
 import { AppDispatch } from '../../../../../features/store';
 import { PlayerModel } from '../../../../models/components';
-import TextInput from '../../../ui/TextInput';
+import { BackdropLoader, ControlledDatePicker, SelectField, TextInput } from '../../../ui/';
 import { uploadImage } from '../../../../services/uploadImage';
-import BackLink from '../../ui/BackLink';
-import SelectField from '../../../ui/SelectField';
-import BackdropLoader from '../../../ui/BackdropLoader';
+import { BackLink } from '../../ui/';
 import { getCountries } from '../../../../services/countries';
 import { createPlayer, updatePlayer } from '../../../../../features/players/asyncActions';
 import { IPlayer, PlayerPosition } from '../../../../../features/players/types';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
-import ControlledDatePicker from '../../../ui/ControlledDatePicker';
-import dayjs from 'dayjs';
 
 
 const Form = styled(Box)`

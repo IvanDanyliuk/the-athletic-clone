@@ -1,12 +1,12 @@
 import React from 'react';
 import { 
-  Grid, Paper, Table, TableBody, TableCell, 
+  Paper, Table, TableBody, TableCell, 
   TableContainer, TableHead, TableRow, styled 
 } from '@mui/material';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { IMatchweek } from '../../../features/schedules/types';
-import ClubLabel from '../ui/ClubLabel';
+import { ClubLabel } from '../ui/';
 
 
 interface IMatchweekTable {

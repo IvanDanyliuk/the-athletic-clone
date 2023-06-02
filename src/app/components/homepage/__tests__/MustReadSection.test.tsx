@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import MustReadSection from '../MustReadSection';
 import { articleToUpdate } from '../../../utils/testing/testDataMocks/materials';
+import { MustReadSection } from '../';
 
 
 describe('MustReadSection tests', () => {

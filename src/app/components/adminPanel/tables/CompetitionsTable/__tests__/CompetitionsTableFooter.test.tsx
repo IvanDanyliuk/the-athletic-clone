@@ -1,7 +1,7 @@
 import { screen, fireEvent, cleanup } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
-import CompetitionsTableFooter from '../CompetitionsTableFooter';
+import { CompetitionsTableFooter } from '../';
 
 
 const onPageChangeMock = jest.fn();

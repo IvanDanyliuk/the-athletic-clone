@@ -4,7 +4,7 @@ import { postToUpdate } from '../../../utils/testing/testDataMocks/materials';
 import { userToUpdate } from '../../../utils/testing/testDataMocks/users';
 import { setupMaterialsSuccessHandlers } from '../../../utils/testing/serverMocks/materials';
 import { setupUsersSuccessHandlers } from '../../../utils/testing/serverMocks/users';
-import Comments from '../Comments';
+import { Comments } from '../';
 
 
 const mockedUseDispatch = jest.fn();

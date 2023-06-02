@@ -1,7 +1,7 @@
 import { MemoryRouter } from 'react-router-dom';
 import { screen, render } from '@testing-library/react';
-import LeagueMaterials from '../LeagueMaterials';
 import { leagueMaterialsPropsMock } from '../../../utils/testing/testDataMocks/content';
+import { LeagueMaterials } from '../';
 
 
 describe('LeagueMaterials tests', () => {

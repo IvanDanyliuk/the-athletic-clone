@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { 
   Box, Button, Icon, IconButton, List, ListItem, 
   TextField, Typography, styled 
@@ -13,8 +14,7 @@ import { ICompetition } from '../../../features/competitions/types';
 import { IClub } from '../../../features/clubs/types';
 import { IUser } from '../../../features/users/types';
 import { clearSearchValues } from '../../../features/materials/reducers';
-import SearchItem from './SearchItem';
-import { useNavigate } from 'react-router-dom';
+import { SearchItem } from './';
 
 
 const Container = styled(Box)`

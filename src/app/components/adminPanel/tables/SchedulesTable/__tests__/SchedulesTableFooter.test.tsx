@@ -1,7 +1,7 @@
 import { screen, fireEvent, cleanup } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupSchedulesSuccessHandlers } from '../../../../../utils/testing/serverMocks/schedules';
-import SchedulesTableFooter from '../SchedulesTableFooter';
+import { SchedulesTableFooter } from '../';
 
 
 const onPageChangeMock = jest.fn();

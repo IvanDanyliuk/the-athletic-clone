@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
-import SchedulesTableHead from './SchedulesTableHead';
+import { SchedulesTableHead, SchedulesTableBody, SchedulesTableFooter } from './';
 import { AppDispatch } from '../../../../../features/store';
 import { 
   selectSchedulesFilters, selectAllSchedules, selectSchedulesCount, 
   selectSchedulesStatus, selectSchedulesError 
 } from '../../../../../features/schedules/selectors';
 import { getSchedules } from '../../../../../features/schedules/asyncActions';
-import SchedulesTableBody from './SchedulesTableBody';
-import SchedulesTableFooter from './SchedulesTableFooter';
-import BackdropLoader from '../../../ui/BackdropLoader';
+import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
 import { ISchedulesTableHeadCell, Order } from '../../../../../features/schedules/types';
-import ErrorSnackbar from '../../../ui/ErrorSnackbar';
 import { clearError } from '../../../../../features/schedules/reducers';
 
 

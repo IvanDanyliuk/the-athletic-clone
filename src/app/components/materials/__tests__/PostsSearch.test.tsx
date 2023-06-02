@@ -8,7 +8,7 @@ import { setupClubsSuccessHandlers } from '../../../utils/testing/serverMocks/cl
 import { setupUsersSuccessHandlers } from '../../../utils/testing/serverMocks/users';
 import { clubToUpdate } from '../../../utils/testing/testDataMocks/clubs';
 import { userToUpdate } from '../../../utils/testing/testDataMocks/users';
-import PostsSearch from '../PostsSearch';
+import { PostsSearch } from '../';
 
 
 const mockedUseDispatch = jest.fn();

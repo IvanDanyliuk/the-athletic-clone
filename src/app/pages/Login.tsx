@@ -5,13 +5,11 @@ import { useForm } from 'react-hook-form';
 import { Box, Button, Divider, styled, Typography } from '@mui/material';
 import { AppDispatch } from '../../features/store';
 import AuthButtons from '../components/authentication/AuthButtons';
-import TextInput from '../components/ui/TextInput';
 import { login } from '../../features/users/asyncActions';
 import { ILoginCredentials } from '../../features/users/types';
 import { selectUserError, selectUserStatus } from '../../features/users/selectors';
-import ErrorSnackbar from '../components/ui/ErrorSnackbar';
 import { clearError } from '../../features/users/reducers';
-import BackdropLoader from '../components/ui/BackdropLoader';
+import { BackdropLoader, ErrorSnackbar, TextInput } from '../components/ui/';
 
 
 const Wrapper = styled(Box)`

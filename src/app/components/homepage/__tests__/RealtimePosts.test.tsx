@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import RealtimePosts from '../RealtimePosts';
 import { postToUpdate } from '../../../utils/testing/testDataMocks/materials';
+import { RealtimePosts } from '../';
 
 
 const dataMock = [

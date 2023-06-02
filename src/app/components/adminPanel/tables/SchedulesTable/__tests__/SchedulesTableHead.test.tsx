@@ -1,8 +1,8 @@
 import { screen, fireEvent, cleanup } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupSchedulesSuccessHandlers } from '../../../../../utils/testing/serverMocks/schedules';
-import SchedulesTableHead from '../SchedulesTableHead';
 import { Order } from '../../../../../../features/schedules/types';
+import { SchedulesTableHead } from '../';
 
 
 const activeCellMock = {

@@ -8,13 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Button, Checkbox, Divider, FormControlLabel, Grid, Typography } from '@mui/material';
 import AuthButtons from '../components/authentication/AuthButtons';
 import { UserModel } from '../models/users';
-import TextInput from '../components/ui/TextInput';
 import { signup } from '../../features/users/asyncActions';
 import { AppDispatch } from '../../features/store';
-import SelectField from '../components/ui/SelectField';
 import { getCountries } from '../services/countries';
 import { selectUserStatus } from '../../features/users/selectors';
-import BackdropLoader from '../components/ui/BackdropLoader';
+import { BackdropLoader, SelectField, TextInput } from '../components/ui/';
 
 
 const Wrapper = styled(Box)`

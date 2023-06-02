@@ -8,7 +8,7 @@ import { getClubs } from '../../../../features/clubs/asyncActions';
 import { clearFilters, setFilters } from '../../../../features/clubs/reducers';
 import { IClubFilters } from '../../../../features/clubs/types';
 import { AppDispatch } from '../../../../features/store';
-import SelectField from '../../ui/SelectField';
+import { SelectField } from '../../ui/';
 import { checkFilterTimeInterval } from '../../../utils/helpers';
 import { getCountries } from '../../../services/countries';
 

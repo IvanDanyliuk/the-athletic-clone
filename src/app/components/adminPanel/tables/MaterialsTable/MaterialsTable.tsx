@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
-import MaterialsTableHead from './MaterialsTableHead';
+import { MaterialsTableHead, MaterialsTableBody, MaterialsTableFooter } from './';
 import { AppDispatch } from '../../../../../features/store';
 import { 
   selectFilters, selectMaterials, selectMaterialsCount, 
   selectMaterialsError, selectMaterialsStatus 
 } from '../../../../../features/materials/selectors';
 import { getMaterials } from '../../../../../features/materials/asyncActions';
-import MaterialTableBody from './MaterialsTableBody';
-import MaterialsTableFooter from './MaterialsTableFooter';
-import BackdropLoader from '../../../ui/BackdropLoader';
+import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
 import { IMaterialsTableHeadCell, Order } from '../../../../../features/materials/types';
-import ErrorSnackbar from '../../../ui/ErrorSnackbar';
 import { clearError } from '../../../../../features/materials/reducers';
 
 
@@ -89,7 +86,7 @@ const MaterialsTable: React.FC = () => {
           activeCell={activeCell} 
           onSort={handleDataSort} 
         />
-        <MaterialTableBody 
+        <MaterialsTableBody 
           materials={materials} 
           page={page} 
           itemsPerPage={10}

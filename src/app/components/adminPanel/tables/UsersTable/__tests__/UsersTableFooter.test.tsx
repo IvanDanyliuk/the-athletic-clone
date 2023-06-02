@@ -1,7 +1,7 @@
 import { screen, fireEvent, cleanup } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupUsersSuccessHandlers } from '../../../../../utils/testing/serverMocks/users';
-import UsersTableFooter from '../UsersTableFooter';
+import { UsersTableFooter } from '../';
 
 
 const onPageChangeMock = jest.fn();

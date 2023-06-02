@@ -1,6 +1,6 @@
 import React from 'react';
-import MaterialFilters from '../filters/MaterialFilters';
-import MaterialsTable from '../tables/MaterialsTable/MaterialsTable';
+import { MaterialFilters } from '../filters/';
+import { MaterialsTable } from '../tables/MaterialsTable/';
 import MaterialsHeader from '../ui/MaterialsHeader';
 
 

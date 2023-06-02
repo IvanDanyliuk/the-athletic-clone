@@ -1,9 +1,9 @@
-import { screen, render, fireEvent, waitFor } from '@testing-library/react';
+import { screen, fireEvent, waitFor } from '@testing-library/react';
 import { renderWithProviders } from '../../../utils/testing/customRenderMethod';
 import { postToUpdate } from '../../../utils/testing/testDataMocks/materials';
 import { userToUpdate } from '../../../utils/testing/testDataMocks/users';
-import PostCard from '../PostCard';
 import { IMaterial } from '../../../../features/materials/types';
+import { PostCard } from '../';
 
 
 const mockedUseDispatch = jest.fn();

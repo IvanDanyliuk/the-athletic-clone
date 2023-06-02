@@ -7,7 +7,7 @@ import { Box, Button, Grid, styled, Tooltip } from '@mui/material';
 import { clearFilters, setFilters } from '../../../../features/competitions/reducers';
 import { ICompetitionsFilters } from '../../../../features/competitions/types';
 import { AppDispatch } from '../../../../features/store';
-import SelectField from '../../ui/SelectField';
+import { SelectField } from '../../ui/';
 import { getCountries } from '../../../services/countries';
 import { getCompetitions } from '../../../../features/competitions/asyncActions';
 

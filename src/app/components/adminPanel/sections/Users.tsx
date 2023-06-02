@@ -1,6 +1,6 @@
 import React from 'react';
-import UserFilters from '../filters/UserFilters';
-import UsersTable from '../tables/UsersTable/UsersTable';
+import { UserFilters } from '../filters/';
+import { UsersTable } from '../tables/UsersTable/';
 import SubPageHeader from '../ui/SubPageHeader';
 
 

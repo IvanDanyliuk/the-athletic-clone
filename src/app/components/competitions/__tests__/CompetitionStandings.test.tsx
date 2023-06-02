@@ -4,7 +4,7 @@ import { setupSchedulesSuccessHandlers } from '../../../utils/testing/serverMock
 import { renderWithProviders } from '../../../utils/testing/customRenderMethod';
 import { competitionToUpdate, competitionsStateSuccessMock } from '../../../utils/testing/testDataMocks/competitions';
 import { scheduleToUpdate, schedulesStateSuccessMock } from '../../../utils/testing/testDataMocks/schedules';
-import CompetitionStandings from '../CompetitionStandings';
+import { CompetitionStandings } from '../';
 
 
 describe('CompetitionStandings tests', () => {

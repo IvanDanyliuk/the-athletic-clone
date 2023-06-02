@@ -11,7 +11,7 @@ import { IComment, IMaterial } from '../../../features/materials/types';
 import { IUser } from '../../../features/users/types';
 import { AppDispatch } from '../../../features/store';
 import { updateViewedMaterial } from '../../../features/materials/asyncActions';
-import TextInput from '../ui/TextInput';
+import { TextInput } from '../ui/';
 
 
 interface ICommentsProps {

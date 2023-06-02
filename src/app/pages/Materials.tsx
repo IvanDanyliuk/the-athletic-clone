@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../features/store';
 import { getRecentMaterials } from '../../features/materials/asyncActions';
 import { selectMaterials } from '../../features/materials/selectors';
-import BackdropLoader from '../components/ui/BackdropLoader';
+import { BackdropLoader } from '../components/ui/';
 
 
 const MaterialLink = styled(Link)`

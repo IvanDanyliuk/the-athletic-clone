@@ -1,6 +1,4 @@
 import { render, screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react';
-import { store } from '../../../../../../features/store';
-import ScheduleForm from '../ScheduleForm';
 import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { LocalizationProvider } from '@mui/x-date-pickers';
@@ -11,7 +9,9 @@ import { ScheduleContextType } from '../../../../../context/scheduleContext';
 import { setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
 import { setupSchedulesSuccessHandlers } from '../../../../../utils/testing/serverMocks/schedules';
 import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
+import { store } from '../../../../../../features/store';
 import { ISchedule } from '../../../../../../features/schedules/types';
+import { ScheduleForm } from '../';
 
 
 const mockedUseNavigate = jest.fn();

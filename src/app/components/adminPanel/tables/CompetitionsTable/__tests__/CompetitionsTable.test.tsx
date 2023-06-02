@@ -1,9 +1,9 @@
 import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
-import CompetitionsTable from '../CompetitionsTable';
 import { competitionsStateErrorMock, competitionsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/competitions';
 import { setupCompetitionsErrorHandlers, setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
+import { CompetitionsTable } from '../';
 
 
 const competitionsStateMock = {

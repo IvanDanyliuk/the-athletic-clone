@@ -4,13 +4,11 @@ import { AppDispatch } from '../../../../../features/store';
 import { useForm } from 'react-hook-form';
 import { Box, Button, Grid, styled } from '@mui/material';
 import { createUser, updateUser } from '../../../../../features/users/asyncActions';
-import TextInput from '../../../ui/TextInput';
-import SelectField from '../../../ui/SelectField';
+import { BackdropLoader, SelectField, TextInput } from '../../../ui/';
 import { getCountries } from '../../../../services/countries';
 import { IUser, UserRoles } from '../../../../../features/users/types';
-import BackdropLoader from '../../../ui/BackdropLoader';
 import { uploadImage } from '../../../../services/uploadImage';
-import BackLink from '../../ui/BackLink';
+import { BackLink } from '../../ui/';
 import { useNavigate } from 'react-router-dom';
 
 

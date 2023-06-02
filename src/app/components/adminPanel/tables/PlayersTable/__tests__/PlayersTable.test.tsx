@@ -2,7 +2,7 @@ import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupPlayersErrorHandlers, setupPlayersSuccessHandlers } from '../../../../../utils/testing/serverMocks/players';
 import { playersStateErrorMock, playersStateSuccessMock } from '../../../../../utils/testing/testDataMocks/players';
-import PlayersTable from '../PlayersTable';
+import { PlayersTable } from '../';
 
 
 const playersStateMock = {

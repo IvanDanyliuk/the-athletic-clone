@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
-import ClubsTableHead from './ClubsTableHead';
+import { ClubsTableHead, ClubsTableBody, ClubsTableFooter } from './';
 import { AppDispatch } from '../../../../../features/store';
 import { 
   selectFilters, selectAllClubs, selectClubsCount, 
   selectClubsStatus, selectClubsError 
 } from '../../../../../features/clubs/selectors';
 import { getClubs } from '../../../../../features/clubs/asyncActions';
-import ClubsTableBody from './ClubsTableBody';
-import ClubsTableFooter from './ClubsTableFooter';
-import BackdropLoader from '../../../ui/BackdropLoader';
+import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
 import { IClubsTableHeadCell, Order } from '../../../../../features/clubs/types';
-import ErrorSnackbar from '../../../ui/ErrorSnackbar';
 import { clearError } from '../../../../../features/clubs/reducers';
 
 

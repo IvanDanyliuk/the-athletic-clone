@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux';
 import { Box, Button, Grid, styled } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
-import SelectField from '../../../ui/SelectField';
-import TextInput from '../../../ui/TextInput';
+import { TextInput, SelectField } from '../../../ui/';
 import ScheduleContext, { ScheduleContextType } from '../../../../context/scheduleContext';
 
 

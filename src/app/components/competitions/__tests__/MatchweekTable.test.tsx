@@ -1,6 +1,6 @@
 import { screen, render } from '@testing-library/react';
 import { scheduleToUpdate } from '../../../utils/testing/testDataMocks/schedules';
-import MatchweekTable from '../MatchweekTable';
+import { MatchweekTable } from '../';
 
 
 describe('MatchweekTable tests', () => {

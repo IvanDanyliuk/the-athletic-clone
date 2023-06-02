@@ -2,7 +2,7 @@ import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupUsersErrorHandlers, setupUsersSuccessHandlers } from '../../../../../utils/testing/serverMocks/users';
 import { usersStateErrorMock, usersStateSuccessMock } from '../../../../../utils/testing/testDataMocks/users';
-import UsersTable from '../UsersTable';
+import { UsersTable } from '../';
 
 
 const usersStateMock = {

@@ -7,11 +7,9 @@ import { getCurrentSeasonValue, setCompetitionTabs } from '../../utils/helpers';
 import { getSchedule } from '../../../features/schedules/asyncActions';
 import { selectCompetition } from '../../../features/competitions/selectors';
 import { selectSchedule, selectSchedulesStatus } from '../../../features/schedules/selectors';
-import BackdropLoader from '../ui/BackdropLoader';
-import DataNotFoundMessage from '../ui/DataNotFoundMessage';
+import { BackdropLoader, DataNotFoundMessage } from '../ui/';
 import { IMatchweek } from '../../../features/schedules/types';
-import MatchweekPicker from './MatchweekPicker';
-import MatchweekTable from './MatchweekTable';
+import { MatchweekPicker, MatchweekTable } from './';
 import { clearSchedule } from '../../../features/schedules/reducers';
 
 

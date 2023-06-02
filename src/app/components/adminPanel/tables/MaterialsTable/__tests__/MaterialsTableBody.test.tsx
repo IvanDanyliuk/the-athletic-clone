@@ -2,9 +2,9 @@ import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serverMocks/materials';
 import { materialsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/materials';
-import MaterialsTableBody from '../MaterialsTableBody';
 import { setupContentSuccessHandlers } from '../../../../../utils/testing/serverMocks/content';
 import { contentStateSuccessMock } from '../../../../../utils/testing/testDataMocks/content';
+import { MaterialsTableBody } from '../';
 
 
 const mockedUseDispatch = jest.fn();

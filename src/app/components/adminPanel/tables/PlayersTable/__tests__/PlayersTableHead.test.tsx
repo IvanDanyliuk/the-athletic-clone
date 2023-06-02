@@ -1,8 +1,8 @@
 import { screen, fireEvent, cleanup } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupPlayersSuccessHandlers } from '../../../../../utils/testing/serverMocks/players';
-import PlayersTableHead from '../PlayersTableHead';
 import { Order } from '../../../../../../features/players/types';
+import { PlayersTableHead } from '../';
 
 
 const activeCellMock = {

@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectContent } from '../../../../features/content/selectors';
 import { AppDispatch } from '../../../../features/store';
 import { getContentSections } from '../../../../features/content/asyncActions';
-import ContentSectionsList from '../content/ContentSectionsList';
-import ContentMainArticle from '../content/ContentMainArticle';
+import { ContentMainArticle, ContentSectionsList } from '../content/';
 import { selectHomepageSecondaryMaterials } from '../../../../features/materials/selectors';
 import { getHomepageSecondaryMaterials } from '../../../../features/materials/asyncActions';
 

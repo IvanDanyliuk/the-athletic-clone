@@ -1,8 +1,8 @@
 import { screen, fireEvent, cleanup } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serverMocks/materials';
-import MaterialsTableHead from '../MaterialsTableHead';
 import { Order } from '../../../../../../features/competitions/types';
+import { MaterialsTableHead } from '../';
 
 
 const activeCellMock = {

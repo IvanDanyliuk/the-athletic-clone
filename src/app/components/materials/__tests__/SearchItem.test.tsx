@@ -1,5 +1,5 @@
 import { screen, render } from '@testing-library/react';
-import SearchItem from '../SearchItem';
+import { SearchItem } from '../';
 
 
 describe('SearchItem tests', () => {

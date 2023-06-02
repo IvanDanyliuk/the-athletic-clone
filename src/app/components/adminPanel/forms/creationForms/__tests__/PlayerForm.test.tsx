@@ -1,9 +1,9 @@
 import { screen, fireEvent, cleanup, waitFor } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
-import PlayerForm from '../PlayerForm';
 import { setupPlayersSuccessHandlers } from '../../../../../utils/testing/serverMocks/players';
 import { playerToUpdate } from '../../../../../utils/testing/testDataMocks/players';
+import { PlayerForm } from '../';
 
 
 const mockedUseNavigate = jest.fn();

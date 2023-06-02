@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import { renderWithProviders } from '../../../../utils/testing/customRenderMethod';
 import { contentStateSuccessMock } from '../../../../utils/testing/testDataMocks/content';
-import Content from '../Content';
+import { Content } from '../';
 
 
 describe('Content tests', () => {

@@ -4,18 +4,15 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Box, Button, Grid, styled } from '@mui/material';
 import { AppDispatch } from '../../../../../features/store';
-import TextInput from '../../../ui/TextInput';
 import { uploadImage } from '../../../../services/uploadImage';
-import BackLink from '../../ui/BackLink';
-import SelectField from '../../../ui/SelectField';
-import BackdropLoader from '../../../ui/BackdropLoader';
+import { BackLink } from '../../ui/';
+import { BackdropLoader, MultiSelect, SelectField, TextInput } from '../../../ui/';
 import { getCountries } from '../../../../services/countries';
 import { ICompetition } from '../../../../../features/competitions/types';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { createCompetition, updateCompetition } from '../../../../../features/competitions/asyncActions';
 import { IClub } from '../../../../../features/clubs/types';
-import MultiSelect from '../../../ui/MultiSelect';
 
 
 const Form = styled(Box)`

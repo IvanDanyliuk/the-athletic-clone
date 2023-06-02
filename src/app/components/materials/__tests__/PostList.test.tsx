@@ -2,7 +2,7 @@ import { cleanup, screen } from '@testing-library/react';
 import { setupMaterialsSuccessHandlers } from '../../../utils/testing/serverMocks/materials';
 import { renderWithProviders } from '../../../utils/testing/customRenderMethod';
 import { materialsStateSuccessMock, postToUpdate } from '../../../utils/testing/testDataMocks/materials';
-import PostList from '../PostList';
+import { PostList } from '../';
 
 
 describe('PostList tests', () => {

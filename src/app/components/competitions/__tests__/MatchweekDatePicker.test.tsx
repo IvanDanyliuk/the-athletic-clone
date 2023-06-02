@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { scheduleToUpdate } from '../../../utils/testing/testDataMocks/schedules';
-import MatchweekPicker from '../MatchweekPicker';
+import { MatchweekPicker } from '../';
 
 
 const propsMock = {

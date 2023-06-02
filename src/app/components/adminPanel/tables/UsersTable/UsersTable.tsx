@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Paper, Table } from '@mui/material';
-import UsersTableHead from './UsersTableHead';
+import { UsersTableHead, UsersTableBody, UsersTableFooter } from './';
 import { AppDispatch } from '../../../../../features/store';
 import { 
   selectUserFilters, selectAllUsers, 
   selectAllUsersCount, selectUserStatus, selectUserError 
 } from '../../../../../features/users/selectors';
 import { getUsers } from '../../../../../features/users/asyncActions';
-import UsersTableBody from './UsersTableBody';
-import UsersTableFooter from './UsersTableFooter';
-import BackdropLoader from '../../../ui/BackdropLoader';
+import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
 import { IUsersTableHeadCell, Order } from '../../../../../features/users/types';
 import { clearError } from '../../../../../features/users/reducers';
-import ErrorSnackbar from '../../../ui/ErrorSnackbar';
 
 
 const UsersTable: React.FC = () => {

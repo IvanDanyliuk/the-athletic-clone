@@ -5,7 +5,7 @@ import {
 } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import ScheduleContext, { ScheduleContextType } from '../../../../context/scheduleContext';
-import MatchForm from './MatchForm';
+import { MatchForm } from './';
 import MatchweelDetails from '../../schedules/MatchweekDetails';
 
 

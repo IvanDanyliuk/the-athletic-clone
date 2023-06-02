@@ -10,7 +10,7 @@ import { ScheduleContextType } from '../../../../../context/scheduleContext';
 import { setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
 import { setupSchedulesSuccessHandlers } from '../../../../../utils/testing/serverMocks/schedules';
 import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
-import MatchweekForm from '../MatchweekForm';
+import { MatchweekForm } from '../';
 
 
 const mockedUseNavigate = jest.fn();

@@ -5,9 +5,8 @@ import { AppDispatch } from '../../../features/store';
 import { getLeagueMaterials } from '../../../features/materials/asyncActions';
 import { selectCompetition } from '../../../features/competitions/selectors';
 import { selectMaterials, selectMaterialsStatus } from '../../../features/materials/selectors';
-import BackdropLoader from '../ui/BackdropLoader';
-import TopContentSection from '../homepage/TopContentSection';
-import DataNotFoundMessage from '../ui/DataNotFoundMessage';
+import { BackdropLoader, DataNotFoundMessage } from '../ui/';
+import { TopContentSection } from '../homepage/';
 
 
 const Container = styled(Box)`

@@ -1,5 +1,6 @@
 export { default as Admin } from './Admin';
 export { default as Checkout } from './Checkout';
+export { default as Competition } from './Competition';
 export { default as Home } from './Home';
 export { default as RecentMaterials } from './Materials';
 export { default as Login } from './Login';

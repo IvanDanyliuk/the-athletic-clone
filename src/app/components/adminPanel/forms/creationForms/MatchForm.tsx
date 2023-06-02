@@ -5,9 +5,7 @@ import { useForm } from 'react-hook-form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { v4 as uuid } from 'uuid';
-import SelectField from '../../../ui/SelectField';
-import ControlledDatePicker from '../../../ui/ControlledDatePicker';
-import TextInput from '../../../ui/TextInput';
+import { ControlledDatePicker, SelectField, TextInput } from '../../../ui/';
 import ScheduleContext, { ScheduleContextType } from '../../../../context/scheduleContext';
 import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
 

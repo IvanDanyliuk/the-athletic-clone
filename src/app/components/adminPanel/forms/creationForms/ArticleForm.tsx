@@ -6,22 +6,16 @@ import { Box, Button, Grid, styled } from '@mui/material';
 import dayjs from 'dayjs';
 import { AppDispatch } from '../../../../../features/store';
 import { MaterialModel, MaterialType } from '../../../../models/components';
-import TextInput from '../../../ui/TextInput';
-import ControlledDatePicker from '../../../ui/ControlledDatePicker';
-import TextEditor from '../../ui/TextEditor';
 import { createMaterial, updateMaterial } from '../../../../../features/materials/asyncActions';
 import { selectUser } from '../../../../../features/users/selectors';
 import { uploadImage } from '../../../../services/uploadImage';
-import BackLink from '../../ui/BackLink';
-import SelectField from '../../../ui/SelectField';
-import BackdropLoader from '../../../ui/BackdropLoader';
+import { BackLink, TextEditor } from '../../ui/';
+import { BackdropLoader, Checkbox, ControlledDatePicker, MultiSelect, SelectField, TextInput } from '../../../ui/';
 import { IMaterial } from '../../../../../features/materials/types';
-import MultiSelect from '../../../ui/MultiSelect';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
 import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
-import CheckboxInput from '../../../ui/Checkbox';
 
 
 const Form = styled(Box)`
@@ -170,7 +164,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
             />
           </Grid>
           <Grid item xs={1}>
-            <CheckboxInput 
+            <Checkbox 
               name='isMain'
               label='Main Article'
               control={control}

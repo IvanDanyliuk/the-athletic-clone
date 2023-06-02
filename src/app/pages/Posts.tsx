@@ -5,9 +5,9 @@ import { Grid } from '@mui/material';
 import { AppDispatch } from '../../features/store';
 import { getRecentMaterials } from '../../features/materials/asyncActions';
 import { selectMaterials } from '../../features/materials/selectors';
-import Headlines from '../components/homepage/Headlines';
-import BackdropLoader from '../components/ui/BackdropLoader';
-import PostsSearch from '../components/materials/PostsSearch';
+import { Headlines } from '../components/homepage/';
+import { BackdropLoader } from '../components/ui/';
+import { PostsSearch } from '../components/materials/';
 
 
 const Post: React.FC = () => {

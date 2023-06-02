@@ -2,7 +2,7 @@ import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
 import { clubsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/clubs';
-import ClubsTableBody from '../ClubsTableBody';
+import { ClubsTableBody } from '../';
 
 
 const mockedUseDispatch = jest.fn();

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
-import MaterialsHeader from '../MaterialsHeader';
 import { MemoryRouter } from 'react-router-dom';
+import { MaterialsHeader } from '../';
 
 
 describe('MaterialsHeader tests', () => {

@@ -1,7 +1,8 @@
 import { screen, render } from '@testing-library/react';
-import ContentSection from '../ContentSection';
-import { contentSection } from '../../../utils/testing/testDataMocks/content';
 import { BrowserRouter } from 'react-router-dom';
+import { contentSection } from '../../../utils/testing/testDataMocks/content';
+import { ContentSection } from '../';
+
 
 
 describe('ContentSection tests', () => {

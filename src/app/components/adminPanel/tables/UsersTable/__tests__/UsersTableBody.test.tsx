@@ -2,7 +2,7 @@ import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupUsersSuccessHandlers } from '../../../../../utils/testing/serverMocks/users';
 import { usersStateSuccessMock } from '../../../../../utils/testing/testDataMocks/users';
-import UsersTableBody from '../UsersTableBody';
+import { UsersTableBody } from '../';
 
 
 const mockedUseDispatch = jest.fn();

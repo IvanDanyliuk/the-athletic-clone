@@ -2,7 +2,7 @@ import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupSchedulesSuccessHandlers } from '../../../../../utils/testing/serverMocks/schedules';
 import { schedulesStateSuccessMock } from '../../../../../utils/testing/testDataMocks/schedules';
-import SchedulesTableBody from '../SchedulesTableBody';
+import { SchedulesTableBody } from '../';
 
 
 const mockedUseDispatch = jest.fn();

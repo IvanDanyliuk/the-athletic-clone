@@ -1,6 +1,6 @@
 import React from 'react';
-import CompetitionsFilters from '../filters/CompetitionsFilters';
-import CompetitionsTable from '../tables/CompetitionsTable/CompetitionsTable';
+import { CompetitionsFilters } from '../filters/';
+import { CompetitionsTable } from '../tables/CompetitionsTable/';
 import SubPageHeader from '../ui/SubPageHeader';
 
 

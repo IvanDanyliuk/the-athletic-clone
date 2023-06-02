@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IContentSection } from '../../../../features/content/types';
-import ContentSectionListItem from './ContentSectionListItem';
+import { ContentSectionListItem } from './';
 
 
 interface IContentSectionsListProps {

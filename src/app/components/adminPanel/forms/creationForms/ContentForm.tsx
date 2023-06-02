@@ -6,13 +6,12 @@ import { AppDispatch } from '../../../../../features/store';
 import { IContentSection } from '../../../../../features/content/types';
 import { ContentSectionModel } from '../../../../models/components';
 import { Box, Button, Grid, styled } from '@mui/material';
-import BackLink from '../../ui/BackLink';
-import TextInput from '../../../ui/TextInput';
-import MaterialsTable from '../../tables/MaterialsTable/MaterialsTable';
+import { BackLink } from '../../ui/';
+import { MaterialsTable } from '../../tables/MaterialsTable/';
 import { clearMaterialsToContent, handleEditingMode, setMaterialsToContentToUpdate } from '../../../../../features/content/reducers';
 import { selectMaterialsToContent } from '../../../../../features/content/selectors';
 import { createContentSection, updateContentSection } from '../../../../../features/content/asyncActions';
-import BackdropLoader from '../../../ui/BackdropLoader';
+import { BackdropLoader, TextInput } from '../../../ui/';
 
 
 interface IContentSectionProps {

@@ -2,7 +2,7 @@ import { screen, fireEvent, cleanup, waitFor, act } from '@testing-library/react
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupSchedulesErrorHandlers, setupSchedulesSuccessHandlers } from '../../../../../utils/testing/serverMocks/schedules';
 import { schedulesStateErrorMock, schedulesStateSuccessMock } from '../../../../../utils/testing/testDataMocks/schedules';
-import SchedulesTable from '../SchedulesTable';
+import { SchedulesTable } from '../';
 
 
 const schedulesStateMock = {
@@ -12,6 +12,7 @@ const schedulesStateMock = {
       schedules: [],
       schedulesCount: 0
     },
+    schedule: null,
     latestMatches: []
   },
   filters: null,

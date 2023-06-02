@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
-import ContentMainArticle from '../ContentMainArticle';
-import { articleToUpdate } from '../../../../utils/testing/testDataMocks/materials';
 import { MemoryRouter } from 'react-router-dom';
+import { articleToUpdate } from '../../../../utils/testing/testDataMocks/materials';
+import { ContentMainArticle } from '../';
 
 
 describe('ContentMainArticle tests', () => {

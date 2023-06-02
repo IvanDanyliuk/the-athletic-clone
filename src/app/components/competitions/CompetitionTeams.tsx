@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux';
 import { Box, Grid, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { selectCompetition } from '../../../features/competitions/selectors';
-import BackdropLoader from '../ui/BackdropLoader';
-import ClubLabel from '../ui/ClubLabel';
+import { BackdropLoader, ClubLabel } from '../ui/';
 
 
 const Container = styled(Box)`

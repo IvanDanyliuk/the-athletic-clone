@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import PopularMaterialItem from '../PopularMaterialItem';
 import { articleToUpdate } from '../../../utils/testing/testDataMocks/materials';
+import { PopularMaterialItem } from '../';
 
 
 describe('PopularMaterialItem tests', () => {

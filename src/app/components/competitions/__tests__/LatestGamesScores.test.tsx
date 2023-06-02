@@ -1,5 +1,5 @@
 import { screen, render } from '@testing-library/react';
-import LatestGamesScores from '../LatestGamesScores';
+import { LatestGamesScores } from '../';
 
 
 const scoresMock = ['W', 'W', 'W', 'W', 'W'];

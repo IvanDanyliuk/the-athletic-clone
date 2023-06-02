@@ -5,7 +5,7 @@ import { setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serv
 import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
 import { setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
 import { noteToUpdate } from '../../../../../utils/testing/testDataMocks/materials';
-import NoteForm from '../NoteForm';
+import { NoteForm } from '../';
 
 
 const mockedUseNavigate = jest.fn();

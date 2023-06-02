@@ -1,6 +1,6 @@
 import React from 'react';
-import PlayersFilters from '../filters/PlayersFilters';
-import PlayersTable from '../tables/PlayersTable/PlayersTable';
+import { PlayersFilters } from '../filters/';
+import { PlayersTable } from '../tables/PlayersTable/';
 import SubPageHeader from '../ui/SubPageHeader';
 
 

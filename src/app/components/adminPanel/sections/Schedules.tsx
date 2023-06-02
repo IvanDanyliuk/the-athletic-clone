@@ -1,7 +1,7 @@
 import React from 'react';
-import SchedulesFilters from '../filters/SchedulesFilters';
-import SchedulesTable from '../tables/SchedulesTable/SchedulesTable';
+import { SchedulesFilters } from '../filters/';
 import SubPageHeader from '../ui/SubPageHeader';
+import { SchedulesTable } from '../tables/SchedulesTable/';
 
 
 const Schedules: React.FC = () => {

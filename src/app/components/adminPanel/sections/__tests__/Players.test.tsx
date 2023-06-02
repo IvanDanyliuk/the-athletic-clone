@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { store } from '../../../../../features/store';
-import Players from '../Players';
+import { Players } from '../';
 
 
 describe('Players tests', () => {

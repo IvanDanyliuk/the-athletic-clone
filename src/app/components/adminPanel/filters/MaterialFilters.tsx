@@ -10,8 +10,7 @@ import { clearFilters, setFilters } from '../../../../features/materials/reducer
 import { MaterialFilterData } from '../../../../features/materials/types';
 import { AppDispatch } from '../../../../features/store';
 import { MaterialType } from '../../../models/components';
-import ControlledDatePicker from '../../ui/ControlledDatePicker';
-import SelectField from '../../ui/SelectField';
+import { ControlledDatePicker, SelectField } from '../../ui/';
 import { checkFilterTimeInterval } from '../../../utils/helpers';
 import { selectAuthors } from '../../../../features/materials/selectors';
 

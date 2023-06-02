@@ -3,14 +3,12 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Box, Button, styled } from '@mui/material';
 import { AppDispatch } from '../../../../../features/store';
-import BackLink from '../../ui/BackLink';
-import BackdropLoader from '../../../ui/BackdropLoader';
+import { BackLink } from '../../ui/';
+import { BackdropLoader } from '../../../ui/';
 import { IMatch, IMatchweek, ISchedule } from '../../../../../features/schedules/types';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
 import ScheduleContext from '../../../../context/scheduleContext';
-import ScheduleTitleForm from './ScheduleTitleForm';
-import MatchweekForm from './MatchweekForm';
-import ScheduleMatchweekList from './ScheduleMatchweekList';
+import { MatchweekForm, ScheduleTitleForm, ScheduleMatchweekList } from './';
 import { createSchedule, updateSchedule } from '../../../../../features/schedules/asyncActions';
 import { checkScheduleData } from '../../../../utils/helpers';
 

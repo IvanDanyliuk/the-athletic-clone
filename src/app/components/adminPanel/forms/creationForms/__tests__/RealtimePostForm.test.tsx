@@ -4,7 +4,7 @@ import { setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serv
 import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
 import { setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
 import { postToUpdate } from '../../../../../utils/testing/testDataMocks/materials';
-import RealtimePostForm from '../RealtimePostForm';
+import { RealtimePostForm } from '../';
 
 
 const mockedUseNavigate = jest.fn();

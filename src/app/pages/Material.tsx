@@ -9,8 +9,8 @@ import { getMaterial, updateViewedMaterial } from '../../features/materials/asyn
 import { clearMaterial } from '../../features/materials/reducers';
 import { selectUser } from '../../features/users/selectors';
 import { selectMaterial } from '../../features/materials/selectors';
-import BackdropLoader from '../components/ui/BackdropLoader';
-import Comments from '../components/materials/Comments';
+import { BackdropLoader } from '../components/ui/';
+import { Comments } from '../components/materials/';
 
 
 const Container = styled(Box)`

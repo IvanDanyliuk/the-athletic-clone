@@ -1,7 +1,7 @@
 import { screen, fireEvent, cleanup, waitFor } from '@testing-library/react';
 import { renderWithProviders } from '../../../../utils/testing/customRenderMethod'; 
 import { setupClubsSuccessHandlers } from '../../../../utils/testing/serverMocks/clubs';
-import PlayersFilters from '../PlayersFilters';
+import { PlayersFilters } from '../';
 
 
 const mockedUseDispatch = jest.fn();

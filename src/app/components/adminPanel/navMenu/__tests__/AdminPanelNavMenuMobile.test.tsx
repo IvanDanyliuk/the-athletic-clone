@@ -1,6 +1,6 @@
 import { render, screen, fireEvent, cleanup } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import AdminPanelNavMenuMobile from '../AdminPanelNavMenuMobile';
+import { AdminPanelNavMenuMobile } from '../';
 
 
 const openMenu = () => {

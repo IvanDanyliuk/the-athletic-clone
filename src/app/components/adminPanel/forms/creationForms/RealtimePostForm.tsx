@@ -6,19 +6,15 @@ import { Box, Button, Grid, styled } from '@mui/material';
 import dayjs from 'dayjs';
 import { AppDispatch } from '../../../../../features/store';
 import { MaterialModel, MaterialType } from '../../../../models/components';
-import ControlledDatePicker from '../../../ui/ControlledDatePicker';
-import TextEditor from '../../ui/TextEditor';
+import { BackdropLoader, ControlledDatePicker, MultiSelect, SelectField } from '../../../ui/';
 import { createMaterial, updateMaterial } from '../../../../../features/materials/asyncActions';
 import { selectUser } from '../../../../../features/users/selectors';
-import BackLink from '../../ui/BackLink';
-import SelectField from '../../../ui/SelectField';
-import BackdropLoader from '../../../ui/BackdropLoader';
+import { BackLink, TextEditor } from '../../ui/';
 import { IMaterial } from '../../../../../features/materials/types';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
-import MultiSelect from '../../../ui/MultiSelect';
 
 
 const Form = styled(Box)`

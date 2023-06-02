@@ -2,9 +2,8 @@ import React, { useContext } from 'react';
 import { Box, Button, Collapse, Grid, styled } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { v4 as uuid } from 'uuid';
-import TextInput from '../../../ui/TextInput';
 import ScheduleContext, { ScheduleContextType } from '../../../../context/scheduleContext';
-import ControlledDatePicker from '../../../ui/ControlledDatePicker';
+import { ControlledDatePicker, TextInput } from '../../../ui/';
 
 
 interface ITitle {

@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import { List, ListItem, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { selectSearchedMaterials } from '../../../features/materials/selectors';
-import PostCard from './PostCard';
 import { AppDispatch } from '../../../features/store';
 import { clearSearch } from '../../../features/materials/reducers';
+import { PostCard } from './';
 
 
 const PostLink = styled(Link)`

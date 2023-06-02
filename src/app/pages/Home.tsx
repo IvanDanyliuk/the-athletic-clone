@@ -5,16 +5,14 @@ import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../features/store';
 import { getContentSections } from '../../features/content/asyncActions';
 import { selectContent } from '../../features/content/selectors';
-import ContentSection from '../components/homepage/ContentSection';
+import { 
+  ContentSection, TopContentSection, PopularMaterials, 
+  LeagueMaterials, RealtimePosts, MustReadSection  
+} from '../components/homepage/';
 import { getHomepageSecondaryMaterials, getRecentMaterials } from '../../features/materials/asyncActions';
 import { MaterialType } from '../models/components';
 import { selectHomepageSecondaryMaterials, selectMaterials } from '../../features/materials/selectors';
-import TopContentSection from '../components/homepage/TopContentSection';
-import PopularMaterials from '../components/homepage/PopularMaterials';
-import LeagueMaterials from '../components/homepage/LeagueMaterials';
-import RealtimePosts from '../components/homepage/RealtimePosts';
-import MustReadSection from '../components/homepage/MustReadSection';
-import SkeletonLoader from '../components/ui/SkeletonLoader';
+import { SkeletonLoader } from '../components/ui/';
 
 
 const Section = styled(Box)`

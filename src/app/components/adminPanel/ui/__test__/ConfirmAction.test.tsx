@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import ConfirmAction from '../ConfirmAction';
+import { ConfirmAction } from '../';
 
 
 const onDeleteMock = jest.fn();

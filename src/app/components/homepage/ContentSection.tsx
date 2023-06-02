@@ -6,7 +6,7 @@ import {
 } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IContentSection } from '../../../features/content/types';
-import MaterialSecondaryInfo from './MaterialSecondaryInfo';
+import { MaterialSecondaryInfo } from './';
 
 
 interface IContentSectionProps {

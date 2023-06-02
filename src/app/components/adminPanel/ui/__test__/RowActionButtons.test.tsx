@@ -1,6 +1,8 @@
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import RowActionButtons, { EssenseType } from '../RowActionButtons';
+import { RowActionButtons } from '../';
+import { EssenseType } from '../RowActionButtons';
+
 
 const setMainArticle = jest.fn();
 const deleteFunc = jest.fn();
