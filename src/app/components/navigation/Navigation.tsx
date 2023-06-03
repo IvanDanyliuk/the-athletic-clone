@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Box, Container, Divider, Drawer, List, ListItem, styled, Typography } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { ICompetition } from '../../../features/competitions/types';
+import { ClubLabel } from '../ui';
 
 
 interface INavigationProps {
@@ -60,15 +61,10 @@ const TopLink = styled(NavLink)`
 `;
 
 const BottomLink = styled(NavLink)`
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
   text-decoration: none;
   color: #333333;
-
-  img {
-    height: 2em;
-    margin-right: 10px;
-  }
 `;
 
 
@@ -100,7 +96,6 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
             </Link>
           </NavLinkListItem>
         ))}
-        
       </NavLinkList>
       <Drawer
         anchor='top'
@@ -150,10 +145,11 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
                 {activeLink.clubs.map(club => (
                   <BottomLinkListItem key={uuid()}>
                     <BottomLink to={`clubs/${club._id}`}>
-                      <img src={club.clubLogoUrl} alt={club.commonName} />
-                      <Typography variant='inherit'>
-                        {club.commonName}
-                      </Typography>
+                      <ClubLabel 
+                        logo={club.clubLogoUrl} 
+                        name={club.commonName} 
+                        altText={club.commonName} 
+                      />
                     </BottomLink>
                   </BottomLinkListItem>
                 ))}
