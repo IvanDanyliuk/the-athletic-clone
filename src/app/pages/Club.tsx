@@ -90,10 +90,7 @@ const Club: React.FC = () => {
               <MenuLink to='scores-and-schedules'>Scores & Schedules</MenuLink>
             </MenuListItem>
             <MenuListItem>
-              <MenuLink to='standings'>Standings</MenuLink>
-            </MenuListItem>
-            <MenuListItem>
-              <MenuLink to='teams'>Teams</MenuLink>
+              <MenuLink to='roster'>Roster</MenuLink>
             </MenuListItem>
           </MenuList>
         </Grid>

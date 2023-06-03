@@ -50,7 +50,7 @@ const App: React.FC = () => {
               <Route path='/clubs/:id' element={<Club />}>
                 <Route index element={<ClubHome />} />
                 <Route path='home' element={<ClubHome />} />
-                <Route path='scores-and-schedule' element={<ClubSchedule />} />
+                <Route path='scores-and-schedules' element={<ClubSchedule />} />
                 <Route path='roster' element={<ClubRoster />} />
               </Route>
               <Route path='/login' element={<Login />} />
