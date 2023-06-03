@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Grid, Typography, styled } from '@mui/material';
+import { Box, Typography, styled } from '@mui/material';
 
 
 interface IClubLabelProps {
@@ -9,9 +9,15 @@ interface IClubLabelProps {
 }
 
 const Container = styled(Box)`
-  padding-left: 1em;
   width: fit-content;
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+`;
+
+const LogoContainer = styled(Box)`
+  width: 3em;
+  display: flex;
+  justify-content: center;
 `;
 
 const ClubLogo = styled('img')`
@@ -22,14 +28,10 @@ const ClubLogo = styled('img')`
 const ClubLabel: React.FC<IClubLabelProps> = ({ logo, name, altText }) => {
   return (
     <Container>
-      <Grid container spacing={5} alignItems='center'>
-        <Grid item xs={1} display='flex' justifyContent='center'>
-          <ClubLogo src={logo} alt={altText} />
-        </Grid>
-        <Grid item xs alignItems='center'>
-          <Typography>{name}</Typography>
-        </Grid>
-      </Grid>
+      <LogoContainer>
+        <ClubLogo src={logo} alt={altText} />
+      </LogoContainer>
+      <Typography>{name}</Typography>
     </Container>
   );
 };

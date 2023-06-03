@@ -65,11 +65,6 @@ const BottomLink = styled(NavLink)`
   height: fit-content;
   text-decoration: none;
   color: #333333;
-
-  &:hover {
-    background: #eeeeee;
-    border-radius: 1em;
-  }
 `;
 
 
