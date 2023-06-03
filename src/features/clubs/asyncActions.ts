@@ -41,6 +41,18 @@ export const getClubsByCountry = createAsyncThunk(
   }
 );
 
+export const getClub = createAsyncThunk(
+  'clubs/getClub',
+  async (id: string, thunkAPI) => {
+    try {
+      const { data } = await api.getClub(id);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const updateClub = createAsyncThunk(
   'clubs/updateClub',
   async (clubToUpdate: IClub, thunkAPI) => {

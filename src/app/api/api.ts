@@ -39,6 +39,7 @@ export const deleteMaterial = (id: string, page: number, itemsPerPage: number) =
 export const createClub = (clubData: ClubModel) => API.post('/clubs', clubData);
 export const getClubs = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/clubs', { params: { page, itemsPerPage, filterData, sortData } });
 export const getClubsByCountry = (country?: string) => API.get('/clubs/country', { params: { country } });
+export const getClub = (id: string) => API.get(`/clubs/${id}`);
 export const updateClub = (clubToUpdate: IClub) => API.patch('/clubs', clubToUpdate);
 export const deleteClub = (id: string, page: number, itemsPerPage: number) => API.delete('/clubs', { params: { id, page, itemsPerPage } });
 

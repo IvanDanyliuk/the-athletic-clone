@@ -8,8 +8,11 @@ import { ClubsTable } from '../';
 const clubsStateMock = {
   status: 'loading',
   data: {
-    clubs: [],
-    clubsCount: 0
+    main: {
+      clubs: [],
+      clubsCount: 0
+    },
+    club: null
   },
   filters: null,
   clubsByCountry: [],

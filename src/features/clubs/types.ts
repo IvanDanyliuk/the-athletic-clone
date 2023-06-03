@@ -1,8 +1,11 @@
 export interface ICLubsInitialState {
   status: string,
   data: {
-    clubs: IClub[],
-    clubsCount: number
+    main: {
+      clubs: IClub[],
+      clubsCount: number
+    },
+    club: IClub | null
   },
   filters: IClubFilters | null,
   clubsByCountry: IClub[],
