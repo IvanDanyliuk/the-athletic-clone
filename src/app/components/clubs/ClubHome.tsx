@@ -6,7 +6,7 @@ import { selectClub } from '../../../features/clubs/selectors';
 import { getLeagueMaterials } from '../../../features/materials/asyncActions';
 import { selectMaterials, selectMaterialsStatus } from '../../../features/materials/selectors';
 import { BackdropLoader, DataNotFoundMessage } from '../ui';
-import { TopContentSection } from '../homepage';
+import { ContentSection, TopContentSection } from '../homepage';
 
 
 const Container = styled(Box)`
@@ -24,7 +24,7 @@ const ClubHome: React.FC = () => {
   const materialsStatus = useSelector(selectMaterialsStatus);
 
   useEffect(() => {
-    dispatch(getLeagueMaterials({ value: club?.commonName!, type: ['article', 'note'], materialsNum: 16 }))
+    dispatch(getLeagueMaterials({ value: club?.commonName!, type: ['article', 'note'], materialsNum: 5 }))
   }, [dispatch, club]);
 
   if(materials.length === 0) {
@@ -35,7 +35,8 @@ const ClubHome: React.FC = () => {
 
   return (
     <Container>
-      <TopContentSection materials={materials!} />
+      {/* <TopContentSection materials={materials!} /> */}
+      
     </Container>
   );
 };
