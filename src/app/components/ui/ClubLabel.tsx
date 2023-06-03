@@ -9,7 +9,9 @@ interface IClubLabelProps {
 }
 
 const Container = styled(Box)`
+  padding-left: 1em;
   width: fit-content;
+  overflow: hidden;
 `;
 
 const ClubLogo = styled('img')`

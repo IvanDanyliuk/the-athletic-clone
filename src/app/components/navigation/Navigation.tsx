@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Box, Container, Divider, Drawer, List, ListItem, styled, Typography } from '@mui/material';
+import { Box, Container, Divider, Drawer, List, ListItem, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { ICompetition } from '../../../features/competitions/types';
 import { ClubLabel } from '../ui';
@@ -24,6 +24,7 @@ const NavLinkListItem = styled(ListItem)`
 `;
 
 const Link = styled(NavLink)`
+  height: fit-content;
   font-size: 1.1em;
   text-decoration: none;
   color: #ffffff;
@@ -38,7 +39,7 @@ const TopLinkList = styled(List)`
 const BottomLinkList = styled(List)`
   position: relative;
   width: 100%;
-  height: 24vh;
+  max-height: 24vh;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -61,10 +62,14 @@ const TopLink = styled(NavLink)`
 `;
 
 const BottomLink = styled(NavLink)`
-  /* display: flex;
-  align-items: center; */
+  height: fit-content;
   text-decoration: none;
   color: #333333;
+
+  &:hover {
+    background: #eeeeee;
+    border-radius: 1em;
+  }
 `;
 
 
