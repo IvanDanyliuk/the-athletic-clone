@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Divider, Grid, List, ListItem, Typography, styled } from '@mui/material';
+import { Box, Divider, Grid, List, ListItem, Table, TableBody, TableCell, TableHead, TableRow, Typography, styled } from '@mui/material';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../../features/store';
@@ -12,9 +12,24 @@ import { ContentSectionMaterials } from '../homepage';
 import { getAllCompetitions } from '../../../features/competitions/asyncActions';
 import { selectAllCompetitions } from '../../../features/competitions/selectors';
 import { getSchedule } from '../../../features/schedules/asyncActions';
-import { getCurrentSeasonValue, setNearestMatchweeks } from '../../utils/helpers';
+import { countStandingTableData, getCurrentSeasonValue, setNearestMatchweeks } from '../../utils/helpers';
 import { selectSchedule } from '../../../features/schedules/selectors';
 import { IMatch } from '../../../features/schedules/types';
+import { IClub } from '../../../features/clubs/types';
+
+
+interface StandingItem {
+  club: IClub;
+  playedMatches: number;
+  points: number,
+  goalsFor: number,
+  goalsAgainst: number,
+  goalDifference: number,
+  wins: number,
+  loses: number,
+  draws: number,
+  latestGames: string[]
+}
 
 
 const Container = styled(Box)`
@@ -24,7 +39,7 @@ const Container = styled(Box)`
 `;
 
 const DetailsSections = styled(Grid)`
-  margin-top: 1em;
+  margin-top: 3em;
 `;
 
 const SectionHeader = styled(Box)`
@@ -37,13 +52,22 @@ const SectionTitle = styled(Typography)`
   font-size: 1em;
 `;
 
-const VerticalDivider =styled(Divider)`
+const VerticalDivider = styled(Divider)`
   margin: 0 1em;
-  padding: 0;
+`;
+
+const HorizontalDivider = styled(Divider)`
+  margin: 1em 0;
+`;
+
+const MatchList = styled(List)`
+  margin-top: .5em;
 `;
 
 const MatchListItem = styled(ListItem)`
-  padding: .4em 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
 `;
 
 const RowWrapper = styled(Box)`
@@ -78,6 +102,7 @@ const ClubHome: React.FC = () => {
   const currentSeason = getCurrentSeasonValue();
 
   const [nearestGames, setNearestGames] = useState<IMatch[]>([]);
+  const [standings, setStandings] = useState<StandingItem[]>([]);
 
   useEffect(() => {
     if(schedule) {
@@ -87,12 +112,16 @@ const ClubHome: React.FC = () => {
         const b = Math.abs(new Date(prev.basicDate).getTime() - currentDate);
         return a - b < 0 ? curr : prev;
       });
+
       const matchweeks = setNearestMatchweeks(schedule.fixture, currentMatchweek);
       const games = matchweeks
         .map(mw => mw.games)
         .flat()
         .filter(match => match.home.club._id === club?._id || match.away.club._id === club?._id);
       setNearestGames(games);
+
+      const standing = countStandingTableData(schedule);
+      setStandings(standing);
     }
   }, [club, schedule]);
 
@@ -128,11 +157,11 @@ const ClubHome: React.FC = () => {
               label='Full Schedule' 
             />
           </SectionHeader>
-          <List>
-            {nearestGames.map(match => (
+          <MatchList>
+            {nearestGames.map((match, i) => (
               <MatchListItem key={uuid()}>
                 <Grid container>
-                  <Grid item xs={6}>
+                  <Grid item xs={7}>
                     <RowWrapper>
                       <ClubLabel 
                         logo={match.home.club.clubLogoUrl} 
@@ -157,7 +186,7 @@ const ClubHome: React.FC = () => {
                     </RowWrapper>
                   </Grid>
                   <VerticalDivider orientation='vertical' flexItem />
-                  <Grid item xs={4}>
+                  <Grid item xs={3}>
                     <RowWrapper>
                       {match.score !== '-:-' && <MatchStatus>FT</MatchStatus>}
                     </RowWrapper>
@@ -168,9 +197,12 @@ const ClubHome: React.FC = () => {
                     </RowWrapper>
                   </Grid>
                 </Grid>
+                {i !== nearestGames.length - 1 && (
+                  <HorizontalDivider orientation='horizontal' flexItem />
+                )}
               </MatchListItem>
             ))}
-          </List>
+          </MatchList>
         </Grid>
         <VerticalDivider orientation='vertical' flexItem />
         <Grid item xs={12} md>
@@ -181,6 +213,32 @@ const ClubHome: React.FC = () => {
               label='Full Schedule' 
             />
           </SectionHeader>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>Team</TableCell>
+                <TableCell>GP</TableCell>
+                <TableCell>GD</TableCell>
+                <TableCell>PTS</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {standings.map(item => (
+                <TableRow key={uuid()}>
+                  <TableCell>
+                    <ClubLabel 
+                      logo={item.club.clubLogoUrl} 
+                      name={item.club.commonName} 
+                      altText={item.club.shortName} 
+                    />
+                  </TableCell>
+                  <TableCell>{item.playedMatches}</TableCell>
+                  <TableCell>{item.goalDifference}</TableCell>
+                  <TableCell>{item.points}</TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
         </Grid>
         <VerticalDivider orientation='vertical' flexItem />
         <Grid item xs={12} md>
