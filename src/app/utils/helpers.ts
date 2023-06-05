@@ -55,7 +55,7 @@ export const getCurrentSeasonValue = () => {
   }
 };
 
-export const setCompetitionTabs = (matchweeks: IMatchweek[], currentMatchweek: IMatchweek) => {
+export const setNearestMatchweeks = (matchweeks: IMatchweek[], currentMatchweek: IMatchweek) => {
   const mwIds = matchweeks.map(mw => mw._id);
   const middlePos = mwIds.indexOf(currentMatchweek!._id!);
   const left = matchweeks.slice(0, middlePos);

@@ -8,3 +8,4 @@ export { default as MultiSelect } from './MultiSelect';
 export { default as SelectField } from './SelectField';
 export { default as SkeletonLoader } from './SkeletonLoader';
 export { default as TextInput } from './TextInput';
+export { default as SeeMoreLink } from './SeeMoreLink';

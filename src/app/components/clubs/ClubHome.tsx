@@ -1,12 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, styled } from '@mui/material';
+import { Box, Divider, Grid, List, ListItem, Typography, styled } from '@mui/material';
+import dayjs from 'dayjs';
+import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../../features/store';
 import { selectClub } from '../../../features/clubs/selectors';
 import { getLeagueMaterials } from '../../../features/materials/asyncActions';
 import { selectMaterials, selectMaterialsStatus } from '../../../features/materials/selectors';
-import { BackdropLoader, DataNotFoundMessage } from '../ui';
-import { ContentSection, TopContentSection } from '../homepage';
+import { BackdropLoader, ClubLabel, DataNotFoundMessage, SeeMoreLink } from '../ui';
+import { ContentSectionMaterials } from '../homepage';
+import { getAllCompetitions } from '../../../features/competitions/asyncActions';
+import { selectAllCompetitions } from '../../../features/competitions/selectors';
+import { getSchedule } from '../../../features/schedules/asyncActions';
+import { getCurrentSeasonValue, setNearestMatchweeks } from '../../utils/helpers';
+import { selectSchedule } from '../../../features/schedules/selectors';
+import { IMatch } from '../../../features/schedules/types';
 
 
 const Container = styled(Box)`
@@ -15,16 +23,91 @@ const Container = styled(Box)`
   height: 100%;
 `;
 
+const DetailsSections = styled(Grid)`
+  margin-top: 1em;
+`;
+
+const SectionHeader = styled(Box)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const SectionTitle = styled(Typography)`
+  font-size: 1em;
+`;
+
+const VerticalDivider =styled(Divider)`
+  margin: 0 1em;
+  padding: 0;
+`;
+
+const MatchListItem = styled(ListItem)`
+  padding: .4em 0;
+`;
+
+const RowWrapper = styled(Box)`
+  width: 100%;
+  height: 2em;
+  display: flex;
+  align-items: center;
+`;
+
+const MatchStatus = styled(Typography)`
+  font-size: .9em;
+  font-weight: 600;
+`;
+
+const MatchDate = styled(Typography)`
+  font-size: .7em;
+  color: #4e4e4e;
+`;
+
 
 const ClubHome: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const club = useSelector(selectClub);
+  const leagues = useSelector(selectAllCompetitions);
+  const clubLeague = leagues.find(item => item.country !== 'International' && 
+    item.clubs.find(clubItem => clubItem._id === club?._id)
+  );
+  const schedule = useSelector(selectSchedule);
   const materials = useSelector(selectMaterials);
   const materialsStatus = useSelector(selectMaterialsStatus);
+  const currentSeason = getCurrentSeasonValue();
+
+  const [nearestGames, setNearestGames] = useState<IMatch[]>([]);
 
   useEffect(() => {
-    dispatch(getLeagueMaterials({ value: club?.commonName!, type: ['article', 'note'], materialsNum: 5 }))
+    if(schedule) {
+      const currentDate = new Date().getTime();
+      const currentMatchweek = schedule.fixture.reduce((prev, curr) => {
+        const a = Math.abs(new Date(curr.basicDate).getTime() - currentDate);
+        const b = Math.abs(new Date(prev.basicDate).getTime() - currentDate);
+        return a - b < 0 ? curr : prev;
+      });
+      const matchweeks = setNearestMatchweeks(schedule.fixture, currentMatchweek);
+      const games = matchweeks
+        .map(mw => mw.games)
+        .flat()
+        .filter(match => match.home.club._id === club?._id || match.away.club._id === club?._id);
+      setNearestGames(games);
+    }
+  }, [club, schedule]);
+
+  useEffect(() => {
+    if(clubLeague) {
+      dispatch(getSchedule({ 
+        season: currentSeason, 
+        leagueId: clubLeague?._id 
+      }));
+    }
+  }, [clubLeague, currentSeason, dispatch]);
+
+  useEffect(() => {
+    dispatch(getLeagueMaterials({ value: club?.commonName!, type: ['article', 'note'], materialsNum: 5 }));
+    dispatch(getAllCompetitions());
   }, [dispatch, club]);
 
   if(materials.length === 0) {
@@ -35,8 +118,81 @@ const ClubHome: React.FC = () => {
 
   return (
     <Container>
-      {/* <TopContentSection materials={materials!} /> */}
-      
+      <ContentSectionMaterials materials={materials!} />
+      <DetailsSections container>
+        <Grid item xs={12} md={4}>
+          <SectionHeader>
+            <SectionTitle variant='h2_custom'>Schedule</SectionTitle>
+            <SeeMoreLink 
+              url={`/clubs/${club?._id}/scores-and-schedules`} 
+              label='Full Schedule' 
+            />
+          </SectionHeader>
+          <List>
+            {nearestGames.map(match => (
+              <MatchListItem key={uuid()}>
+                <Grid container>
+                  <Grid item xs={6}>
+                    <RowWrapper>
+                      <ClubLabel 
+                        logo={match.home.club.clubLogoUrl} 
+                        name={match.home.club.commonName} 
+                        altText={match.home.club.shortName} 
+                      />
+                    </RowWrapper>
+                    <RowWrapper>
+                      <ClubLabel 
+                        logo={match.away.club.clubLogoUrl} 
+                        name={match.away.club.commonName} 
+                        altText={match.away.club.shortName} 
+                      />
+                    </RowWrapper>
+                  </Grid>
+                  <Grid item xs>
+                    <RowWrapper>
+                      <Typography>{match.home.goalsFor}</Typography>
+                    </RowWrapper>
+                    <RowWrapper>
+                      <Typography>{match.away.goalsFor}</Typography>
+                    </RowWrapper>
+                  </Grid>
+                  <VerticalDivider orientation='vertical' flexItem />
+                  <Grid item xs={4}>
+                    <RowWrapper>
+                      {match.score !== '-:-' && <MatchStatus>FT</MatchStatus>}
+                    </RowWrapper>
+                    <RowWrapper>
+                      <MatchDate>
+                        {dayjs(match.date).format('DD/MM/YYYY')}
+                      </MatchDate>
+                    </RowWrapper>
+                  </Grid>
+                </Grid>
+              </MatchListItem>
+            ))}
+          </List>
+        </Grid>
+        <VerticalDivider orientation='vertical' flexItem />
+        <Grid item xs={12} md>
+          <SectionHeader>
+            <SectionTitle variant='h2_custom'>{clubLeague?.fullName}</SectionTitle>
+            <SeeMoreLink 
+              url={`/competitions/${clubLeague?._id}/scores-and-schedules`} 
+              label='Full Schedule' 
+            />
+          </SectionHeader>
+        </Grid>
+        <VerticalDivider orientation='vertical' flexItem />
+        <Grid item xs={12} md>
+          <SectionHeader>
+            <SectionTitle variant='h2_custom'>Roster</SectionTitle>
+            <SeeMoreLink 
+              url={`/clubs/${club?._id}/roster`} 
+              label='Full Schedule' 
+            />
+          </SectionHeader>
+        </Grid>
+      </DetailsSections>
     </Container>
   );
 };

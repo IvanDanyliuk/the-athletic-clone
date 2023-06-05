@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Box, Tab, Tabs, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../../features/store';
-import { getCurrentSeasonValue, setCompetitionTabs } from '../../utils/helpers';
+import { getCurrentSeasonValue, setNearestMatchweeks } from '../../utils/helpers';
 import { getSchedule } from '../../../features/schedules/asyncActions';
 import { selectCompetition } from '../../../features/competitions/selectors';
 import { selectSchedule, selectSchedulesStatus } from '../../../features/schedules/selectors';
@@ -41,7 +41,7 @@ const CompetitionScores: React.FC = () => {
 
   useEffect(() => {
     if(activeSchedule && currentMatchweek) {
-      const tabsData = setCompetitionTabs(activeSchedule.fixture, currentMatchweek);
+      const tabsData = setNearestMatchweeks(activeSchedule.fixture, currentMatchweek);
       setTabs(tabsData);
     }
   }, [activeSchedule, currentMatchweek]);
