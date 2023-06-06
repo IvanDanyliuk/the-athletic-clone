@@ -38,6 +38,7 @@ const MatchweekTable: React.FC<IMatchweekTable> = ({ matchweek }) => {
               <TableRow key={uuid()}>
                 <Cell>
                   <ClubLabel 
+                    clubId={home.club._id}
                     logo={home.club.clubLogoUrl} 
                     name={home.club.commonName} 
                     altText={home.club.shortName} 
@@ -45,6 +46,7 @@ const MatchweekTable: React.FC<IMatchweekTable> = ({ matchweek }) => {
                 </Cell>
                 <Cell>
                   <ClubLabel 
+                    clubId={away.club._id}
                     logo={away.club.clubLogoUrl} 
                     name={away.club.commonName} 
                     altText={away.club.shortName} 

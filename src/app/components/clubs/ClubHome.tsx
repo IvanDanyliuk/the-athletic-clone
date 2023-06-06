@@ -155,6 +155,7 @@ const ClubHome: React.FC = () => {
                   <Grid item xs={7}>
                     <RowWrapper>
                       <ClubLabel 
+                        clubId={match.home.club._id}
                         logo={match.home.club.clubLogoUrl} 
                         name={match.home.club.commonName} 
                         altText={match.home.club.shortName} 
@@ -162,6 +163,7 @@ const ClubHome: React.FC = () => {
                     </RowWrapper>
                     <RowWrapper>
                       <ClubLabel 
+                        clubId={match.away.club._id}
                         logo={match.away.club.clubLogoUrl} 
                         name={match.away.club.commonName} 
                         altText={match.away.club.shortName} 
@@ -218,6 +220,7 @@ const ClubHome: React.FC = () => {
                 <TableRow key={uuid()}>
                   <TableCell>
                     <ClubLabel 
+                      clubId={item.club._id}
                       logo={item.club.clubLogoUrl} 
                       name={item.club.commonName} 
                       altText={item.club.shortName} 

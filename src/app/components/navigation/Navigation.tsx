@@ -61,12 +61,6 @@ const TopLink = styled(NavLink)`
   color: #333333;
 `;
 
-const BottomLink = styled(NavLink)`
-  height: fit-content;
-  text-decoration: none;
-  color: #333333;
-`;
-
 
 const Navigation: React.FC<INavigationProps> = ({ links }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -144,13 +138,12 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
               <BottomLinkList>
                 {activeLink.clubs.map(club => (
                   <BottomLinkListItem key={uuid()}>
-                    <BottomLink to={`clubs/${club._id}`}>
-                      <ClubLabel 
-                        logo={club.clubLogoUrl} 
-                        name={club.commonName} 
-                        altText={club.commonName} 
-                      />
-                    </BottomLink>
+                    <ClubLabel 
+                      clubId={club._id}
+                      logo={club.clubLogoUrl} 
+                      name={club.commonName} 
+                      altText={club.commonName} 
+                    />
                   </BottomLinkListItem>
                 ))}
               </BottomLinkList>

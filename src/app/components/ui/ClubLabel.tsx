@@ -1,8 +1,10 @@
 import React from 'react';
 import { Box, Typography, styled } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 
 interface IClubLabelProps {
+  clubId: string;
   logo: string;
   name: string;
   altText: string;
@@ -12,6 +14,11 @@ const Container = styled(Box)`
   width: fit-content;
   display: flex;
   align-items: center;
+`;
+
+const ClubLink = styled(Link)`
+  text-decoration: none;
+  color: #000000;
 `;
 
 const LogoContainer = styled(Box)`
@@ -25,14 +32,16 @@ const ClubLogo = styled('img')`
 `;
 
 
-const ClubLabel: React.FC<IClubLabelProps> = ({ logo, name, altText }) => {
+const ClubLabel: React.FC<IClubLabelProps> = ({ clubId, logo, name, altText }) => {
   return (
-    <Container>
-      <LogoContainer>
-        <ClubLogo src={logo} alt={altText} />
-      </LogoContainer>
-      <Typography>{name}</Typography>
-    </Container>
+    <ClubLink to={`/clubs/${clubId}`}>
+      <Container>
+        <LogoContainer>
+          <ClubLogo src={logo} alt={altText} />
+        </LogoContainer>
+        <Typography>{name}</Typography>
+      </Container>
+    </ClubLink>
   );
 };
 

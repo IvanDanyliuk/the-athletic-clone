@@ -24,6 +24,7 @@ const CompetitionTeams: React.FC = () => {
         {league.clubs.map(club => (
           <Grid key={uuid()} item xs={3}>
             <ClubLabel 
+              clubId={club._id}
               logo={club.clubLogoUrl} 
               name={club.commonName} 
               altText={club.shortName} 
