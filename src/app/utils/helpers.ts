@@ -1,6 +1,8 @@
-import { IClub } from "../../features/clubs/types";
-import { IMatchweek, ISchedule } from "../../features/schedules/types";
-import { ScheduleModel } from "../models/components";
+import { v4 as uuid } from 'uuid';
+import { IClub } from '../../features/clubs/types';
+import { IMatchweek, ISchedule } from '../../features/schedules/types';
+import { ScheduleModel } from '../models/components';
+import { StandingItem } from '../../features/competitions/types';
 
 export const setUrl = (title: string) => {
   const splittedTitle = title.toLowerCase().split(' ').map(item => item.replace(/[^a-z0-9]/gi, ''));
@@ -55,25 +57,26 @@ export const getCurrentSeasonValue = () => {
   }
 };
 
-export const setNearestMatchweeks = (matchweeks: IMatchweek[], currentMatchweek: IMatchweek) => {
-  const mwIds = matchweeks.map(mw => mw._id);
-  const middlePos = mwIds.indexOf(currentMatchweek!._id!);
-  const left = matchweeks.slice(0, middlePos);
-  const right = matchweeks.slice(middlePos! + 1);
+export const setNearestItems: any = (range: IMatchweek[] | StandingItem[], currentitemId: string, itemsToShow: number) => {
+  const mwIds = range.map(mw => mw._id);
+  const middlePos = mwIds.indexOf(currentitemId);
+  const rangeHalfValue = Math.floor(itemsToShow / 2);
+  const left = range.slice(0, middlePos);
+  const right = range.slice(middlePos! + 1);
 
-  if(left.length >= 2 && right.length >= 2) {
-    const leftSide = left.reverse().slice(0, 2).reverse();
-    const rightSide = right.slice(0, 2);
-    return [...leftSide, matchweeks[middlePos!], ...rightSide];
+  if(left.length >= rangeHalfValue && right.length >= rangeHalfValue) {
+    const leftSide = left.reverse().slice(0, rangeHalfValue).reverse();
+    const rightSide = right.slice(0, rangeHalfValue);
+    return [...leftSide, range[middlePos!], ...rightSide];
   } else {
     if(left.length < right.length) {
-      const leftSide = left.reverse().slice(0, 2).reverse();
-      const rightSide = right.slice(0, 5 - leftSide.length - 1);
-      return [...leftSide, matchweeks[middlePos!], ...rightSide];
+      const leftSide = left.reverse().slice(0, rangeHalfValue).reverse();
+      const rightSide = right.slice(0, itemsToShow - leftSide.length - 1);
+      return [...leftSide, range[middlePos!], ...rightSide];
     } else {
-      const rightSide = right.slice(0, 2);
-      const leftSide = left.reverse().slice(0, 5 - rightSide.length - 1).reverse();
-      return [...leftSide, matchweeks[middlePos!], ...rightSide];
+      const rightSide = right.slice(0, rangeHalfValue);
+      const leftSide = left.reverse().slice(0, itemsToShow - rightSide.length - 1).reverse();
+      return [...leftSide, range[middlePos!], ...rightSide];
     }
   }
 };
@@ -94,6 +97,7 @@ export const countStandingTableData = (schedule: ISchedule) => {
     const draws = flattedMatches.filter(item => club.club._id === item.club._id && item.final === 'D');
     const latestGames = flattedMatches.filter(item => club.club._id === item.club._id).map(item => item.final).reverse().slice(0, 5).reverse();
     return { 
+      _id: uuid(),
       club: club.club, 
       playedMatches: participants.length, 
       points, 

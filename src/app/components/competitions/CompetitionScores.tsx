@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Box, Tab, Tabs, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../../features/store';
-import { getCurrentSeasonValue, setNearestMatchweeks } from '../../utils/helpers';
+import { getCurrentSeasonValue, setNearestItems } from '../../utils/helpers';
 import { getSchedule } from '../../../features/schedules/asyncActions';
 import { selectCompetition } from '../../../features/competitions/selectors';
 import { selectSchedule, selectSchedulesStatus } from '../../../features/schedules/selectors';
@@ -41,7 +41,7 @@ const CompetitionScores: React.FC = () => {
 
   useEffect(() => {
     if(activeSchedule && currentMatchweek) {
-      const tabsData = setNearestMatchweeks(activeSchedule.fixture, currentMatchweek);
+      const tabsData = setNearestItems(activeSchedule.fixture, currentMatchweek._id!, 5);
       setTabs(tabsData);
     }
   }, [activeSchedule, currentMatchweek]);
@@ -61,7 +61,7 @@ const CompetitionScores: React.FC = () => {
   useEffect(() => {
     dispatch(getSchedule({ season: currentSeason, leagueId: league?._id! }));
     return () => { dispatch(clearSchedule()) }
-  }, []);
+  }, [currentSeason, league, dispatch]);
 
   if(!league && !activeSchedule) {
     return scheduleStatus === 'loading' ? 

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Divider, Grid, List, ListItem, Table, TableBody, TableCell, TableHead, TableRow, Typography, styled } from '@mui/material';
+import { 
+  Box, Divider, Grid, List, ListItem, Table, TableBody, 
+  TableCell, TableHead, TableRow, Typography, styled 
+} from '@mui/material';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../../features/store';
@@ -12,24 +15,10 @@ import { ContentSectionMaterials } from '../homepage';
 import { getAllCompetitions } from '../../../features/competitions/asyncActions';
 import { selectAllCompetitions } from '../../../features/competitions/selectors';
 import { getSchedule } from '../../../features/schedules/asyncActions';
-import { countStandingTableData, getCurrentSeasonValue, setNearestMatchweeks } from '../../utils/helpers';
+import { countStandingTableData, getCurrentSeasonValue, setNearestItems } from '../../utils/helpers';
 import { selectSchedule } from '../../../features/schedules/selectors';
-import { IMatch } from '../../../features/schedules/types';
-import { IClub } from '../../../features/clubs/types';
-
-
-interface StandingItem {
-  club: IClub;
-  playedMatches: number;
-  points: number,
-  goalsFor: number,
-  goalsAgainst: number,
-  goalDifference: number,
-  wins: number,
-  loses: number,
-  draws: number,
-  latestGames: string[]
-}
+import { IMatch, IMatchweek } from '../../../features/schedules/types';
+import { StandingItem } from '../../../features/competitions/types';
 
 
 const Container = styled(Box)`
@@ -113,14 +102,17 @@ const ClubHome: React.FC = () => {
         return a - b < 0 ? curr : prev;
       });
 
-      const matchweeks = setNearestMatchweeks(schedule.fixture, currentMatchweek);
+      const matchweeks = setNearestItems(schedule.fixture, currentMatchweek._id!, 5);
       const games = matchweeks
-        .map(mw => mw.games)
+        .map((mw: IMatchweek) => mw.games)
         .flat()
-        .filter(match => match.home.club._id === club?._id || match.away.club._id === club?._id);
+        .filter((match: IMatch) => match.home.club._id === club?._id || match.away.club._id === club?._id);
       setNearestGames(games);
 
-      const standing = countStandingTableData(schedule);
+      const standingData = countStandingTableData(schedule);
+      const currentTeamPosition = standingData.find((item: StandingItem) => item.club._id! === club?._id!)
+      const standing = setNearestItems(standingData, currentTeamPosition._id, 4)
+      console.log({ standingData, currentTeamPosition })
       setStandings(standing);
     }
   }, [club, schedule]);
@@ -139,15 +131,15 @@ const ClubHome: React.FC = () => {
     dispatch(getAllCompetitions());
   }, [dispatch, club]);
 
-  if(materials.length === 0) {
-    return materialsStatus === 'loading' ? 
-      <BackdropLoader open={true} /> : 
-      <DataNotFoundMessage message='Cannot find materials' />;
-  }
-
   return (
     <Container>
-      <ContentSectionMaterials materials={materials!} />
+      {materialsStatus === 'loading' ? (
+        <BackdropLoader open={true} />
+      ) : materials.length === 0 ? (
+        <DataNotFoundMessage message='Cannot find materials' />
+      ) : (
+        <ContentSectionMaterials materials={materials!} />
+      )}
       <DetailsSections container>
         <Grid item xs={12} md={4}>
           <SectionHeader>
