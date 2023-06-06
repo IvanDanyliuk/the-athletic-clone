@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { 
+  Avatar,
   Box, Divider, Grid, List, ListItem, Table, TableBody, 
   TableCell, TableHead, TableRow, Typography, styled 
 } from '@mui/material';
@@ -15,11 +17,13 @@ import { ContentSectionMaterials } from '../homepage';
 import { getAllCompetitions } from '../../../features/competitions/asyncActions';
 import { selectAllCompetitions } from '../../../features/competitions/selectors';
 import { getSchedule } from '../../../features/schedules/asyncActions';
-import { countStandingTableData, getCurrentSeasonValue, setNearestItems } from '../../utils/helpers';
+import { countStandingTableData, getCurrentSeasonValue, getRandomElements, setNearestItems } from '../../utils/helpers';
 import { selectSchedule } from '../../../features/schedules/selectors';
 import { IMatch, IMatchweek } from '../../../features/schedules/types';
 import { StandingItem } from '../../../features/competitions/types';
 import { getPlayers } from '../../../features/players/asyncActions';
+import { selectAllPlayers } from '../../../features/players/selectors';
+import { IPlayer } from '../../../features/players/types';
 
 
 const Container = styled(Box)`
@@ -50,11 +54,11 @@ const HorizontalDivider = styled(Divider)`
   margin: 1em 0;
 `;
 
-const MatchList = styled(List)`
+const DataList = styled(List)`
   margin-top: .5em;
 `;
 
-const MatchListItem = styled(ListItem)`
+const DataListItem = styled(ListItem)`
   padding: 0;
   display: flex;
   flex-direction: column;
@@ -77,12 +81,28 @@ const MatchDate = styled(Typography)`
   color: #4e4e4e;
 `;
 
+const PlayerName = styled(Typography)`
+  font-weight: 600;
+`;
+
+const PlayerNumber = styled(Typography)`
+  font-size: .8em;
+  color: #505050;
+`;
+
+const PlayerLink = styled(Link)`
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+`;
+
 
 const ClubHome: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const club = useSelector(selectClub);
   const leagues = useSelector(selectAllCompetitions);
+  const players = useSelector(selectAllPlayers);
   const clubLeague = leagues.find(item => item.country !== 'International' && 
     item.clubs.find(clubItem => clubItem._id === club?._id)
   );
@@ -93,6 +113,7 @@ const ClubHome: React.FC = () => {
 
   const [nearestGames, setNearestGames] = useState<IMatch[]>([]);
   const [standings, setStandings] = useState<StandingItem[]>([]);
+  const [roster, setRoster] = useState<IPlayer[]>([]);
 
   useEffect(() => {
     if(schedule) {
@@ -114,6 +135,10 @@ const ClubHome: React.FC = () => {
       const currentTeamPosition = standingData.find((item: StandingItem) => item.club._id! === club?._id!);
       const standing = setNearestItems(standingData, currentTeamPosition._id, 8);
       setStandings(standing);
+    }
+    if(players) {
+      const randomPlayers = getRandomElements(players, 5);
+      setRoster(randomPlayers);
     }
   }, [club, schedule]);
 
@@ -141,7 +166,7 @@ const ClubHome: React.FC = () => {
       ) : (
         <ContentSectionMaterials materials={materials!} />
       )}
-      <DetailsSections container>
+      <DetailsSections container spacing={3}>
         <Grid item xs={12} md={4}>
           <SectionHeader>
             <SectionTitle variant='h2_custom'>Schedule</SectionTitle>
@@ -150,9 +175,9 @@ const ClubHome: React.FC = () => {
               label='Full Schedule' 
             />
           </SectionHeader>
-          <MatchList>
+          <DataList>
             {nearestGames.map((match, i) => (
-              <MatchListItem key={uuid()}>
+              <DataListItem key={uuid()}>
                 <Grid container>
                   <Grid item xs={7}>
                     <RowWrapper>
@@ -195,9 +220,9 @@ const ClubHome: React.FC = () => {
                 {i !== nearestGames.length - 1 && (
                   <HorizontalDivider orientation='horizontal' flexItem />
                 )}
-              </MatchListItem>
+              </DataListItem>
             ))}
-          </MatchList>
+          </DataList>
         </Grid>
         <VerticalDivider orientation='vertical' flexItem />
         <Grid item xs={12} md>
@@ -239,15 +264,32 @@ const ClubHome: React.FC = () => {
         <VerticalDivider orientation='vertical' flexItem />
         <Grid item xs={12} md>
           <SectionHeader>
-            <SectionTitle variant='h2_custom'>Roster</SectionTitle>
+            <SectionTitle variant='h2_custom'>Team Leaders</SectionTitle>
             <SeeMoreLink 
               url={`/clubs/${club?._id}/roster`} 
               label='Full Schedule' 
             />
           </SectionHeader>
-          <List>
-            {}
-          </List>
+          <DataList>
+            {roster.map((player, i) => (
+              <DataListItem key={uuid()}>
+                <PlayerLink to={`/players/${player._id}`}>
+                  <Grid container>
+                    <Grid item xs={10}>
+                      <PlayerName>{`${player.firstName} ${player.lastName}`}</PlayerName>
+                      <PlayerNumber>{`#${player.number}, ${player.position}`}</PlayerNumber>
+                    </Grid>
+                    <Grid item xs={2} display='flex' justifyContent='flex-end'>
+                      <Avatar src={player.photoUrl} />
+                    </Grid>
+                  </Grid>
+                </PlayerLink>
+                {i !== roster.length - 1 && (
+                  <HorizontalDivider orientation='horizontal' flexItem />
+                )}
+              </DataListItem>
+            ))}
+          </DataList>
         </Grid>
       </DetailsSections>
     </Container>
