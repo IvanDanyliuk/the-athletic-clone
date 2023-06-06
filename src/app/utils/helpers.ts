@@ -113,3 +113,8 @@ export const countStandingTableData = (schedule: ISchedule) => {
   
   return standing;
 };
+
+export const getRandomElements = (array: any[], num: number) => {
+  const shuffled = [...array].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, num);
+};

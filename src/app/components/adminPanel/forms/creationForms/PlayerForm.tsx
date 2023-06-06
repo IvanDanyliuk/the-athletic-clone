@@ -49,10 +49,12 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
   const handleFormSubmit = async (data: any) => {
     if(playerToUpdate) {
       setIsLoading(true);
+      const photoUrl = data.photoUrl.length > 0 ? await uploadImage(data.photoUrl[0]) : playerToUpdate.photoUrl;
       await dispatch(updatePlayer({
+        ...data,
         _id: playerToUpdate._id,
         birthDate: dayjs(data.birthDate).add(1, 'day').toISOString(),
-        ...data
+        photoUrl
       }));
       setIsLoading(false);
       navigate('/admin/players');
@@ -81,7 +83,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
         number: playerToUpdate.number,
         position: playerToUpdate.position,
         birthDate: dayjs(playerToUpdate.birthDate).subtract(1, 'day'),
-        photoUrl: playerToUpdate.photoUrl
+        // photoUrl: playerToUpdate.photoUrl
       });
     }
   }, []);

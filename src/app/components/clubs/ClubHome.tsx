@@ -19,6 +19,7 @@ import { countStandingTableData, getCurrentSeasonValue, setNearestItems } from '
 import { selectSchedule } from '../../../features/schedules/selectors';
 import { IMatch, IMatchweek } from '../../../features/schedules/types';
 import { StandingItem } from '../../../features/competitions/types';
+import { getPlayers } from '../../../features/players/asyncActions';
 
 
 const Container = styled(Box)`
@@ -128,6 +129,7 @@ const ClubHome: React.FC = () => {
   useEffect(() => {
     dispatch(getLeagueMaterials({ value: club?.commonName!, type: ['article', 'note'], materialsNum: 5 }));
     dispatch(getAllCompetitions());
+    dispatch(getPlayers({ filterData: { club: club?.commonName! } }));
   }, [dispatch, club]);
 
   return (
@@ -243,6 +245,9 @@ const ClubHome: React.FC = () => {
               label='Full Schedule' 
             />
           </SectionHeader>
+          <List>
+            {}
+          </List>
         </Grid>
       </DetailsSections>
     </Container>
