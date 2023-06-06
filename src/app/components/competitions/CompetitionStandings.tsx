@@ -43,7 +43,7 @@ const CompetitionStandings: React.FC = () => {
   useEffect(() => {
     dispatch(getSchedule({ season: currentSeason, leagueId: league?._id! }));
     return () => { dispatch(clearSchedule()) }
-  }, []);
+  }, [currentSeason, league, dispatch]);
 
   return (
     <TableContainer component={Paper}>

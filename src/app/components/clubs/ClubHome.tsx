@@ -110,9 +110,8 @@ const ClubHome: React.FC = () => {
       setNearestGames(games);
 
       const standingData = countStandingTableData(schedule);
-      const currentTeamPosition = standingData.find((item: StandingItem) => item.club._id! === club?._id!)
-      const standing = setNearestItems(standingData, currentTeamPosition._id, 4)
-      console.log({ standingData, currentTeamPosition })
+      const currentTeamPosition = standingData.find((item: StandingItem) => item.club._id! === club?._id!);
+      const standing = setNearestItems(standingData, currentTeamPosition._id, 8);
       setStandings(standing);
     }
   }, [club, schedule]);
