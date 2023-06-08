@@ -56,7 +56,7 @@ const PlayersTable: React.FC<IPlayersTableProps> = ({ title, players }) => {
         </TableHead>
         <TableBody>
           {players.map(player => (
-            <TableRow key={uuid()} hover>
+            <TableRow key={uuid()} hover data-testid='playersTableRow'>
               <NameCell>
                 <PlayerLink to={`/players/${player._id}`}>
                   <Avatar src={player.photoUrl} />
