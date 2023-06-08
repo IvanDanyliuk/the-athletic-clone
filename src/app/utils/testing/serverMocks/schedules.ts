@@ -12,6 +12,12 @@ const schedulesSuccessHandlers = [
       ctx.json(schedulesStateSuccessMock.data)
     );
   }),
+  rest.get(`${baseUrl}/schedules/by-club`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(schedulesStateSuccessMock.data)
+    );
+  }),
   rest.post(`${baseUrl}/schedules`, (req, res, ctx) => {
     return res(
       ctx.status(200),

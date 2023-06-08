@@ -1,8 +1,10 @@
 import React from 'react';
-import { Box, Grid, styled } from '@mui/material';
+import { Box, Typography, styled } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 
 interface IClubLabelProps {
+  clubId: string;
   logo: string;
   name: string;
   altText: string;
@@ -10,6 +12,19 @@ interface IClubLabelProps {
 
 const Container = styled(Box)`
   width: fit-content;
+  display: flex;
+  align-items: center;
+`;
+
+const ClubLink = styled(Link)`
+  text-decoration: none;
+  color: #000000;
+`;
+
+const LogoContainer = styled(Box)`
+  width: 3em;
+  display: flex;
+  justify-content: center;
 `;
 
 const ClubLogo = styled('img')`
@@ -17,18 +32,16 @@ const ClubLogo = styled('img')`
 `;
 
 
-const ClubLabel: React.FC<IClubLabelProps> = ({ logo, name, altText }) => {
+const ClubLabel: React.FC<IClubLabelProps> = ({ clubId, logo, name, altText }) => {
   return (
-    <Container>
-      <Grid container spacing={5} alignItems='center'>
-        <Grid item xs={1} justifyContent='center'>
+    <ClubLink to={`/clubs/${clubId}`}>
+      <Container>
+        <LogoContainer>
           <ClubLogo src={logo} alt={altText} />
-        </Grid>
-        <Grid item xs>
-          {name}
-        </Grid>
-      </Grid>
-    </Container>
+        </LogoContainer>
+        <Typography>{name}</Typography>
+      </Container>
+    </ClubLink>
   );
 };
 

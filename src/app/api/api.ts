@@ -39,6 +39,7 @@ export const deleteMaterial = (id: string, page: number, itemsPerPage: number) =
 export const createClub = (clubData: ClubModel) => API.post('/clubs', clubData);
 export const getClubs = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/clubs', { params: { page, itemsPerPage, filterData, sortData } });
 export const getClubsByCountry = (country?: string) => API.get('/clubs/country', { params: { country } });
+export const getClub = (id: string) => API.get(`/clubs/${id}`);
 export const updateClub = (clubToUpdate: IClub) => API.patch('/clubs', clubToUpdate);
 export const deleteClub = (id: string, page: number, itemsPerPage: number) => API.delete('/clubs', { params: { id, page, itemsPerPage } });
 
@@ -50,12 +51,14 @@ export const updateCompetition = (competitionToUpdate: ICompetition) => API.patc
 export const deleteCompetition = (id: string, page: number, itemsPerPage: number) => API.delete('/competitions', { params: { id, page, itemsPerPage } });
 
 export const createPlayer = (playerData: PlayerModel) => API.post('/players', playerData);
-export const getPlayers = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/players', { params: { page, itemsPerPage, filterData, sortData } });
+export const getPlayers = (page?: number, itemsPerPage?: number, filterData?: any, sortData?: any) => API.get('/players', { params: { page, itemsPerPage, filterData, sortData } });
+export const getPlayersByClub = (clubId: string) => API.get('/players/by-club', { params: { clubId } });
 export const updatePlayer = (playerToUpdate: IPlayer) => API.patch('/players', playerToUpdate);
 export const deletePlayer = (id: string, page: number, itemsPerPage: number) => API.delete('/players', { params: { id, page, itemsPerPage } });
 
 export const createSchedule = (scheduleData: ScheduleModel) => API.post('/schedules', scheduleData);
 export const getSchedules = (page?: number, itemsPerPage?: number, filterData?: any, sortData?: any) => API.get('/schedules', { params: { page, itemsPerPage, filterData, sortData } });
+export const getSchedulesByClub = (season: string, clubId: string) => API.get('/schedules/by-club', { params: { season, clubId } });
 export const getSchedule = (season: string, leagueId: string) => API.get('/schedules/schedule', { params: { season, leagueId } });
 export const updateSchedule = (scheduleToUpdate: ISchedule) => API.patch('/schedules', scheduleToUpdate);
 export const deleteSchedule = (id: string, page: number, itemsPerPage: number) => API.delete('/schedules', { params: { id, page, itemsPerPage } });

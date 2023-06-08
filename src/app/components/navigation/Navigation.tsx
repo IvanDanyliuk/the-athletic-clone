@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Box, Container, Divider, Drawer, List, ListItem, styled, Typography } from '@mui/material';
+import { Box, Container, Divider, Drawer, List, ListItem, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { ICompetition } from '../../../features/competitions/types';
+import { ClubLabel } from '../ui';
 
 
 interface INavigationProps {
@@ -23,6 +24,7 @@ const NavLinkListItem = styled(ListItem)`
 `;
 
 const Link = styled(NavLink)`
+  height: fit-content;
   font-size: 1.1em;
   text-decoration: none;
   color: #ffffff;
@@ -37,7 +39,7 @@ const TopLinkList = styled(List)`
 const BottomLinkList = styled(List)`
   position: relative;
   width: 100%;
-  height: 24vh;
+  max-height: 24vh;
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
@@ -57,18 +59,6 @@ const TopLink = styled(NavLink)`
   font-weight: 700;
   text-decoration: none;
   color: #333333;
-`;
-
-const BottomLink = styled(NavLink)`
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  color: #333333;
-
-  img {
-    height: 2em;
-    margin-right: 10px;
-  }
 `;
 
 
@@ -100,7 +90,6 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
             </Link>
           </NavLinkListItem>
         ))}
-        
       </NavLinkList>
       <Drawer
         anchor='top'
@@ -149,12 +138,12 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
               <BottomLinkList>
                 {activeLink.clubs.map(club => (
                   <BottomLinkListItem key={uuid()}>
-                    <BottomLink to={`clubs/${club._id}`}>
-                      <img src={club.clubLogoUrl} alt={club.commonName} />
-                      <Typography variant='inherit'>
-                        {club.commonName}
-                      </Typography>
-                    </BottomLink>
+                    <ClubLabel 
+                      clubId={club._id}
+                      logo={club.clubLogoUrl} 
+                      name={club.commonName} 
+                      altText={club.commonName} 
+                    />
                   </BottomLinkListItem>
                 ))}
               </BottomLinkList>

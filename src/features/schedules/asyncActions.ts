@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
 import { ScheduleModel } from '../../app/models/components';
-import { IDeleteScheduleData, IGetScheduleQuery, ISchedule, ISchedulesRequestData } from './types';
+import { IDeleteScheduleData, IGetScheduleQuery, IGetSchedulesByClubQuery, ISchedule, ISchedulesRequestData } from './types';
 
 
 export const createSchedule = createAsyncThunk(
@@ -22,6 +22,19 @@ export const getSchedules = createAsyncThunk(
     const { page, itemsPerPage, filterData, sortData } = requestData;
     try {
       const { data } = await api.getSchedules(page, itemsPerPage, filterData, sortData,);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
+export const getSchedulesByClub = createAsyncThunk(
+  'schedules/getSchedulesByClub',
+  async (requestData: IGetSchedulesByClubQuery, thunkAPI) => {
+    const { season, clubId } = requestData;
+    try {
+      const { data } = await api.getSchedulesByClub(season, clubId);
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);

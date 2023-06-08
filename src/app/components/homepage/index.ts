@@ -7,3 +7,4 @@ export { default as PopularMaterialItem } from './PopularMaterialItem';
 export { default as PopularMaterials } from './PopularMaterials';
 export { default as RealtimePosts } from './RealtimePosts';
 export { default as TopContentSection } from './TopContentSection';
+export { default as ContentSectionMaterials } from './ContentSectionMaterials';

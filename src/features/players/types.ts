@@ -51,10 +51,10 @@ export interface IPlayersFilters {
 }
 
 export interface IPlayersRequestData {
-  page: number,
-  itemsPerPage: number,
-  filterData: IPlayersFilters | null, 
-  sortData: {
+  page?: number,
+  itemsPerPage?: number,
+  filterData?: IPlayersFilters | null, 
+  sortData?: {
     indicator: string,
     order: string
   } | null

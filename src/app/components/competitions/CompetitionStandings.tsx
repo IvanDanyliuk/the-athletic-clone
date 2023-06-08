@@ -10,23 +10,10 @@ import { getSchedule } from '../../../features/schedules/asyncActions';
 import { countStandingTableData, getCurrentSeasonValue } from '../../utils/helpers';
 import { clearSchedule } from '../../../features/schedules/reducers';
 import { selectCompetition } from '../../../features/competitions/selectors';
-import { IClub } from '../../../features/clubs/types';
 import { selectSchedule } from '../../../features/schedules/selectors';
 import LatestGamesScores from './LatestGamesScores';
+import { StandingItem } from '../../../features/competitions/types';
 
-
-interface StandingItem {
-  club: IClub;
-  playedMatches: number;
-  points: number,
-  goalsFor: number,
-  goalsAgainst: number,
-  goalDifference: number,
-  wins: number,
-  loses: number,
-  draws: number,
-  latestGames: string[]
-}
 
 const CustomCell = styled(TableCell)`
   min-width: 10em;
@@ -56,7 +43,7 @@ const CompetitionStandings: React.FC = () => {
   useEffect(() => {
     dispatch(getSchedule({ season: currentSeason, leagueId: league?._id! }));
     return () => { dispatch(clearSchedule()) }
-  }, []);
+  }, [currentSeason, league, dispatch]);
 
   return (
     <TableContainer component={Paper}>

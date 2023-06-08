@@ -56,3 +56,17 @@ export interface ICompetitionDeleteQuery {
   page: number,
   itemsPerPage: number
 }
+
+export interface StandingItem {
+  _id: string;
+  club: IClub;
+  playedMatches: number;
+  points: number,
+  goalsFor: number,
+  goalsAgainst: number,
+  goalDifference: number,
+  wins: number,
+  loses: number,
+  draws: number,
+  latestGames: string[]
+}

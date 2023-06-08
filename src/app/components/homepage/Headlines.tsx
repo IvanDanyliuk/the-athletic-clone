@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Box, Grid, List, ListItem, Typography, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
+import { SeeMoreLink } from '../ui';
 
 
 interface IHeadlinesProps {
@@ -37,9 +38,7 @@ const Headlines: React.FC<IHeadlinesProps> = ({ data }) => {
           <Typography variant='overline'>Headlines</Typography>
         </Grid>
         <Grid item xs={2}>
-          <HeadlineLink to='/materials'>
-            See all
-          </HeadlineLink>
+          <SeeMoreLink url={'/materials'} label='See all' />
         </Grid>
       </Grid>
       <HeadlinesList>
