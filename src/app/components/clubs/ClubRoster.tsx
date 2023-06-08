@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box } from '@mui/material';
-
 import { AppDispatch } from '../../../features/store';
 import { selectClub } from '../../../features/clubs/selectors';
 import { selectAllPlayers } from '../../../features/players/selectors';
 import { getPlayers } from '../../../features/players/asyncActions';
-import PlayersTable from './PlayersTable';
+import { PlayersTable } from './';
 import { IPlayer } from '../../../features/players/types';
 
 

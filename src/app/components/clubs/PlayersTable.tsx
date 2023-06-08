@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { 
   Avatar, Paper, Table, TableBody, TableCell, 
   TableHead, TableRow, Typography, styled 
@@ -6,7 +7,6 @@ import {
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { IPlayer } from '../../../features/players/types';
-import { Link } from 'react-router-dom';
 
 
 interface IPlayersTableProps {

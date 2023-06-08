@@ -94,3 +94,8 @@ export interface IGetScheduleQuery {
   season: string;
   leagueId: string;
 }
+
+export interface IGetSchedulesByClubQuery {
+  season: string;
+  clubId: string;
+}

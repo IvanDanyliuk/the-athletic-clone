@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createSchedule, updateSchedule, deleteSchedule, getSchedules, getRecentMatches, getSchedule } from './asyncActions';
+import { createSchedule, updateSchedule, deleteSchedule, getSchedules, getRecentMatches, getSchedule, getSchedulesByClub } from './asyncActions';
 import { ISchedulesInitialState } from './types';
 
 
@@ -56,6 +56,17 @@ const schedulesSlice = createSlice({
         state.data.main = action.payload;
       })
       .addCase(getSchedules.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(getSchedulesByClub.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getSchedulesByClub.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data.main = action.payload;
+      })
+      .addCase(getSchedulesByClub.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })
