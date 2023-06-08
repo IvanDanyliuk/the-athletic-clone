@@ -2,9 +2,9 @@ import { cleanup, screen } from '@testing-library/react';
 import { setupClubsSuccessHandlers } from '../../../utils/testing/serverMocks/clubs';
 import { setupPlayersSuccessHandlers } from '../../../utils/testing/serverMocks/players';
 import { renderWithProviders } from '../../../utils/testing/customRenderMethod';
-import ClubRoster from '../ClubRoster';
 import { clubToUpdate, clubsStateSuccessMock } from '../../../utils/testing/testDataMocks/clubs';
 import { playersStateSuccessMock } from '../../../utils/testing/testDataMocks/players';
+import { ClubRoster } from '../';
 
 
 describe('ClubRoster tests', () => {
