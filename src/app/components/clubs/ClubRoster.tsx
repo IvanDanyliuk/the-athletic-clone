@@ -30,9 +30,9 @@ const ClubRoster: React.FC = () => {
   });
 
   useEffect(() => {
-    if(players.length === 0) {
+    // if(players.length === 0) {
       dispatch(getPlayers({ filterData: { club: club?.commonName } }));
-    }
+    // }
   }, [dispatch, club]);
 
   useEffect(() => {
