@@ -56,8 +56,6 @@ const ClubSchedule: React.FC = () => {
     }
   }, [club, season, dispatch]);
 
-  console.log('Scores', scores)
-
   return (
     <Table>
       <TableHead>
@@ -71,7 +69,7 @@ const ClubSchedule: React.FC = () => {
       </TableHead>
       <TableBody>
         {scores.map(score => (
-          <TableRow key={uuid()}>
+          <TableRow key={uuid()} data-testid='scheduleTableRow'>
             <TableCell>{dayjs(score.date).format('DD/MM/YYYY')}</TableCell>
             <TableCell>
               {score.home.club._id !== club?._id ? (
