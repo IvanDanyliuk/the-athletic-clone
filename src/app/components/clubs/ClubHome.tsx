@@ -230,7 +230,7 @@ const ClubHome: React.FC = () => {
             <SectionTitle variant='h2_custom'>{clubLeague?.fullName}</SectionTitle>
             <SeeMoreLink 
               url={`/competitions/${clubLeague?._id}/scores-and-schedules`} 
-              label='Full Schedule' 
+              label='Full Standings' 
             />
           </SectionHeader>
           <Table>
@@ -267,7 +267,7 @@ const ClubHome: React.FC = () => {
             <SectionTitle variant='h2_custom'>Team Leaders</SectionTitle>
             <SeeMoreLink 
               url={`/clubs/${club?._id}/roster`} 
-              label='Full Schedule' 
+              label='Full Squad' 
             />
           </SectionHeader>
           <DataList>
