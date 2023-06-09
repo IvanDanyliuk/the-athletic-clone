@@ -11,4 +11,5 @@ export { default as NotFound } from './NotFound';
 export { default as Realtime } from './Realtime';
 export { default as Register } from './Register';
 export { default as Search } from './Search';
+export { default as Player } from './Player';
 export { default as Posts } from './Posts';

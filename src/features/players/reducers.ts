@@ -1,13 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createPlayer, deletePlayer, getPlayers, updatePlayer } from './asyncActions';
+import { createPlayer, deletePlayer, getPlayer, getPlayers, updatePlayer } from './asyncActions';
 import { IPlayerInitialState } from './types';
 
 
 const initialState: IPlayerInitialState = {
   status: 'idle',
   data: {
-    players: [],
-    playersCount: 0
+    main: {
+      players: [],
+      playersCount: 0,
+    },
+    player: null
   },
   filters: null,
   error: null
@@ -34,7 +37,7 @@ const playerSlice = createSlice({
       })
       .addCase(createPlayer.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data.players.push(action.payload);
+        state.data.main.players.push(action.payload);
       })
       .addCase(createPlayer.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -45,18 +48,29 @@ const playerSlice = createSlice({
       })
       .addCase(getPlayers.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data.main = action.payload;
       })
       .addCase(getPlayers.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
+      })
+      .addCase(getPlayer.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(getPlayer.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.data.player = action.payload;
+      })
+      .addCase(getPlayer.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.rror;
       })
       .addCase(updatePlayer.pending, (state, action) => {
         state.status = 'loading';
       })
       .addCase(updatePlayer.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data.players = state.data.players.map(player => player._id === action.payload._id ? action.payload : player);
+        state.data.main.players = state.data.main.players.map(player => player._id === action.payload._id ? action.payload : player);
       })
       .addCase(updatePlayer.rejected, (state, action: any) => {
         state.status = 'failed';
@@ -67,7 +81,7 @@ const playerSlice = createSlice({
       })
       .addCase(deletePlayer.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.data = action.payload;
+        state.data.main = action.payload;
       })
       .addCase(deletePlayer.rejected, (state, action: any) => {
         state.status = 'failed';

@@ -5,7 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import Layout from './app/components/layout/Layout';
 import { 
   Admin, Checkout, Club, Competition, Home, Login, Material, News, NotFound, 
-  Posts, Realtime, RecentMaterials, Register, Search 
+  Player, Posts, Realtime, RecentMaterials, Register, Search 
 } from './app/pages';
 import {
    Clubs, Competitions, Materials, 
@@ -22,8 +22,7 @@ import {
 import { Content } from './app/components/adminPanel/sections/';
 import { Post, PostList } from './app/components/materials/';
 import { CompetitionHome, CompetitionScores, CompetitionStandings, CompetitionTeams } from './app/components/competitions/';
-import ClubHome from './app/components/clubs/ClubHome';
-import { ClubRoster, ClubSchedule } from './app/components/clubs';
+import { ClubHome, ClubRoster, ClubSchedule } from './app/components/clubs';
 
 
 const App: React.FC = () => {
@@ -53,6 +52,7 @@ const App: React.FC = () => {
                 <Route path='scores-and-schedules' element={<ClubSchedule />} />
                 <Route path='roster' element={<ClubRoster />} />
               </Route>
+              <Route path='/players/:id' element={<Player />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/checkout' element={<Checkout />} />

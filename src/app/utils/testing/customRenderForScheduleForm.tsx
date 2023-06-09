@@ -37,8 +37,11 @@ export const renderWithProvidersForSchedules = (
       players: {
         status: 'succeeded',
         data: {
-          players: [],
-          playersCount: 0
+          main: {
+            players: [],
+            playersCount: 0
+          },
+          player: null
         },
         filters: null,
         error: null

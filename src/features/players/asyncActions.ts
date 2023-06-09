@@ -29,6 +29,18 @@ export const getPlayers = createAsyncThunk(
   }
 );
 
+export const getPlayer = createAsyncThunk(
+  'players/getPlayer',
+  async (id: string, thunkAPI) => {
+    try {
+      const { data } = await api.getPlayer(id);
+      return data;
+    } catch (error: any) {
+      return thunkAPI.rejectWithValue(error.response.data);
+    }
+  }
+);
+
 export const updatePlayer = createAsyncThunk(
   'players/updatePlayer',
   async (playerToUpdate: IPlayer, thunkAPI) => {

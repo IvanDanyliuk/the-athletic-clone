@@ -16,8 +16,11 @@ export interface IPlayer {
 export interface IPlayerInitialState {
   status: string,
   data: {
-    players: IPlayer[],
-    playersCount: number
+    main: {
+      players: IPlayer[],
+      playersCount: number
+    },
+    player: IPlayer | null
   },
   filters: {} | null,
   error: string | null
