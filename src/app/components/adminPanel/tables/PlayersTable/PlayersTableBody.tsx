@@ -30,7 +30,7 @@ const PlayersTableBody: React.FC<IPlayersTableBodyProps> = ({ players, page, ite
           <TableRow key={uuid()}>
             <TableCell>{firstName}</TableCell>
             <TableCell>{lastName}</TableCell>
-            <TableCell>{club}</TableCell>
+            <TableCell>{club.commonName}</TableCell>
             <TableCell>{number}</TableCell>
             <TableCell>{position}</TableCell>
             <TableCell>{country}</TableCell>

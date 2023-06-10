@@ -23,6 +23,9 @@ const playerSlice = createSlice({
     setFilters: (state, action) => {
       state.filters = action.payload;
     },
+    clearPlayer: (state) => {
+      state.data.player = null;
+    },
     clearFilters: (state) => {
       state.filters = null;
     },
@@ -90,6 +93,6 @@ const playerSlice = createSlice({
   }
 });
 
-export const { setFilters, clearFilters, clearError } = playerSlice.actions;
+export const { setFilters, clearPlayer, clearFilters, clearError } = playerSlice.actions;
 
 export default playerSlice.reducer;

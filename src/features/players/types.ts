@@ -1,4 +1,5 @@
 import { ClubModel } from "../../app/models/components";
+import { IClub } from "../clubs/types";
 
 export interface IPlayer {
   _id: string,
@@ -9,7 +10,7 @@ export interface IPlayer {
   photoUrl: string,
   number: string,
   position: string,
-  club: string,
+  club: IClub,
   createdAt: string
 }
 

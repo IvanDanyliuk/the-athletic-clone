@@ -28,6 +28,17 @@ interface IPlayerFormProps {
   playerToUpdate?: IPlayer
 }
 
+interface ICreatePlayerFormData {
+  firstName: string,
+  lastName: string,
+  birthDate: string | any,
+  country: string,
+  photoUrl: string,
+  number: string,
+  position: string,
+  club: string,
+}
+
 const position = [
   { label: PlayerPosition.goalkeeper, value: PlayerPosition.goalkeeper },
   { label: PlayerPosition.defender, value: PlayerPosition.defender },
@@ -39,12 +50,12 @@ const position = [
 const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { register, handleSubmit, control, formState: { errors }, reset } = useForm<PlayerModel>();
+  const { register, handleSubmit, control, formState: { errors }, reset } = useForm<ICreatePlayerFormData>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const countries = getCountries().map(country => ({ label: country, value: country }));
   const clubData = useSelector(selectClubsByCountry);
-  const clubs = clubData.map(club => ({ label: club.commonName, value: club.commonName }))
+  const clubs = clubData.map(club => ({ label: club.commonName, value: club._id }))
 
   const handleFormSubmit = async (data: any) => {
     if(playerToUpdate) {
@@ -79,7 +90,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
         firstName: playerToUpdate.firstName,
         lastName: playerToUpdate.lastName,
         country: playerToUpdate.country,
-        club: playerToUpdate.club,
+        club: playerToUpdate.club._id,
         number: playerToUpdate.number,
         position: playerToUpdate.position,
         birthDate: dayjs(playerToUpdate.birthDate).subtract(1, 'day'),

@@ -59,7 +59,7 @@ export interface PlayerModel {
   photoUrl: string,
   number: string,
   position: string,
-  club: string,
+  club: IClub,
 }
 
 export interface ScheduleModel {
