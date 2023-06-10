@@ -53,7 +53,7 @@ const PlayersFilters: React.FC = () => {
 
   const countries = getCountries().map(country => ({ label: country, value: country }));
   const clubData = useSelector(selectClubsByCountry);
-  const clubs = clubData.map(club => ({ label: club.commonName, value: club.commonName }));
+  const clubs = clubData.map(club => ({ label: club.commonName, value: club._id }));
 
   const sumbitFilterData = (data: any) => {
     const isDatesValid = checkFilterTimeInterval(data.dateFrom, data.dateTo, handleDateError);

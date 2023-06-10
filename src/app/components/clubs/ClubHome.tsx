@@ -154,7 +154,7 @@ const ClubHome: React.FC = () => {
   useEffect(() => {
     dispatch(getLeagueMaterials({ value: club?.commonName!, type: ['article', 'note'], materialsNum: 5 }));
     dispatch(getAllCompetitions());
-    dispatch(getPlayers({ filterData: { club: club?.commonName! } }));
+    dispatch(getPlayers({ filterData: { club: club?._id! } }));
   }, [dispatch, club]);
 
   return (

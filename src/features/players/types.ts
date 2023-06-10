@@ -1,4 +1,3 @@
-import { ClubModel } from "../../app/models/components";
 import { IClub } from "../clubs/types";
 
 export interface IPlayer {

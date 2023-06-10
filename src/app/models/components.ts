@@ -1,6 +1,5 @@
 import { IClub } from "../../features/clubs/types"
 import { ICompetition } from "../../features/competitions/types"
-import { IMaterial } from "../../features/materials/types"
 
 //ENTITIES
 export interface ClubModel {

@@ -103,7 +103,6 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
         shortName: competitionToUpdate.shortName,
         country: competitionToUpdate.country,
         clubs: competitionToUpdate.clubs,
-        // logoUrl: competitionToUpdate.logoUrl,
         type: competitionToUpdate.type
       });
     }

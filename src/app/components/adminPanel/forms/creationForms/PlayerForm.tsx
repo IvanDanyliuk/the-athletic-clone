@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form';
 import { Box, Button, Grid, styled } from '@mui/material';
 import dayjs from 'dayjs';
 import { AppDispatch } from '../../../../../features/store';
-import { PlayerModel } from '../../../../models/components';
 import { BackdropLoader, ControlledDatePicker, SelectField, TextInput } from '../../../ui/';
 import { uploadImage } from '../../../../services/uploadImage';
 import { BackLink } from '../../ui/';
@@ -94,7 +93,6 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
         number: playerToUpdate.number,
         position: playerToUpdate.position,
         birthDate: dayjs(playerToUpdate.birthDate).subtract(1, 'day'),
-        // photoUrl: playerToUpdate.photoUrl
       });
     }
   }, []);
