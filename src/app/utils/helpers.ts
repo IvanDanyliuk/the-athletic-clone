@@ -118,3 +118,18 @@ export const getRandomElements = (array: any[], num: number) => {
   const shuffled = [...array].sort(() => 0.5 - Math.random());
   return shuffled.slice(0, num);
 };
+
+export const getPlayerPositionFullName = (position: string) => {
+  switch(position) {
+    case 'GK':
+      return 'Goalkeeper';
+    case 'D':
+      return 'Defender';
+    case 'M':
+      return 'Midfielder';
+    case 'A':
+      return 'Forward';
+    default: 
+      return '-';
+  }
+};

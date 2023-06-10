@@ -1,11 +1,36 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { 
+  Avatar, Box, Grid, Table, TableBody, TableCell, 
+  TableRow, Typography, styled 
+} from '@mui/material';
+import dayjs from 'dayjs';
 import { AppDispatch } from '../../features/store';
 import { getPlayer } from '../../features/players/asyncActions';
 import { selectPlayer } from '../../features/players/selectors';
-import { getClub } from '../../features/clubs/asyncActions';
+import { ClubLabel, DataNotFoundMessage } from '../components/ui';
+import { getPlayerPositionFullName } from '../utils/helpers';
 
+
+const Container = styled(Box)`
+  padding: 1em 0;
+`;
+
+const PlayerPhoto = styled(Avatar)`
+  width: 100%;
+  height: auto;
+`;
+
+const PlayerName = styled(Typography)`
+  font-size: 3em;
+`;
+
+const PlayerNumber = styled(Typography)`
+  margin-bottom: 1em;
+  font-size: 2.5em;
+  color: #4a4a4a;
+`;
 
 const Player: React.FC = () => {
   const { id } = useParams();
@@ -19,14 +44,57 @@ const Player: React.FC = () => {
     }
   }, [id, dispatch]);
 
-  // useEffect(() => {
-  //   if(player) {
-  //     dispatch(getClub(player.club))
-  //   }
-  // }, [player]);
+  if(!player) {
+    return (
+      <Container>
+        <DataNotFoundMessage message='Player not found' />
+      </Container>
+    );
+  }
 
   return (
-    <div>{player?.lastName}</div>
+    <Container>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={4}>
+          <PlayerPhoto variant='square' src={player?.photoUrl} alt={player?.lastName} />
+        </Grid>
+        <Grid item xs={12} md={8}>
+          <PlayerName variant='h2_custom'>
+            {`${player?.firstName} ${player?.lastName}`}
+          </PlayerName>
+          <PlayerNumber variant='h2_custom'>
+            {`#${player?.number}`}
+          </PlayerNumber>
+          <Table>
+            <TableBody>
+              <TableRow>
+                <TableCell>Position:</TableCell>
+                <TableCell>{getPlayerPositionFullName(player?.position!)}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Club:</TableCell>
+                <TableCell>
+                  <ClubLabel 
+                    clubId={player?.club._id!} 
+                    logo={player?.club.clubLogoUrl!} 
+                    name={player?.club.commonName!} 
+                    altText={player?.club.shortName!} 
+                  />
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Born:</TableCell>
+                <TableCell>{dayjs(player?.birthDate).format('DD/MM/YYYY')}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Country:</TableCell>
+                <TableCell>{player?.country}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 
