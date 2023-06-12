@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { Box, Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 interface IConfirmActionProps {
-  onDelete: () => void;
+  message: string;
+  children: ReactNode,
+  onAction: () => void;
 }
 
-const ConfirmAction: React.FC<IConfirmActionProps> = ({ onDelete }) => {
+const ConfirmAction: React.FC<IConfirmActionProps> = ({ message, children, onAction }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleDialogOpen = () => {
@@ -16,21 +18,21 @@ const ConfirmAction: React.FC<IConfirmActionProps> = ({ onDelete }) => {
   };
 
   const acceptAction = () => {
-    onDelete();
+    onAction();
     setIsOpen(false);
   };
 
   return (
     <Box>
       <Button data-testid='closeBtn' type='button' onClick={handleDialogOpen}>
-        <FontAwesomeIcon icon={faXmark} />
+        {children}
       </Button>
       <Dialog
         open={isOpen}
         onClose={handleDialogOpen}
       >
         <DialogTitle>
-          Do you want to delete this content section?
+          {message}
         </DialogTitle>
         <DialogActions>
           <Button 

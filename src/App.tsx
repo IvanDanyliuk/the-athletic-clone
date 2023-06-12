@@ -5,7 +5,7 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs'
 import Layout from './app/components/layout/Layout';
 import { 
   Admin, Checkout, Club, Competition, Home, Login, Material, News, NotFound, 
-  Player, Posts, Realtime, RecentMaterials, Register, Search 
+  Player, Posts, Profile, Realtime, RecentMaterials, Register, Search 
 } from './app/pages';
 import {
    Clubs, Competitions, Materials, 
@@ -56,6 +56,7 @@ const App: React.FC = () => {
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/checkout' element={<Checkout />} />
+              <Route path='/profile/:id' element={<Profile />} />
               <Route path='/search' element={<Search />} />
               <Route path='/news' element={<News />} />
               <Route path='/realtime' element={<Realtime />} />
