@@ -1,7 +1,5 @@
 import React, { useState, ReactNode } from 'react';
 import { Box, Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
-import { faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 interface IConfirmActionProps {

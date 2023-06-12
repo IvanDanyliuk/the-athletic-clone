@@ -4,9 +4,10 @@ import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import dayjs from 'dayjs';
 import { ICompetition } from '../../../../../features/competitions/types';
-import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
+import { RowActionButtons } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
 import { deleteCompetition } from '../../../../../features/competitions/asyncActions';
+import { EssenseType } from '../../../../models/components';
 
 
 interface ICompetitionsTableBodyProps {

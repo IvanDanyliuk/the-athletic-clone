@@ -118,6 +118,7 @@ const userSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.data.users = state.data.users.map(user => user._id === action.payload._id ? action.payload : user);
+        state.user = state.user?._id === action.payload._id ? action.payload : state.user;
       })
       .addCase(updateUser.rejected, (state, action: any) => {
         state.status = 'failed';

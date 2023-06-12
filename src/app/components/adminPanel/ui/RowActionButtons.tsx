@@ -1,18 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Box, Button, Dialog, DialogActions, DialogTitle, Menu, MenuItem, Typography, styled } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
+import { EssenseType } from '../../../models/components';
 
-
-export enum EssenseType {
-  materials = 'materials',
-  users = 'users',
-  competitions = 'competitions',
-  clubs = 'clubs',
-  schedules = 'schedules',
-  players = 'players'
-}
 
 interface IRowActionButtonsProps {
   id: string,

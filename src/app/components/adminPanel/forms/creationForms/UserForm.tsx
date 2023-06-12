@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../../../../features/store';
+import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Box, Button, Grid, styled } from '@mui/material';
+import { AppDispatch } from '../../../../../features/store';
 import { createUser, updateUser } from '../../../../../features/users/asyncActions';
 import { BackdropLoader, SelectField, TextInput } from '../../../ui/';
 import { getCountries } from '../../../../services/countries';
 import { IUser, UserRoles } from '../../../../../features/users/types';
 import { uploadImage } from '../../../../services/uploadImage';
-import { BackLink } from '../../ui/';
-import { useNavigate } from 'react-router-dom';
 
 
 interface IUserFormProps {
-  userToUpdate?: IUser
+  userToUpdate?: IUser;
+  onSetEditMode?: () => void;
 }
 
 const Form = styled(Box)`
@@ -27,7 +27,7 @@ const roles = [
 ];
 
 
-const UserForm: React.FC<IUserFormProps> = ({ userToUpdate }) => {
+const UserForm: React.FC<IUserFormProps> = ({ userToUpdate, onSetEditMode }) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const { register, control, handleSubmit, formState: { errors }, getValues, setValue, watch, reset } = useForm<IUser>();
@@ -58,7 +58,11 @@ const UserForm: React.FC<IUserFormProps> = ({ userToUpdate }) => {
       }));
     }
     setIsLoading(false);
-    navigate('/admin/users')
+    if(onSetEditMode) {
+      onSetEditMode();
+    } else {
+      navigate('/admin/users');
+    }
     reset();
   };
 
@@ -87,7 +91,6 @@ const UserForm: React.FC<IUserFormProps> = ({ userToUpdate }) => {
 
   return (
     <Box>
-      <BackLink link='/admin/users' title='Go back' />
       <Form component='form' onSubmit={handleSubmit(submitRegisterForm)}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>

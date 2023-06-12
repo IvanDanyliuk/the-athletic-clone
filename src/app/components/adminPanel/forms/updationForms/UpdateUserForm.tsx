@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { selectAllUsers } from '../../../../../features/users/selectors';
 import { AuthorForm } from '../creationForms';
+import { BackLink } from '../../ui';
 
 
 const UpdateUserForm: React.FC = () => {
@@ -11,7 +12,10 @@ const UpdateUserForm: React.FC = () => {
   const userToUpdate = users.find(user => user._id === id);
 
   return (
-    <AuthorForm userToUpdate={userToUpdate} />
+    <>
+      <BackLink link='/admin/users' title='Go back' />
+      <AuthorForm userToUpdate={userToUpdate} />
+    </>
   );
 };
 

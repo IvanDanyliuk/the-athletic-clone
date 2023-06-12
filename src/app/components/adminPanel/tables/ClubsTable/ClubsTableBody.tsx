@@ -4,9 +4,10 @@ import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import dayjs from 'dayjs';
 import { IClub } from '../../../../../features/clubs/types';
-import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
+import { RowActionButtons } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
 import { deleteClub } from '../../../../../features/clubs/asyncActions';
+import { EssenseType } from '../../../../models/components';
 
 
 interface IClubsTableBodyProps {
