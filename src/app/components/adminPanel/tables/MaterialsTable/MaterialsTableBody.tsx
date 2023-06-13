@@ -1,17 +1,18 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Button, TableBody, TableCell, TableRow, styled } from '@mui/material';
-import { v4 as uuid } from 'uuid';
-import { IMaterial } from '../../../../../features/materials/types';
-import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
-import { AppDispatch } from '../../../../../features/store';
-import { deleteMaterial, updateMaterial } from '../../../../../features/materials/asyncActions';
-import dayjs from 'dayjs';
-import { selectContentModeStatus, selectMaterialsToContent } from '../../../../../features/content/selectors';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
+import dayjs from 'dayjs';
+import { v4 as uuid } from 'uuid';
+import { IMaterial } from '../../../../../features/materials/types';
+import { RowActionButtons } from '../../ui/';
+import { AppDispatch } from '../../../../../features/store';
+import { deleteMaterial, updateMaterial } from '../../../../../features/materials/asyncActions';
+import { selectContentModeStatus, selectMaterialsToContent } from '../../../../../features/content/selectors';
 import { addMaterialToContent } from '../../../../../features/content/reducers';
-import { useNavigate } from 'react-router-dom';
+import { EssenseType } from '../../../../models/components';
 
 
 interface IMaterialsTableBodyProps {

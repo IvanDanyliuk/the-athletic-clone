@@ -3,11 +3,11 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Avatar, Box, Grid, List, ListItem, Paper, Typography, styled } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+import { faPenToSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { IContentSection } from '../../../../features/content/types';
-import ConfirmAction from '../ui/ConfirmAction';
+import ConfirmAction from '../../ui/ConfirmAction';
 import { AppDispatch } from '../../../../features/store';
 import { deleteContentSection } from '../../../../features/content/asyncActions';
 
@@ -59,7 +59,12 @@ const ContentSectionListItem: React.FC<IContentSectionListItem> = ({ data }) => 
             <FontAwesomeIcon icon={faPenToSquare} />
           </EditLink>
         </SectionTitle>
-        <ConfirmAction onDelete={() => handleSectionDelete(_id)} />
+        <ConfirmAction 
+          message='Do you want to delete this content section?' 
+          onAction={() => handleSectionDelete(_id)} 
+        >
+          <FontAwesomeIcon icon={faXmark} />
+        </ConfirmAction>
       </Box>
       <List>
         {materials.map(material => (

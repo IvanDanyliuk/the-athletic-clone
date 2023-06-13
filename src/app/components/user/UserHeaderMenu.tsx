@@ -4,11 +4,11 @@ import { Link } from 'react-router-dom';
 import { Avatar, Box, Menu, MenuItem, styled } from '@mui/material';
 import { AppDispatch } from '../../../features/store';
 import { logout } from '../../../features/users/asyncActions';
-import { UserModel } from '../../models/users';
+import { IUser } from '../../../features/users/types';
 
 
 interface IUserHeaderMenuProps {
-  user: UserModel
+  user: IUser
 }
 
 
@@ -57,7 +57,7 @@ const UserHeaderMenu: React.FC<IUserHeaderMenuProps> = ({ user }) => {
         onClose={handleMenuClose}
       >
         <UserMenuItem onClick={handleMenuClose}>
-          <Link to='/'>Profile</Link>
+          <Link to={`/profile/${user._id}`}>Profile</Link>
         </UserMenuItem>
         {user.role === 'admin' && (
           <UserMenuItem onClick={handleMenuClose}>

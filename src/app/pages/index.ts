@@ -12,4 +12,5 @@ export { default as Realtime } from './Realtime';
 export { default as Register } from './Register';
 export { default as Search } from './Search';
 export { default as Player } from './Player';
+export { default as Profile } from './Profile';
 export { default as Posts } from './Posts';

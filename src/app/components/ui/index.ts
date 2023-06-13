@@ -1,6 +1,7 @@
 export { default as BackdropLoader } from './BackdropLoader';
 export { default as Checkbox } from './Checkbox';
 export { default as ClubLabel } from './ClubLabel';
+export { default as ConfirmAction } from './ConfirmAction';
 export { default as ControlledDatePicker } from './ControlledDatePicker';
 export { default as DataNotFoundMessage } from './DataNotFoundMessage';
 export { default as ErrorSnackbar } from './ErrorSnackbar';

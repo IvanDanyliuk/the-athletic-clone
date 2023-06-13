@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { 
   getAuthenticatedUser, getUsers, login, logout, signup, 
-  deleteUser, getUsersLocations, updateUser, createUser 
+  deleteUser, getUsersLocations, updateUser, createUser, updatePassword 
 } from './asyncActions';
 import { IUserInitialState } from './types';
 
@@ -118,8 +118,20 @@ const userSlice = createSlice({
       .addCase(updateUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.data.users = state.data.users.map(user => user._id === action.payload._id ? action.payload : user);
+        state.user = state.user?._id === action.payload._id ? action.payload : state.user;
       })
       .addCase(updateUser.rejected, (state, action: any) => {
+        state.status = 'failed';
+        state.error = action.payload.error;
+      })
+      .addCase(updatePassword.pending, (state, action) => {
+        state.status = 'loading';
+      })
+      .addCase(updatePassword.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.user = action.payload;
+      })
+      .addCase(updatePassword.rejected, (state, action: any) => {
         state.status = 'failed';
         state.error = action.payload.error;
       })

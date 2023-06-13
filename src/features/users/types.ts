@@ -64,6 +64,12 @@ export interface IUserFiltersData {
   dateTo?: string
 }
 
+export interface IUserPasswordUpdationData {
+  id: string,
+  newPassword: string,
+  currPassword: string
+}
+
 export interface IDeleteUserData {
   id: string,
   page: number,

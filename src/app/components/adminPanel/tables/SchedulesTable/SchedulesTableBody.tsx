@@ -3,10 +3,11 @@ import { useDispatch } from 'react-redux';
 import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import dayjs from 'dayjs';
-import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
+import { RowActionButtons } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
 import { deleteSchedule } from '../../../../../features/schedules/asyncActions';
 import { ISchedule } from '../../../../../features/schedules/types';
+import { EssenseType } from '../../../../models/components';
 
 
 interface ISchedulesTableBodyProps {

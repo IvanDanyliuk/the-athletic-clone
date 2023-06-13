@@ -4,9 +4,10 @@ import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import dayjs from 'dayjs';
 import { IUser } from '../../../../../features/users/types';
-import RowActionButtons, { EssenseType } from '../../ui/RowActionButtons';
+import { RowActionButtons } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
 import { deleteUser } from '../../../../../features/users/asyncActions';
+import { EssenseType } from '../../../../models/components';
 
 
 interface IUserTableBodyProps {

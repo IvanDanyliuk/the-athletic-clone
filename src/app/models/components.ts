@@ -96,3 +96,12 @@ export interface ContentSectionModel {
   maxLength: number,
   materials: string[]
 }
+
+export enum EssenseType {
+  materials = 'materials',
+  users = 'users',
+  competitions = 'competitions',
+  clubs = 'clubs',
+  schedules = 'schedules',
+  players = 'players'
+}
