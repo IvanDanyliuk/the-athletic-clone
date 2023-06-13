@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import { 
-  Avatar, Box, Button, Grid, Table, TableBody, 
+  Avatar, Box, Button, Collapse, Grid, Table, TableBody, 
   TableCell, TableRow, Typography, styled 
 } from '@mui/material';
 import { selectUser, selectUserStatus } from '../../features/users/selectors';
-import { BackdropLoader, ConfirmAction } from '../components/ui';
+import { BackdropLoader, ConfirmAction, TextInput } from '../components/ui';
 import { AppDispatch } from '../../features/store';
-import { deleteUser, logout } from '../../features/users/asyncActions';
+import { deleteUser, logout, updatePassword } from '../../features/users/asyncActions';
 import { UserRoles } from '../../features/users/types';
 import { AuthorForm } from '../components/adminPanel/forms/creationForms/';
 
+
+interface IPasswordForm {
+  currentPassword: string;
+  newPassword: string;
+  confirmNewPassword: string;
+}
 
 const Container = styled(Box)`
   padding: 1em 0;
@@ -38,7 +45,16 @@ const UserPosition = styled(Typography)`
   color: #4a4a4a;
 `;
 
+const ChangePasswordFormContainer = styled(Collapse)`
+  margin-top: 1em;
+`;
+
+const SubmitBtn = styled(Button)`
+  margin-top: 1em;
+`;
+
 const ActionsSection = styled(Box)`
+  margin-top: 1em;
   display: flex;
 `;
 
@@ -46,14 +62,34 @@ const ActionsSection = styled(Box)`
 const Profile: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const { register, handleSubmit, formState: { errors }, setError, reset } = useForm<IPasswordForm>();
 
   const user = useSelector(selectUser);
   const userStatus = useSelector(selectUserStatus);
 
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
+  const [isPasswordChangeFormOpen, setIsPasswordChangeFormOpen] = useState<boolean>(false);
 
   const handleEditMode = () => {
     setIsEditMode(!isEditMode);
+  };
+
+  const handlePasswordChangeFormOpen = () => {
+    setIsPasswordChangeFormOpen(!isPasswordChangeFormOpen);
+  };
+
+  const submitPasswordForm = async (data: IPasswordForm) => {
+    if(data.newPassword === data.confirmNewPassword) {
+      await dispatch(updatePassword({
+        id: user?._id!,
+        newPassword: data.newPassword,
+        currPassword: data.currentPassword
+      }));
+      reset();
+      handlePasswordChangeFormOpen();
+    } else {
+      setError('confirmNewPassword', { message: 'Passwords do not match. Confirm a new password again' });
+    }
   };
 
   const deleteProfile = async () => {
@@ -103,8 +139,38 @@ const Profile: React.FC = () => {
                 </TableRow>
               </TableBody>
             </Table>
+            <ChangePasswordFormContainer in={isPasswordChangeFormOpen}>
+              <Box component='form' onSubmit={handleSubmit(submitPasswordForm)}>
+                <TextInput 
+                  name='currentPassword'
+                  label='Current Password'
+                  type='password'
+                  register={register}
+                  registerOptions={{ required: 'This field is required!' }}
+                  error={errors.currentPassword}
+                />
+                <TextInput 
+                  name='newPassword'
+                  label='New Password'
+                  type='password'
+                  register={register}
+                  registerOptions={{ required: 'This field is required!' }}
+                  error={errors.newPassword}
+                />
+                <TextInput 
+                  name='confirmNewPassword'
+                  label='Confirm Password'
+                  type='password'
+                  register={register}
+                  registerOptions={{ required: 'This field is required!' }}
+                  error={errors.confirmNewPassword}
+                />
+                <SubmitBtn type='submit' variant='contained' color='success'>Submit</SubmitBtn>
+              </Box>
+            </ChangePasswordFormContainer>
             <ActionsSection>
               <Button onClick={handleEditMode}>Edit</Button>
+              <Button onClick={handlePasswordChangeFormOpen}>Change Password</Button>
               {user?.role !== UserRoles.author && (
                 <ConfirmAction 
                   message='Are you sure you want to delete your profile?' 
