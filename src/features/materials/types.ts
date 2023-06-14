@@ -115,7 +115,7 @@ export interface IComment {
 
 export interface IMaterialSearchData {
   value: string | string[];
-  type: string;
+  type: string | string[];
 }
 
 export interface IGetLeagueMaterialsRequest {

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { Box, Button, Divider, styled, Typography } from '@mui/material';
 import { AppDispatch } from '../../features/store';
-import AuthButtons from '../components/authentication/AuthButtons';
+import { AuthButtons } from '../components/authentication/';
 import { login } from '../../features/users/asyncActions';
 import { ILoginCredentials } from '../../features/users/types';
 import { selectUserError, selectUserStatus } from '../../features/users/selectors';

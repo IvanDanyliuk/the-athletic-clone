@@ -6,7 +6,7 @@ import { styled } from '@mui/material';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Button, Checkbox, Divider, FormControlLabel, Grid, Typography } from '@mui/material';
-import AuthButtons from '../components/authentication/AuthButtons';
+import { AuthButtons } from '../components/authentication/';
 import { UserModel } from '../models/users';
 import { signup } from '../../features/users/asyncActions';
 import { AppDispatch } from '../../features/store';
