@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
+import { Box, Divider, Grid, Icon, IconButton, Input, Typography, styled } from '@mui/material';
+import { ManageSearch } from '@mui/icons-material';
 import { AppDispatch } from '../../features/store';
 import { getAuthors, searchMaterials } from '../../features/materials/asyncActions';
-import { Box, Divider, Grid, Icon, IconButton, Input, Typography, styled } from '@mui/material';
 import { SearchFilters, SearchResults } from '../components/search';
 import { getAllCompetitions } from '../../features/competitions/asyncActions';
 import { selectAuthors, selectSearchedMaterials } from '../../features/materials/selectors';
 import { selectAllCompetitions } from '../../features/competitions/selectors';
 import { DataNotFoundMessage } from '../components/ui';
 import { clearSearch } from '../../features/materials/reducers';
-import { ManageSearch } from '@mui/icons-material';
 
 
 interface ISearchField {
@@ -74,6 +74,7 @@ const Search: React.FC = () => {
   const handleSearchFormSubmit = async (data: ISearchField) => {
     await dispatch(searchMaterials({ value: data.search, type: ['article', 'note'] }));
     reset();
+    setFilterData([]);
   };
 
   useEffect(() => {
@@ -89,7 +90,7 @@ const Search: React.FC = () => {
 
   return (
     <Container container spacing={3}>
-      <Grid item xs={3}>
+      <Grid item xs={12} md={3}>
         {authors && leagues ? (
           <SearchFilters 
             authors={authors} 
@@ -101,7 +102,7 @@ const Search: React.FC = () => {
           <DataNotFoundMessage message='Cannot find available authors and leagues' />
         )}
       </Grid>
-      <Grid item xs={9}>
+      <Grid item xs={12} md={9}>
         <SearchForm component='form' onSubmit={handleSubmit(handleSearchFormSubmit)}>
           <SearchIcon type='submit'>
             <Icon component={ManageSearch} />
