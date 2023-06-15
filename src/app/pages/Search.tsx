@@ -32,6 +32,9 @@ const Search: React.FC = () => {
     } else {
       setFilterData([...filterData, label]);
     }
+    if(filterData.length) {
+      dispatch(clearSearch());
+    }
   };
 
   const handleSearchFormSubmit = async (data: ISearchField) => {
@@ -42,8 +45,6 @@ const Search: React.FC = () => {
   useEffect(() => {
     if(filterData.length > 0) {
       dispatch(searchMaterials({ value: filterData, type: ['article', 'note'] }));
-    } else {
-      dispatch(clearSearch());
     }
   }, [filterData, dispatch]);
 

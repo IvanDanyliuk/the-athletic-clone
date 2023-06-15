@@ -83,10 +83,10 @@ const SearchHeaderField: React.FC = () => {
   };
 
   const handleSearchFormSubmit = async (data: ISearchField) => {
-    console.log(data)
     await dispatch(searchMaterials({ value: data.search, type: ['article', 'note'] }));
     reset();
     navigate('/search');
+    handleSearchMenuOpen();
   };
 
   return (
