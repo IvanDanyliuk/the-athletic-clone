@@ -45,10 +45,6 @@ const SearchForm = styled(Box)`
 
 const SearchFieldContainer = styled(Box)`
   width: 100%;
-  p {
-    font-size: .7em;
-    color: #9e2c2c;
-  }
 `;
 
 const SearchField = styled(Input)`
@@ -62,6 +58,11 @@ const TableSection = styled(Grid)`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const ErrorMessage = styled(Typography)`
+  font-size: .7em;
+  color: #9e2c2c;
 `;
 
 const VerticalDivider = styled(Divider)`
@@ -107,7 +108,7 @@ const SearchHeaderField: React.FC = () => {
                     { ...register('search', { required: 'What do you need to find?' }) } 
                     aria-invalid={errors.search ? 'true' : 'false'}
                   />
-                  <Typography>{errors.search?.message}</Typography>
+                  <ErrorMessage>{errors.search?.message}</ErrorMessage>
                 </SearchFieldContainer>
               </TableSection>
               <TableSection item xs={1}>
