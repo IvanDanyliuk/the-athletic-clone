@@ -1,6 +1,6 @@
 import { screen, render, fireEvent } from '@testing-library/react';
-import { SearchFilters } from '../';
 import { competitions } from '../../../utils/testing/testDataMocks/competitions';
+import { SearchFilters } from '../';
 
 
 const propsMock = {
