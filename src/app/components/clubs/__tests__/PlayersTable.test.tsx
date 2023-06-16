@@ -8,9 +8,9 @@ describe('PlayersTable tests', () => {
   test('should render passed data', () => {
     render(
       <MemoryRouter>
-        <PlayersTable title='Midfielders' players={playersStateSuccessMock.data.players} />
+        <PlayersTable title='Midfielders' players={playersStateSuccessMock.data.main.players} />
       </MemoryRouter>
     );
-    expect(screen.getAllByTestId('playersTableRow')).toHaveLength(playersStateSuccessMock.data.players.length);
+    expect(screen.getAllByTestId('playersTableRow')).toHaveLength(playersStateSuccessMock.data.main.players.length);
   });
 });

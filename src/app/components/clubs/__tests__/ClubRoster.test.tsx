@@ -34,6 +34,6 @@ describe('ClubRoster tests', () => {
       }
     );
 
-    expect(screen.getAllByText(`${playersStateSuccessMock.data.players[0].firstName} ${playersStateSuccessMock.data.players[0].lastName}`)).toHaveLength(playersStateSuccessMock.data.players.length);
+    expect(screen.getAllByText(`${playersStateSuccessMock.data.main.players[0].firstName} ${playersStateSuccessMock.data.main.players[0].lastName}`)).toHaveLength(playersStateSuccessMock.data.main.players.length);
   });
 });

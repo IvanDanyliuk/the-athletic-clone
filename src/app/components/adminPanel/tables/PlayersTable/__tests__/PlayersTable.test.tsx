@@ -8,8 +8,11 @@ import { PlayersTable } from '../';
 const playersStateMock = {
   status: 'loading',
   data: {
-    players: [],
-    playersCount: 0
+    main: {
+      players: [],
+      playersCount: 0
+    },
+    player: null
   },
   filters: null,
   error: null

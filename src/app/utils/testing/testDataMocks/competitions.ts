@@ -1,4 +1,4 @@
-import { ICompetitionsInitialState } from '../../../../features/competitions/types';
+import { ICompetition, ICompetitionsInitialState } from '../../../../features/competitions/types';
 import { CompetitionModel } from '../../../models/components';
 
 export const competitionsStateSuccessMock: ICompetitionsInitialState = {
@@ -361,7 +361,7 @@ export const competitionsStateErrorMock: ICompetitionsInitialState = {
   error: 'error'
 };
 
-export const competitions = [
+export const competitions: ICompetition[] = [
   {
     _id: '641ca17ae8277803cff5195e',
     fullName: 'Premier League',

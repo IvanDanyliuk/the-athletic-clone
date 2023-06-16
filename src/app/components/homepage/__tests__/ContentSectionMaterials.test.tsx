@@ -11,6 +11,6 @@ describe('ContentSection tests', () => {
         <ContentSectionMaterials materials={contentSection.materials} />
       </BrowserRouter>
     );
-    expect(screen.getByText(contentSection.materials[0].title)).toBeInTheDocument();
+    expect(screen.getAllByText(contentSection.materials[0].title)[0]).toBeInTheDocument();
   });
 });

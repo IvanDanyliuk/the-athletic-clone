@@ -179,6 +179,9 @@ const Profile: React.FC = () => {
                   Delete
                 </ConfirmAction>
               )}
+              {/* {user?.role === UserRoles.author && (
+
+              )} */}
             </ActionsSection>
           </Grid>
         </Grid>

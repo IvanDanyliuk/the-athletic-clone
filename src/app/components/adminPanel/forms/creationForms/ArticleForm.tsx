@@ -10,7 +10,10 @@ import { createMaterial, updateMaterial } from '../../../../../features/material
 import { selectUser } from '../../../../../features/users/selectors';
 import { uploadImage } from '../../../../services/uploadImage';
 import { BackLink, TextEditor } from '../../ui/';
-import { BackdropLoader, Checkbox, ControlledDatePicker, MultiSelect, SelectField, TextInput } from '../../../ui/';
+import { 
+  BackdropLoader, Checkbox, ControlledDatePicker, 
+  MultiSelect, SelectField, TextInput 
+} from '../../../ui/';
 import { IMaterial } from '../../../../../features/materials/types';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';

@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { Box, Button, Container, styled, useMediaQuery } from '@mui/material';
 import { BtnMenu, BtnMenuMobile, Navigation } from '../navigation/';
-import UserHeaderMenu from '../user/UserHeaderMenu';
+import { UserHeaderMenu } from '../user/';
 import { selectUser } from '../../../features/users/selectors';
 import { selectAllCompetitions } from '../../../features/competitions/selectors';
 import { AppDispatch } from '../../../features/store';
 import { getAllCompetitions } from '../../../features/competitions/asyncActions';
+import { SearchHeaderField } from '../search';
 
 
 const Wrapper = styled(Box)`
@@ -93,6 +94,11 @@ const Header: React.FC = () => {
           )
         }
         <SubscribeBtn >Subscribe</SubscribeBtn>
+        {
+          !isMobile && (
+            <SearchHeaderField />
+          )
+        }
       </Content>
     </Wrapper>
   );
