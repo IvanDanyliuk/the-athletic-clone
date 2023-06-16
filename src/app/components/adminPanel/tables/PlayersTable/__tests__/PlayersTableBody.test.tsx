@@ -27,7 +27,7 @@ describe('PlayersTableBody tests', () => {
       <PlayersTableBody 
         page={0} 
         itemsPerPage={10} 
-        players={playersStateSuccessMock.data.players.slice(0, 2)} 
+        players={playersStateSuccessMock.data.main.players.slice(0, 2)} 
       />
     );
 
