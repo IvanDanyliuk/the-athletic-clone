@@ -1,7 +1,7 @@
 import { screen, render } from '@testing-library/react';
-import { SearchResults } from '../';
-import { materialsStateSuccessMock } from '../../../utils/testing/testDataMocks/materials';
 import { BrowserRouter } from 'react-router-dom';
+import { materialsStateSuccessMock } from '../../../utils/testing/testDataMocks/materials';
+import { SearchResults } from '../';
 
 
 describe('SearchResults tests', () => {
