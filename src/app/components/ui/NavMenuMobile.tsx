@@ -3,7 +3,15 @@ import { NavLink } from 'react-router-dom';
 import { Box, Button, Menu, MenuItem, styled } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { v4 as uuid } from 'uuid';
 
+
+interface INavMenuMobileProps {
+  links: {
+    url: string,
+    label: string
+  }[]
+}
 
 const NavMenuContainer = styled(Box)`
   position: relative;
@@ -37,7 +45,7 @@ const MenuLink = styled(NavLink)`
 `;
 
 
-const AdminPanelNavMenuMobile: React.FC = () => {
+const NavMenuMobile: React.FC<INavMenuMobileProps> = ({ links }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -88,30 +96,14 @@ const AdminPanelNavMenuMobile: React.FC = () => {
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
-        <MenuItem onClick={handleClose}>
-          <MenuLink to='materials'>Materials</MenuLink>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <MenuLink to='competitions'>Competitions</MenuLink>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <MenuLink to='clubs'>Clubs</MenuLink>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <MenuLink to='users'>Users</MenuLink>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <MenuLink to='players'>Players</MenuLink>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <MenuLink to='schedules'>Schedules</MenuLink>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <MenuLink to='content'>Content</MenuLink>
-        </MenuItem>
+        {links.map(link => (
+          <MenuItem key={uuid()} onClick={handleClose}>
+            <MenuLink to='materials'>Materials</MenuLink>
+          </MenuItem>
+        ))}
       </Menu>
     </NavMenuContainer>
   );
 };
 
-export default AdminPanelNavMenuMobile;
+export default NavMenuMobile;

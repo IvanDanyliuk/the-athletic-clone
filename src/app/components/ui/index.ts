@@ -1,3 +1,5 @@
+export { default as NavMenu } from './NavMenu';
+export { default as NavMenuMobile } from './NavMenuMobile';
 export { default as BackdropLoader } from './BackdropLoader';
 export { default as Checkbox } from './Checkbox';
 export { default as ClubLabel } from './ClubLabel';
