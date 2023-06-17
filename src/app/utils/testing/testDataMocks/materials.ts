@@ -297,7 +297,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
   },
   searchValues: null,
   search: null,
-  authors: ['John Doe'],
+  authors: [{ name: 'John Doe', userId: '63e8db447a8501b5b2a8428b' }],
   error: null
 };
 

@@ -37,12 +37,6 @@ const SubmitBtn = styled(Button)`
   }
 `;
 
-// const authors = [
-//   { label: 'John Doe', value: 'John Doe' }, 
-//   { label: 'Rowan Atkinson', value: 'Rowan Atkinson' }, 
-//   { label: 'Jack Sparrow', value: 'Jack Sparrow' }
-// ];
-
 const types = [
   { label: 'Article', value: MaterialType.article }, 
   { label: 'Note', value: MaterialType.note }, 
@@ -56,7 +50,7 @@ const MaterialFilters: React.FC = () => {
   const [dateError, setDateError] = useState<string | null>(null);
 
   const authorsData = useSelector(selectAuthors);
-  const authors = authorsData.map(author => ({ label: author, value: author }));
+  const authors = authorsData.map(author => ({ label: author.name, value: author.userId }));
 
   const sumbitFilterData = (data: any) => {
     const isDatesValid = checkFilterTimeInterval(data.dateFrom, data.dateTo, handleDateError);

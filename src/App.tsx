@@ -61,6 +61,10 @@ const App: React.FC = () => {
                 <Route index element={<UserDataTab />} />
                 <Route path='user' element={<UserDataTab />} />
                 <Route path='materials' element={<UserMaterialsTab />} />
+                <Route path='materials/create/article' element={<ArticleForm />} />
+                <Route path='materials/create/note' element={<NoteForm />} />
+                <Route path='materials/create/post' element={<RealtimePostForm />} />
+                <Route path='materials/edit/:id' element={<UpdateMaterialForm />} />
               </Route>
               <Route path='/search' element={<Search />} />
               <Route path='/news' element={<News />} />

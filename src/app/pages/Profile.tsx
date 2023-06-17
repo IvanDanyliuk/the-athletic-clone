@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Box, Grid, styled, useMediaQuery } from '@mui/material';
 import { NavMenu, NavMenuMobile } from '../components/ui';
 import { selectUser } from '../../features/users/selectors';
@@ -20,11 +20,18 @@ const navLinks = [
 
 const Profile: React.FC = () => {
   const isMobile = useMediaQuery('(max-width:640px)');
+  const navigate = useNavigate();
 
   const user = useSelector(selectUser);
   const checkedLinks = user?.role === 'reader' ? 
     navLinks.filter(link => link.url !== 'materials') : 
     navLinks;
+
+  useEffect(() => {
+    if(!user) {
+      navigate('/');
+    }
+  }, [user, navigate]);
 
   return (
     <Grid container>

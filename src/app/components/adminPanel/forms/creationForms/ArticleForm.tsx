@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Box, Button, Grid, styled } from '@mui/material';
 import dayjs from 'dayjs';
@@ -43,6 +43,7 @@ interface INewArticleFormProps {
 const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const location = useLocation();
   const { 
     register, 
     handleSubmit, 
@@ -65,6 +66,8 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
     label: competition.fullName, 
     value: competition.fullName 
   }));
+
+  const backPath = location.pathname.split('/').slice(0, -2).join('/');
 
   const handleLabelSelect = (event: any) => {
     const {
@@ -90,7 +93,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
         labels: selectedLabels,
       }));
       setIsLoading(false);
-      navigate('/admin/materials');
+      navigate(backPath);
     } else {
       setIsLoading(true);
       const imageUrl = data.image.length > 0 ? await uploadImage(data.image[0]) : '';
@@ -112,7 +115,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
         comments: []
       }));
       setIsLoading(false);
-      navigate('/admin/materials');
+      navigate(backPath);
     }
     reset();
   };
@@ -136,7 +139,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
 
   return (
     <Box>
-      <BackLink link='/admin/materials' title='Go back' />
+      <BackLink link={backPath} title='Go back' />
       <Form component='form' onSubmit={handleSubmit(handleFormSubmit)}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={9}>

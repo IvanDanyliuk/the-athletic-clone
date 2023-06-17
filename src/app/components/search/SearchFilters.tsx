@@ -10,7 +10,10 @@ import { ICompetition } from '../../../features/competitions/types';
 
 
 interface ISearchFiltersProps {
-  authors: string[];
+  authors: {
+    name: string;
+    userId: string
+  }[];
   leagues: ICompetition[];
   checkedLabels: string[];
   onSetFilterData: (label: string) => void;
@@ -49,6 +52,8 @@ const SearchFilters: React.FC<ISearchFiltersProps> = ({ authors, leagues, checke
     setIsMobileFiltersOpen(!isMobileFiltersOpen);
   };
 
+  console.log(authors)
+
   return (
     <Container>
       {isMobile ? (
@@ -66,11 +71,11 @@ const SearchFilters: React.FC<ISearchFiltersProps> = ({ authors, leagues, checke
               <List subheader={<Typography variant='h2_custom'>Authors</Typography>}>
                 {authors.map(author => (
                   <FilterListItem key={uuid()}>
-                    <FilterListItemButton role={undefined} onClick={() => onSetFilterData(author)} dense>
-                      <ListItemText id={author} primary={author} />
+                    <FilterListItemButton role={undefined} onClick={() => onSetFilterData(author.userId)} dense>
+                      <ListItemText id={author.userId} primary={author.name} />
                       <ListItemIcon>
                         <Checkbox 
-                          checked={checkedLabels.includes(author)} 
+                          checked={checkedLabels.includes(author.userId)} 
                         />
                       </ListItemIcon>
                     </FilterListItemButton>
@@ -100,11 +105,11 @@ const SearchFilters: React.FC<ISearchFiltersProps> = ({ authors, leagues, checke
           <List subheader={<Typography variant='h2_custom'>Authors</Typography>}>
             {authors.map(author => (
               <FilterListItem key={uuid()}>
-                <FilterListItemButton role={undefined} onClick={() => onSetFilterData(author)} dense>
-                  <ListItemText id={author} primary={author} />
+                <FilterListItemButton role={undefined} onClick={() => onSetFilterData(author.userId)} dense>
+                  <ListItemText id={author.userId} primary={author.name} />
                   <ListItemIcon>
                     <Checkbox 
-                      checked={checkedLabels.includes(author)} 
+                      checked={checkedLabels.includes(author.userId)} 
                     />
                   </ListItemIcon>
                 </FilterListItemButton>

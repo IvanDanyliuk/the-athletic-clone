@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Box, Button, Grid, styled } from '@mui/material';
 import dayjs from 'dayjs';
@@ -34,6 +34,7 @@ interface INewRealTimePostFormProps {
 const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate }) => {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const location = useLocation();
   const { register, handleSubmit, control, formState: { errors }, reset } = useForm<MaterialModel>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
@@ -43,6 +44,8 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
   const clubs = clubsData.map(club => ({ label: club.commonName, value: club.commonName }));
   const competitionsData = useSelector(selectAllCompetitions);
   const competitions = competitionsData.map(competition => ({ label: competition.fullName, value: competition.fullName }));
+
+  const backPath = location.pathname.split('/').slice(0, -2).join('/');
 
   const handleLabelSelect = (event: any) => {
     const {
@@ -64,7 +67,7 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
         labels: selectedLabels,
       }));
       setIsLoading(false);
-      navigate('/admin/materials');
+      navigate(backPath);
     } else {
       setIsLoading(true);
       await dispatch(createMaterial({
@@ -85,7 +88,7 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
         comments: []
       }));
       setIsLoading(false);
-      navigate('/admin/materials');
+      navigate(backPath);
     }
     reset();
   };
@@ -105,7 +108,7 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
 
   return (
     <Box>
-      <BackLink link='/admin/materials' title='Go back' />
+      <BackLink link={backPath} title='Go back' />
       <Form component='form' onSubmit={handleSubmit(handleFormSubmit)}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={3}>

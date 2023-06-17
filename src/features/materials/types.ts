@@ -22,7 +22,10 @@ export interface IMaterialsState {
   filters: MaterialFilterData | null;
   searchValues: any;
   search: IMaterial[] | null;
-  authors: string[];
+  authors: {
+    name: string;
+    userId: string;
+  }[];
   error: string | null
 }
 
@@ -84,7 +87,8 @@ export interface ILikeMaterialData {
 export interface IDeleteMaterialData {
   id: string;
   page: number;
-  itemsPerPage: number
+  itemsPerPage: number,
+  userId?: string
 }
 
 export enum Order {

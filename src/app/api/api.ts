@@ -35,7 +35,7 @@ export const getSearchValues = (value: string) => API.get('/materials/search-val
 export const searchMaterials = (value: string | string[], type: string | string[], materialsNum?: number) => API.get('/materials/search', { params: { value, type, materialsNum } });
 export const getMaterial = (id: string) => API.get(`/materials/${id}`);
 export const updateMaterial = (materialToUpdate: IMaterial) => API.patch('/materials', materialToUpdate);
-export const deleteMaterial = (id: string, page: number, itemsPerPage: number) => API.delete('/materials', { params: { id, page, itemsPerPage } });
+export const deleteMaterial = (id: string, page: number, itemsPerPage: number, userId?: string) => API.delete('/materials', { params: { id, page, itemsPerPage, userId } });
 
 export const createClub = (clubData: ClubModel) => API.post('/clubs', clubData);
 export const getClubs = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/clubs', { params: { page, itemsPerPage, filterData, sortData } });

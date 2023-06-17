@@ -89,7 +89,7 @@ export const getAuthors = createAsyncThunk(
   async (_: void, thunkAPI) => {
     try {
       const { data } = await api.getUsersByRole(UserRoles.author);
-      const authors = data.map((author: IUser) => `${author.firstName} ${author.lastName}`);
+      const authors = data.map((author: IUser) => ({ name: `${author.firstName} ${author.lastName}`, userId: author._id }));
       return authors;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
@@ -161,9 +161,9 @@ export const updateMaterial = createAsyncThunk(
 export const deleteMaterial = createAsyncThunk(
   'materials/deleteMaterial',
   async (deleteData: IDeleteMaterialData, thunkAPI) => {
-    const { id, page, itemsPerPage } = deleteData;
+    const { id, page, itemsPerPage, userId } = deleteData;
     try {
-      const { data } = await api.deleteMaterial(id, page, itemsPerPage);
+      const { data } = await api.deleteMaterial(id, page, itemsPerPage, userId );
       return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);

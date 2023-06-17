@@ -1,8 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Box, styled, Typography } from '@mui/material';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Box, Icon, IconButton, styled, Typography } from '@mui/material';
+import { Add } from '@mui/icons-material';
 
 
 interface ISubPageHeaderProps {
@@ -18,19 +17,22 @@ const Container = styled(Box)`
 `;
 
 const LinkBtn = styled(Link)`
+  text-decoration: none;
+`;
+
+const MenuBtn = styled(IconButton)`
+  cursor: pointer;
   width: 44px;
   height: 44px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   border-radius: 22px;
-  line-height: 1em;
-  text-decoration: none;
+  border: none;
   background: #30b77e;
   color: #ffffff;
-
   svg {
     font-size: 20px;
+  }
+  &:hover {
+    background: #74d5ac;
   }
 `;
 
@@ -42,7 +44,9 @@ const SubPageHeader: React.FC<ISubPageHeaderProps> = ({ title, link }) => {
         {title}
       </Typography>
       <LinkBtn to={`/admin/${link}`}>
-        <FontAwesomeIcon icon={faPlus} />
+        <MenuBtn>
+          <Icon component={Add} />
+        </MenuBtn>
       </LinkBtn>
     </Container>
   );
