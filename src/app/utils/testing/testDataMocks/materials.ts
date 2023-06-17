@@ -11,6 +11,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -37,6 +38,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -63,6 +65,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -89,6 +92,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -115,6 +119,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -141,6 +146,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -167,6 +173,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -193,6 +200,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -219,6 +227,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -245,6 +254,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -316,6 +326,7 @@ export const materialsStateErrorMock: IMaterialsState = {
 export const newArticle: MaterialModel = {
   author: { 
     name: 'Test Author',
+    userId: '63e8db447a8501b5b2a8428b',
     photoUrl: 'http://www.storage.com/authors/1.png',
     organization: 'Test Organization',
     position: 'Test Position',
@@ -342,6 +353,7 @@ export const newArticle: MaterialModel = {
 export const articleToUpdate = {
   author: {
     name: 'John Doe',
+    userId: '63e8db447a8501b5b2a8428b',
     photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
     organization: 'The Athletic',
     position: 'Website Administrator'
@@ -369,6 +381,7 @@ export const articleToUpdate = {
 export const newNote: MaterialModel = {
   author: { 
     name: 'Test Author',
+    userId: '63e8db447a8501b5b2a8428b',
     photoUrl: 'http://www.storage.com/authors/1.png',
     organization: 'Test Organization',
     position: 'Test Position',
@@ -394,6 +407,7 @@ export const newNote: MaterialModel = {
 export const noteToUpdate = {
   author: {
     name: 'John Doe',
+    userId: '63e8db447a8501b5b2a8428b',
     photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
     organization: 'The Athletic',
     position: 'Website Administrator'
@@ -420,6 +434,7 @@ export const noteToUpdate = {
 export const newPost: MaterialModel = {
   author: { 
     name: 'Test Author',
+    userId: '63e8db447a8501b5b2a8428b',
     photoUrl: 'http://www.storage.com/authors/1.png',
     organization: 'Test Organization',
     position: 'Test Position',
@@ -444,6 +459,7 @@ export const newPost: MaterialModel = {
 export const postToUpdate = {
   author: {
     name: 'John Doe',
+    userId: '63e8db447a8501b5b2a8428b',
     photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
     organization: 'The Athletic',
     position: 'Website Administrator'

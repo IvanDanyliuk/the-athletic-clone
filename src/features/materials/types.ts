@@ -50,6 +50,7 @@ export interface IMaterial {
   _id: string;
   author: { 
     name: string;
+    userId: string;
     photoUrl?: string;
     organization: string;
     position: string;

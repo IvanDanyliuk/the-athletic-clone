@@ -12,6 +12,7 @@ export const contentStateSuccessMock: IContentSectionsInitialState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -36,6 +37,7 @@ export const contentStateSuccessMock: IContentSectionsInitialState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -68,6 +70,7 @@ export const contentStateSuccessMock: IContentSectionsInitialState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -92,6 +95,7 @@ export const contentStateSuccessMock: IContentSectionsInitialState = {
         {
           author: {
             name: 'John Doe',
+            userId: '63e8db447a8501b5b2a8428b',
             photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
             organization: 'The Athletic',
             position: 'Website Administrator'
@@ -130,6 +134,7 @@ export const contentSection: IContentSection = {
     {
       author: {
         name: 'John Doe',
+        userId: '63e8db447a8501b5b2a8428b',
         photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
         organization: 'The Athletic',
         position: 'Website Administrator'
@@ -154,6 +159,7 @@ export const contentSection: IContentSection = {
     {
       author: {
         name: 'John Doe',
+        userId: '63e8db447a8501b5b2a8428b',
         photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
         organization: 'The Athletic',
         position: 'Website Administrator'

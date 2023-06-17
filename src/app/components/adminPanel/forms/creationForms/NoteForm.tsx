@@ -81,6 +81,7 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
         ...data,
         author: {
           name: `${user?.firstName} ${user?.lastName}`,
+          userId: user?._id,
           photoUrl: user?.userPhotoUrl,
           organization: user?.organization,
           position: user?.position

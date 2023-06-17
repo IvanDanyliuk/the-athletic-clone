@@ -23,6 +23,7 @@ export interface CompetitionModel {
 export interface MaterialModel {
   author: { 
     name: string,
+    userId: string, 
     photoUrl?: string,
     organization: string,
     position: string,

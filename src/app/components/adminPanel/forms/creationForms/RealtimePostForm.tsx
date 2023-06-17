@@ -71,6 +71,7 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
         ...data,
         author: {
           name: `${user?.firstName} ${user?.lastName}`,
+          userId: user?._id,
           photoUrl: user?.userPhotoUrl,
           organization: user?.organization,
           position: user?.position
