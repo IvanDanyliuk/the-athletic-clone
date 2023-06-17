@@ -1,10 +1,10 @@
 import React from 'react';
 
 
-const AuthorMaterials = () => {
+const AuthorMaterialsTab: React.FC = () => {
   return (
     <div>AuthorMaterials</div>
   );
 };
 
-export default AuthorMaterials;
+export default AuthorMaterialsTab;

@@ -23,6 +23,7 @@ import { Content } from './app/components/adminPanel/sections/';
 import { Post, PostList } from './app/components/materials/';
 import { CompetitionHome, CompetitionScores, CompetitionStandings, CompetitionTeams } from './app/components/competitions/';
 import { ClubHome, ClubRoster, ClubSchedule } from './app/components/clubs';
+import { UserDataTab, AuthorMaterialsTab } from './app/components/profile/';
 
 
 const App: React.FC = () => {
@@ -56,7 +57,11 @@ const App: React.FC = () => {
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
               <Route path='/checkout' element={<Checkout />} />
-              <Route path='/profile/:id' element={<Profile />} />
+              <Route path='/profile/:id' element={<Profile />}>
+                <Route index element={<UserDataTab />} />
+                <Route path='user' element={<UserDataTab />} />
+                <Route path='materials' element={<AuthorMaterialsTab />} />
+              </Route>
               <Route path='/search' element={<Search />} />
               <Route path='/news' element={<News />} />
               <Route path='/realtime' element={<Realtime />} />
