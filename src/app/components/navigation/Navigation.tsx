@@ -109,7 +109,7 @@ const Navigation: React.FC<INavigationProps> = ({ links }) => {
         transitionDuration={0}
         onClose={handleMenuClose}
       >
-        <Box onMouseLeave={handleMenuClose}>
+        <Box data-testid='dropdownMenu' onMouseLeave={handleMenuClose}>
           {activeLink && (
             <Container maxWidth='xl'>
               <TopLinkList>
