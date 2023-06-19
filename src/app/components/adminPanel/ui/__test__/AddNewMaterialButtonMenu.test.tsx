@@ -1,7 +1,6 @@
-import { screen, render, fireEvent, cleanup, waitFor } from '@testing-library/react';
+import { screen, render, fireEvent, cleanup } from '@testing-library/react';
 import { AddNewMaterialButtonMenu } from '../';
 import { BrowserRouter } from 'react-router-dom';
-import { act } from 'react-dom/test-utils';
 
 
 const propsMock = [

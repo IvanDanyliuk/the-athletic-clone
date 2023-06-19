@@ -89,7 +89,7 @@ const BtnMenu: React.FC<IMainMenuProps> = ({ links }) => {
         transitionDuration={0}
         onClose={handleMenuClose}
       >
-        <NavSection onMouseLeave={handleMenuClose}>
+        <NavSection data-testid='navSection' onMouseLeave={handleMenuClose}>
           <Container maxWidth='xl'>
             <Grid container spacing={2}>
               <Grid item sm={12} md={8}>
