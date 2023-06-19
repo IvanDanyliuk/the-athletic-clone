@@ -6,6 +6,7 @@ import { competitionsStateSuccessMock } from '../../../utils/testing/testDataMoc
 
 describe('Navigation tests', () => {
   beforeEach(() => {
+    //eslint-disable-next-line
     render(
       <BrowserRouter>
         <Navigation links={competitionsStateSuccessMock.data.main.competitions} />

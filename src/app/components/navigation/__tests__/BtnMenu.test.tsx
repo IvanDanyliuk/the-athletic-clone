@@ -6,6 +6,7 @@ import { competitionsStateSuccessMock } from '../../../utils/testing/testDataMoc
 
 describe('BtnMenu tests', () => {
   beforeEach(() => {
+    //eslint-disable-next-line
     render(
       <BrowserRouter>
         <BtnMenu links={competitionsStateSuccessMock.data.main.competitions} />
