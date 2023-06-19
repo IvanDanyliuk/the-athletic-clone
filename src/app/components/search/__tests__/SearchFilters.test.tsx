@@ -4,7 +4,7 @@ import { SearchFilters } from '../';
 
 
 const propsMock = {
-  authors: ['John Doe', 'Emily Clarks'],
+  authors: [{ name: 'John Doe', userId: '63e8db447a8501b5b2a8428b'}, { name: 'Emily Clarks', userId: '63e8db447a8501b5b2a8430b' }],
   leagues: competitions,
   checkedLabels: ['John Doe'],
   onSetFilterData: jest.fn()
