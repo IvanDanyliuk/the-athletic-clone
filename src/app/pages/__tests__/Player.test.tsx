@@ -1,13 +1,13 @@
 import { cleanup, screen } from '@testing-library/react';
 import { Player } from '../';
-import { setupClubsSuccessHandlers } from '../../utils/testing/serverMocks/clubs';
 import { renderWithProviders } from '../../utils/testing/customRenderMethod';
-import { clubToUpdate, clubsStateSuccessMock } from '../../utils/testing/testDataMocks/clubs';
+import { setupPlayersSuccessHandlers } from '../../utils/testing/serverMocks/players';
+import { playerToUpdate, playersStateSuccessMock } from '../../utils/testing/testDataMocks/players';
 
 
 describe('Player page tests', () => {
   beforeEach(() => {
-    setupClubsSuccessHandlers();
+    setupPlayersSuccessHandlers();
   });
 
   afterEach(() => {
@@ -16,37 +16,37 @@ describe('Player page tests', () => {
 
   test('should render the Player page', async () => {
     renderWithProviders(
-      <Club />,
+      <Player />,
       {
         preloadedState: {
-          clubs: {
-            ...clubsStateSuccessMock,
+          players: {
+            ...playersStateSuccessMock,
             data: {
-              ...clubsStateSuccessMock.data,
-              club: clubToUpdate
+              ...playersStateSuccessMock.data,
+              player: playerToUpdate
             }
           }
         }
       }
     );
-    expect(screen.getAllByRole('link')).toHaveLength(3);
+    expect(screen.getByText(`${playerToUpdate.firstName} ${playerToUpdate.lastName}`)).toBeInTheDocument();
   });
 
-  test('should render the loader component', async () => {
+  test('should render the error messaget', async () => {
     renderWithProviders(
-      <Club />,
+      <Player />,
       {
         preloadedState: {
-          clubs: {
-            ...clubsStateSuccessMock,
+          players: {
+            ...playersStateSuccessMock,
             data: {
-              ...clubsStateSuccessMock.data,
-              club: null
+              ...playersStateSuccessMock.data,
+              player: null
             }
           }
         }
       }
     );
-    expect(screen.getByTestId('backgroundLoader')).toBeInTheDocument();
+    expect(screen.getByText('Player not found')).toBeInTheDocument();
   });
 });
