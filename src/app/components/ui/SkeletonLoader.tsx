@@ -16,7 +16,7 @@ interface ISkeletonLoaderProps {
 const SkeletonLoader: React.FC<ISkeletonLoaderProps> = ({ variant }) => {
   if(variant === SkeletonVariants.Section) {
     return (
-      <Grid container spacing={3} sx={{ width: '100%' }}>
+      <Grid data-testid='skeletonLoader' container spacing={3} sx={{ width: '100%' }}>
         <Grid item xs={6}>
           <Skeleton sx={{ height: '100%' }} />
         </Grid>
