@@ -14,7 +14,7 @@ jest.mock('react-redux', () => ({
   useDispatch: () => mockedUseDispatch,
 }));
 
-describe('Club page tests', () => {
+describe('Material page tests', () => {
   beforeEach(() => {
     setupMaterialsSuccessHandlers();
     setupUsersSuccessHandlers();

@@ -5,7 +5,7 @@ import { competitionToUpdate, competitionsStateSuccessMock } from '../../utils/t
 import { setupCompetitionsSuccessHandlers } from '../../utils/testing/serverMocks/competitions';
 
 
-describe('Club page tests', () => {
+describe('Competition page tests', () => {
   beforeEach(() => {
     setupCompetitionsSuccessHandlers();
   });
