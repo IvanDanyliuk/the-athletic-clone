@@ -1,14 +1,13 @@
 import { cleanup, screen } from '@testing-library/react';
 import { Competition } from '../';
-import { setupClubsSuccessHandlers } from '../../utils/testing/serverMocks/clubs';
 import { renderWithProviders } from '../../utils/testing/customRenderMethod';
-import { clubToUpdate, clubsStateSuccessMock } from '../../utils/testing/testDataMocks/clubs';
 import { competitionToUpdate, competitionsStateSuccessMock } from '../../utils/testing/testDataMocks/competitions';
+import { setupCompetitionsSuccessHandlers } from '../../utils/testing/serverMocks/competitions';
 
 
 describe('Club page tests', () => {
   beforeEach(() => {
-    setupClubsSuccessHandlers();
+    setupCompetitionsSuccessHandlers();
   });
 
   afterEach(() => {
