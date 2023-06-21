@@ -6,7 +6,7 @@ import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../features/store';
 import { getRecentMaterials } from '../../features/materials/asyncActions';
 import { selectMaterials } from '../../features/materials/selectors';
-import { BackdropLoader } from '../components/ui/';
+import { BackdropLoader } from '../components/ui';
 
 
 const MaterialLink = styled(Link)`
@@ -84,7 +84,7 @@ const OtherMaterials = styled(Box)`
 `;
 
 
-const Materials: React.FC = () => {
+const RecentMaterials: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const materials = useSelector(selectMaterials);
 
@@ -183,4 +183,4 @@ const Materials: React.FC = () => {
   );
 };
 
-export default Materials;
+export default RecentMaterials;

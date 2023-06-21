@@ -3,7 +3,7 @@ export { default as Checkout } from './Checkout';
 export { default as Club } from './Club';
 export { default as Competition } from './Competition';
 export { default as Home } from './Home';
-export { default as RecentMaterials } from './Materials';
+export { default as RecentMaterials } from './RecentMaterials';
 export { default as Login } from './Login';
 export { default as Material } from './Material';
 export { default as News } from './News';
