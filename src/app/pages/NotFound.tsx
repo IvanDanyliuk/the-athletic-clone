@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Grid, styled, Typography, useMediaQuery } from '@mui/material';
-import { materials } from '../../data';
 import { setPreviewText } from '../utils/helpers';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectHomepageSecondaryMaterials } from '../../features/materials/selectors';
+import { DataNotFoundMessage } from '../components/ui';
+import { AppDispatch } from '../../features/store';
+import { getRecentMaterials } from '../../features/materials/asyncActions';
 
 
 const Wrapper = styled(Box)`
@@ -50,6 +54,10 @@ const Message = styled(Typography)`
   @media (max-width: 640px) {
     font-size: .9em;
   }
+`;
+
+const ArticleLink = styled(Link)`
+
 `;
 
 const Article = styled(Box)`
@@ -109,9 +117,24 @@ const BackLinkContainer = styled(Box)`
 
 
 const NotFound: React.FC = () => {
-  const article = materials[0];
+  const dispatch = useDispatch<AppDispatch>();
+  const materials = useSelector(selectHomepageSecondaryMaterials);
+  const article = materials.mustRead;
 
   const isMobile = useMediaQuery('(max-width:640px)');
+
+  useEffect(() => {
+    if(!article) {
+      dispatch(getRecentMaterials({ 
+        materialsNumber: 21, 
+        materialTypes: [ 'article', 'note' ] 
+      }));
+    }
+  }, []);
+
+  if(!article) {
+    return <DataNotFoundMessage message='Page not found' />;
+  }
 
   return (
     <Wrapper>
@@ -122,24 +145,26 @@ const NotFound: React.FC = () => {
       </ErrorMessage>
       <Grid container spacing={3} alignItems='center'>
         <Grid item xs={12} md={6}>
-          <Article>
-            <img src={article.image} alt={article.title} />
-            <ArticleContent>
-              <Title variant='inherit'>
-                {article.title}
-              </Title>
-              <AuthorName variant='inherit'>
-                {`${article.author.firstName} ${article.author.lastName}`}
-              </AuthorName>
-              {
-                !isMobile && (
-                  <PreviewText variant='inherit'>
-                    {setPreviewText(30, article.content)}
-                  </PreviewText>
-                )
-              }
-            </ArticleContent>
-          </Article>
+          <ArticleLink to={`/materials/${article?._id}`}>
+            <Article>
+              <img src={article.image} alt={article.title} />
+              <ArticleContent>
+                <Title variant='inherit'>
+                  {article.title}
+                </Title>
+                <AuthorName variant='inherit'>
+                  {article.author.name}
+                </AuthorName>
+                {
+                  !isMobile && (
+                    <PreviewText variant='inherit'>
+                      {setPreviewText(30, article.content)}
+                    </PreviewText>
+                  )
+                }
+              </ArticleContent>
+            </Article>
+          </ArticleLink>
         </Grid>
         <Grid item xs={12} md={6}>
           <BackLinkContainer>
