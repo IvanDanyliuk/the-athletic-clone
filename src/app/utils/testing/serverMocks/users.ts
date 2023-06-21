@@ -18,6 +18,18 @@ const usersSuccessHandlers = [
       ctx.json(newUser)
     )
   }),
+  rest.post(`${baseUrl}/users/login`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(userToUpdate)
+    )
+  }),
+  rest.post(`${baseUrl}/users/signup`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(newUser)
+    )
+  }),
   rest.patch(`${baseUrl}/users`, (req, res, ctx) => {
     return res(
       ctx.status(200),
