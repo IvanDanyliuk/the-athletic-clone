@@ -6,11 +6,11 @@ import { AppDispatch } from '../../features/store';
 import { getRecentMaterials } from '../../features/materials/asyncActions';
 import { selectMaterials } from '../../features/materials/selectors';
 import { Headlines } from '../components/homepage/';
-import { BackdropLoader } from '../components/ui/';
+import { DataNotFoundMessage } from '../components/ui/';
 import { PostsSearch } from '../components/materials/';
 
 
-const Post: React.FC = () => {
+const Posts: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const headlines = useSelector(selectMaterials);
@@ -22,10 +22,6 @@ const Post: React.FC = () => {
     }));
   }, []);
 
-  if(!headlines) {
-    return <BackdropLoader open={true} />;
-  }
-
   return (
     <Grid container spacing={3}>
       <Grid item xs={12} md={3}>
@@ -35,10 +31,16 @@ const Post: React.FC = () => {
         <Outlet />
       </Grid>
       <Grid item xs={12} md={3}>
-        <Headlines data={headlines} />
+        {
+          headlines.length === 0 ? (
+            <DataNotFoundMessage message='Cannot find materials' />
+          ) : (
+            <Headlines data={headlines} />
+          )
+        }
       </Grid>
     </Grid>
   );
 };
 
-export default Post;
+export default Posts;

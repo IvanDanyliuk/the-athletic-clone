@@ -1,11 +1,23 @@
 import { rest } from 'msw';
 import { server } from './serverMock';
-import { newArticle } from '../testDataMocks/materials';
+import { materialsStateSuccessMock, newArticle } from '../testDataMocks/materials';
 
 
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
 
 const materialsSuccessHandlers = [
+  rest.get(`${baseUrl}/materials`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(materialsStateSuccessMock.data.main)
+    );
+  }),
+  rest.get(`${baseUrl}/materials/recent`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(materialsStateSuccessMock.data.main)
+    );
+  }),
   rest.post(`${baseUrl}/materials`, (req, res, ctx) => {
     return res(
       ctx.status(201),
