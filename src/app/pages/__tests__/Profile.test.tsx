@@ -21,7 +21,7 @@ describe('Profile page tests', () => {
   afterEach(() => {
     cleanup();
   });
-  
+
   test('should render all the navigation links if the user\'s role is admin or author', () => {
     renderWithProviders(
       <Profile />,
@@ -52,7 +52,6 @@ describe('Profile page tests', () => {
         }
       }
     );
-    screen.debug(undefined, 300000);
     expect(screen.getAllByRole('link')).toHaveLength(1)
   });
 
