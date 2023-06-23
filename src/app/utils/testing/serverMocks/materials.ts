@@ -18,6 +18,12 @@ const materialsSuccessHandlers = [
       ctx.json(materialsStateSuccessMock.data.main)
     );
   }),
+  rest.get(`${baseUrl}/materials/search`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(materialsStateSuccessMock.data.main.materials.slice(0, 4))
+    );
+  }),
   rest.post(`${baseUrl}/materials`, (req, res, ctx) => {
     return res(
       ctx.status(201),
