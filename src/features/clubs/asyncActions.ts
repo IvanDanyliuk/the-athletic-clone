@@ -73,7 +73,7 @@ export const deleteClub = createAsyncThunk(
       const { data } = await api.deleteClub(id, page, itemsPerPage);
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.response.error);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
