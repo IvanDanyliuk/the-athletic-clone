@@ -64,14 +64,14 @@ describe('Redux tests: clubs_success cases', () => {
     expect(state.data.club).toBeNull();
   });
 
-  test('should clear the error field of the state by dispatching the clearClub action', () => {
+  test('should clear the error field of the state by dispatching the clearError action', () => {
     let state = store.getState().clubs;
     store.dispatch(clearError());
     state = store.getState().clubs;
     expect(state.error).toBeNull();
   });
 
-  test('should clear the filters field of the state by dispatching the clearClub action', () => {
+  test('should clear the filters field of the state by dispatching the clearFilters action', () => {
     let state = store.getState().clubs;
     store.dispatch(clearFilters());
     state = store.getState().clubs;
@@ -99,41 +99,41 @@ describe('Redux tests: clubs_error cases', () => {
     let state = store.getState().clubs;
     await store.dispatch(createClub(newClub));
     state = store.getState().clubs;
-    expect(state.status).toBe('failed');
+    expect(state.error).toBe('Create Club Error');
   });
 
   test('should not get clubs by dispatching the getClubs async action', async () => {
     let state = store.getState().clubs;
     await store.dispatch(getClubs({ page: 1, itemsPerPage: 10, filterData: null, sortData: null }));
     state = store.getState().clubs;
-    expect(state.status).toBe('failed');
+    expect(state.error).toBe('Get Clubs Error');
   });
 
   test('should not get clubs by country by dispatching the getClubsByCountry async action', async () => {
     let state = store.getState().clubs;
     await store.dispatch(getClubsByCountry('United Kingdom'));
     state = store.getState().clubs;
-    expect(state.status).toBe('failed');
+    expect(state.error).toBe('Get Clubs By Country Error');
   });
 
   test('should not get club by passing its id and dispatching the getClub async action', async () => {
     let state = store.getState().clubs;
     await store.dispatch(getClub(clubToUpdate._id));
     state = store.getState().clubs;
-    expect(state.status).toBe('failed');
+    expect(state.error).toBe('Get Club Error');
   });
 
   test('should not update club data by dispatching the updateClub async action', async () => {
     let state = store.getState().clubs;
     await store.dispatch(updateClub(clubToUpdate));
     state = store.getState().clubs;
-    expect(state.status).toBe('failed');
+    expect(state.error).toBe('Update Club Error');
   });
 
   test('should not delete club by dispatching the deleteClub async action', async () => {
     let state = store.getState().clubs;
     await store.dispatch(deleteClub({ id: clubToUpdate._id, page: 0, itemsPerPage: 10 }));
     state = store.getState().clubs;
-    expect(state.status).toBe('failed');
+    expect(state.error).toBe('Delete Club Error');
   });
 });
