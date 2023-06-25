@@ -64,13 +64,6 @@ describe('Redux tests: clubs_success cases', () => {
     expect(state.data.club).toBeNull();
   });
 
-  test('should clear the error field of the state by dispatching the clearError action', () => {
-    let state = store.getState().clubs;
-    store.dispatch(clearError());
-    state = store.getState().clubs;
-    expect(state.error).toBeNull();
-  });
-
   test('should clear the filters field of the state by dispatching the clearFilters action', () => {
     let state = store.getState().clubs;
     store.dispatch(clearFilters());
@@ -135,5 +128,12 @@ describe('Redux tests: clubs_error cases', () => {
     await store.dispatch(deleteClub({ id: clubToUpdate._id, page: 0, itemsPerPage: 10 }));
     state = store.getState().clubs;
     expect(state.error).toBe('Delete Club Error');
+  });
+  
+  test('should clear the error field of the state by dispatching the clearError action', () => {
+    let state = store.getState().clubs;
+    store.dispatch(clearError());
+    state = store.getState().clubs;
+    expect(state.error).toBeNull();
   });
 });

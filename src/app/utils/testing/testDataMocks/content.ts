@@ -1,4 +1,5 @@
-import { IContentSection, IContentSectionsInitialState } from "../../../../features/content/types";
+import { IContentSection, IContentSectionToUpdate, IContentSectionsInitialState } from "../../../../features/content/types";
+import { ContentSectionModel } from "../../../models/components";
 import { materialsStateSuccessMock } from "./materials";
 
 export const contentStateSuccessMock: IContentSectionsInitialState = {
@@ -126,6 +127,15 @@ export const contentStateSuccessMock: IContentSectionsInitialState = {
   error: null
 };
 
+export const newContentSection: ContentSectionModel = {
+  name: 'Test Section 1',
+  maxLength: 3,
+  materials: [
+    '642d8710d4be15abd18e94ad',
+    '642d8711d4be15abd18e94ad',
+  ],
+};
+
 export const contentSection: IContentSection = {
   _id: 'sdsdfsdfsdfsdfsdasdasd',
   name: 'Test Section 1',
@@ -181,6 +191,17 @@ export const contentSection: IContentSection = {
       createdAt: '2023-04-05T14:34:56.462Z',
       updatedAt: '2023-04-05T14:35:57.574Z',
     },
+  ],
+  createdAt: '2023-04-05T14:34:56.462Z'
+};
+
+export const contentSectionToUpdate: IContentSectionToUpdate = {
+  _id: 'sdsdfsdfsdfsdfsdasdasd',
+  name: 'Test Section 1',
+  maxLength: 3,
+  materials: [
+    '642d8710d4be15abd18e94ad',
+    '642d8711d4be15abd18e94ad',
   ],
   createdAt: '2023-04-05T14:34:56.462Z'
 };

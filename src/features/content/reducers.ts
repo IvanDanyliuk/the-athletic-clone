@@ -30,9 +30,10 @@ const contentSlice = createSlice({
       state.isContentEditingModeActive = action.payload;
     },
     setError: (state, action) => {
-      state.status = action.payload;
+      // state.status = action.payload;
+      state.error = action.payload;
     },
-    clearError: (state, action) => {
+    clearError: (state) => {
       state.status = 'idle';
       state.error = null;
     }
@@ -66,7 +67,8 @@ const contentSlice = createSlice({
       })
       .addCase(updateContentSection.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.content = action.payload;
+        // state.content = action.payload;
+        state.content = state.content.map(section => section._id === action.payload._id ? action.payload : section);
       })
       .addCase(updateContentSection.rejected, (state, action: any) => {
         state.status = 'failed';

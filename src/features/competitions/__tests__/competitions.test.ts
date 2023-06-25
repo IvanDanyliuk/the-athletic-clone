@@ -64,13 +64,6 @@ describe('Redux tests: competitiona_success cases', () => {
     expect(state.data.competition).toBeNull();
   });
 
-  test('should clear the error field of the state by dispatching the clearError action', () => {
-    let state = store.getState().competitions;
-    store.dispatch(clearError());
-    state = store.getState().competitions;
-    expect(state.error).toBeNull();
-  });
-
   test('should clear the filters field of the state by dispatching the clearFilters action', () => {
     let state = store.getState().competitions;
     store.dispatch(clearFilters());
@@ -135,5 +128,12 @@ describe('Redux tests: competitiona_error cases', () => {
     await store.dispatch(deleteCompetition({ id: competitionToUpdate._id, page: 0, itemsPerPage: 10 }));
     state = store.getState().competitions;
     expect(state.error).toBe('Delete Competition Error');
+  });
+  
+  test('should clear the error field of the state by dispatching the clearError action', () => {
+    let state = store.getState().competitions;
+    store.dispatch(clearError());
+    state = store.getState().competitions;
+    expect(state.error).toBeNull();
   });
 });
