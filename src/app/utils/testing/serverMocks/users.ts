@@ -12,6 +12,12 @@ const usersSuccessHandlers = [
       ctx.json(usersStateSuccessMock.data)
     );
   }),
+  rest.get(`${baseUrl}/users/by-role`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(usersStateSuccessMock.data.users)
+    );
+  }),
   rest.post(`${baseUrl}/users/new-user`, (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -43,6 +49,12 @@ const usersErrorHandlers = [
     return res(
       ctx.status(500),
       ctx.json('Error')
+    );
+  }),
+  rest.get(`${baseUrl}/users/by-role`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json({ error: 'Users By Role Error' })
     );
   }),
   rest.post(`${baseUrl}/users/new-user`, (req, res, ctx) => {

@@ -26,9 +26,9 @@ export const deleteUser = (id: string, page: number, itemsPerPage: number) => AP
 
 export const createMaterial = (materialData: MaterialModel) => API.post('/materials', materialData);
 export const getMaterials = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/materials', { params: { page, itemsPerPage, filterData, sortData } });
-export const getArticles = (page: number, itemsPerPage: number, filterData?: any) => API.get('/materials/articles', { params: { page, itemsPerPage, filterData } });
-export const getNotes = (page: number, itemsPerPage: number, filterData?: any) => API.get('/materials/notes', { params: { page, itemsPerPage, filterData } });
-export const getRealtimePosts = (page: number, itemsPerPage: number, filterData?: any) => API.get('/materials/real-time-posts', { params: { page, itemsPerPage, filterData } });
+// export const getArticles = (page: number, itemsPerPage: number, filterData?: any) => API.get('/materials/articles', { params: { page, itemsPerPage, filterData } });
+// export const getNotes = (page: number, itemsPerPage: number, filterData?: any) => API.get('/materials/notes', { params: { page, itemsPerPage, filterData } });
+// export const getRealtimePosts = (page: number, itemsPerPage: number, filterData?: any) => API.get('/materials/real-time-posts', { params: { page, itemsPerPage, filterData } });
 export const getRecentMaterials = (materialsNumber: number, materialTypes: string[]) => API.get('/materials/recent', { params: { materialsNumber, materialTypes } });
 export const getHomapageSecondaryMaterials = (topMaterialsNum: number, postsNum: number) => API.get('/materials/homepage', { params: { topMaterialsNum, postsNum } });
 export const getSearchValues = (value: string) => API.get('/materials/search-values', { params: { value } });

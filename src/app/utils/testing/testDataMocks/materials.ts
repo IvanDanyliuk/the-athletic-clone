@@ -367,7 +367,7 @@ export const articleToUpdate = {
   isMain: false,
   status: 'published',
   publicationDate: '2023-04-05T21:00:00.000Z',
-  views: 0,
+  views: 10,
   likes: [],
   labels: [
     'Premier League',
