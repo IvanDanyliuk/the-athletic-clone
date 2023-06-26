@@ -54,7 +54,7 @@ export const deleteCompetition = (id: string, page: number, itemsPerPage: number
 export const createPlayer = (playerData: PlayerModel) => API.post('/players', playerData);
 export const getPlayers = (page?: number, itemsPerPage?: number, filterData?: any, sortData?: any) => API.get('/players', { params: { page, itemsPerPage, filterData, sortData } });
 export const getPlayer = (id: string) => API.get(`/players/${id}`);
-export const getPlayersByClub = (clubId: string) => API.get('/players/by-club', { params: { clubId } });
+// export const getPlayersByClub = (clubId: string) => API.get('/players/by-club', { params: { clubId } });
 export const updatePlayer = (playerToUpdate: IPlayer) => API.patch('/players', playerToUpdate);
 export const deletePlayer = (id: string, page: number, itemsPerPage: number) => API.delete('/players', { params: { id, page, itemsPerPage } });
 

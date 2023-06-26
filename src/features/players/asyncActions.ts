@@ -11,7 +11,7 @@ export const createPlayer = createAsyncThunk(
       const { data } = await api.createPlayer(playerData);
       return data;
     } catch (error: any) {
-      return thunkAPI.rejectWithValue(error.request.data);
+      return thunkAPI.rejectWithValue(error.response.data);
     }
   }
 );
