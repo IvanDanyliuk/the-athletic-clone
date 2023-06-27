@@ -3,9 +3,8 @@ import { setupSchedulesErrorHandlers, setupSchedulesSuccessHandlers } from '../.
 import { createSchedule, deleteSchedule, getRecentMatches, getSchedule, getSchedules, getSchedulesByClub, updateSchedule } from '../asyncActions';
 import { clearError, clearFilters, clearSchedule, setFilters } from '../reducers';
 import { store } from '../../store';
-import { newSchedule, scheduleToUpdate, schedulesStateSuccessMock } from '../../../app/utils/testing/testDataMocks/schedules';
+import { latestMatechesMock, newSchedule, scheduleToUpdate, schedulesStateSuccessMock } from '../../../app/utils/testing/testDataMocks/schedules';
 import { clubToUpdate } from '../../../app/utils/testing/testDataMocks/clubs';
-import { setupCompetitionsSuccessHandlers } from '../../../app/utils/testing/serverMocks/competitions';
 import { competitionToUpdate } from '../../../app/utils/testing/testDataMocks/competitions';
 
 
@@ -34,9 +33,9 @@ describe('Redux tests: schedules_success cases', () => {
 
   test('should get recent matches by dispatching the getRecentMatches action', async () => {
     let state = store.getState().schedules;
-    await store.dispatch(getRecentMatches({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
+    await store.dispatch(getRecentMatches('2022/2023'));
     state = store.getState().schedules;
-    expect(state.data.latestMatches).toHaveLength(schedulesStateSuccessMock.data.latestMatches.length);
+    expect(state.data.latestMatches).toHaveLength(latestMatechesMock.length);
   });
 
   test('should get schedule by dispatching the getSchedule action', async () => {
@@ -114,9 +113,9 @@ describe('Redux tests: schedules_error cases', () => {
 
   test('should get recent matches by dispatching the getRecentMatches action', async () => {
     let state = store.getState().schedules;
-    await store.dispatch(getRecentMatches({ page: 0, itemsPerPage: 10, filterData: null, sortData: null }));
+    await store.dispatch(getRecentMatches('2022/2023'));
     state = store.getState().schedules;
-    expect(state.error).toBe('Get Schedules Error');
+    expect(state.error).toBe('Get Recent Matches Error');
   });
 
   test('should get schedule by dispatching the getSchedule action', async () => {

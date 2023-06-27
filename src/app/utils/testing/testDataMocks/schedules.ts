@@ -1752,7 +1752,7 @@ export const latestMatechesMock = [
       },
     ]
   }
-]
+];
 
 export const addScheduleTitleMock = jest.fn();
 export const addMatchweekMock = jest.fn();

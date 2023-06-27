@@ -1,6 +1,6 @@
 import { rest } from 'msw';
 import { server } from './serverMock';
-import { schedulesStateSuccessMock, newSchedule, scheduleToUpdate } from '../testDataMocks/schedules';
+import { schedulesStateSuccessMock, newSchedule, scheduleToUpdate, latestMatechesMock } from '../testDataMocks/schedules';
 
 
 const baseUrl = process.env.REACT_APP_API_BASE_URL;
@@ -12,6 +12,12 @@ const schedulesSuccessHandlers = [
       ctx.json(schedulesStateSuccessMock.data.main)
     );
   }),
+  rest.get(`${baseUrl}/schedules/recent-matches`, (req, res, ctx) => {
+    return res(
+      ctx.status(200),
+      ctx.json(latestMatechesMock)
+    );
+  }),
   rest.get(`${baseUrl}/schedules/schedule`, (req, res, ctx) => {
     return res(
       ctx.status(200),
@@ -19,7 +25,6 @@ const schedulesSuccessHandlers = [
     );
   }),
   rest.get(`${baseUrl}/schedules`, (req, res, ctx) => {
-    console.log('GET SCHEDULES', { req, res, ctx })
     return res(
       ctx.status(200),
       ctx.json(schedulesStateSuccessMock.data.main)
@@ -50,6 +55,12 @@ const schedulesErrorHandlers = [
     return res(
       ctx.status(500),
       ctx.json({ error: 'Get Schedules By Club Error' })
+    );
+  }),
+  rest.get(`${baseUrl}/schedules/recent-matches`, (req, res, ctx) => {
+    return res(
+      ctx.status(500),
+      ctx.json({ error: 'Get Recent Matches Error' })
     );
   }),
   rest.get(`${baseUrl}/schedules/schedule`, (req, res, ctx) => {
