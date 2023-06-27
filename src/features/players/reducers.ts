@@ -66,7 +66,7 @@ const playerSlice = createSlice({
       })
       .addCase(getPlayer.rejected, (state, action: any) => {
         state.status = 'failed';
-        state.error = action.payload.rror;
+        state.error = action.payload.error;
       })
       .addCase(updatePlayer.pending, (state, action) => {
         state.status = 'loading';

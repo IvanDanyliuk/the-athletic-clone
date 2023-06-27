@@ -55,22 +55,34 @@ export const getSchedule = createAsyncThunk(
   }
 );
 
+// export const getRecentMatches = createAsyncThunk(
+//   'schedules/getRecentMatches',
+//   async (requestData: ISchedulesRequestData, thunkAPI) => {
+//     const { filterData } = requestData;
+//     const currentDate = new Date().getTime();
+//     try {
+//       const { data } = await api.getSchedules(undefined, undefined, filterData);
+//       const leagueMatches = data.map((schedule: ISchedule) => ({
+//         league: schedule.competition.shortName,
+//         matches: schedule.fixture.reduce((prev, curr) => {
+//           const a = Math.abs(new Date(curr.basicDate).getTime() - currentDate);
+//           const b = Math.abs(new Date(prev.basicDate).getTime() - currentDate);
+//           return a - b < 0 ? curr : prev;
+//         }).games
+//       }));
+//       return leagueMatches;
+//     } catch (error: any) {
+//       return thunkAPI.rejectWithValue(error.response.data);
+//     }
+//   }
+// );
+
 export const getRecentMatches = createAsyncThunk(
   'schedules/getRecentMatches',
-  async (requestData: ISchedulesRequestData, thunkAPI) => {
-    const { filterData } = requestData;
-    const currentDate = new Date().getTime();
+  async (season: string, thunkAPI) => {
     try {
-      const { data } = await api.getSchedules(undefined, undefined, filterData);
-      const leagueMatches = data.map((schedule: ISchedule) => ({
-        league: schedule.competition.shortName,
-        matches: schedule.fixture.reduce((prev, curr) => {
-          const a = Math.abs(new Date(curr.basicDate).getTime() - currentDate);
-          const b = Math.abs(new Date(prev.basicDate).getTime() - currentDate);
-          return a - b < 0 ? curr : prev;
-        }).games
-      }));
-      return leagueMatches;
+      const { data } = await api.getRecentMatches(season);
+      return data;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
     }

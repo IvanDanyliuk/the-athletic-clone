@@ -50,8 +50,9 @@ const Layout: React.FC<ILayout> = ({ children }) => {
 
   useEffect(() => {
     dispatch(getAuthenticatedUser());
-    dispatch(getRecentMatches({ filterData: { season } }));
-  }, [])
+    // dispatch(getRecentMatches({ filterData: { season } }));
+    dispatch(getRecentMatches(season));
+  }, [season, dispatch]);
 
   return (
     <Wrapper>
