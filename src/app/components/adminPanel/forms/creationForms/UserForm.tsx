@@ -91,7 +91,7 @@ const UserForm: React.FC<IUserFormProps> = ({ userToUpdate, onSetEditMode }) => 
 
   return (
     <Box>
-      <Form component='form' onSubmit={handleSubmit(submitRegisterForm)}>
+      <Form data-testid='userForm' component='form' onSubmit={handleSubmit(submitRegisterForm)}>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <TextInput 

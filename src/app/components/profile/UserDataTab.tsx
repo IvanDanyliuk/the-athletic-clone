@@ -140,7 +140,7 @@ const UserDataTab: React.FC = () => {
               </TableBody>
             </Table>
             <ChangePasswordFormContainer in={isPasswordChangeFormOpen}>
-              <Box component='form' onSubmit={handleSubmit(submitPasswordForm)}>
+              <Box data-testid='changePasswordForm' component='form' onSubmit={handleSubmit(submitPasswordForm)}>
                 <TextInput 
                   name='currentPassword'
                   label='Current Password'
