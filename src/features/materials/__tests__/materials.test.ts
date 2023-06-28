@@ -179,7 +179,7 @@ describe('Redux tests: materials_error cases', () => {
     let state = store.getState().materials;
     await store.dispatch(getAuthors());
     state = store.getState().materials;
-    expect(state.error).toBe('Users By Role Error');
+    expect(state.error).toBe('Get Users By Role Error');
   });
 
   test('should not get homepage secondary materials by dispatching the getHomepageSecondaryMaterials async action', async () => {
