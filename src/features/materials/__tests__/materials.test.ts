@@ -8,7 +8,7 @@ import {
 import { clearError, clearFilters, clearMaterial, clearSearch, clearSearchValues, setFilters } from '../reducers';
 import { store } from '../../store';
 import { articleToUpdate, materialsStateSuccessMock, newArticle } from '../../../app/utils/testing/testDataMocks/materials';
-import { userToUpdate, usersStateSuccessMock } from '../../../app/utils/testing/testDataMocks/users';
+import { usersStateSuccessMock } from '../../../app/utils/testing/testDataMocks/users';
 import { setupUsersErrorHandlers, setupUsersSuccessHandlers } from '../../../app/utils/testing/serverMocks/users';
 import { competitionsStateSuccessMock } from '../../../app/utils/testing/testDataMocks/competitions';
 

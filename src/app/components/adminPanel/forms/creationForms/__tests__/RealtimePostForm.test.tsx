@@ -7,11 +7,11 @@ import { postToUpdate } from '../../../../../utils/testing/testDataMocks/materia
 import { RealtimePostForm } from '../';
 
 
-const mockedUseNavigate = jest.fn();
+const mockedUseDispatch = jest.fn();
 
-jest.mock('react-router-dom', () => ({
-   ...jest.requireActual('react-router-dom') as any,
-  useNavigate: () => mockedUseNavigate,
+jest.mock('react-redux', () => ({
+  ...jest.requireActual('react-redux') as any,
+ useDispatch: () => mockedUseDispatch,
 }));
 
 
@@ -26,7 +26,7 @@ describe('NoteForm tests', () => {
     cleanup();
   });
 
-  test('should call useNavigate after submiting a creation form', async () => {
+  test('should call useDispatch after submiting a creation form', async () => {
     renderWithProviders(<RealtimePostForm />);
 
     const select = screen.getAllByTestId('multiSelect');
@@ -37,11 +37,11 @@ describe('NoteForm tests', () => {
     fireEvent.click(submitBtn);
 
     await waitFor(() => {
-      expect(mockedUseNavigate).toHaveBeenCalled();
+      expect(mockedUseDispatch).toHaveBeenCalled();
     });
   });
 
-  test('should call useNavigate after submiting an updation form', async () => {
+  test('should call useDispatch after submiting an updation form', async () => {
     renderWithProviders(<RealtimePostForm postToUpdate={postToUpdate} />);
 
     const select = screen.getAllByTestId('multiSelect');
@@ -52,7 +52,7 @@ describe('NoteForm tests', () => {
     fireEvent.click(submitBtn);
 
     await waitFor(() => {
-      expect(mockedUseNavigate).toHaveBeenCalled();
+      expect(mockedUseDispatch).toHaveBeenCalled();
     });
   });
 });
