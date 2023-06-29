@@ -14,6 +14,7 @@ const ErrorSnackbar: React.FC<IErrorSnackbarProps> = ({ isOpen, message, onClose
     <Snackbar
       open={isOpen}
       autoHideDuration={6000}
+      data-testid='errorSnackbar'
       onClose={onClose}
       message={message}
     >

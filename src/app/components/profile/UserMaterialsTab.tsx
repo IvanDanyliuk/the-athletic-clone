@@ -16,7 +16,7 @@ import { clearError } from '../../../features/materials/reducers';
 import { deleteMaterial, getMaterials } from '../../../features/materials/asyncActions';
 import { BackdropLoader, ErrorSnackbar } from '../ui';
 import { selectUser } from '../../../features/users/selectors';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Close, Edit } from '@mui/icons-material';
 import { AddNewMaterialButtonMenu } from '../adminPanel/ui';
 
@@ -85,6 +85,7 @@ const EditLink = styled(Link)`
 
 const UserMaterialsTab: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const navigate = useNavigate();
 
   const user = useSelector(selectUser);
   const materials = useSelector(selectMaterials);
@@ -156,6 +157,10 @@ const UserMaterialsTab: React.FC = () => {
     }
   }, [error]);
 
+  if(!user) {
+    navigate('/');
+  }
+
   if(status === 'loading') {
     return (
       <BackdropLoader open={true} />
@@ -193,7 +198,7 @@ const UserMaterialsTab: React.FC = () => {
               materials.map(material => {
                 const { _id, title, labels, type, author, status, publicationDate } = material;
                 return (
-                  <TableRow key={uuid()}>
+                  <TableRow data-testid='materialRow' key={uuid()}>
                     <TableCell>{title ? title : '-'}</TableCell>
                     <TableCell>{labels.length ? labels[0] : '-'}</TableCell>
                     <TableCell>{type}</TableCell>
