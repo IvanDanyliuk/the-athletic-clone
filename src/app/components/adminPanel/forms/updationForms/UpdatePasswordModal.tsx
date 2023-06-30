@@ -44,7 +44,7 @@ const UpdatePasswordModal: React.FC<IUpdatePasswordModalProps> = ({ onUpdate }) 
       <Dialog open={openForm}>
         <DialogTitle>Update Password</DialogTitle>
         <DialogContent>
-          <Box component='form' onSubmit={handleSubmit(handleSetPassword)}>
+          <Box data-testid='updatePasswordForm' component='form' onSubmit={handleSubmit(handleSetPassword)}>
             <TextInput 
               name='current' 
               label='Current Password'
