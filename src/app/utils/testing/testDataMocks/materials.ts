@@ -125,7 +125,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
             position: 'Website Administrator'
           },
           _id: '642d8710d4be15abd18e99ad',
-          type: 'article',
+          type: 'note',
           title: 'aaaaaaaaaaaaaaaaaa',
           content: '<p>sdfsdfsdfsdfsdfsdfsadf</p>',
           preview: 'This is a preview text',
@@ -179,7 +179,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
             position: 'Website Administrator'
           },
           _id: '642d8715d4be15abd18e94ad',
-          type: 'article',
+          type: 'note',
           title: 'aaaaaaaaaaaaaaaaaa',
           content: '<p>sdfsdfsdfsdfsdfsdfsadf</p>',
           preview: 'This is a preview text',
@@ -233,8 +233,8 @@ export const materialsStateSuccessMock: IMaterialsState = {
             position: 'Website Administrator'
           },
           _id: '647d8710d4be15abd18e94ad',
-          type: 'article',
-          title: 'aaaaaaaaaaaaaaaaaa',
+          type: 'post',
+          title: '',
           content: '<p>sdfsdfsdfsdfsdfsdfsadf</p>',
           preview: 'This is a preview text',
           image: '',
@@ -421,7 +421,7 @@ export const noteToUpdate = {
   status: 'published',
   publicationDate: '2023-04-05T21:00:00.000Z',
   views: 0,
-  likes: 0,
+  likes: [],
   labels: [
     'Premier League',
     'Arsenal'

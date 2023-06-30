@@ -1,8 +1,8 @@
 import { cleanup, screen, waitFor } from '@testing-library/react';
 import { UpdateMaterialForm } from '../';
-import { setupContentSuccessHandlers } from '../../../../../utils/testing/serverMocks/content';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod';
 import { postToUpdate } from '../../../../../utils/testing/testDataMocks/materials';
+import { setupMaterialsSuccessHandlers } from '../../../../../utils/testing/serverMocks/materials';
 
 
 describe('UpdateMaterialForm tests', () => {
@@ -12,14 +12,14 @@ describe('UpdateMaterialForm tests', () => {
         search: `/materials/edit/${postToUpdate._id}`,
       },
     });
-    setupContentSuccessHandlers();
+    setupMaterialsSuccessHandlers();
   });
 
   afterEach(() => {
     cleanup();
   });
 
-  test('should render the component', async () => {
+  test('should render the post form', async () => {
     renderWithProviders(<UpdateMaterialForm />);
     await waitFor(() => {
       expect(screen.getByTestId('postForm')).toBeInTheDocument();
