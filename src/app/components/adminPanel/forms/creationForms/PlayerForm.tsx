@@ -100,7 +100,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
   return (
     <Box>
       <BackLink link='/admin/players' title='Go back' />
-      <Form component='form' onSubmit={handleSubmit(handleFormSubmit)}>
+      <Form data-testid='playerForm' component='form' onSubmit={handleSubmit(handleFormSubmit)}>
         <FormRow container spacing={3}>
           <Grid item xs={12} md={6}>
             <TextInput 

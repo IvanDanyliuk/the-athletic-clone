@@ -122,7 +122,7 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
   return (
     <Box>
       <BackLink link={backPath} title='Go back' />
-      <Form component='form' onSubmit={handleSubmit(handleFormSubmit)}>
+      <Form data-testid='noteForm' component='form' onSubmit={handleSubmit(handleFormSubmit)}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={9}>
             <TextInput 

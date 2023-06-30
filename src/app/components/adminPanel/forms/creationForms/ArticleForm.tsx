@@ -140,7 +140,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
   return (
     <Box>
       <BackLink link={backPath} title='Go back' />
-      <Form component='form' onSubmit={handleSubmit(handleFormSubmit)}>
+      <Form data-testid='articleForm' component='form' onSubmit={handleSubmit(handleFormSubmit)}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={9}>
             <TextInput 

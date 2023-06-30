@@ -109,7 +109,7 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
   return (
     <Box>
       <BackLink link={backPath} title='Go back' />
-      <Form component='form' onSubmit={handleSubmit(handleFormSubmit)}>
+      <Form data-testid='postForm' component='form' onSubmit={handleSubmit(handleFormSubmit)}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={3}>
             <ControlledDatePicker 

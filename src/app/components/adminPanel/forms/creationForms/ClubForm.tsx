@@ -84,7 +84,7 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
   return (
     <Box>
       <BackLink link='/admin/clubs' title='Go back' />
-      <Form component='form' onSubmit={handleSubmit(handleFormSubmit)}>
+      <Form data-testid='clubForm' component='form' onSubmit={handleSubmit(handleFormSubmit)}>
         <FormRow container spacing={3}>
           <Grid item xs={12} md={6}>
             <TextInput 

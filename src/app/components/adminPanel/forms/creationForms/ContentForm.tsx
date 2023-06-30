@@ -71,7 +71,7 @@ const ContentSection: React.FC<IContentSectionProps> = ({ sectionToUpdate }) => 
   return (
     <Box>
       <BackLink link='/admin/content' title='Go back' />
-      <Form component='form' onSubmit={handleSubmit(handleFormSubmit)}>
+      <Form data-testid='contentForm' component='form' onSubmit={handleSubmit(handleFormSubmit)}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <TextInput 

@@ -124,7 +124,7 @@ const ScheduleForm: React.FC<IScheduleFormProps> = ({ scheduleToUpdate }) => {
   }, [schedule]);
 
   return (
-    <Box>
+    <Box data-testid='scheduleForm'>
       <BackLink link='/admin/schedules' title='Go back' />
       <ScheduleContext.Provider 
         value={{ schedule, isUpdatingMode, addScheduleTitle, addMatchweek, addMatch, deleteMatchweek, deleteMatch }}

@@ -117,7 +117,7 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
   return (
     <Box>
       <BackLink link='/admin/competitions' title='Go back' />
-      <Form component='form' onSubmit={handleSubmit(handleFormSubmit)}>
+      <Form data-testid='competitionForm' component='form' onSubmit={handleSubmit(handleFormSubmit)}>
         <FormRow container spacing={3}>
           <Grid item xs={12} md={6}>
             <SelectField 
