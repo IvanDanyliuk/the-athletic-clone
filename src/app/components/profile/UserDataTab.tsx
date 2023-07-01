@@ -6,12 +6,13 @@ import {
   Avatar, Box, Button, Collapse, Grid, Table, TableBody, 
   TableCell, TableRow, Typography, styled 
 } from '@mui/material';
-import { selectUser, selectUserStatus } from '../../../features/users/selectors';
-import { BackdropLoader, ConfirmAction, TextInput } from '../../components/ui';
+import { selectUser, selectUserError, selectUserStatus } from '../../../features/users/selectors';
+import { BackdropLoader, ConfirmAction, ErrorSnackbar, TextInput } from '../../components/ui';
 import { AppDispatch } from '../../../features/store';
 import { deleteUser, logout, updatePassword } from '../../../features/users/asyncActions';
 import { UserRoles } from '../../../features/users/types';
 import { AuthorForm } from '../../components/adminPanel/forms/creationForms/';
+import { clearError } from '../../../features/users/reducers';
 
 
 interface IPasswordForm {
@@ -66,6 +67,7 @@ const UserDataTab: React.FC = () => {
 
   const user = useSelector(selectUser);
   const userStatus = useSelector(selectUserStatus);
+  const userError = useSelector(selectUserError);
 
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [isPasswordChangeFormOpen, setIsPasswordChangeFormOpen] = useState<boolean>(false);
@@ -97,6 +99,10 @@ const UserDataTab: React.FC = () => {
     await dispatch(deleteUser({ id: user?._id!, page: 0, itemsPerPage: 0 }));
     navigate('/');
   }
+
+  const clearUserError = () => {
+    dispatch(clearError());
+  };
 
   if(!user) {
     navigate('/');
@@ -183,6 +189,7 @@ const UserDataTab: React.FC = () => {
           </Grid>
         </Grid>
       )}
+      <ErrorSnackbar isOpen={Boolean(userError)} message={userError} onClose={clearUserError} />
     </Container>
   );
 };
