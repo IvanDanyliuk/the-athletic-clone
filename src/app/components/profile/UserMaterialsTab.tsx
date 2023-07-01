@@ -100,7 +100,7 @@ const UserMaterialsTab: React.FC = () => {
   const navLinks = [
     { url: `/profile/${user?._id}/materials/create/article`, label: 'Article' },
     { url: `/profile/${user?._id}/materials/create/note`, label: 'Note' },
-    { url: `/profile/${user?._id}/materials/create/realtime-post`, label: 'Realtime' }
+    { url: `/profile/${user?._id}/materials/create/post`, label: 'Realtime' }
   ];
 
   const handleDataSort = (data: IMaterialsTableHeadCell) => {
