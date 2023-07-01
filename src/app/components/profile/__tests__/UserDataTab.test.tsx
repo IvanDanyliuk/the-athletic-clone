@@ -115,4 +115,30 @@ describe('UserDataTab tests', () => {
     );
     expect(screen.getByTestId('backgroundLoader')).toBeInTheDocument();
   });
+
+  test('should render the error snackbar by passing wrong password data', async () => {
+    renderWithProviders(
+      <UserDataTab />,
+      {
+        preloadedState: {
+          users: {
+            ...usersStateSuccessMock,
+            status: 'error',
+            error: 'Passwords do not match'
+          }
+        }
+      }
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: 'Change Password' }));
+    fireEvent.change(screen.getByLabelText('Current Password'), { target: { value: '111111' } });
+    fireEvent.change(screen.getByLabelText('New Password'), { target: { value: '123456' } });
+    fireEvent.change(screen.getByLabelText('Confirm Password'), { target: { value: '111111' } });
+    fireEvent.click(screen.getByRole('button', { name: 'Submit' }));
+    fireEvent.click(screen.getByTestId('CloseIcon'));
+
+    await waitFor(() => {
+      expect(screen.getByTestId('errorSnackbar')).toBeInTheDocument();
+    });
+  });
 });
