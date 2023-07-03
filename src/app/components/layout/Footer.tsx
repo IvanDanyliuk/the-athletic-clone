@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { Box, Container, Grid, List, ListItem, styled, Typography, useMediaQuery } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSquareFacebook, faInstagram, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { v4 as uuid } from 'uuid';
 import { setUrl } from '../../utils/helpers';
-import { competitions } from '../../../data';
-
+import { AppDispatch } from '../../../features/store';
+import { getAllCompetitions } from '../../../features/competitions/asyncActions';
+import { selectAllCompetitions } from '../../../features/competitions/selectors';
 
 
 const Wrapper = styled(Box)`
@@ -85,9 +87,14 @@ const Copyright = styled(Typography)`
 
 
 const Footer: React.FC = () => {
-  const links = competitions;
+  const dispatch = useDispatch<AppDispatch>();
+  const isMobile = useMediaQuery('(max-width: 640px)');
 
-  const isMobile = useMediaQuery('(max-width: 640px)'); 
+  const links = useSelector(selectAllCompetitions);
+
+  useEffect(() => {
+    dispatch(getAllCompetitions());
+  }, []);
 
   return (
     <Wrapper component='footer'>
@@ -124,7 +131,7 @@ const Footer: React.FC = () => {
             </LinkList>
           </LinkGroup>
           <LinkGroup item xs={12} md={2}>
-          <LinkGroupTitle variant='inherit'>HQ</LinkGroupTitle>
+            <LinkGroupTitle variant='inherit'>HQ</LinkGroupTitle>
             <LinkList>
               <LinkListItem>
                 <Link to={'/about'}>About Us</Link>

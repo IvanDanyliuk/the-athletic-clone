@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { 
-  Avatar, Box, Button, Divider, Grid, Icon, List, 
+  Avatar, Box, Button, Divider, Grid, Icon, IconButton, List, 
   ListItem, Paper, Typography, styled 
 } from '@mui/material';
 import { Close, Edit } from '@mui/icons-material';
@@ -39,15 +39,20 @@ const CommentHeader = styled(Grid)`
 const CommentAuthor = styled(Box)`
   display: flex;
   align-items: center;
-
   img {
     width: 3em;
     height: 3em;
+    @media (max-width: 640px) {
+      width: 2em;
+      height: 2em;
+    }
   }
-
   p {
     margin-left: 1em;
     font-weight: 600;
+    @media (max-width: 640px) {
+      font-size: .8em;
+    }
   }
 `;
 
@@ -63,7 +68,6 @@ const CommentBtn = styled(Button)`
   width: 100%;
   height: 4em;
   background: #121212;
-
   &:hover {
     background: #3b3b3b;
   }
@@ -71,9 +75,19 @@ const CommentBtn = styled(Button)`
 
 const CommentActionBtns = styled(Box)`
   display: flex;
-
   button {
     margin-left: .5em;
+    svg {
+      @media (max-width: 640px) {
+        font-size: 1em;
+      }
+    }
+  }
+`;
+
+const CommentText = styled(Typography)`
+  @media (max-width: 640px) {
+    font-size: .8em;
   }
 `;
 
@@ -177,19 +191,19 @@ const Comments: React.FC<ICommentsProps> = ({ material, user }) => {
                       </CommentAuthor>
                       {((user && user.role === 'admin') || (user && user._id === comment.userId)) && (
                         <CommentActionBtns>
-                          <Button onClick={() => handleCommentEdit(comment.id)}>
+                          <IconButton onClick={() => handleCommentEdit(comment.id)}>
                             <Icon component={Edit} />
-                          </Button>
-                          <Button onClick={() => handleCommentDelete(comment.id)}>
+                          </IconButton>
+                          <IconButton onClick={() => handleCommentDelete(comment.id)}>
                             <Icon component={Close} />
-                          </Button>
+                          </IconButton>
                         </CommentActionBtns>
                       )}
                     </CommentHeader>
                     <CommentContent item xs={12}>
-                      <Typography variant='body2'>
+                      <CommentText variant='body2'>
                         {comment.message}
-                      </Typography>
+                      </CommentText>
                     </CommentContent>
                   </Grid>
                 </Comment>
