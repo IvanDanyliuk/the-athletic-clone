@@ -23,6 +23,12 @@ const CalendarContainer = styled(Box)`
   margin-left: 1em;
 `;
 
+const MatchweekTab = styled(Tab)`
+  @media (max-width: 640px) {
+    font-size: .8em;
+  }
+`;
+
 
 const CompetitionScores: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -79,7 +85,7 @@ const CompetitionScores: React.FC = () => {
           onChange={handleCurrentMatchweekChange}
         >
           {tabs.map(tab => (
-            <Tab 
+            <MatchweekTab 
               key={uuid()} 
               value={tab} 
               label={tab.matchweekName!} 

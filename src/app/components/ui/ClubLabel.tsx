@@ -11,12 +11,13 @@ interface IClubLabelProps {
 }
 
 const Container = styled(Box)`
-  width: fit-content;
+  width: max-content;
   display: flex;
   align-items: center;
 `;
 
 const ClubLink = styled(Link)`
+  width: 100%;
   text-decoration: none;
   color: #000000;
 `;
@@ -31,6 +32,12 @@ const ClubLogo = styled('img')`
   height: 1.5em;
 `;
 
+const ClubName = styled(Typography)`
+  @media (max-width: 640px) {
+    font-size: .8em;
+  }
+`;
+
 
 const ClubLabel: React.FC<IClubLabelProps> = ({ clubId, logo, name, altText }) => {
   return (
@@ -39,7 +46,7 @@ const ClubLabel: React.FC<IClubLabelProps> = ({ clubId, logo, name, altText }) =
         <LogoContainer>
           <ClubLogo src={logo} alt={altText} />
         </LogoContainer>
-        <Typography>{name}</Typography>
+        <ClubName>{name}</ClubName>
       </Container>
     </ClubLink>
   );

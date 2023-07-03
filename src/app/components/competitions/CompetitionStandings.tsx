@@ -19,6 +19,12 @@ const CustomCell = styled(TableCell)`
   min-width: 10em;
 `;
 
+const Cell = styled(TableCell)`
+  @media (max-width: 640px) {
+    font-size: .8em;
+  }
+`;
+
 const ClubLogo = styled('img')`
   height: 1.5em;
 `;
@@ -75,14 +81,14 @@ const CompetitionStandings: React.FC = () => {
                   </Grid>
                 </Grid>
               </CustomCell>
-              <TableCell>{item.playedMatches}</TableCell>
-              <TableCell>{item.wins}</TableCell>
-              <TableCell>{item.loses}</TableCell>
-              <TableCell>{item.draws}</TableCell>
-              <TableCell>{item.goalsFor}</TableCell>
-              <TableCell>{item.goalsAgainst}</TableCell>
-              <TableCell>{item.goalDifference}</TableCell>
-              <TableCell>{item.points}</TableCell>
+              <Cell>{item.playedMatches}</Cell>
+              <Cell>{item.wins}</Cell>
+              <Cell>{item.loses}</Cell>
+              <Cell>{item.draws}</Cell>
+              <Cell>{item.goalsFor}</Cell>
+              <Cell>{item.goalsAgainst}</Cell>
+              <Cell>{item.goalDifference}</Cell>
+              <Cell>{item.points}</Cell>
               <CustomCell>
                 <LatestGamesScores scores={item.latestGames} />
               </CustomCell>

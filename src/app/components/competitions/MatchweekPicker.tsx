@@ -24,14 +24,14 @@ const MatchweekName = styled(Typography)`
   font-size: 1em;
 
   @media(max-width: 480px) {
-    font-size: .6em;
+    font-size: .7em;
   }
 `;
 
 const MatchweekDate = styled(Typography)`
   font-size: .7em;
   @media(max-width: 480px) {
-    font-size: .5em;
+    font-size: .6em;
   }
 `;
 
@@ -61,7 +61,7 @@ const MatchweekPicker: React.FC<IMatchweekPickerProps> = ({ season, matchweeks, 
           </IconButton>
         </DialogTitle>
         <DialogContent>
-          <Grid container spacing={3}>
+          <Grid container spacing={1}>
             {matchweeks.map(mw => (
               <Grid key={uuid()} item xs={4} md={3}>
                 <MatchweekBtn onClick={() => handleSetMatchweek(mw)}>

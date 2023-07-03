@@ -22,7 +22,7 @@ const CompetitionTeams: React.FC = () => {
     <Container>
       <Grid container spacing={3}>
         {league.clubs.map(club => (
-          <Grid key={uuid()} item xs={3}>
+          <Grid key={uuid()} item xs={4} md={3}>
             <ClubLabel 
               clubId={club._id}
               logo={club.clubLogoUrl} 
