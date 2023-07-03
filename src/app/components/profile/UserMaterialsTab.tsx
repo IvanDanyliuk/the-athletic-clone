@@ -65,8 +65,20 @@ const cells: IMaterialsTableHeadCell[] = [
 ];
 
 const PageHeader = styled(Box)`
+  margin-bottom: 1em;
   display: flex;
   justify-content: flex-end;
+`;
+
+const TableContainer = styled(Paper)`
+  max-width: 100%;
+  overflow: auto;
+`;
+
+const Cell = styled(TableCell)`
+  @media (max-width: 640px) {
+    font-size: .8em;
+  }
 `;
 
 const MaterialsTablePagination = styled(TablePagination)`
@@ -172,8 +184,8 @@ const UserMaterialsTab: React.FC = () => {
       <PageHeader>
         <AddNewMaterialButtonMenu links={navLinks} />
       </PageHeader>
-      <Paper>
-        <Table>
+      <TableContainer>
+        <Table stickyHeader>
           <TableHead>
             <TableRow>
               {cells.map(cell => (
@@ -199,13 +211,13 @@ const UserMaterialsTab: React.FC = () => {
                 const { _id, title, labels, type, author, status, publicationDate } = material;
                 return (
                   <TableRow data-testid='materialRow' key={uuid()}>
-                    <TableCell>{title ? title : '-'}</TableCell>
-                    <TableCell>{labels.length ? labels[0] : '-'}</TableCell>
-                    <TableCell>{type}</TableCell>
-                    <TableCell>{author.name}</TableCell>
-                    <TableCell>{status}</TableCell>
-                    <TableCell>{dayjs(publicationDate).subtract(1, 'day').format('DD/MM/YYYY')}</TableCell>
-                    <TableCell>
+                    <Cell>{title ? title : '-'}</Cell>
+                    <Cell>{labels.length ? labels[0] : '-'}</Cell>
+                    <Cell>{type}</Cell>
+                    <Cell>{author.name}</Cell>
+                    <Cell>{status}</Cell>
+                    <Cell>{dayjs(publicationDate).subtract(1, 'day').format('DD/MM/YYYY')}</Cell>
+                    <Cell>
                       <ActionBtns>
                         <EditLink to={`/profile/${user?._id}/materials/edit/${_id}`}>
                           <IconButton>
@@ -216,7 +228,7 @@ const UserMaterialsTab: React.FC = () => {
                           <Icon component={Close} />
                         </IconButton>
                       </ActionBtns>
-                    </TableCell>
+                    </Cell>
                   </TableRow>
                 );
               })
@@ -239,7 +251,7 @@ const UserMaterialsTab: React.FC = () => {
           message={error}
           onClose={handleErrorSnackbarClose}
         />
-      </Paper>
+      </TableContainer>
     </>
   );
 };

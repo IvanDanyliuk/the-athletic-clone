@@ -34,16 +34,29 @@ const UserPhotoSection = styled(Grid)`
 const UserPhoto = styled(Avatar)`
   width: 15em;
   height: 15em;
+  @media (max-width: 640px) {
+    width: 10em;
+    height: 10em;
+  }
 `;
 
 const UserName = styled(Typography)`
   font-size: 3em;
+  @media (max-width: 640px) {
+    margin-top: 1em;
+    font-size: 2em;
+    text-align: center;
+  }
 `;
 
 const UserPosition = styled(Typography)`
   margin-bottom: 1em;
   font-size: 2em;
   color: #4a4a4a;
+  @media (max-width: 640px) {
+    font-size: 1.7em;
+    text-align: center;
+  }
 `;
 
 const ChangePasswordFormContainer = styled(Collapse)`

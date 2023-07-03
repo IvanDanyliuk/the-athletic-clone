@@ -98,7 +98,7 @@ const NavMenuMobile: React.FC<INavMenuMobileProps> = ({ links }) => {
       >
         {links.map(link => (
           <MenuItem key={uuid()} onClick={handleClose}>
-            <MenuLink to='materials'>Materials</MenuLink>
+            <MenuLink to={link.url}>{link.label}</MenuLink>
           </MenuItem>
         ))}
       </Menu>
