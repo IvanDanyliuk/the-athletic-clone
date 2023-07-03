@@ -36,6 +36,10 @@ const SubscribeBtn = styled(Button)`
   font-weight: 600;
   text-transform: capitalize;
   color: #ffffff;
+
+  @media (max-width: 640px) {
+    font-size: .7em;
+  }
 `;
 
 const Logo = styled(NavLink)`
@@ -48,7 +52,7 @@ const Logo = styled(NavLink)`
   color: #ffffff;
 
   @media (max-width: 640px) {
-    font-size: 1.7em;
+    font-size: 1.6em;
   }
 `;
 
@@ -57,6 +61,10 @@ const LoginLink = styled(Link)`
   font-weight: 600;
   text-decoration: none;
   color: #ffffff;
+
+  @media (max-width: 640px) {
+    font-size: 1em;
+  }
 `;
 
 
@@ -93,7 +101,7 @@ const Header: React.FC = () => {
             <LoginLink to='/login'>Log In</LoginLink>
           )
         }
-        <SubscribeBtn >Subscribe</SubscribeBtn>
+        <SubscribeBtn>Subscribe</SubscribeBtn>
         {
           !isMobile && (
             <SearchHeaderField />
