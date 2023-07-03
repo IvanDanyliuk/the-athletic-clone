@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Typography, styled } from '@mui/material';
 import { Link } from 'react-router-dom';
+import { Box, Typography, styled } from '@mui/material';
 
 
 interface IClubLabelProps {
@@ -34,7 +34,7 @@ const ClubLogo = styled('img')`
 
 const ClubName = styled(Typography)`
   @media (max-width: 640px) {
-    font-size: .8em;
+    font-size: .9em;
   }
 `;
 

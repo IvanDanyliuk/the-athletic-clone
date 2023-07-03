@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Table, TableBody, TableCell, TableHead, TableRow, Typography, styled } from '@mui/material';
+import { Box, Paper, Table, TableBody, TableCell, TableHead, TableRow, Typography, styled } from '@mui/material';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { AppDispatch } from '../../../features/store';
@@ -10,6 +10,11 @@ import { getCurrentSeasonValue } from '../../utils/helpers';
 import { getSchedulesByClub } from '../../../features/schedules/asyncActions';
 import { ClubLabel } from '../ui';
 
+
+const TableContainer = styled(Paper)`
+  max-width: 100%;
+  overflow: auto;
+`;
 
 const CellContainer = styled(Box)`
   display: flex;
@@ -26,6 +31,22 @@ const ScoreLabel = styled(Typography)`
   }
   &[data-final='D'] {
     color: #2e2e2e;
+  }
+
+  @media (max-width: 640px) {
+    font-size: .9em;
+  }
+`;
+
+const Cell = styled(TableCell)`
+  @media (max-width: 640px) {
+    font-size: .8em;
+  }
+`;
+
+const FinalResult = styled(Typography)`
+  @media (max-width: 640px) {
+    font-size: .9em;
   }
 `;
 
@@ -57,64 +78,66 @@ const ClubSchedule: React.FC = () => {
   }, [club, season, dispatch]);
 
   return (
-    <Table>
-      <TableHead>
-        <TableRow>
-          <TableCell>Date</TableCell>
-          <TableCell>Opponent</TableCell>
-          <TableCell>Result</TableCell>
-          <TableCell>Competition</TableCell>   
-          <TableCell>Location</TableCell>
-        </TableRow>
-      </TableHead>
-      <TableBody>
-        {scores.map(score => (
-          <TableRow key={uuid()} data-testid='scheduleTableRow'>
-            <TableCell>{dayjs(score.date).format('DD/MM/YYYY')}</TableCell>
-            <TableCell>
-              {score.home.club._id !== club?._id ? (
-                <CellContainer>
-                  <Typography>{'(A)'}</Typography>
-                  <ClubLabel 
-                    clubId={score.home.club._id} 
-                    logo={score.home.club.clubLogoUrl} 
-                    name={score.home.club.commonName} 
-                    altText={score.home.shortName} 
-                  />
-                </CellContainer>
-              ) : (
-                <CellContainer>
-                  <Typography>{'(H)'}</Typography>
-                  <ClubLabel 
-                    clubId={score.away.club._id} 
-                    logo={score.away.club.clubLogoUrl} 
-                    name={score.away.club.commonName} 
-                    altText={score.away.shortName} 
-                  />
-                </CellContainer>
-                
-              )}
-            </TableCell>
-            <TableCell>
-              <CellContainer>
-                <Typography>{score.score}</Typography>
-                {score.home.club._id === club?._id ? (
-                  <ScoreLabel data-final={score.home.final}>
-                    {score.home.final}
-                  </ScoreLabel>
-                ) : (
-                  <ScoreLabel data-final={score.away.final}>
-                    {score.away.final}
-                  </ScoreLabel>
-                )}
-              </CellContainer>
-            </TableCell>
-            <TableCell>{score.competition}</TableCell>   
-            <TableCell>{score.location}</TableCell>
+    <TableContainer>
+      <Table stickyHeader>
+        <TableHead>
+          <TableRow>
+            <TableCell>Date</TableCell>
+            <TableCell>Opponent</TableCell>
+            <TableCell>Result</TableCell>
+            <TableCell>Competition</TableCell>   
+            <TableCell>Location</TableCell>
           </TableRow>
-        ))}
-      </TableBody>
-    </Table>
+        </TableHead>
+        <TableBody>
+          {scores.map(score => (
+            <TableRow key={uuid()} data-testid='scheduleTableRow'>
+              <Cell>{dayjs(score.date).format('DD/MM/YYYY')}</Cell>
+              <Cell>
+                {score.home.club._id !== club?._id ? (
+                  <CellContainer>
+                    <FinalResult>{'(A)'}</FinalResult>
+                    <ClubLabel 
+                      clubId={score.home.club._id} 
+                      logo={score.home.club.clubLogoUrl} 
+                      name={score.home.club.commonName} 
+                      altText={score.home.shortName} 
+                    />
+                  </CellContainer>
+                ) : (
+                  <CellContainer>
+                    <FinalResult>{'(H)'}</FinalResult>
+                    <ClubLabel 
+                      clubId={score.away.club._id} 
+                      logo={score.away.club.clubLogoUrl} 
+                      name={score.away.club.commonName} 
+                      altText={score.away.shortName} 
+                    />
+                  </CellContainer>
+                  
+                )}
+              </Cell>
+              <TableCell>
+                <CellContainer>
+                  <FinalResult>{score.score}</FinalResult>
+                  {score.home.club._id === club?._id ? (
+                    <ScoreLabel data-final={score.home.final}>
+                      {score.home.final}
+                    </ScoreLabel>
+                  ) : (
+                    <ScoreLabel data-final={score.away.final}>
+                      {score.away.final}
+                    </ScoreLabel>
+                  )}
+                </CellContainer>
+              </TableCell>
+              <Cell>{score.competition}</Cell>   
+              <Cell>{score.location}</Cell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
   );
 };
 
