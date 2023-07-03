@@ -20,6 +20,12 @@ const SectionContainer = styled(Box)`
     font-size: 2.5em;
     text-align: center;
     color: #ffffff;
+
+    @media(max-width: 492px) {
+      margin-bottom: 1em;
+      width: 90%;
+      font-size: 2em;
+    }
   }
 `;
 

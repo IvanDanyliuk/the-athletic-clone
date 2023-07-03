@@ -21,6 +21,13 @@ const MaterialContainer = styled(Grid)`
   align-items: center;
 `;
 
+const Title = styled(Typography)`
+  @media (max-width: 492px) {
+    margin-left: .5em;
+    font-size: .9em;
+  }
+`;
+
 const Image = styled(Avatar)`
   width: 100%;
   height: 4em;
@@ -35,7 +42,7 @@ const PopularMaterialItem: React.FC<IPopularMaterialItemProp> = ({ index, data }
           <Typography variant='h5_custom'>{index}</Typography>
         </Grid>
         <Grid item xs={8} md={9}>
-          <Typography variant='body1_custom'>{data.title}</Typography>
+          <Title variant='body1_custom'>{data.title}</Title>
         </Grid>
         <Grid item xs={3} md={2}>
           <Image 
