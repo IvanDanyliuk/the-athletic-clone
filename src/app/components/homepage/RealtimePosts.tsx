@@ -14,7 +14,6 @@ import { IMaterial } from '../../../features/materials/types';
 import { divideArrayIntoChunks } from '../../utils/helpers';
 
 
-
 interface IRealtimePostsProps {
   materials: IMaterial[];
 }
