@@ -23,6 +23,9 @@ const Label = styled(InputLabel)`
   margin-bottom: 5px;
   font-size: .9em;
   color: #000000;
+  @media (max-width: 640px) {
+    font-size: .8em;
+  }
 `;
 
 const SelectBody = styled(Select)`
