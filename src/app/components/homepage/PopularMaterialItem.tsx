@@ -21,6 +21,12 @@ const MaterialContainer = styled(Grid)`
   align-items: center;
 `;
 
+const Index = styled(Typography)`
+  @media (max-width: 640px) {
+    font-size: 1.5em;
+  }
+`;
+
 const Title = styled(Typography)`
   @media (max-width: 492px) {
     margin-left: .5em;
@@ -39,7 +45,7 @@ const PopularMaterialItem: React.FC<IPopularMaterialItemProp> = ({ index, data }
     <LinkContainer to={`/materials/${data._id}`}>
       <MaterialContainer container spacing={3}>
         <Grid item xs={1}>
-          <Typography variant='h5_custom'>{index}</Typography>
+          <Index variant='h5_custom'>{index}</Index>
         </Grid>
         <Grid item xs={8} md={9}>
           <Title variant='body1_custom'>{data.title}</Title>

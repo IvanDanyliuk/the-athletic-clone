@@ -14,6 +14,12 @@ const MaterialsDivider = styled(Divider)`
   width: 100%;
 `;
 
+const Title = styled(Typography)`
+  @media (max-width: 640px) {
+    font-size: 1.5em;
+  }
+`;
+
 
 const PopularMaterials: React.FC<IPopularMaterialsProps> = ({ materials }) => {
   if(materials.length === 0) {
@@ -22,7 +28,7 @@ const PopularMaterials: React.FC<IPopularMaterialsProps> = ({ materials }) => {
 
   return (
     <>
-      <Typography variant='h5_custom'>Most Popular</Typography>
+      <Title variant='h5_custom'>Most Popular</Title>
       <Grid container spacing={3}>
         {materials.map((material, i) => (
           <Grid item key={uuid()} xs={12} md={6} sx={{ width: '100%' }}>

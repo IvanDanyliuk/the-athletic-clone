@@ -4,7 +4,6 @@ import {
   OutlinedInput, Select, SelectChangeEvent, styled 
 } from '@mui/material';
 import { v4 as uuid } from 'uuid';
-import { capitalizeString } from '../../utils/helpers';
 
 
 interface IMultiSelectProps {

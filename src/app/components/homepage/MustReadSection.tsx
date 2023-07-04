@@ -11,6 +11,9 @@ interface IMustReadSectionProps {
 
 const SectionTitle = styled(Typography)`
   margin-bottom: .8em;
+  @media (max-width: 640px) {
+    font-size: 1.3em;
+  }
 `;
 
 const ArticleLink = styled(Link)`
