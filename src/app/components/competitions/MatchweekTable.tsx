@@ -17,6 +17,9 @@ const Cell = styled(TableCell)`
   min-width: 10em;
   @media (max-width: 640px) {
     font-size: .8em;
+    p {
+      font-size: 1em;
+    }
   }
 `;
 
