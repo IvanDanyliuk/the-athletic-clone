@@ -34,6 +34,9 @@ const Container = styled(Box)`
 
 const DetailsSections = styled(Grid)`
   margin-top: 3em;
+  @media (max-width: 640px) {
+    margin-top: 0;
+  }
 `;
 
 const SectionHeader = styled(Box)`
@@ -94,6 +97,15 @@ const PlayerLink = styled(Link)`
   width: 100%;
   text-decoration: none;
   color: inherit;
+`;
+
+const Cell = styled(TableCell)`
+  @media (max-width: 640px) {
+    font-size: .8em;
+    p {
+      font-size: 1em;
+    }
+  }
 `;
 
 
@@ -245,17 +257,17 @@ const ClubHome: React.FC = () => {
             <TableBody>
               {standings.map(item => (
                 <TableRow key={uuid()}>
-                  <TableCell>
+                  <Cell>
                     <ClubLabel 
                       clubId={item.club._id}
                       logo={item.club.clubLogoUrl} 
                       name={item.club.commonName} 
                       altText={item.club.shortName} 
                     />
-                  </TableCell>
-                  <TableCell>{item.playedMatches}</TableCell>
-                  <TableCell>{item.goalDifference}</TableCell>
-                  <TableCell>{item.points}</TableCell>
+                  </Cell>
+                  <Cell>{item.playedMatches}</Cell>
+                  <Cell>{item.goalDifference}</Cell>
+                  <Cell>{item.points}</Cell>
                 </TableRow>
               ))}
             </TableBody>

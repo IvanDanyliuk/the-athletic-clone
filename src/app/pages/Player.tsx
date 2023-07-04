@@ -24,12 +24,27 @@ const PlayerPhoto = styled(Avatar)`
 
 const PlayerName = styled(Typography)`
   font-size: 3em;
+  @media (max-width: 640px) {
+    font-size: 2.5em;
+  }
 `;
 
 const PlayerNumber = styled(Typography)`
   margin-bottom: 1em;
   font-size: 2.5em;
   color: #4a4a4a;
+  @media (max-width: 640px) {
+    font-size: 2em;
+  }
+`;
+
+const Cell = styled(TableCell)`
+  @media (max-width: 640px) {
+    font-size: .8em;
+    p {
+      font-size: 1em;
+    }
+  }
 `;
 
 const Player: React.FC = () => {
@@ -68,27 +83,27 @@ const Player: React.FC = () => {
           <Table>
             <TableBody>
               <TableRow>
-                <TableCell>Position:</TableCell>
-                <TableCell>{getPlayerPositionFullName(player?.position!)}</TableCell>
+                <Cell>Position:</Cell>
+                <Cell>{getPlayerPositionFullName(player?.position!)}</Cell>
               </TableRow>
               <TableRow>
-                <TableCell>Club:</TableCell>
-                <TableCell>
+                <Cell>Club:</Cell>
+                <Cell>
                   <ClubLabel 
                     clubId={player?.club._id!} 
                     logo={player?.club.clubLogoUrl!} 
                     name={player?.club.commonName!} 
                     altText={player?.club.shortName!} 
                   />
-                </TableCell>
+                </Cell>
               </TableRow>
               <TableRow>
-                <TableCell>Born:</TableCell>
-                <TableCell>{dayjs(player?.birthDate).format('DD/MM/YYYY')}</TableCell>
+                <Cell>Born:</Cell>
+                <Cell>{dayjs(player?.birthDate).format('DD/MM/YYYY')}</Cell>
               </TableRow>
               <TableRow>
-                <TableCell>Country:</TableCell>
-                <TableCell>{player?.country}</TableCell>
+                <Cell>Country:</Cell>
+                <Cell>{player?.country}</Cell>
               </TableRow>
             </TableBody>
           </Table>
