@@ -41,7 +41,7 @@ const TopMaterialPreview = styled(Typography)`
 
 const MaterialsList = styled(List)`
   padding: 0;
-  @media (max-width: 492px) {
+  @media (max-width: 900px) {
     margin-top: 2em;
   }
 `;

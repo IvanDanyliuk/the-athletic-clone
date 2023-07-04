@@ -28,13 +28,20 @@ const Content = styled(Container)`
 
 const Section = styled(Box)`
   display: flex;
+  align-items: center;
+`;
+
+const NavActions = styled(Box)`
+  display: flex;
+
 `;
 
 const SubscribeBtn = styled(Button)`
-  background: #ed4747;
+  margin-left: 1em;
   font-family: 'Arvo';
   font-weight: 600;
   text-transform: capitalize;
+  background: #ed4747;
   color: #ffffff;
 
   @media (max-width: 640px) {
@@ -74,7 +81,7 @@ const Header: React.FC = () => {
   const leagues = useSelector(selectAllCompetitions);
   const user = useSelector(selectUser);
   const sortedLeagues = [...leagues].sort((a, b) => new Date(a.createdAt) > new Date(b.createdAt) ? 1 : -1);
-  const isMobile = useMediaQuery('(max-width:640px)');
+  const isMobile = useMediaQuery('(max-width:900px)');
 
   useEffect(() => {
     dispatch(getAllCompetitions());
@@ -94,19 +101,21 @@ const Header: React.FC = () => {
         {
           !isMobile && <Navigation links={sortedLeagues} />
         }
-        {
-          user ? (
-            <UserHeaderMenu user={user} />
-          ) : (
-            <LoginLink to='/login'>Log In</LoginLink>
-          )
-        }
-        <SubscribeBtn>Subscribe</SubscribeBtn>
-        {
-          !isMobile && (
-            <SearchHeaderField />
-          )
-        }
+        <NavActions>
+          {
+            user ? (
+              <UserHeaderMenu user={user} />
+            ) : (
+              <LoginLink to='/login'>Log In</LoginLink>
+            )
+          }
+          <SubscribeBtn>Subscribe</SubscribeBtn>
+          {
+            !isMobile && (
+              <SearchHeaderField />
+            )
+          }
+        </NavActions>
       </Content>
     </Wrapper>
   );
