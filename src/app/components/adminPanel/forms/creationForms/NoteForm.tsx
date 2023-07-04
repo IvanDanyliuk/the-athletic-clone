@@ -91,7 +91,7 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
         },
         type: MaterialType.note,
         image: imageUrl,
-        publicationDate: dayjs(data.publicationDate).add(1, 'day'),
+        publicationDate: data.publicationDate ? dayjs(data.publicationDate).add(1, 'day') : new Date().toISOString(),
         views: 0,
         likes: [],
         labels: selectedLabels,

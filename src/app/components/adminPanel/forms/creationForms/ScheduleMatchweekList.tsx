@@ -1,15 +1,17 @@
 import React, { useContext } from 'react';
 import { 
   Accordion, AccordionDetails, AccordionSummary, 
-  Button, Grid, List, ListItem, styled, Typography 
+  Button, Divider, Grid, Icon, List, ListItem, styled, Typography 
 } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import ScheduleContext, { ScheduleContextType } from '../../../../context/scheduleContext';
 import { MatchForm } from './';
 import MatchweelDetails from '../../schedules/MatchweekDetails';
+import { KeyboardArrowDown } from '@mui/icons-material';
 
 
 const MatchweekListItem = styled(ListItem)`
+  margin-bottom: .5em;
   padding: 0;
 `;
 
@@ -23,7 +25,9 @@ const ScheduleMatchweekList: React.FC = () => {
           <Accordion sx={{ width: '100%' }}>
             <AccordionSummary>
               <Typography>{mw.matchweekName}</Typography>
+              <Icon component={KeyboardArrowDown} />
             </AccordionSummary>
+            <Divider orientation='horizontal' flexItem />
             <AccordionDetails>
               <Grid container spacing={3} justifyContent='flex-end'>
                 <Grid item xs={7} md={3}>

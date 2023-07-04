@@ -80,7 +80,7 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
           position: user?.position
         },
         type: MaterialType.post,
-        publicationDate: dayjs(data.publicationDate).add(1, 'day'),
+        publicationDate: data.publicationDate ? dayjs(data.publicationDate).add(1, 'day') : new Date().toISOString(),
         content: data.content,
         labels: selectedLabels,
         views: 0,

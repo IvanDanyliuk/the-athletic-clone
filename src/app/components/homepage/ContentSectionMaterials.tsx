@@ -26,14 +26,34 @@ const TopImage = styled('img')`
 
 const TopMaterialTitle = styled(Typography)`
   margin: .5em 0;
+  @media (max-width: 492px) {
+    font-size: 1.5em;
+    text-align: center;
+  }
+`;
+
+const TopMaterialPreview = styled(Typography)`
+  @media (max-width: 492px) {
+    font-size: .8em;
+    text-align: center;
+  }
 `;
 
 const MaterialsList = styled(List)`
   padding: 0;
+  @media (max-width: 900px) {
+    margin-top: 2em;
+  }
 `;
 
 const MaterialsListItem = styled(ListItem)`
   padding: 0;
+`;
+
+const SecondaryMaterialTitle = styled(Typography)`
+  @media (max-width: 492px) {
+    font-size: .9em;
+  }
 `;
 
 const SecondayMaterialImage = styled(Avatar)`
@@ -54,9 +74,9 @@ const ContentSectionMaterials: React.FC<IContentSectionMaterialsProps> = ({ mate
           <TopMaterialTitle variant='h3_top_section'>
             {materials[0].title}
           </TopMaterialTitle>
-          <Typography variant='subtitle1_custom'>
+          <TopMaterialPreview variant='subtitle1_custom'>
             {materials[0].preview}
-          </Typography>
+          </TopMaterialPreview>
         </MaterialLink>
       </Grid>
       <Divider orientation='vertical' flexItem sx={{ margin: '0 1em' }} />
@@ -74,9 +94,9 @@ const ContentSectionMaterials: React.FC<IContentSectionMaterialsProps> = ({ mate
                     />
                   </Grid>
                   <Grid item xs={9} md={10}>
-                    <Typography variant='h4_custom'>
+                    <SecondaryMaterialTitle variant='h4_custom'>
                       {material.title}
-                    </Typography>
+                    </SecondaryMaterialTitle>
                     <MaterialSecondaryInfo 
                       author={material.author.name} 
                       commentsNum={material.comments.length} 

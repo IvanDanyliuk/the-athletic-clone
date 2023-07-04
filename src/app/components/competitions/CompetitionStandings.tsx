@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { 
-  Grid, Paper, Table, TableBody, TableCell, TableContainer, 
+  Paper, Table, TableBody, TableCell, TableContainer, 
   TableHead, TableRow, styled 
 } from '@mui/material';
 import { v4 as uuid } from 'uuid';
@@ -13,14 +13,17 @@ import { selectCompetition } from '../../../features/competitions/selectors';
 import { selectSchedule } from '../../../features/schedules/selectors';
 import LatestGamesScores from './LatestGamesScores';
 import { StandingItem } from '../../../features/competitions/types';
+import { ClubLabel } from '../ui';
 
 
 const CustomCell = styled(TableCell)`
   min-width: 10em;
 `;
 
-const ClubLogo = styled('img')`
-  height: 1.5em;
+const Cell = styled(TableCell)`
+  @media (max-width: 640px) {
+    font-size: .8em;
+  }
 `;
 
 
@@ -66,23 +69,21 @@ const CompetitionStandings: React.FC = () => {
           {standings.map(item => (
             <TableRow key={uuid()}>
               <CustomCell>
-                <Grid container spacing={5} alignItems='center'>
-                  <Grid item xs={1} justifyContent='center'>
-                    <ClubLogo src={item.club.clubLogoUrl} alt={item.club.shortName} />
-                  </Grid>
-                  <Grid item xs>
-                    {item.club.commonName}
-                  </Grid>
-                </Grid>
+                <ClubLabel 
+                  logo={item.club.clubLogoUrl} 
+                  name={item.club.commonName} 
+                  clubId={item.club._id} 
+                  altText={item.club.shortName} 
+                />
               </CustomCell>
-              <TableCell>{item.playedMatches}</TableCell>
-              <TableCell>{item.wins}</TableCell>
-              <TableCell>{item.loses}</TableCell>
-              <TableCell>{item.draws}</TableCell>
-              <TableCell>{item.goalsFor}</TableCell>
-              <TableCell>{item.goalsAgainst}</TableCell>
-              <TableCell>{item.goalDifference}</TableCell>
-              <TableCell>{item.points}</TableCell>
+              <Cell>{item.playedMatches}</Cell>
+              <Cell>{item.wins}</Cell>
+              <Cell>{item.loses}</Cell>
+              <Cell>{item.draws}</Cell>
+              <Cell>{item.goalsFor}</Cell>
+              <Cell>{item.goalsAgainst}</Cell>
+              <Cell>{item.goalDifference}</Cell>
+              <Cell>{item.points}</Cell>
               <CustomCell>
                 <LatestGamesScores scores={item.latestGames} />
               </CustomCell>

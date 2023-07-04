@@ -4,7 +4,6 @@ import {
   OutlinedInput, Select, SelectChangeEvent, styled 
 } from '@mui/material';
 import { v4 as uuid } from 'uuid';
-import { capitalizeString } from '../../utils/helpers';
 
 
 interface IMultiSelectProps {
@@ -23,6 +22,9 @@ const Label = styled(InputLabel)`
   margin-bottom: 5px;
   font-size: .9em;
   color: #000000;
+  @media (max-width: 640px) {
+    font-size: .8em;
+  }
 `;
 
 const SelectBody = styled(Select)`

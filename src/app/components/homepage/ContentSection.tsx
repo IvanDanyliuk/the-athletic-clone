@@ -8,12 +8,15 @@ interface IContentSectionProps {
   data: IContentSection
 }
 
-const SectionTitle = styled(Typography)`
-  margin-bottom: .8em;
-`;
-
 const Section = styled(Box)`
   background: #ffffff;
+`;
+
+const SectionTitle = styled(Typography)`
+  margin-bottom: .8em;
+  @media (max-width: 640px) {
+    font-size: 1.3em;
+  }
 `;
 
 

@@ -171,22 +171,22 @@ const BtnMenuMobile: React.FC<IBtnMenuMobileProps> = ({ links }) => {
                   <CompetitionDetails>
                     <DetailsList>
                       <DetailsListItem>
-                        <DetailsLink to={`competitions/${link._id}`}>
+                        <DetailsLink to={`competitions/${link._id}`} onClick={handleMenuOpen}>
                           Home
                         </DetailsLink>
                       </DetailsListItem>
                       <DetailsListItem>
-                        <DetailsLink to={`competitions/${link._id}/scores-and-schedules`}>
+                        <DetailsLink to={`competitions/${link._id}/scores-and-schedules`} onClick={handleMenuOpen}>
                           Scores & Schedule
                         </DetailsLink>
                       </DetailsListItem>
                       <DetailsListItem>
-                        <DetailsLink to={`competitions/${link._id}/standings`}>
+                        <DetailsLink to={`competitions/${link._id}/standings`} onClick={handleMenuOpen}>
                           Standings
                         </DetailsLink>
                       </DetailsListItem>
                       <DetailsListItem>
-                        <DetailsLink to={`competitions/${link._id}/news`}>
+                        <DetailsLink to={`competitions/${link._id}/news`} onClick={handleMenuOpen}>
                           News
                         </DetailsLink>
                       </DetailsListItem>
@@ -195,7 +195,7 @@ const BtnMenuMobile: React.FC<IBtnMenuMobileProps> = ({ links }) => {
                     <DetailsList>
                       {link.clubs.map(club => (
                         <DetailsListItem key={uuid()}>
-                          <DetailsLink to={`clubs/${club._id}`}>
+                          <DetailsLink to={`clubs/${club._id}`} onClick={handleMenuOpen}>
                             {club.commonName}
                           </DetailsLink>
                         </DetailsListItem>

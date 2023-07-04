@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import styled from '@mui/styled-engine-sc';
-import { Avatar, Divider, Grid, List, ListItem, Typography } from '@mui/material';
+import { Avatar, Divider, Grid, List, ListItem, Typography, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../features/materials/types';
 import { Headlines, MaterialSecondaryInfo } from './';
@@ -15,6 +14,9 @@ const Container = styled(Grid)`
   margin: 0;
   &:first-child {
     padding-right: 1em;
+    @media (max-width: 492px) {
+      padding-right: 0;
+    }
   }
 `;
 
@@ -24,6 +26,23 @@ const TopImage = styled('img')`
 
 const TopMaterialTitle = styled(Typography)`
   margin: .5em 0;
+  @media (max-width: 492px) {
+    font-size: 1.5em;
+    text-align: center;
+  }
+`;
+
+const TopMaterialPreview = styled(Typography)`
+  @media (max-width: 492px) {
+    font-size: .8em;
+    text-align: center;
+  }
+`;
+
+const SecondaryMaterialTitle = styled(Typography)`
+  @media (max-width: 492px) {
+    font-size: .9em;
+  }
 `;
 
 const MaterialLink = styled(Link)`
@@ -70,9 +89,9 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
               <TopMaterialTitle variant='h3_custom'>
                 {materials[0].title}
               </TopMaterialTitle>
-              <Typography variant='subtitle1_custom'>
+              <TopMaterialPreview variant='subtitle1_custom'>
                 {materials[0].preview}
-              </Typography>
+              </TopMaterialPreview>
               <MaterialSecondaryInfo 
                 author={materials[0].author.name} 
                 commentsNum={materials[0].comments.length} 
@@ -86,16 +105,16 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
                 <MaterialsListItem key={uuid()}>
                   <MaterialLink to={`/materials/${material._id}`}>
                     <Grid container sx={{ paddingLeft: 0 }}>
-                      <Grid item xs={10} sx={{ paddingRight: '1em' }}>
-                        <Typography variant='h4_custom'>
+                      <Grid item xs={9} md={10} sx={{ paddingRight: '1em' }}>
+                        <SecondaryMaterialTitle variant='h4_custom'>
                           {material.title}
-                        </Typography>
+                        </SecondaryMaterialTitle>
                         <MaterialSecondaryInfo 
                           author={material.author.name} 
                           commentsNum={material.comments.length} 
                         />
                       </Grid>
-                      <Grid item xs sx={{ display: 'flex' }}>
+                      <Grid item xs md sx={{ display: 'flex' }}>
                         <Avatar 
                           src={material.image} 
                           alt={material._id} 
@@ -115,7 +134,7 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
         </Grid>
       </Grid>
       <VerticalDivider orientation='vertical' flexItem />
-      <Grid item xs={12} md>
+      <Grid item xs={12} md sx={{ marginTop: { xs: '1.5em', md: 0 } }}>
         <Headlines data={materials.slice(6)} />
       </Grid>
     </Container>

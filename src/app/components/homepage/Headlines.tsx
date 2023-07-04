@@ -29,6 +29,12 @@ const HeadlineLink = styled(Link)`
   }
 `;
 
+const MaterialTitle = styled(Typography)`
+  @media (max-width: 492px) {
+    font-size: .8em;
+  }
+`;
+
 
 const Headlines: React.FC<IHeadlinesProps> = ({ data }) => {
   return (
@@ -45,7 +51,9 @@ const Headlines: React.FC<IHeadlinesProps> = ({ data }) => {
         {data.map(material => (
           <HeadlineListItem key={uuid()}>
             <HeadlineLink to={`/materials/${material._id}`}>
-              <Typography variant='h6_custom'>{material.title}</Typography>
+              <MaterialTitle variant='h6_custom'>
+                {material.title}
+              </MaterialTitle>
             </HeadlineLink>
           </HeadlineListItem>
         ))}

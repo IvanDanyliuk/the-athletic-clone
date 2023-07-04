@@ -54,6 +54,10 @@ const MenuLink = styled(NavLink)`
   &.active {
     color: #000000;
   }
+
+  @media (max-width: 640px) {
+    font-size: .8em;
+  }
 `;
 
 

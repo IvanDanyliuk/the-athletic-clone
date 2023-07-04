@@ -14,13 +14,18 @@ import { IMaterial } from '../../../features/materials/types';
 import { divideArrayIntoChunks } from '../../utils/helpers';
 
 
-
 interface IRealtimePostsProps {
   materials: IMaterial[];
 }
 
 const HeaderDivider = styled(Divider)`
   margin: 0 1em;
+`;
+
+const Title = styled(Typography)`
+  @media (max-width: 640px) {
+    font-size: 1.3em;
+  }
 `;
 
 const CustomChip = styled(Chip)`
@@ -72,7 +77,7 @@ const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
   return (
     <Box>
       <Box sx={{ display: 'flex', alignItems: 'center' }}>
-        <Typography variant='h2_custom'>Real Time</Typography>
+        <Title variant='h2_custom'>Real Time</Title>
         <HeaderDivider orientation='vertical' flexItem />
         <CustomChip 
           icon={

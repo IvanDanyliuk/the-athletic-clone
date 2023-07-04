@@ -24,6 +24,10 @@ const Image = styled('img')`
   height: 35em;
   object-fit: cover;
   object-position: 50% 0;
+
+  @media (max-width: 640px) {
+    height: 16em;
+  }
 `;
 
 const AuthorInfo = styled(Box)`
@@ -37,12 +41,20 @@ const AuthorName = styled(Typography)`
   margin-right: 1em;
   font-size: 1em;
   font-weight: 800;
+
+  @media (max-width: 640px) {
+    font-size: .8em;
+  }
 `;
 
 const PublicationDate = styled(Typography)`
   font-size: 1em;
   font-weight: 800;
   color: #7e7e7e;
+
+  @media (max-width: 640px) {
+    font-size: .8em;
+  }
 `;
 
 const Title = styled(Typography)`
@@ -50,6 +62,16 @@ const Title = styled(Typography)`
   width: 80%;
   font-size: 2.5em;
   text-align: center;
+
+  @media (max-width: 640px) {
+    font-size: 2em;
+  }
+`;
+
+const Content = styled(Box)`
+  @media (max-width: 640px) {
+    font-size: .9em;
+  }
 `;
 
 const FeedbackSection = styled(Box)`
@@ -141,7 +163,7 @@ const Material: React.FC = () => {
       <Title variant='h2_custom'>
         {material?.title}
       </Title>
-      <Box 
+      <Content 
         component='div' 
         dangerouslySetInnerHTML={{ __html: material?.content }} 
       />
@@ -164,7 +186,6 @@ const Material: React.FC = () => {
         </ActivityInfo>
         <CommentsSection>
           {user && <Comments material={material} user={user} />}
-          
         </CommentsSection>
       </FeedbackSection>
     </Container>

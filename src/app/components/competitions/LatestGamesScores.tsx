@@ -38,6 +38,14 @@ const ScoreIcon = styled(Box)`
     font-size: .9em;
     font-weight: 600;
   }
+
+  @media (max-width: 640px) {
+    width: 2em;
+    height: 2em;
+    p {
+      font-size: .7em;
+    }
+  }
 `;
 
 const LatestGamesScores: React.FC<ILatestGamesScoresProps> = ({ scores }) => {

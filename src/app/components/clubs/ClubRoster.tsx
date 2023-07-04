@@ -30,7 +30,7 @@ const ClubRoster: React.FC = () => {
   });
 
   useEffect(() => {
-    dispatch(getPlayers({ filterData: { club: club?.commonName } }));
+    dispatch(getPlayers({ filterData: { club: club?._id } }));
   }, [dispatch, club]);
 
   useEffect(() => {
