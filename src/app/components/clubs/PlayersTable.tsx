@@ -22,11 +22,17 @@ const Container = styled(Paper)`
 `;
 
 const NameCell = styled(TableCell)`
-  width: 30em;
+  min-width: 15em;
 `;
 
 const CountryCell = styled(TableCell)`
-  width: 20em;
+  min-width: 10em;
+`;
+
+const Cell = styled(TableCell)`
+  @media (max-width: 640px) {
+    font-size: .8em;
+  }
 `;
 
 const PlayerLink = styled(Link)`
@@ -37,6 +43,9 @@ const PlayerLink = styled(Link)`
   p {
     margin-left: 1em;
     font-weight: 500;
+    @media (max-width: 640px) {
+      font-size: 1em;
+    }
   }
 `;
 
@@ -57,16 +66,16 @@ const PlayersTable: React.FC<IPlayersTableProps> = ({ title, players }) => {
         <TableBody>
           {players.map(player => (
             <TableRow key={uuid()} hover data-testid='playersTableRow'>
-              <NameCell>
+              <Cell>
                 <PlayerLink to={`/players/${player._id}`}>
                   <Avatar src={player.photoUrl} />
                   <Typography>{`${player.firstName} ${player.lastName}`}</Typography>
                 </PlayerLink>
-              </NameCell>
-              <TableCell>{player.position}</TableCell>
-              <TableCell>{dayjs(player.birthDate).format('DD/MM/YYYY')}</TableCell>
-              <TableCell>{player.number}</TableCell>
-              <CountryCell>{player.country}</CountryCell>
+              </Cell>
+              <Cell>{player.position}</Cell>
+              <Cell>{dayjs(player.birthDate).format('DD/MM/YYYY')}</Cell>
+              <Cell>{player.number}</Cell>
+              <Cell>{player.country}</Cell>
             </TableRow>
           ))}
         </TableBody>
