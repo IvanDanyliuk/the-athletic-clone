@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid } from '@mui/material';
+import { Grid, styled } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import { IContentSection } from '../../../../features/content/types';
 import { ContentSectionListItem } from './';
@@ -9,13 +9,17 @@ interface IContentSectionsListProps {
   sections: IContentSection[],
 }
 
+const Container = styled(Grid)`
+  margin-top: 5px;
+`;
+
 
 const ContentSectionsList: React.FC<IContentSectionsListProps> = ({ 
   sections
 }) => {
 
   return (
-    <Grid container spacing={3} sx={{ marginTop: '5px' }}>
+    <Container container spacing={3}>
       {sections.map(section => (
         <Grid item xs={12} key={uuid()}>
           <ContentSectionListItem 
@@ -23,7 +27,7 @@ const ContentSectionsList: React.FC<IContentSectionsListProps> = ({
           />
         </Grid>
       ))}
-    </Grid>
+    </Container>
   );
 };
 

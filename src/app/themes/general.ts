@@ -38,10 +38,6 @@ declare module "@mui/material/Typography" {
 }
 
 export const theme = createTheme({
-  // palette: {
-  //   primary: {},
-  //   secondary: {},
-  // },
   typography: {
     h3_custom: {
       fontFamily: `'Roboto Serif', serif`,

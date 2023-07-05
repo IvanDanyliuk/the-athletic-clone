@@ -18,6 +18,13 @@ interface IContentSectionListItem {
 
 const SectionBody = styled(Paper)`
   padding: 1em;
+  max-width: 100%;
+  overflow: auto;
+`;
+
+const MainMaterialContainer = styled(Box)`
+  display: flex;
+  justify-content: space-between;
 `;
 
 const Text = styled(Typography)`
@@ -50,7 +57,7 @@ const ContentSectionListItem: React.FC<IContentSectionListItem> = ({ data }) => 
 
   return (
     <SectionBody elevation={4} data-testid='contentSectionListItem'>
-      <Box component='div' sx={{ display: 'flex', justifyContent: 'space-between' }}>
+      <MainMaterialContainer component='div'>
         <SectionTitle>
           <Typography variant='h6'>
             {name}
@@ -65,7 +72,7 @@ const ContentSectionListItem: React.FC<IContentSectionListItem> = ({ data }) => 
         >
           <FontAwesomeIcon icon={faXmark} />
         </ConfirmAction>
-      </Box>
+      </MainMaterialContainer>
       <List>
         {materials.map(material => (
           <ListItem key={uuid()}>

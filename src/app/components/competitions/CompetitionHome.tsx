@@ -7,6 +7,7 @@ import { selectCompetition } from '../../../features/competitions/selectors';
 import { selectMaterials, selectMaterialsStatus } from '../../../features/materials/selectors';
 import { BackdropLoader, DataNotFoundMessage } from '../ui/';
 import { TopContentSection } from '../homepage/';
+import { LOADING_STATUS } from '../../constants/common';
 
 
 const Container = styled(Box)`
@@ -28,7 +29,7 @@ const CompetitionHome: React.FC = () => {
   }, [dispatch, league]);
 
   if(materials.length === 0) {
-    return materialsStatus === 'loading' ? 
+    return materialsStatus === LOADING_STATUS ? 
       <BackdropLoader open={true} /> : 
       <DataNotFoundMessage message='Cannot find materials' />;
   }

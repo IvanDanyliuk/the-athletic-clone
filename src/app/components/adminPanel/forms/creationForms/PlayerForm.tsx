@@ -73,7 +73,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
       const photoUrl = data.photoUrl.length > 0 ? await uploadImage(data.photoUrl[0]) : '';
       await dispatch(createPlayer({
         ...data,
-        birthDate: dayjs(data.birthDate).add(1, 'day'),
+        birthDate: data.birthDate ? dayjs(data.birthDate).add(1, 'day') : new Date().toISOString(),
         photoUrl,
       }));
       setIsLoading(false);
@@ -89,7 +89,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
         firstName: playerToUpdate.firstName,
         lastName: playerToUpdate.lastName,
         country: playerToUpdate.country,
-        club: playerToUpdate.club._id,
+        club: playerToUpdate.club ? playerToUpdate.club._id : '-',
         number: playerToUpdate.number,
         position: playerToUpdate.position,
         birthDate: dayjs(playerToUpdate.birthDate).subtract(1, 'day'),
@@ -108,6 +108,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
               label='First Name'
               type='text' 
               register={register}
+              registerOptions={{ required: 'First Name is required!' }}
               error={errors.firstName}
             />
           </Grid>
@@ -129,6 +130,8 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
               label='Birth Date'
               control={control}
               register={register}
+              registerOptions={{ required: 'Birth Date is required!' }}
+              required
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -138,6 +141,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
               control={control}
               register={register}
               registerOptions={{ required: 'Country is required!' }} 
+              required
               error={errors.country}
               options={countries}
             />
@@ -159,6 +163,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
               control={control}
               register={register}
               registerOptions={{ required: 'Position is required!' }} 
+              required
               error={errors.country}
               options={position}
             />
@@ -171,6 +176,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
               label='Number'
               type='number' 
               register={register}
+              registerOptions={{ required: 'Number is required!' }}
               inputProps={{
                 min: 1, max: 99
               }}

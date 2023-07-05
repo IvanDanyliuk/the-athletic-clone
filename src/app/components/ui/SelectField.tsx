@@ -14,6 +14,7 @@ interface ISelectFieldProps {
   registerOptions?: RegisterOptions,
   error?: FieldError,
   defaultValue?: string,
+  required?: boolean,
   options: {
     label: string,
     value: string
@@ -57,6 +58,7 @@ const SelectField: React.FC<ISelectFieldProps> = ({
   error, 
   defaultValue,
   options, 
+  required,
   ...props 
 }) => {
   return (
@@ -75,6 +77,9 @@ const SelectField: React.FC<ISelectFieldProps> = ({
         name={name}
         defaultValue={defaultValue ? defaultValue : ''}
         control={control}
+        rules={{
+          required
+        }}
         render={({ field: { ref, ...rest } }) => (
           <SelectBody
             inputRef={ref}

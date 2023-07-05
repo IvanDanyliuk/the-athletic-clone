@@ -62,7 +62,9 @@ const ContentMainArticle: React.FC<IContentMainArticle> = ({ article }) => {
             </Grid>
           </Grid>
         ) : (
-          <Typography>Article not found. Please, try to set the Main Article using the Content tab</Typography>
+          <Typography>
+            Article not found. Please, try to set the Main Article using the Content tab
+          </Typography>
         )
       }
     </SectionBody>
