@@ -17,6 +17,10 @@ import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
 
 
+interface INewRealTimePostFormProps {
+  postToUpdate?: IMaterial;
+}
+
 const Form = styled(Box)`
   margin-top: 20px;
 `;
@@ -25,10 +29,6 @@ const statusOptions = [
   { label: 'Published', value: 'published' },
   { label: 'Not Published', value: 'not-published' },
 ];
-
-interface INewRealTimePostFormProps {
-  postToUpdate?: IMaterial
-}
 
 
 const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate }) => {

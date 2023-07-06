@@ -23,14 +23,12 @@ const AuthBtn = styled(ButtonBase)`
   background: #ffffff;
   color: #000000;
   border: 1px solid #000000;
-
   img {
     margin-right: 1em;
     height: 2em;
     position: absolute;
     left: 1em;
   }
-
   @media (max-width: 640px) {
     padding: 1.2em;
     font-size: .8em;

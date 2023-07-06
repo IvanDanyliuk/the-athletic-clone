@@ -6,7 +6,7 @@ import { ContentSectionListItem } from './';
 
 
 interface IContentSectionsListProps {
-  sections: IContentSection[],
+  sections: IContentSection[];
 }
 
 const Container = styled(Grid)`

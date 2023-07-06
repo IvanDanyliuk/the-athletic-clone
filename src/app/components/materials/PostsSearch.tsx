@@ -46,7 +46,6 @@ const FilterButton = styled(Button)`
   height: 3em;
   text-transform: none;
   color: #121212;
-
   svg {
     margin-right: 1em;
     font-size: 1.5em;
@@ -65,7 +64,6 @@ const LatestIcon = styled(Typography)`
 
 const SearchListItem = styled(ListItem)`
   transition: .5s;
-
   &:hover {
     cursor: pointer;
     background: #f4f4f4;

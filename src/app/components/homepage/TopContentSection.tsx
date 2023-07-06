@@ -7,7 +7,7 @@ import { Headlines, MaterialSecondaryInfo } from './';
 
 
 interface ITopContentSectionProps {
-  materials: IMaterial[]
+  materials: IMaterial[];
 }
 
 const Container = styled(Grid)`

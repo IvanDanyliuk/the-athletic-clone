@@ -8,8 +8,8 @@ import ScheduleContext, { ScheduleContextType } from '../../../../context/schedu
 
 
 interface IScheduleTitle {
-  competition: string,
-  season: string
+  competition: string;
+  season: string;
 }
 
 const Form = styled(Box)`

@@ -11,9 +11,9 @@ import { EssenseType } from '../../../../models/components';
 
 
 interface IUserTableBodyProps {
-  users: IUser[],
-  page: number,
-  itemsPerPage: number
+  users: IUser[];
+  page: number;
+  itemsPerPage: number;
 }
 
 

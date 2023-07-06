@@ -11,16 +11,16 @@ import { selectAllCompetitions } from '../../../../../features/competitions/sele
 
 
 interface IMatchFormProps {
-  mwId: string,
+  mwId: string;
 }
 
 interface IFormData {
-  matchweekName: string,
-  home: string,
-  away: string,
-  date: string,
-  location: string,
-  score: string
+  matchweekName: string;
+  home: string;
+  away: string;
+  date: string;
+  location: string;
+  score: string;
 }
 
 const Form = styled(Box)`

@@ -5,7 +5,7 @@ import { ContentSectionMaterials } from './';
 
 
 interface IContentSectionProps {
-  data: IContentSection
+  data: IContentSection;
 }
 
 const Section = styled(Box)`

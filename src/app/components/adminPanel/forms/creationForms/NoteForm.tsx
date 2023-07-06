@@ -11,12 +11,16 @@ import { selectUser } from '../../../../../features/users/selectors';
 import { uploadImage } from '../../../../services/uploadImage';
 import { BackLink, TextEditor } from '../../ui/';
 import { BackdropLoader, ControlledDatePicker, MultiSelect, SelectField, TextInput } from '../../../ui/';
-import { IMaterial } from '../../../../../features/materials/types';
+import { IMaterial, MaterialPublicationStatus } from '../../../../../features/materials/types';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
 
+
+interface INewNoteFormProps {
+  noteToUpdate?: IMaterial;
+}
 
 const Form = styled(Box)`
   margin-top: 20px;
@@ -28,13 +32,9 @@ const SubmitBtn = styled(Button)`
 `;
 
 const statusOptions = [
-  { label: 'Published', value: 'published' },
-  { label: 'Not Published', value: 'not-published' },
+  { label: 'Published', value: MaterialPublicationStatus.Published },
+  { label: 'Not Published', value: MaterialPublicationStatus.NotPublished },
 ];
-
-interface INewNoteFormProps {
-  noteToUpdate?: IMaterial
-}
 
 
 const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {

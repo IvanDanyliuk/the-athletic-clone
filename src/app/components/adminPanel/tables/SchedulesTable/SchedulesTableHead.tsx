@@ -5,6 +5,11 @@ import { ISchedulesTableHeadCell } from '../../../../../features/schedules/types
 import { Order } from '../../../../../features/types';
 
 
+interface ISchedulesTableHeadProps {
+  activeCell: ISchedulesTableHeadCell | null;
+  onSort: (data: ISchedulesTableHeadCell) => void;
+}
+
 const cells: ISchedulesTableHeadCell[] = [
   {
     title: 'Name', 
@@ -45,12 +50,6 @@ const cells: ISchedulesTableHeadCell[] = [
     isSortable: false
   },
 ];
-
-
-interface ISchedulesTableHeadProps {
-  activeCell: ISchedulesTableHeadCell | null,
-  onSort: (data: ISchedulesTableHeadCell) => void
-}
 
 
 const SchedulesTableHead: React.FC<ISchedulesTableHeadProps> = ({

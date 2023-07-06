@@ -3,9 +3,9 @@ import { styled, TableFooter, TablePagination, TableRow } from '@mui/material';
 
 
 interface ISchedulesTableFooterProps {
-  pageCount: number,
-  page: number,
-  onPageChange: (e: unknown, newPage: number) => void
+  pageCount: number;
+  page: number;
+  onPageChange: (e: unknown, newPage: number) => void;
 }
 
 const PlayersTablePagination = styled(TablePagination)`

@@ -7,7 +7,7 @@ import { SeeMoreLink } from '../ui';
 
 
 interface IHeadlinesProps {
-  data: IMaterial[]
+  data: IMaterial[];
 }
 
 const HeadlinesList = styled(List)`

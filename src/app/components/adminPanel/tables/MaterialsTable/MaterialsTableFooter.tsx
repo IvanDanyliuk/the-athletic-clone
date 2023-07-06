@@ -3,9 +3,9 @@ import { styled, TableFooter, TablePagination, TableRow } from '@mui/material';
 
 
 interface IMaterialsTableFooterProps {
-  pageCount: number,
-  page: number,
-  onPageChange: (e: unknown, newPage: number) => void
+  pageCount: number;
+  page: number;
+  onPageChange: (e: unknown, newPage: number) => void;
 }
 
 const MaterialsTablePagination = styled(TablePagination)`

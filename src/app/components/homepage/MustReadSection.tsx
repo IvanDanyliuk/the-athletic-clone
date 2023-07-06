@@ -6,7 +6,7 @@ import { IMaterial } from '../../../features/materials/types';
 
 
 interface IMustReadSectionProps {
-  article: IMaterial
+  article: IMaterial;
 }
 
 const SectionTitle = styled(Typography)`

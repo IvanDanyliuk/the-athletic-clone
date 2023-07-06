@@ -3,7 +3,7 @@ import { Backdrop, CircularProgress } from '@mui/material';
 
 
 interface IBackdropLoaderProps {
-  open: boolean
+  open: boolean;
 }
 
 const BackdropLoader: React.FC<IBackdropLoaderProps> = ({ open }) => {

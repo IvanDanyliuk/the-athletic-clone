@@ -7,7 +7,7 @@ import { PopularMaterialItem } from './';
 
 
 interface IPopularMaterialsProps {
-  materials: IMaterial[]
+  materials: IMaterial[];
 }
 
 const MaterialsDivider = styled(Divider)`

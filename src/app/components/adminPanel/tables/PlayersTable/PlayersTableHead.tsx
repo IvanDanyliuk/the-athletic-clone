@@ -5,6 +5,11 @@ import { IPlayersTableHeadCell } from '../../../../../features/players/types';
 import { Order } from '../../../../../features/types';
 
 
+interface IPlayersTableHeadProps {
+  activeCell: IPlayersTableHeadCell | null;
+  onSort: (data: IPlayersTableHeadCell) => void;
+}
+
 const cells: IPlayersTableHeadCell[] = [
   {
     title: 'First Name', 
@@ -47,12 +52,6 @@ const cells: IPlayersTableHeadCell[] = [
     isSortable: false
   },
 ];
-
-
-interface IPlayersTableHeadProps {
-  activeCell: IPlayersTableHeadCell | null,
-  onSort: (data: IPlayersTableHeadCell) => void
-}
 
 
 const PlayersTableHead: React.FC<IPlayersTableHeadProps> = ({

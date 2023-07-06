@@ -5,8 +5,8 @@ import { IMaterial } from '../../../features/materials/types';
 
 
 interface IPopularMaterialItemProp {
-  index: number,
-  data: IMaterial
+  index: number;
+  data: IMaterial;
 }
 
 const LinkContainer = styled(Link)`

@@ -1,6 +1,6 @@
-import { ISchedule, ISchedulesInitialState } from "../../../../features/schedules/types";
-import { StateStatus } from "../../../../features/types";
-import { ScheduleModel } from "../../../models/components";
+import { ISchedule, ISchedulesInitialState } from '../../../../features/schedules/types';
+import { StateStatus } from '../../../../features/types';
+import { ScheduleModel } from '../../../models/components';
 
 export const schedulesStateSuccessMock: ISchedulesInitialState = {
   status: StateStatus.Succeded,

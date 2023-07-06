@@ -5,6 +5,11 @@ import { ICompetitionsTableHeadCell } from '../../../../../features/competitions
 import { Order } from '../../../../../features/types';
 
 
+interface ICompetitionsTableHeadProps {
+  activeCell: ICompetitionsTableHeadCell | null;
+  onSort: (data: ICompetitionsTableHeadCell) => void;
+}
+
 const cells: ICompetitionsTableHeadCell[] = [
   {
     title: 'Name', 
@@ -33,12 +38,6 @@ const cells: ICompetitionsTableHeadCell[] = [
     isSortable: false
   },
 ];
-
-
-interface ICompetitionsTableHeadProps {
-  activeCell: ICompetitionsTableHeadCell | null,
-  onSort: (data: ICompetitionsTableHeadCell) => void
-}
 
 
 const CompetitionsTableHead: React.FC<ICompetitionsTableHeadProps> = ({

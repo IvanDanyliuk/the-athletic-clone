@@ -5,6 +5,11 @@ import { IUsersTableHeadCell } from '../../../../../features/users/types';
 import { Order } from '../../../../../features/types';
 
 
+interface IUsersTableHeadProps {
+  activeCell: IUsersTableHeadCell | null;
+  onSort: (data: IUsersTableHeadCell) => void;
+}
+
 const cells: IUsersTableHeadCell[] = [
   {
     title: 'First Name', 
@@ -51,12 +56,6 @@ const cells: IUsersTableHeadCell[] = [
     isSortable: false,
   }
 ];
-
-
-interface IUsersTableHeadProps {
-  activeCell: IUsersTableHeadCell | null,
-  onSort: (data: IUsersTableHeadCell) => void
-}
 
 
 const AuthorsTableHead: React.FC<IUsersTableHeadProps> = ({

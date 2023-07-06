@@ -6,8 +6,8 @@ import { styled, Typography } from '@mui/material';
 
 
 interface IBackLinkProps {
-  link: string,
-  title: string
+  link: string;
+  title: string;
 }
 
 const LinkBody = styled(Link)`
@@ -22,11 +22,9 @@ const LinkBody = styled(Link)`
   background: #ececec;
   color: #000000;
   transition: .3s;
-
   &:hover {
     background: #cccccc;
   }
-
   svg {
     margin-right: 5px;
   }

@@ -10,9 +10,9 @@ import { IMatch } from '../../../features/schedules/types';
 
 interface IScoresSectionProps {
   matches: {
-    league: string,
-    matches: IMatch[]
-  }[]
+    league: string;
+    matches: IMatch[];
+  }[];
 }
 
 const Wrapper = styled(Box)`

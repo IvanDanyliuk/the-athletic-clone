@@ -27,7 +27,6 @@ const Wrapper = styled(Box)`
 
 const Container = styled(Box)`
   width: 24em;
-
   @media (max-width: 640px) {
     width: 100%;
   }
@@ -38,7 +37,6 @@ const Title = styled(Typography)`
   font-family: 'Arvo', serif;
   font-size: 2.5em;
   text-align: center;
-
   @media (max-width: 640px) {
     font-size: 1.8em;
   }
@@ -51,7 +49,6 @@ const PageDivider = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   hr {
     width: 43%;
   }
@@ -66,7 +63,6 @@ const SubmitButton = styled(Button)`
   text-transform: none;
   background: #000000;
   color: #ffffff;
-
   &:hover {
     background: #c9c9c9;
     color: #000000;
@@ -79,7 +75,6 @@ const BackButton = styled(Button)`
   font-size: 1em;
   text-transform: none;
   color: #000000;
-  
   svg {
     margin-right: 10px;
   }
@@ -105,7 +100,6 @@ const BottomText = styled(Typography)`
   font-size: .7em;
   text-align: center;
   color: #939393;
-
   a {
     text-decoration: none;
     color: #078adb;

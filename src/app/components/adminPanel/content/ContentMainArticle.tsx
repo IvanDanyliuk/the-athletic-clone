@@ -8,7 +8,7 @@ import { IMaterial } from '../../../../features/materials/types';
 
 
 interface IContentMainArticle {
-  article: IMaterial | null
+  article: IMaterial | null;
 }
 
 const SectionBody = styled(Paper)`
@@ -33,6 +33,7 @@ const EditLink = styled(Link)`
 const Text = styled(Typography)`
   font-size: .8em;
 `;
+
 
 const ContentMainArticle: React.FC<IContentMainArticle> = ({ article }) => {
   return (

@@ -32,6 +32,11 @@ export interface ICompetitionsInitialState {
   error: string | null;
 }
 
+export enum CompetitionTypes {
+  league = 'league',
+  cup = 'cup'
+}
+
 export interface ICompetitionsFilters {
   type?: string;
   country?: string;

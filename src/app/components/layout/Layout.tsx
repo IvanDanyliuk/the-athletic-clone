@@ -15,7 +15,7 @@ import { getCurrentSeasonValue } from '../../utils/helpers';
 
 
 interface ILayout {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 const Wrapper = styled(Box)`
@@ -40,6 +40,7 @@ const ContentContainer = styled(Container)`
   position: relative;
   flex: 1;
 `;
+
 
 const Layout: React.FC<ILayout> = ({ children }) => {
   const dispatch = useDispatch<AppDispatch>();

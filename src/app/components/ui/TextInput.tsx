@@ -6,12 +6,12 @@ import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 
 interface ITextInputProps {
-  name: string,
-  label?: string,
-  register: UseFormRegister<any>,
-  registerOptions?: RegisterOptions,
-  error?: FieldError,
-  [x: string]: any,
+  name: string;
+  label?: string;
+  register: UseFormRegister<any>;
+  registerOptions?: RegisterOptions;
+  error?: FieldError;
+  [x: string]: any;
 }
 
 const Label = styled(InputLabel)`
@@ -33,7 +33,6 @@ const ErrorMessage = styled(Box)`
   align-items: center;
   font-size: .7em;
   color: #cd2424;
-
   svg {
     margin-right: 5px;
   }

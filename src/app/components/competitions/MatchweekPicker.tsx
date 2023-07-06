@@ -22,7 +22,6 @@ const MatchweekBtn = styled(Button)`
 
 const MatchweekName = styled(Typography)`
   font-size: 1em;
-
   @media(max-width: 480px) {
     font-size: .7em;
   }

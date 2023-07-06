@@ -44,14 +44,12 @@ const MenuLink = styled(NavLink)`
   text-decoration: none;
   text-align: center;
   color: #888888;
-
   &:hover {
     color: #000000;
   }
   &.active {
     color: #000000;
   }
-
   @media (max-width: 640px) {
     font-size: .8em;
   }

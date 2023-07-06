@@ -5,6 +5,11 @@ import { IMaterialsTableHeadCell } from '../../../../../features/materials/types
 import { Order } from '../../../../../features/types';
 
 
+interface IMaterialsTableHeadProps {
+  activeCell: IMaterialsTableHeadCell | null;
+  onSort: (data: IMaterialsTableHeadCell) => void;
+}
+
 const cells: IMaterialsTableHeadCell[] = [
   {
     title: 'Title', 
@@ -47,12 +52,6 @@ const cells: IMaterialsTableHeadCell[] = [
     order: Order.asc
   }
 ];
-
-
-interface IMaterialsTableHeadProps {
-  activeCell: IMaterialsTableHeadCell | null,
-  onSort: (data: IMaterialsTableHeadCell) => void
-}
 
 
 const MaterialsTableHead: React.FC<IMaterialsTableHeadProps> = ({

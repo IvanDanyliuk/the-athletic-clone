@@ -49,6 +49,7 @@ const PlayerLink = styled(Link)`
   }
 `;
 
+
 const PlayersTable: React.FC<IPlayersTableProps> = ({ title, players }) => {
   return (
     <Container>

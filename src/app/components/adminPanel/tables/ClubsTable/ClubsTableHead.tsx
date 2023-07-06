@@ -5,6 +5,11 @@ import { IClubsTableHeadCell } from '../../../../../features/clubs/types';
 import { Order } from '../../../../../features/types';
 
 
+interface IClubsTableHeadProps {
+  activeCell: IClubsTableHeadCell | null;
+  onSort: (data: IClubsTableHeadCell) => void;
+}
+
 const cells: IClubsTableHeadCell[] = [
   {
     title: 'Name', 
@@ -27,12 +32,6 @@ const cells: IClubsTableHeadCell[] = [
     isSortable: false
   },
 ];
-
-
-interface IClubsTableHeadProps {
-  activeCell: IClubsTableHeadCell | null,
-  onSort: (data: IClubsTableHeadCell) => void
-}
 
 
 const ClubsTableHead: React.FC<IClubsTableHeadProps> = ({

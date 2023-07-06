@@ -6,12 +6,12 @@ import dayjs from 'dayjs';
 
 
 interface IControlledDatePickerProps {
-  name: string,
-  label: string,
-  control: Control<any>,
-  register: UseFormRegister<any>,
-  registerOptions?: RegisterOptions,
-  [x: string]: any,
+  name: string;
+  label: string;
+  control: Control<any>;
+  register: UseFormRegister<any>;
+  registerOptions?: RegisterOptions;
+  [x: string]: any;
 }
 
 

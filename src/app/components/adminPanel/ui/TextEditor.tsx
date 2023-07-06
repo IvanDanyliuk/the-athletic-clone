@@ -5,12 +5,12 @@ import 'react-quill/dist/quill.snow.css';
 
 
 interface ITextEditorProps {
-  name: string,
-  control: Control<any>,
-  register: UseFormRegister<any>,
-  registerOptions?: RegisterOptions,
-  error?: FieldError,
-  [x: string]: any,
+  name: string;
+  control: Control<any>;
+  register: UseFormRegister<any>;
+  registerOptions?: RegisterOptions;
+  error?: FieldError;
+  [x: string]: any;
 }
 
 const TextEditor: React.FC<ITextEditorProps> = ({ name, control, register, registerOptions, error, ...props }) => {

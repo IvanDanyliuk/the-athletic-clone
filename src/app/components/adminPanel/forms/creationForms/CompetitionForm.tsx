@@ -8,12 +8,25 @@ import { uploadImage } from '../../../../services/uploadImage';
 import { BackLink } from '../../ui/';
 import { BackdropLoader, MultiSelect, SelectField, TextInput } from '../../../ui/';
 import { getCountries } from '../../../../services/countries';
-import { ICompetition } from '../../../../../features/competitions/types';
+import { CompetitionTypes, ICompetition } from '../../../../../features/competitions/types';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { createCompetition, updateCompetition } from '../../../../../features/competitions/asyncActions';
 import { IClub } from '../../../../../features/clubs/types';
 
+
+interface ICompetitionFormProps {
+  competitionToUpdate?: ICompetition;
+}
+
+interface FormData {
+  fullName: string;
+  shortName: string;
+  country: string;
+  clubs: IClub[];
+  logoUrl: string;
+  type: string;
+}
 
 const Form = styled(Box)`
   margin-top: 20px;
@@ -23,27 +36,9 @@ const FormRow = styled(Grid)`
   margin-bottom: 10px;
 `;
 
-interface ICompetitionFormProps {
-  competitionToUpdate?: ICompetition
-}
-
-interface FormData {
-  fullName: string,
-  shortName: string,
-  country: string,
-  clubs: IClub[],
-  logoUrl: string,
-  type: string,
-}
-
-enum CompetitionType {
-  league = 'league',
-  cup = 'cup'
-}
-
 const typeOptions = [
-  { label: 'League', value: CompetitionType.league },
-  { label: 'Cup', value: CompetitionType.cup }
+  { label: 'League', value: CompetitionTypes.league },
+  { label: 'Cup', value: CompetitionTypes.cup }
 ];
 
 

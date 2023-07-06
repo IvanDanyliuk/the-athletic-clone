@@ -9,7 +9,7 @@ import { clearFilters, setFilters } from '../../../../features/users/reducers';
 import { AppDispatch } from '../../../../features/store';
 import { ControlledDatePicker, SelectField } from '../../ui/';
 import { checkFilterTimeInterval } from '../../../utils/helpers';
-import { IUserFiltersData } from '../../../../features/users/types';
+import { IUserFiltersData, UserRoles } from '../../../../features/users/types';
 import { selectUserLocations } from '../../../../features/users/selectors';
 import { getUsers, getUsersLocations } from '../../../../features/users/asyncActions';
 
@@ -37,9 +37,9 @@ const SubmitBtn = styled(Button)`
 `;
 
 const roles = [
-  { label: 'Administrator', value: 'admin' }, 
-  { label: 'Author', value: 'author' }, 
-  { label: 'Reader', value: 'reader' },
+  { label: 'Administrator', value: UserRoles.admin }, 
+  { label: 'Author', value: UserRoles.author }, 
+  { label: 'Reader', value: UserRoles.reader },
 ];
 
 

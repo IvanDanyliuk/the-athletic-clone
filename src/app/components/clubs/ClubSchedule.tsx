@@ -22,7 +22,6 @@ const CellContainer = styled(Box)`
 
 const ScoreLabel = styled(Typography)`
   margin-left: 1em;
-  
   &[data-final='W'] {
     color: #257c17;
   }
@@ -32,7 +31,6 @@ const ScoreLabel = styled(Typography)`
   &[data-final='D'] {
     color: #2e2e2e;
   }
-
   @media (max-width: 640px) {
     font-size: .9em;
   }

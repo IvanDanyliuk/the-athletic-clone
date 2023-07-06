@@ -13,7 +13,7 @@ import { deleteContentSection } from '../../../../features/content/asyncActions'
 
 
 interface IContentSectionListItem {
-  data: IContentSection,
+  data: IContentSection;
 }
 
 const SectionBody = styled(Paper)`

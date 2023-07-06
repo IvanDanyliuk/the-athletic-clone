@@ -15,41 +15,41 @@ export interface ICLubsInitialState {
 }
 
 export interface IClubFilters {
-  competition?: string,
-  country?: string
+  competition?: string;
+  country?: string;
 }
 
 export interface IClubsRequestData {
-  page: number,
-  itemsPerPage: number,
-  filterData: IClubFilters | null, 
+  page: number;
+  itemsPerPage: number;
+  filterData: IClubFilters | null;
   sortData: {
-    indicator: string,
-    order: string
-  } | null
+    indicator: string;
+    order: string;
+  } | null;
 }
 
 export interface IClub {
-  _id: string,
-  fullName: string,
-  commonName: string,
-  shortName: string,
-  country: string,
-  clubLogoUrl: string,
-  stadium: string,
-  createdAt?: string,
-  updatedAt?: string
+  _id: string;
+  fullName: string;
+  commonName: string;
+  shortName: string;
+  country: string;
+  clubLogoUrl: string;
+  stadium: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface IClubsTableHeadCell {
-  title: string,
-  isSortable: boolean,
-  sortKey?: string,
-  order?: Order
+  title: string;
+  isSortable: boolean;
+  sortKey?: string;
+  order?: Order;
 }
 
 export interface IDeleteClubData {
-  id: string,
-  page: number,
-  itemsPerPage: number
+  id: string;
+  page: number;
+  itemsPerPage: number;
 }

@@ -9,7 +9,7 @@ interface IAddNewMaterialButtonMenuProps {
   links: {
     url: string;
     label: string;
-  }[]
+  }[];
 }
 
 const MenuBtn = styled(IconButton)`

@@ -15,7 +15,7 @@ import { BackdropLoader, TextInput } from '../../../ui/';
 
 
 interface IContentSectionProps {
-  sectionToUpdate?: IContentSection
+  sectionToUpdate?: IContentSection;
 }
 
 const Form = styled(Box)`

@@ -13,7 +13,6 @@ const Wrapper = styled(Box)`
   width: 100%;
   min-height: 93vh;
   background: #3b3b3b;
-
   @media (max-width: 640px) {
     padding: 2em 1em;
   }
@@ -31,7 +30,6 @@ const ErrorIndex = styled(Typography)`
   line-height: 1em;
   border-radius: 5px;
   background: #ffffff;
-
   @media (max-width: 640px) {
     font-size: 3em;
   }
@@ -44,12 +42,10 @@ const Message = styled(Typography)`
   font-size: 1.5em;
   border-radius: 5px;
   background: #ffffff;
-
   a {
     text-decoration: none;
     color: #078adb;
   }
-
   @media (max-width: 640px) {
     font-size: .9em;
   }
@@ -66,11 +62,9 @@ const Article = styled(Box)`
   align-items: center;
   border-radius: 5px;
   background: #ffffff;
-
   img {
     height: 180px;
   }
-
   @media (max-width: 640px) {
     img {
       height: 100px;
@@ -88,7 +82,6 @@ const ArticleContent = styled(Box)`
 const Title = styled(Typography)`
   font-family: 'Merriweather', serif;
   font-size: 1.4em;
-
   @media (max-width: 640px) {
     font-size: .8em;
   }
@@ -98,7 +91,6 @@ const AuthorName = styled(Typography)`
   margin: 10px 0;
   font-weight: 600;
   color: #858585;
-
   @media (max-width: 640px) {
     font-size: .7em;
   }

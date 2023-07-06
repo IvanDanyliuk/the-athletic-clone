@@ -28,7 +28,6 @@ const MaterialImage = styled('img')`
 const MainMaterialTitle = styled(Typography)`
   margin: .5em 0;
   font-size: 2.5em;
-
   @media (max-width: 768px) {
     font-size: 1.7em;
   }
@@ -36,7 +35,6 @@ const MainMaterialTitle = styled(Typography)`
 
 const SecondaryMaterialTitle = styled(Typography)`
   margin: .5em 0;
-
   @media (max-width: 768px) {
     font-size: 1.2em;
   }
@@ -45,7 +43,6 @@ const SecondaryMaterialTitle = styled(Typography)`
 const OtherMaterialTitle = styled(Typography)`
   margin: .5em 0;
   font-size: 1em;
-
   @media (max-width: 768px) {
     font-size: 1.1em;
   }
@@ -65,7 +62,6 @@ const Label = styled(Typography)`
   margin-right: 1em;
   font-size: .7em;
   text-transform: uppercase;
-
   @media (max-width: 768px) {
     font-size: .5em;
   }

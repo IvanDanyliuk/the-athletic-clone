@@ -44,6 +44,11 @@ export interface IRecentMaterialsRequestData {
   materialTypes: string[]
 }
 
+export enum MaterialPublicationStatus {
+  Published = 'published',
+  NotPublished = 'not-published'
+}
+
 export interface IHomepageSecondaryMaterialsRequestData {
   topMaterialsNum: number;
   postsNum: number

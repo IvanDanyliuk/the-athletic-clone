@@ -11,9 +11,9 @@ import { EssenseType } from '../../../../models/components';
 
 
 interface ICompetitionsTableBodyProps {
-  competitions: ICompetition[],
-  page: number,
-  itemsPerPage: number
+  competitions: ICompetition[];
+  page: number;
+  itemsPerPage: number;
 }
 
 

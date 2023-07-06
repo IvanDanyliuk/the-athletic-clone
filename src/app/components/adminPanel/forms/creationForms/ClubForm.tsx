@@ -13,6 +13,9 @@ import { createClub, updateClub } from '../../../../../features/clubs/asyncActio
 import { IClub } from '../../../../../features/clubs/types';
 
 
+interface INewClubFormProps {
+  clubToUpdate?: IClub;
+}
 
 const Form = styled(Box)`
   margin-top: 20px;
@@ -21,10 +24,6 @@ const Form = styled(Box)`
 const FormRow = styled(Grid)`
   margin-bottom: 10px;
 `;
-
-interface INewClubFormProps {
-  clubToUpdate?: IClub
-}
 
 
 const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {

@@ -8,7 +8,7 @@ import { ICompetition } from '../../../features/competitions/types';
 
 
 interface IMainMenuProps {
-  links: ICompetition[],
+  links: ICompetition[];
 }
 
 const NavbarButton = styled(Button)`
@@ -43,7 +43,6 @@ const CompetitionLink = styled(NavLink)`
   align-items: center;
   text-decoration: none;
   color: #333333;
-
   img {
     height: 2em;
     margin-right: 10px;

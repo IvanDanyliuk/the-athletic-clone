@@ -7,7 +7,7 @@ import { ClubLabel } from '../ui';
 
 
 interface INavigationProps {
-  links: ICompetition[]
+  links: ICompetition[];
 }
 
 

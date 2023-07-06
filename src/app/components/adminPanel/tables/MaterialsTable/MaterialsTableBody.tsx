@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Button, TableBody, TableCell, TableRow, styled } from '@mui/material';
+import { Button, TableBody, TableCell, TableRow } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
@@ -16,14 +16,10 @@ import { EssenseType } from '../../../../models/components';
 
 
 interface IMaterialsTableBodyProps {
-  materials: IMaterial[],
-  page: number,
-  itemsPerPage: number
+  materials: IMaterial[];
+  page: number;
+  itemsPerPage: number;
 }
-
-const AddBtn = styled(Button)`
-
-`;
 
 
 const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials, page, itemsPerPage }) => {
@@ -65,11 +61,11 @@ const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials, page
               <TableCell>
                 {
                   isContentEditMode ? (
-                    <AddBtn
+                    <Button
                       data-testid='addBtn' 
                       onClick={() => handleMaterialAddToContent(_id)}>
                       <FontAwesomeIcon icon={selectedMaterials.includes(_id) ? faXmark : faPlus} />
-                    </AddBtn>
+                    </Button>
                   ) : (
                     <RowActionButtons 
                       id={_id} 

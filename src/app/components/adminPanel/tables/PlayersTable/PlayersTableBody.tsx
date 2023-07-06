@@ -11,9 +11,9 @@ import { EssenseType } from '../../../../models/components';
 
 
 interface IPlayersTableBodyProps {
-  players: IPlayer[],
-  page: number,
-  itemsPerPage: number
+  players: IPlayer[];
+  page: number;
+  itemsPerPage: number;
 }
 
 

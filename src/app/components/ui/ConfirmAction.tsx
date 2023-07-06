@@ -4,7 +4,7 @@ import { Box, Button, Dialog, DialogActions, DialogTitle } from '@mui/material';
 
 interface IConfirmActionProps {
   message: string;
-  children: ReactNode,
+  children: ReactNode;
   onAction: () => void;
 }
 

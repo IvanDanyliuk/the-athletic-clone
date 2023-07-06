@@ -1,7 +1,7 @@
-import { IMaterialsState } from "../../../../features/materials/types";
-import { StateStatus } from "../../../../features/types";
-import { MaterialModel } from "../../../models/components";
-import { MaterialType } from "../../../models/components";
+import { IMaterialsState } from '../../../../features/materials/types';
+import { StateStatus } from '../../../../features/types';
+import { MaterialModel } from '../../../models/components';
+import { MaterialType } from '../../../models/components';
 
 
 export const materialsStateSuccessMock: IMaterialsState = {

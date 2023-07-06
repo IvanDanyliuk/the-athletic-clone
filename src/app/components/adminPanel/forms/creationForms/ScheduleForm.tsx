@@ -14,7 +14,7 @@ import { checkScheduleData } from '../../../../utils/helpers';
 
 
 interface IScheduleFormProps {
-  scheduleToUpdate?: ISchedule
+  scheduleToUpdate?: ISchedule;
 }
 
 const initialState: ISchedule = {

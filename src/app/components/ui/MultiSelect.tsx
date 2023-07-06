@@ -7,15 +7,15 @@ import { v4 as uuid } from 'uuid';
 
 
 interface IMultiSelectProps {
-  name: string,
-  label: string,
+  name: string;
+  label: string;
   data: {
-    label: string,
-    value: string
-  }[],
-  checkedLabels: string[],
-  disabled?: boolean,
-  setLabels: (event: SelectChangeEvent<any>) => void
+    label: string;
+    value: string;
+  }[];
+  checkedLabels: string[];
+  disabled?: boolean;
+  setLabels: (event: SelectChangeEvent<any>) => void;
 }
 
 const Label = styled(InputLabel)`

@@ -24,7 +24,6 @@ const Wrapper = styled(Box)`
 
 const Container = styled(Box)`
   width: 24em;
-
   @media (max-width: 640px) {
     width: 100%;
   }
@@ -35,7 +34,6 @@ const Title = styled(Typography)`
   font-family: 'Arvo', serif;
   font-size: 2.5em;
   text-align: center;
-
   @media (max-width: 640px) {
     font-size: 1.8em;
   }
@@ -48,7 +46,6 @@ const PageDivider = styled(Box)`
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   hr {
     width: 43%;
   }
@@ -63,7 +60,6 @@ const SubmitButton = styled(Button)`
   text-transform: none;
   background: #000000;
   color: #ffffff;
-
   &:hover {
     background: #c9c9c9;
     color: #000000;

@@ -11,9 +11,9 @@ import { EssenseType } from '../../../../models/components';
 
 
 interface ISchedulesTableBodyProps {
-  schedules: ISchedule[],
-  page: number,
-  itemsPerPage: number
+  schedules: ISchedule[];
+  page: number;
+  itemsPerPage: number;
 }
 
 

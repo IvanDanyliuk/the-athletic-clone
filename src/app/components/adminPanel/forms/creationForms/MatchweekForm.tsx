@@ -7,8 +7,8 @@ import { ControlledDatePicker, TextInput } from '../../../ui/';
 
 
 interface ITitle {
-  matchweekName: string,
-  basicDate: string,
+  matchweekName: string;
+  basicDate: string;
 }
 
 const Form = styled(Box)`

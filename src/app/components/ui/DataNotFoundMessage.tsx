@@ -2,6 +2,10 @@ import React from 'react';
 import { Box, Typography, styled } from '@mui/material';
 
 
+interface IDataNotFoundMessageProps {
+  message: string;
+}
+
 const Container = styled(Box)`
   width: 100%;
   min-height: 100%;
@@ -10,9 +14,6 @@ const Container = styled(Box)`
   align-items: center;
 `;
 
-interface IDataNotFoundMessageProps {
-  message: string
-}
 
 const DataNotFoundMessage: React.FC<IDataNotFoundMessageProps> = ({ message }) => {
   return (

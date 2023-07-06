@@ -1,6 +1,6 @@
-import { IPlayer, IPlayerInitialState } from "../../../../features/players/types";
-import { StateStatus } from "../../../../features/types";
-import { PlayerModel } from "../../../models/components";
+import { IPlayer, IPlayerInitialState } from '../../../../features/players/types';
+import { StateStatus } from '../../../../features/types';
+import { PlayerModel } from '../../../models/components';
 
 
 export const playersStateSuccessMock: IPlayerInitialState = {

@@ -5,9 +5,9 @@ import { List, ListItem, styled } from '@mui/material';
 
 interface INavMenuProps {
   links: {
-    url: string,
-    label: string
-  }[]
+    url: string;
+    label: string;
+  }[];
 }
 
 const MenuLink = styled(NavLink)`

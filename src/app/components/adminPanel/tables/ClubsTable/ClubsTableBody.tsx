@@ -11,9 +11,9 @@ import { EssenseType } from '../../../../models/components';
 
 
 interface IClubsTableBodyProps {
-  clubs: IClub[],
-  page: number,
-  itemsPerPage: number
+  clubs: IClub[];
+  page: number;
+  itemsPerPage: number;
 }
 
 

@@ -11,7 +11,7 @@ import { ICompetition } from '../../../features/competitions/types';
 
 
 interface IBtnMenuMobileProps {
-  links: ICompetition[],
+  links: ICompetition[];
 }
 
 const NavbarButton = styled(Button)`

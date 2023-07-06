@@ -14,11 +14,11 @@ import { setUrl } from '../../utils/helpers';
 
 interface ILeagueMaterialsProps {
   materials: {
-    league: string,
-    logo: string,
-    materials: IMaterial[]
-  }[],
-  leaguesNumToShow: number
+    league: string;
+    logo: string;
+    materials: IMaterial[];
+  }[];
+  leaguesNumToShow: number;
 }
 
 const HeaderItem = styled(Grid)`
@@ -43,6 +43,7 @@ const LinkBtn = styled(IconButton)`
       font-size: .5em;
   }
 `;
+
 
 const LeagueMaterials: React.FC<ILeagueMaterialsProps> = ({ materials, leaguesNumToShow }) => {
   return (

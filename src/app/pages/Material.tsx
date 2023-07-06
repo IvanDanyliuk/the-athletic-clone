@@ -24,7 +24,6 @@ const Image = styled('img')`
   height: 35em;
   object-fit: cover;
   object-position: 50% 0;
-
   @media (max-width: 640px) {
     height: 16em;
   }
@@ -41,7 +40,6 @@ const AuthorName = styled(Typography)`
   margin-right: 1em;
   font-size: 1em;
   font-weight: 800;
-
   @media (max-width: 640px) {
     font-size: .8em;
   }
@@ -51,7 +49,6 @@ const PublicationDate = styled(Typography)`
   font-size: 1em;
   font-weight: 800;
   color: #7e7e7e;
-
   @media (max-width: 640px) {
     font-size: .8em;
   }
@@ -62,7 +59,6 @@ const Title = styled(Typography)`
   width: 80%;
   font-size: 2.5em;
   text-align: center;
-
   @media (max-width: 640px) {
     font-size: 2em;
   }
@@ -93,12 +89,10 @@ const LikeButton = styled(Button)`
   display: flex;
   font-size: 1.2em;
   color: #000000;
-
   &[data-liked='true'] {
     background: #b4b4b4;
     color: #333333;
   }
-
   svg {
     margin-right: .5em;
   }
@@ -114,6 +108,8 @@ const ViewsInfo = styled(Box)`
     margin-right: .5em;
   }
 `;
+
+
 const Material: React.FC = () => {
   const { id } = useParams();
   const dispatch = useDispatch<AppDispatch>();

@@ -13,14 +13,12 @@ const SectionContainer = styled(Box)`
   flex-direction: column;
   align-items: center;
   background: #121212;
-
   h2 {
     margin-bottom: .5em;
     width: 25%;
     font-size: 2.5em;
     text-align: center;
     color: #ffffff;
-
     @media(max-width: 492px) {
       margin-bottom: 1em;
       width: 90%;
@@ -44,6 +42,7 @@ const SubscriptionLink = styled(Link)`
     margin-left: .5em;
   }
 `;
+
 
 const SubscribeSection: React.FC = () => {
   return (

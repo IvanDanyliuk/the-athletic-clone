@@ -25,6 +25,7 @@ const Views = styled(Typography)`
   }
 `;
 
+
 const MaterialSecondaryInfo: React.FC<IMaterialSecondaryInfoProps> = ({ author, commentsNum }) => {
   return (
     <SecondaryInfo>

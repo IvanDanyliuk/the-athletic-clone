@@ -7,11 +7,11 @@ import { EssenseType } from '../../../models/components';
 
 
 interface IRowActionButtonsProps {
-  id: string,
-  type: EssenseType, 
-  materialType?: string,
-  onSetMainArticle?: () => void,
-  onDelete: () => void
+  id: string;
+  type: EssenseType; 
+  materialType?: string;
+  onSetMainArticle?: () => void;
+  onDelete: () => void;
 }
 
 const EditLink = styled(Link)`

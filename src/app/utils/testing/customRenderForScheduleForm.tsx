@@ -4,6 +4,8 @@ import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
 import { PreloadedState, combineReducers, configureStore } from '@reduxjs/toolkit';
 import { RenderOptions, render } from '@testing-library/react';
+import { LocalizationProvider } from '@mui/x-date-pickers';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { RootState } from '../../../features/store';
 import userReducer from '../../../features/users/reducers';
 import materialReducer from '../../../features/materials/reducers';
@@ -11,19 +13,20 @@ import clubsReducer from '../../../features/clubs/reducers';
 import competitionsReducer from '../../../features/competitions/reducers';
 import playersReducer from '../../../features/players/reducers';
 import schedulesReducer from '../../../features/schedules/reducers';
-import { LocalizationProvider } from '@mui/x-date-pickers';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { clubsStateSuccessMock } from './testDataMocks/clubs';
 import { materialsStateSuccessMock } from './testDataMocks/materials';
 import { usersStateSuccessMock } from './testDataMocks/users';
 import { competitionsStateSuccessMock } from './testDataMocks/competitions';
 import ScheduleContext, { ScheduleContextType } from '../../context/scheduleContext';
-import { addMatchMock, addMatchweekMock, addScheduleTitleMock, deleteMatchMock, deleteMatchweekMock, newSchedule } from './testDataMocks/schedules';
+import { 
+  addMatchMock, addMatchweekMock, addScheduleTitleMock, 
+  deleteMatchMock, deleteMatchweekMock, newSchedule 
+} from './testDataMocks/schedules';
 import { StateStatus } from '../../../features/types';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
-  preloadedState?: PreloadedState<RootState>,
-  store?: any
+  preloadedState?: PreloadedState<RootState>;
+  store?: any;
 };
 
 

@@ -12,7 +12,7 @@ import { ICompetition } from '../../../features/competitions/types';
 interface ISearchFiltersProps {
   authors: {
     name: string;
-    userId: string
+    userId: string;
   }[];
   leagues: ICompetition[];
   checkedLabels: string[];

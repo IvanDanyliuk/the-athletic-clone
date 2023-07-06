@@ -1,7 +1,7 @@
-import { IContentSection, IContentSectionToUpdate, IContentSectionsInitialState } from "../../../../features/content/types";
-import { StateStatus } from "../../../../features/types";
-import { ContentSectionModel } from "../../../models/components";
-import { materialsStateSuccessMock } from "./materials";
+import { IContentSection, IContentSectionToUpdate, IContentSectionsInitialState } from '../../../../features/content/types';
+import { StateStatus } from '../../../../features/types';
+import { ContentSectionModel } from '../../../models/components';
+import { materialsStateSuccessMock } from './materials';
 
 export const contentStateSuccessMock: IContentSectionsInitialState = {
   status: StateStatus.Succeded,

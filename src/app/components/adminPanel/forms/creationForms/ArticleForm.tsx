@@ -14,7 +14,7 @@ import {
   BackdropLoader, Checkbox, ControlledDatePicker, 
   MultiSelect, SelectField, TextInput 
 } from '../../../ui/';
-import { IMaterial } from '../../../../../features/materials/types';
+import { IMaterial, MaterialPublicationStatus } from '../../../../../features/materials/types';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
@@ -31,12 +31,12 @@ const SubmitBtn = styled(Button)`
 `;
 
 const statusOptions = [
-  { label: 'Published', value: 'published' },
-  { label: 'Not Published', value: 'not-published' },
+  { label: 'Published', value: MaterialPublicationStatus.Published },
+  { label: 'Not Published', value: MaterialPublicationStatus.NotPublished },
 ];
 
 interface INewArticleFormProps {
-  articleToUpdate?: IMaterial
+  articleToUpdate?: IMaterial;
 }
 
 

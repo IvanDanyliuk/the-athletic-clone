@@ -43,7 +43,6 @@ const SubscribeBtn = styled(Button)`
   text-transform: capitalize;
   background: #ed4747;
   color: #ffffff;
-
   @media (max-width: 640px) {
     font-size: .7em;
   }
@@ -57,7 +56,6 @@ const Logo = styled(NavLink)`
   white-space: nowrap;
   text-decoration: none;
   color: #ffffff;
-
   @media (max-width: 640px) {
     font-size: 1.6em;
   }
@@ -68,7 +66,6 @@ const LoginLink = styled(Link)`
   font-weight: 600;
   text-decoration: none;
   color: #ffffff;
-
   @media (max-width: 640px) {
     font-size: 1em;
   }

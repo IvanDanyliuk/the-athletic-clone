@@ -7,21 +7,20 @@ import { faCircleExclamation } from '@fortawesome/free-solid-svg-icons';
 
 
 interface ISelectFieldProps {
-  name: string,
-  label: string,
-  control: Control<any>,
-  register: UseFormRegister<any>,
-  registerOptions?: RegisterOptions,
-  error?: FieldError,
-  defaultValue?: string,
-  required?: boolean,
+  name: string;
+  label: string;
+  control: Control<any>;
+  register: UseFormRegister<any>;
+  registerOptions?: RegisterOptions;
+  error?: FieldError;
+  defaultValue?: string;
+  required?: boolean;
   options: {
-    label: string,
-    value: string
-  }[],
-  [x: string]: any,
+    label: string;
+    value: string;
+  }[];
+  [x: string]: any;
 }
-
 
 const Label = styled(InputLabel)`
   margin-bottom: 5px;
@@ -42,7 +41,6 @@ const ErrorMessage = styled(Box)`
   align-items: center;
   font-size: .7em;
   color: #cd2424;
-
   svg {
     margin-right: 5px;
   }

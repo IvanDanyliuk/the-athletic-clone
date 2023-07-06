@@ -15,6 +15,21 @@ import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 
 
+interface IPlayerFormProps {
+  playerToUpdate?: IPlayer;
+}
+
+interface ICreatePlayerFormData {
+  firstName: string;
+  lastName: string;
+  birthDate: string | any;
+  country: string;
+  photoUrl: string;
+  number: string;
+  position: string;
+  club: string;
+}
+
 const Form = styled(Box)`
   margin-top: 20px;
 `;
@@ -22,21 +37,6 @@ const Form = styled(Box)`
 const FormRow = styled(Grid)`
   margin-bottom: 10px;
 `;
-
-interface IPlayerFormProps {
-  playerToUpdate?: IPlayer
-}
-
-interface ICreatePlayerFormData {
-  firstName: string,
-  lastName: string,
-  birthDate: string | any,
-  country: string,
-  photoUrl: string,
-  number: string,
-  position: string,
-  club: string,
-}
 
 const position = [
   { label: PlayerPosition.goalkeeper, value: PlayerPosition.goalkeeper },

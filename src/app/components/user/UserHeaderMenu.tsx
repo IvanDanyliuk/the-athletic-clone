@@ -8,7 +8,7 @@ import { IUser } from '../../../features/users/types';
 
 
 interface IUserHeaderMenuProps {
-  user: IUser
+  user: IUser;
 }
 
 
@@ -18,7 +18,6 @@ const UserAvatar = styled(Avatar)`
 
 const UserMenuItem = styled(MenuItem)`
   color: #3e3e3e;
-
   a {
     text-decoration: none;
     color: #3e3e3e;

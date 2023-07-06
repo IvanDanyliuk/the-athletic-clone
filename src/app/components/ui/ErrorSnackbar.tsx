@@ -3,9 +3,9 @@ import { Alert, Snackbar } from '@mui/material';
 
 
 interface IErrorSnackbarProps {
-  isOpen: boolean,
-  message: string | null,
-  onClose: () => void,
+  isOpen: boolean;
+  message: string | null;
+  onClose: () => void;
 }
 
 

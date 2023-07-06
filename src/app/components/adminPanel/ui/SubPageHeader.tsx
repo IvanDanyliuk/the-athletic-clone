@@ -5,8 +5,8 @@ import { Add } from '@mui/icons-material';
 
 
 interface ISubPageHeaderProps {
-  title: string,
-  link: string
+  title: string;
+  link: string;
 }
 
 const Container = styled(Box)`

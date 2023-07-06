@@ -19,8 +19,6 @@ const ScoreIcon = styled(Box)`
   justify-content: center;
   align-items: center;
   border-radius: 1.5em;
-  
-
   &[data-score='W'] {
     background: #12a35b;
     color: #ffffff;
@@ -33,12 +31,10 @@ const ScoreIcon = styled(Box)`
     background: #afafaf;
     color: #121212;
   }
-
   p {
     font-size: .9em;
     font-weight: 600;
   }
-
   @media (max-width: 640px) {
     width: 2em;
     height: 2em;

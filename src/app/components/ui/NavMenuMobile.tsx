@@ -8,9 +8,9 @@ import { v4 as uuid } from 'uuid';
 
 interface INavMenuMobileProps {
   links: {
-    url: string,
-    label: string
-  }[]
+    url: string;
+    label: string;
+  }[];
 }
 
 const NavMenuContainer = styled(Box)`

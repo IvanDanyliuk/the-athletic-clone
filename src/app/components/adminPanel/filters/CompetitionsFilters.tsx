@@ -5,7 +5,7 @@ import { faFilter, faFilterCircleXmark } from '@fortawesome/free-solid-svg-icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Box, Button, Grid, styled, Tooltip } from '@mui/material';
 import { clearFilters, setFilters } from '../../../../features/competitions/reducers';
-import { ICompetitionsFilters } from '../../../../features/competitions/types';
+import { CompetitionTypes, ICompetitionsFilters } from '../../../../features/competitions/types';
 import { AppDispatch } from '../../../../features/store';
 import { SelectField } from '../../ui/';
 import { getCountries } from '../../../services/countries';
@@ -33,11 +33,6 @@ const SubmitBtn = styled(Button)`
     font-size: 1.5em;
   }
 `;
-
-enum CompetitionTypes {
-  league = 'league',
-  cup = 'cup'
-}
 
 const competitionTypeOptions = [
   { label: 'League', value: CompetitionTypes.league },

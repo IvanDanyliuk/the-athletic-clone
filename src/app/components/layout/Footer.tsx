@@ -36,7 +36,6 @@ const LinkList = styled(List)`
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-
   @media(max-width: 640px) {
     max-height: fit-content;
   }
@@ -64,7 +63,6 @@ const Link = styled(NavLink)`
   svg  {
     font-size: 2em;
   }
-
   @media (max-width: 640px) {
     font-size: .7em;
   }
@@ -79,7 +77,6 @@ const Logo = styled(Typography)`
 
 const Copyright = styled(Typography)`
   font-size: 1em;
-  
   @media (max-width: 640px) {
     font-size: .7em;
   }

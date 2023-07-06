@@ -9,7 +9,7 @@ enum SkeletonVariants {
 }
 
 interface ISkeletonLoaderProps {
-  variant?: string
+  variant?: string;
 }
 
 
