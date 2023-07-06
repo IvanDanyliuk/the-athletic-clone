@@ -33,7 +33,7 @@ const Section = styled(Box)`
 
 const NavActions = styled(Box)`
   display: flex;
-
+  align-items: center;
 `;
 
 const SubscribeBtn = styled(Button)`
