@@ -1,17 +1,17 @@
-import { Order, StateStatus } from "../types"
+import { Order, StateStatus } from '../types'
 
 export interface ICLubsInitialState {
-  status: StateStatus,
+  status: StateStatus;
   data: {
     main: {
-      clubs: IClub[],
-      clubsCount: number
-    },
-    club: IClub | null
-  },
-  filters: IClubFilters | null,
-  clubsByCountry: IClub[],
-  error: string | null
+      clubs: IClub[];
+      clubsCount: number;
+    };
+    club: IClub | null;
+  };
+  filters: IClubFilters | null;
+  clubsByCountry: IClub[];
+  error: string | null;
 }
 
 export interface IClubFilters {
