@@ -9,9 +9,9 @@ import {
 } from '../../../../../features/users/selectors';
 import { getUsers } from '../../../../../features/users/asyncActions';
 import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
-import { IUsersTableHeadCell, Order } from '../../../../../features/users/types';
+import { IUsersTableHeadCell } from '../../../../../features/users/types';
 import { clearError } from '../../../../../features/users/reducers';
-import { StateStatus } from '../../../../../features/types';
+import { Order, StateStatus } from '../../../../../features/types';
 
 
 const UsersTable: React.FC = () => {

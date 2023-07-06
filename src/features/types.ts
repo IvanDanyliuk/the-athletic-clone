@@ -1,5 +1,3 @@
-
-
 export enum StateStatus {
   Idle = 'Idle',
   Loading = 'Loading',
@@ -7,3 +5,7 @@ export enum StateStatus {
   Failed = 'Failed'
 };
 
+export enum Order {
+  asc = 'asc',
+  desc = 'desc'
+}

@@ -9,9 +9,9 @@ import {
 } from '../../../../../features/players/selectors';
 import { getPlayers } from '../../../../../features/players/asyncActions';
 import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
-import { IPlayersTableHeadCell, Order } from '../../../../../features/players/types';
+import { IPlayersTableHeadCell } from '../../../../../features/players/types';
 import { clearError } from '../../../../../features/players/reducers';
-import { StateStatus } from '../../../../../features/types';
+import { Order, StateStatus } from '../../../../../features/types';
 
 
 const PlayersTable: React.FC = () => {

@@ -1,4 +1,4 @@
-import { StateStatus } from "../types"
+import { Order, StateStatus } from "../types"
 
 export interface IUserInitialState {
   status: StateStatus,
@@ -29,11 +29,6 @@ export interface IUser {
 export interface ILoginCredentials {
   email: string,
   password: string
-}
-
-export enum Order {
-  asc = 'asc',
-  desc = 'desc'
 }
 
 export enum UserRoles {

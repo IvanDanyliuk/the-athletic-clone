@@ -9,9 +9,9 @@ import {
 } from '../../../../../features/materials/selectors';
 import { getMaterials } from '../../../../../features/materials/asyncActions';
 import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
-import { IMaterialsTableHeadCell, Order } from '../../../../../features/materials/types';
+import { IMaterialsTableHeadCell } from '../../../../../features/materials/types';
 import { clearError } from '../../../../../features/materials/reducers';
-import { StateStatus } from '../../../../../features/types';
+import { Order, StateStatus } from '../../../../../features/types';
 
 
 const MaterialsTable: React.FC = () => {

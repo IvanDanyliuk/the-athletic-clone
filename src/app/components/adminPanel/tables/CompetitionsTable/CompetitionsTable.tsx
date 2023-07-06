@@ -8,10 +8,10 @@ import {
   selectCompetitionsStatus, selectCompetitionsError 
 } from '../../../../../features/competitions/selectors';
 import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
-import { ICompetitionsTableHeadCell, Order } from '../../../../../features/competitions/types';
+import { ICompetitionsTableHeadCell } from '../../../../../features/competitions/types';
 import { getCompetitions } from '../../../../../features/competitions/asyncActions';
 import { clearError } from '../../../../../features/competitions/reducers';
-import { StateStatus } from '../../../../../features/types';
+import { Order, StateStatus } from '../../../../../features/types';
 
 
 const CompetitionsTable: React.FC = () => {

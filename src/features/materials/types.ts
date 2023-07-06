@@ -1,5 +1,4 @@
-import { MaterialModel } from "../../app/models/components";
-import { StateStatus } from "../types";
+import { Order, StateStatus } from "../types";
 
 export interface IMaterialsState {
   status: StateStatus;
@@ -90,11 +89,6 @@ export interface IDeleteMaterialData {
   page: number;
   itemsPerPage: number,
   userId?: string
-}
-
-export enum Order {
-  asc = 'asc',
-  desc = 'desc'
 }
 
 export interface IMaterialsTableHeadCell {

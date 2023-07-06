@@ -1,4 +1,4 @@
-import { StateStatus } from "../types"
+import { Order, StateStatus } from "../types"
 
 export interface ICLubsInitialState {
   status: StateStatus,
@@ -39,11 +39,6 @@ export interface IClub {
   stadium: string,
   createdAt?: string,
   updatedAt?: string
-}
-
-export enum Order {
-  asc = 'asc',
-  desc = 'desc'
 }
 
 export interface IClubsTableHeadCell {

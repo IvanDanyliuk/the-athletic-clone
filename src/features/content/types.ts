@@ -1,5 +1,5 @@
 import { IMaterial } from "../materials/types";
-import { StateStatus } from "../types";
+import { Order, StateStatus } from "../types";
 
 
 export interface IContentSectionsInitialState {
@@ -30,10 +30,5 @@ export interface IContentTableHeadCell {
   title: string, 
   isSortable: boolean,
   sortKey?: string,
-  order?: Order.asc
-}
-
-export enum Order {
-  asc = 'asc',
-  desc = 'desc'
+  order?: Order
 }

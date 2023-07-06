@@ -1,6 +1,6 @@
 import { IClub } from "../clubs/types"
 import { ICompetition } from "../competitions/types"
-import { StateStatus } from "../types"
+import { Order, StateStatus } from "../types"
 
 export interface ISchedule {
   _id?: string,
@@ -53,11 +53,6 @@ export interface ISchedulesInitialState {
   },
   filters: {} | null,
   error: string | null
-}
-
-export enum Order {
-  asc = 'asc',
-  desc = 'desc'
 }
 
 export interface ISchedulesTableHeadCell {

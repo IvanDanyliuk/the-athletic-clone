@@ -9,9 +9,9 @@ import {
 } from '../../../../../features/clubs/selectors';
 import { getClubs } from '../../../../../features/clubs/asyncActions';
 import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
-import { IClubsTableHeadCell, Order } from '../../../../../features/clubs/types';
+import { IClubsTableHeadCell } from '../../../../../features/clubs/types';
 import { clearError } from '../../../../../features/clubs/reducers';
-import { StateStatus } from '../../../../../features/types';
+import { Order, StateStatus } from '../../../../../features/types';
 
 
 const ClubsTable: React.FC = () => {

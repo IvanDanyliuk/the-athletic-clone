@@ -9,9 +9,9 @@ import {
 } from '../../../../../features/schedules/selectors';
 import { getSchedules } from '../../../../../features/schedules/asyncActions';
 import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
-import { ISchedulesTableHeadCell, Order } from '../../../../../features/schedules/types';
+import { ISchedulesTableHeadCell } from '../../../../../features/schedules/types';
 import { clearError } from '../../../../../features/schedules/reducers';
-import { StateStatus } from '../../../../../features/types';
+import { Order, StateStatus } from '../../../../../features/types';
 
 
 const SchedulesTable: React.FC = () => {

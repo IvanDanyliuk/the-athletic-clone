@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { v4 as uuid } from 'uuid';
-import { IPlayersTableHeadCell, Order } from '../../../../../features/players/types';
+import { IPlayersTableHeadCell } from '../../../../../features/players/types';
+import { Order } from '../../../../../features/types';
 
 
 const cells: IPlayersTableHeadCell[] = [

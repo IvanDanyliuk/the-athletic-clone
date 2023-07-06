@@ -11,7 +11,7 @@ import {
   selectMaterials, selectMaterialsCount, 
   selectMaterialsError, selectMaterialsStatus 
 } from '../../../features/materials/selectors';
-import { IMaterialsTableHeadCell, Order } from '../../../features/materials/types';
+import { IMaterialsTableHeadCell } from '../../../features/materials/types';
 import { clearError } from '../../../features/materials/reducers';
 import { deleteMaterial, getMaterials } from '../../../features/materials/asyncActions';
 import { BackdropLoader, ErrorSnackbar } from '../ui';
@@ -19,7 +19,7 @@ import { selectUser } from '../../../features/users/selectors';
 import { Link, useNavigate } from 'react-router-dom';
 import { Close, Edit } from '@mui/icons-material';
 import { AddNewMaterialButtonMenu } from '../adminPanel/ui';
-import { StateStatus } from '../../../features/types';
+import { Order, StateStatus } from '../../../features/types';
 
 
 const cells: IMaterialsTableHeadCell[] = [

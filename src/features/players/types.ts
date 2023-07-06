@@ -1,5 +1,5 @@
 import { IClub } from "../clubs/types";
-import { StateStatus } from "../types";
+import { Order, StateStatus } from "../types";
 
 export interface IPlayer {
   _id: string,
@@ -32,11 +32,6 @@ export enum PlayerPosition {
   defender = 'D',
   midfielder = 'M',
   attack = 'A'
-}
-
-export enum Order {
-  asc = 'asc',
-  desc = 'desc'
 }
 
 export interface IPlayersTableHeadCell {

@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { v4 as uuid } from 'uuid';
-import { ICompetitionsTableHeadCell, Order } from '../../../../../features/competitions/types';
+import { ICompetitionsTableHeadCell } from '../../../../../features/competitions/types';
+import { Order } from '../../../../../features/types';
 
 
 const cells: ICompetitionsTableHeadCell[] = [

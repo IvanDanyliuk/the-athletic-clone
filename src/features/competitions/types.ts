@@ -1,5 +1,5 @@
 import { IClub } from "../clubs/types"
-import { StateStatus } from "../types"
+import { Order, StateStatus } from "../types"
 
 export interface ICompetition {
   _id: string,
@@ -10,11 +10,6 @@ export interface ICompetition {
   logoUrl: string,
   type: string,
   createdAt: string
-}
-
-export enum Order {
-  asc = 'asc',
-  desc = 'desc'
 }
 
 export interface ICompetitionsTableHeadCell {
