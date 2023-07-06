@@ -1,7 +1,8 @@
 import { MaterialModel } from "../../app/models/components";
+import { StateStatus } from "../types";
 
 export interface IMaterialsState {
-  status: string;
+  status: StateStatus;
   data: {
     main: {
       materials: IMaterial[];

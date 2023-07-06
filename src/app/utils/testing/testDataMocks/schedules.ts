@@ -1,8 +1,9 @@
 import { ISchedule, ISchedulesInitialState } from "../../../../features/schedules/types";
+import { StateStatus } from "../../../../features/types";
 import { ScheduleModel } from "../../../models/components";
 
 export const schedulesStateSuccessMock: ISchedulesInitialState = {
-  status: 'succeeded',
+  status: StateStatus.Succeded,
   data: {
     main: {
       schedules: [
@@ -1422,7 +1423,7 @@ export const schedulesStateSuccessMock: ISchedulesInitialState = {
 };
 
 export const schedulesStateErrorMock: ISchedulesInitialState = {
-  status: 'succeeded',
+  status: StateStatus.Failed,
   data: {
     main: {
       schedules: [],

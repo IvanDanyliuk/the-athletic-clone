@@ -19,6 +19,7 @@ import { selectUser } from '../../../features/users/selectors';
 import { Link, useNavigate } from 'react-router-dom';
 import { Close, Edit } from '@mui/icons-material';
 import { AddNewMaterialButtonMenu } from '../adminPanel/ui';
+import { StateStatus } from '../../../features/types';
 
 
 const cells: IMaterialsTableHeadCell[] = [
@@ -173,7 +174,7 @@ const UserMaterialsTab: React.FC = () => {
     navigate('/');
   }
 
-  if(status === 'loading') {
+  if(status === StateStatus.Loading) {
     return (
       <BackdropLoader open={true} />
     );

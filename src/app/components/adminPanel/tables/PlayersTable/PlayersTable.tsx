@@ -11,6 +11,7 @@ import { getPlayers } from '../../../../../features/players/asyncActions';
 import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
 import { IPlayersTableHeadCell, Order } from '../../../../../features/players/types';
 import { clearError } from '../../../../../features/players/reducers';
+import { StateStatus } from '../../../../../features/types';
 
 
 const PlayersTable: React.FC = () => {
@@ -73,7 +74,7 @@ const PlayersTable: React.FC = () => {
     }
   }, [error]);
 
-  if(status === 'loading') {
+  if(status === StateStatus.Loading) {
     return (
       <BackdropLoader open={true} />
     );

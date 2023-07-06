@@ -13,6 +13,7 @@ import { deleteUser, logout, updatePassword } from '../../../features/users/asyn
 import { UserRoles } from '../../../features/users/types';
 import { AuthorForm } from '../../components/adminPanel/forms/creationForms/';
 import { clearError } from '../../../features/users/reducers';
+import { StateStatus } from '../../../features/types';
 
 
 interface IPasswordForm {
@@ -121,7 +122,7 @@ const UserDataTab: React.FC = () => {
     navigate('/');
   }
 
-  if(userStatus === 'loading') {
+  if(userStatus === StateStatus.Loading) {
     return <BackdropLoader open={true} />;
   }
 

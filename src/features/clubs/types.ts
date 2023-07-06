@@ -1,5 +1,7 @@
+import { StateStatus } from "../types"
+
 export interface ICLubsInitialState {
-  status: string,
+  status: StateStatus,
   data: {
     main: {
       clubs: IClub[],

@@ -11,6 +11,7 @@ import { getUsers } from '../../../../../features/users/asyncActions';
 import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
 import { IUsersTableHeadCell, Order } from '../../../../../features/users/types';
 import { clearError } from '../../../../../features/users/reducers';
+import { StateStatus } from '../../../../../features/types';
 
 
 const UsersTable: React.FC = () => {
@@ -73,7 +74,7 @@ const UsersTable: React.FC = () => {
     }
   }, [error]);
 
-  if(status === 'loading') {
+  if(status === StateStatus.Loading) {
     return (
       <BackdropLoader open={true} />
     );

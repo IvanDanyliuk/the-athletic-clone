@@ -24,7 +24,7 @@ import { StandingItem } from '../../../features/competitions/types';
 import { getPlayers } from '../../../features/players/asyncActions';
 import { selectAllPlayers } from '../../../features/players/selectors';
 import { IPlayer } from '../../../features/players/types';
-import { LOADING_STATUS } from '../../constants/common';
+import { StateStatus } from '../../../features/types';
 
 
 const Container = styled(Box)`
@@ -172,7 +172,7 @@ const ClubHome: React.FC = () => {
 
   return (
     <Container>
-      {materialsStatus === LOADING_STATUS ? (
+      {materialsStatus === StateStatus.Loading ? (
         <BackdropLoader open={true} />
       ) : materials.length === 0 ? (
         <DataNotFoundMessage message='Cannot find materials' />

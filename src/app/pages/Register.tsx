@@ -13,6 +13,7 @@ import { AppDispatch } from '../../features/store';
 import { getCountries } from '../services/countries';
 import { selectUserStatus } from '../../features/users/selectors';
 import { BackdropLoader, SelectField, TextInput } from '../components/ui/';
+import { StateStatus } from '../../features/types';
 
 
 const Wrapper = styled(Box)`
@@ -238,7 +239,7 @@ const Register: React.FC = () => {
           We use your email to provide you with news, updates, and promotions.
         </BottomText>
       </Container>
-      <BackdropLoader open={status === 'loading'} />
+      <BackdropLoader open={status === StateStatus.Loading} />
     </Wrapper>
   );
 };

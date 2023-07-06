@@ -1,8 +1,9 @@
 import { IMaterial } from "../materials/types";
+import { StateStatus } from "../types";
 
 
 export interface IContentSectionsInitialState {
-  status: string,
+  status: StateStatus,
   content: IContentSection[],
   materialsToContent: string[],
   isContentEditingModeActive: boolean,

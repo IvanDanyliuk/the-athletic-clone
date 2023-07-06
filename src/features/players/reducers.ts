@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { createPlayer, deletePlayer, getPlayer, getPlayers, updatePlayer } from './asyncActions';
 import { IPlayerInitialState } from './types';
-import { FAILED_STATUS, IDLE_STATUS, LOADING_STATUS, SUCCEEDED_STATUS } from '../../app/constants/common';
+import { StateStatus } from '../types';
 
 
 const initialState: IPlayerInitialState = {
-  status: IDLE_STATUS,
+  status: StateStatus.Idle,
   data: {
     main: {
       players: [],
@@ -37,58 +37,58 @@ const playerSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(createPlayer.pending, (state, action) => {
-        state.status = LOADING_STATUS;
+        state.status = StateStatus.Loading;
       })
       .addCase(createPlayer.fulfilled, (state, action) => {
-        state.status = SUCCEEDED_STATUS;
+        state.status = StateStatus.Succeded;
         state.data.main.players.push(action.payload);
       })
       .addCase(createPlayer.rejected, (state, action: any) => {
-        state.status = FAILED_STATUS;
+        state.status = StateStatus.Failed;
         state.error = action.payload.error;
       })
       .addCase(getPlayers.pending, (state, action) => {
-        state.status = LOADING_STATUS;
+        state.status = StateStatus.Loading;
       })
       .addCase(getPlayers.fulfilled, (state, action) => {
-        state.status = SUCCEEDED_STATUS;
+        state.status = StateStatus.Succeded;
         state.data.main = action.payload;
       })
       .addCase(getPlayers.rejected, (state, action: any) => {
-        state.status = FAILED_STATUS;
+        state.status = StateStatus.Failed;
         state.error = action.payload.error;
       })
       .addCase(getPlayer.pending, (state, action) => {
-        state.status = LOADING_STATUS;
+        state.status = StateStatus.Loading;
       })
       .addCase(getPlayer.fulfilled, (state, action) => {
-        state.status = SUCCEEDED_STATUS;
+        state.status = StateStatus.Succeded;
         state.data.player = action.payload;
       })
       .addCase(getPlayer.rejected, (state, action: any) => {
-        state.status = FAILED_STATUS;
+        state.status = StateStatus.Failed;
         state.error = action.payload.error;
       })
       .addCase(updatePlayer.pending, (state, action) => {
-        state.status = LOADING_STATUS;
+        state.status = StateStatus.Loading;
       })
       .addCase(updatePlayer.fulfilled, (state, action) => {
-        state.status = SUCCEEDED_STATUS;
+        state.status = StateStatus.Succeded;
         state.data.main.players = state.data.main.players.map(player => player._id === action.payload._id ? action.payload : player);
       })
       .addCase(updatePlayer.rejected, (state, action: any) => {
-        state.status = FAILED_STATUS;
+        state.status = StateStatus.Failed;
         state.error = action.payload.error;
       })
       .addCase(deletePlayer.pending, (state, action) => {
-        state.status = LOADING_STATUS;
+        state.status = StateStatus.Loading;
       })
       .addCase(deletePlayer.fulfilled, (state, action) => {
-        state.status = SUCCEEDED_STATUS;
+        state.status = StateStatus.Succeded;
         state.data.main = action.payload;
       })
       .addCase(deletePlayer.rejected, (state, action: any) => {
-        state.status = FAILED_STATUS;
+        state.status = StateStatus.Failed;
         state.error = action.payload.error;
       })
   }

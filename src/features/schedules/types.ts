@@ -1,5 +1,6 @@
 import { IClub } from "../clubs/types"
 import { ICompetition } from "../competitions/types"
+import { StateStatus } from "../types"
 
 export interface ISchedule {
   _id?: string,
@@ -38,7 +39,7 @@ export interface IMatchweek {
   games: IMatch[]
 }
 export interface ISchedulesInitialState {
-  status: string,
+  status: StateStatus,
   data: {
     main: {
       schedules: ISchedule[],

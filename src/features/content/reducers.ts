@@ -1,11 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { IContentSectionsInitialState } from './types';
 import { createContentSection, deleteContentSection, getContentSections, updateContentSection } from './asyncActions';
-import { FAILED_STATUS, IDLE_STATUS, LOADING_STATUS, SUCCEEDED_STATUS } from '../../app/constants/common';
+import { StateStatus } from '../types';
 
 
 const initialState: IContentSectionsInitialState = {
-  status: IDLE_STATUS,
+  status: StateStatus.Idle,
   content: [],
   materialsToContent: [],
   isContentEditingModeActive: false,
@@ -34,54 +34,54 @@ const contentSlice = createSlice({
       state.error = action.payload;
     },
     clearError: (state) => {
-      state.status = IDLE_STATUS;
+      state.status = StateStatus.Idle;
       state.error = null;
     }
   },
   extraReducers: (builder) => {
     builder
       .addCase(createContentSection.pending, (state, action) => {
-        state.status = LOADING_STATUS;
+        state.status = StateStatus.Loading;
       })
       .addCase(createContentSection.fulfilled, (state, action) => {
-        state.status = SUCCEEDED_STATUS;
+        state.status = StateStatus.Succeded;
         state.content.push(action.payload);
       })
       .addCase(createContentSection.rejected, (state, action: any) => {
-        state.status = FAILED_STATUS;
+        state.status = StateStatus.Failed;
         state.error = action.payload.error;
       })
       .addCase(getContentSections.pending, (state, action) => {
-        state.status = LOADING_STATUS;
+        state.status = StateStatus.Loading;
       })
       .addCase(getContentSections.fulfilled, (state, action) => {
-        state.status = SUCCEEDED_STATUS;
+        state.status = StateStatus.Succeded;
         state.content = action.payload;
       })
       .addCase(getContentSections.rejected, (state, action: any) => {
-        state.status = FAILED_STATUS;
+        state.status = StateStatus.Failed;
         state.error = action.payload.error;
       })
       .addCase(updateContentSection.pending, (state, action) => {
-        state.status = LOADING_STATUS;
+        state.status = StateStatus.Loading;
       })
       .addCase(updateContentSection.fulfilled, (state, action) => {
-        state.status = SUCCEEDED_STATUS;
+        state.status = StateStatus.Succeded;
         state.content = state.content.map(section => section._id === action.payload._id ? action.payload : section);
       })
       .addCase(updateContentSection.rejected, (state, action: any) => {
-        state.status = FAILED_STATUS;
+        state.status = StateStatus.Failed;
         state.error = action.payload.error;
       })
       .addCase(deleteContentSection.pending, (state, action) => {
-        state.status = LOADING_STATUS;
+        state.status = StateStatus.Loading;
       })
       .addCase(deleteContentSection.fulfilled, (state, action) => {
-        state.status = SUCCEEDED_STATUS;
+        state.status = StateStatus.Succeded;
         state.content = state.content.filter(section => section._id !== action.payload);
       })
       .addCase(deleteContentSection.rejected, (state, action: any) => {
-        state.status = FAILED_STATUS;
+        state.status = StateStatus.Failed;
         state.error = action.payload.error;
       })
   }

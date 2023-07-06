@@ -1,5 +1,7 @@
+import { StateStatus } from "../types"
+
 export interface IUserInitialState {
-  status: string,
+  status: StateStatus,
   user: IUser | null,
   data: {
     users: IUser[],

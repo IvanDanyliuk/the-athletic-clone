@@ -1,8 +1,9 @@
 import { ICLubsInitialState, IClub } from '../../../../features/clubs/types';
+import { StateStatus } from '../../../../features/types';
 import { ClubModel } from '../../../models/components';
 
 export const clubsStateSuccessMock: ICLubsInitialState = {
-  status: 'succeeded',
+  status: StateStatus.Succeded,
   data: {
     main: {
       clubs: [
@@ -152,7 +153,7 @@ export const clubsStateSuccessMock: ICLubsInitialState = {
 };
 
 export const clubsStateErrorMock: ICLubsInitialState = {
-  status: 'failed',
+  status: StateStatus.Failed,
   data: {
     main: {
       clubs: [],

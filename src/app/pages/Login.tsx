@@ -10,6 +10,7 @@ import { ILoginCredentials } from '../../features/users/types';
 import { selectUserError, selectUserStatus } from '../../features/users/selectors';
 import { clearError } from '../../features/users/reducers';
 import { BackdropLoader, ErrorSnackbar, TextInput } from '../components/ui/';
+import { StateStatus } from '../../features/types';
 
 
 const Wrapper = styled(Box)`
@@ -144,7 +145,7 @@ const Login: React.FC = () => {
         message={error}
         onClose={handleErrorSnackbarClose}
       />
-      <BackdropLoader open={status === 'loading'} />
+      <BackdropLoader open={status === StateStatus.Loading} />
     </Wrapper>
   );
 };

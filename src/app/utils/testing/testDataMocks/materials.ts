@@ -1,10 +1,11 @@
 import { IMaterialsState } from "../../../../features/materials/types";
+import { StateStatus } from "../../../../features/types";
 import { MaterialModel } from "../../../models/components";
 import { MaterialType } from "../../../models/components";
 
 
 export const materialsStateSuccessMock: IMaterialsState = {
-  status: 'succeeded',
+  status: StateStatus.Succeded,
   data: {
     main: {
       materials: [
@@ -302,7 +303,7 @@ export const materialsStateSuccessMock: IMaterialsState = {
 };
 
 export const materialsStateErrorMock: IMaterialsState = {
-  status: 'failed',
+  status: StateStatus.Failed,
   data: {
     main: {
       materials: [],

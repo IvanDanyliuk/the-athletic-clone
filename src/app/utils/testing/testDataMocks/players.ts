@@ -1,9 +1,10 @@
 import { IPlayer, IPlayerInitialState } from "../../../../features/players/types";
+import { StateStatus } from "../../../../features/types";
 import { PlayerModel } from "../../../models/components";
 
 
 export const playersStateSuccessMock: IPlayerInitialState = {
-  status: 'succeeded',
+  status: StateStatus.Succeded,
   data: {
     main: {
       players: [
@@ -243,7 +244,7 @@ export const playersStateSuccessMock: IPlayerInitialState = {
 };
 
 export const playersStateErrorMock: IPlayerInitialState = {
-  status: 'failed',
+  status: StateStatus.Failed,
   data: {
     main: {
       players: [],

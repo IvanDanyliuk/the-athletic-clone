@@ -1,9 +1,10 @@
+import { StateStatus } from '../../../../features/types';
 import { IUser, IUserInitialState } from '../../../../features/users/types';
 import { UserModel } from '../../../models/users';
 
 
 export const usersStateSuccessMock: IUserInitialState = {
-  status: 'succeeded',
+  status: StateStatus.Succeded,
   user: {
     _id: '63e8db447a8501b5b2a8428b',
     firstName: 'John',
@@ -173,7 +174,7 @@ export const usersStateSuccessMock: IUserInitialState = {
 };
 
 export const usersStateErrorMock: IUserInitialState = {
-  status: 'failed',
+  status: StateStatus.Failed,
   user: null,
   data: {
     users: [],

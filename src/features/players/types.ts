@@ -1,4 +1,5 @@
 import { IClub } from "../clubs/types";
+import { StateStatus } from "../types";
 
 export interface IPlayer {
   _id: string,
@@ -14,7 +15,7 @@ export interface IPlayer {
 }
 
 export interface IPlayerInitialState {
-  status: string,
+  status: StateStatus,
   data: {
     main: {
       players: IPlayer[],

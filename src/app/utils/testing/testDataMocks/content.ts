@@ -1,9 +1,10 @@
 import { IContentSection, IContentSectionToUpdate, IContentSectionsInitialState } from "../../../../features/content/types";
+import { StateStatus } from "../../../../features/types";
 import { ContentSectionModel } from "../../../models/components";
 import { materialsStateSuccessMock } from "./materials";
 
 export const contentStateSuccessMock: IContentSectionsInitialState = {
-  status: 'succeeded',
+  status: StateStatus.Succeded,
   content: [
     {
       _id: 'sdsdfsdfsdfsdfsdasdasd',
@@ -245,7 +246,7 @@ export const leagueMaterialsPropsMock = [
 ];
 
 export const realContentStateMock: IContentSectionsInitialState = {
-    status: 'succeeded',
+    status: StateStatus.Succeded,
     content: [
       {
         _id: '6442d800adca6bfd10d6cbda',

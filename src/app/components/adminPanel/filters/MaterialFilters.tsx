@@ -55,11 +55,9 @@ const MaterialFilters: React.FC = () => {
   const sumbitFilterData = (data: any) => {
     const isDatesValid = checkFilterTimeInterval(data.dateFrom, data.dateTo, handleDateError);
     if(isDatesValid) {
-      dispatch(setFilters({
-        ...data,
-        dateFrom: data.dateFrom ? dayjs(data.dateFrom).toISOString() : '',
-        dateTo: data.dateTo ? dayjs(data.dateTo).toISOString() : '',
-      }));
+      const dateFrom = data.dateFrom ? dayjs(data.dateFrom).toISOString() : '';
+      const dateTo = data.dateTo ? dayjs(data.dateTo).toISOString() : '';
+      dispatch(setFilters({ ...data, dateFrom, dateTo }));
     }
   };
 

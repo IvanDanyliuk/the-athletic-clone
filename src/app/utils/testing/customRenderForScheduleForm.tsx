@@ -19,6 +19,7 @@ import { usersStateSuccessMock } from './testDataMocks/users';
 import { competitionsStateSuccessMock } from './testDataMocks/competitions';
 import ScheduleContext, { ScheduleContextType } from '../../context/scheduleContext';
 import { addMatchMock, addMatchweekMock, addScheduleTitleMock, deleteMatchMock, deleteMatchweekMock, newSchedule } from './testDataMocks/schedules';
+import { StateStatus } from '../../../features/types';
 
 interface ExtendedRenderOptions extends Omit<RenderOptions, 'queries'> {
   preloadedState?: PreloadedState<RootState>,
@@ -35,7 +36,7 @@ export const renderWithProvidersForSchedules = (
       clubs: clubsStateSuccessMock,
       competitions: competitionsStateSuccessMock,
       players: {
-        status: 'succeeded',
+        status: StateStatus.Succeded,
         data: {
           main: {
             players: [],
@@ -47,7 +48,7 @@ export const renderWithProvidersForSchedules = (
         error: null
       },
       schedules: {
-        status: 'succeeded',
+        status: StateStatus.Succeded,
         data: {
           main: {
             schedules: [],

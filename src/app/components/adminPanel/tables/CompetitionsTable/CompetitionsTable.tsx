@@ -11,6 +11,7 @@ import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
 import { ICompetitionsTableHeadCell, Order } from '../../../../../features/competitions/types';
 import { getCompetitions } from '../../../../../features/competitions/asyncActions';
 import { clearError } from '../../../../../features/competitions/reducers';
+import { StateStatus } from '../../../../../features/types';
 
 
 const CompetitionsTable: React.FC = () => {
@@ -73,7 +74,7 @@ const CompetitionsTable: React.FC = () => {
     }
   }, [error]);
   
-  if(status === 'loading') {
+  if(status === StateStatus.Loading) {
     return (
       <BackdropLoader open={true} />
     );

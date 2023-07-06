@@ -11,6 +11,7 @@ import { getClubs } from '../../../../../features/clubs/asyncActions';
 import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
 import { IClubsTableHeadCell, Order } from '../../../../../features/clubs/types';
 import { clearError } from '../../../../../features/clubs/reducers';
+import { StateStatus } from '../../../../../features/types';
 
 
 const ClubsTable: React.FC = () => {
@@ -73,7 +74,7 @@ const ClubsTable: React.FC = () => {
     }
   }, [error]);
 
-  if(status === 'loading') {
+  if(status === StateStatus.Loading) {
     return (
       <BackdropLoader open={true} />
     );

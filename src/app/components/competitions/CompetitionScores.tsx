@@ -11,7 +11,7 @@ import { BackdropLoader, DataNotFoundMessage } from '../ui/';
 import { IMatchweek } from '../../../features/schedules/types';
 import { MatchweekPicker, MatchweekTable } from './';
 import { clearSchedule } from '../../../features/schedules/reducers';
-import { LOADING_STATUS } from '../../constants/common';
+import { StateStatus } from '../../../features/types';
 
 
 const SetMatchweekSection = styled(Box)`
@@ -71,7 +71,7 @@ const CompetitionScores: React.FC = () => {
   }, [currentSeason, league, dispatch]);
 
   if(!league && !activeSchedule) {
-    return scheduleStatus === LOADING_STATUS ? 
+    return scheduleStatus === StateStatus.Loading ? 
       <BackdropLoader open={true} /> : 
       <DataNotFoundMessage message='Cannot find schedule' />;
   }

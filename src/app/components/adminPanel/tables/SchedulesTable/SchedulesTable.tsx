@@ -11,6 +11,7 @@ import { getSchedules } from '../../../../../features/schedules/asyncActions';
 import { BackdropLoader, ErrorSnackbar } from '../../../ui/';
 import { ISchedulesTableHeadCell, Order } from '../../../../../features/schedules/types';
 import { clearError } from '../../../../../features/schedules/reducers';
+import { StateStatus } from '../../../../../features/types';
 
 
 const SchedulesTable: React.FC = () => {
@@ -73,7 +74,7 @@ const SchedulesTable: React.FC = () => {
     }
   }, [error]);
 
-  if(status === 'loading') {
+  if(status === StateStatus.Loading) {
     return (
       <BackdropLoader open={true} />
     );

@@ -1,4 +1,5 @@
 import { IClub } from "../clubs/types"
+import { StateStatus } from "../types"
 
 export interface ICompetition {
   _id: string,
@@ -24,7 +25,7 @@ export interface ICompetitionsTableHeadCell {
 }
 
 export interface ICompetitionsInitialState {
-  status: string,
+  status: StateStatus,
   data: {
     main: {
       competitions: ICompetition[],

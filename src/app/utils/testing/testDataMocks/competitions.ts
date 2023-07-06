@@ -1,8 +1,9 @@
 import { ICompetition, ICompetitionsInitialState } from '../../../../features/competitions/types';
+import { StateStatus } from '../../../../features/types';
 import { CompetitionModel } from '../../../models/components';
 
 export const competitionsStateSuccessMock: ICompetitionsInitialState = {
-  status: 'succeeded',
+  status: StateStatus.Succeded,
   data: {
     main: {
       competitions: [
@@ -349,7 +350,7 @@ export const competitionsStateSuccessMock: ICompetitionsInitialState = {
 };
 
 export const competitionsStateErrorMock: ICompetitionsInitialState = {
-  status: 'failed',
+  status: StateStatus.Failed,
   data: {
     main: {
       competitions: [],
