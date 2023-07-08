@@ -4,7 +4,7 @@ import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import dayjs from 'dayjs';
 import { IPlayer } from '../../../../../features/players/types';
-import { RowActionButtons } from '../../ui/';
+import { RowActionButtons, TableLink } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
 import { deletePlayer } from '../../../../../features/players/asyncActions';
 import { EssenseType } from '../../../../models/components';
@@ -29,9 +29,15 @@ const PlayersTableBody: React.FC<IPlayersTableBodyProps> = ({ players, page, ite
       {
         players.map(({ _id, firstName, lastName, club, number, position, country, birthDate }) => (
           <TableRow key={uuid()}>
-            <TableCell>{firstName}</TableCell>
-            <TableCell>{lastName}</TableCell>
-            <TableCell>{club ? club.commonName : '-'}</TableCell>
+            <TableCell>
+              <TableLink url={`/players/${_id}`} label={firstName} />
+            </TableCell>
+            <TableCell>
+              <TableLink url={`/players/${_id}`} label={lastName} />
+            </TableCell>
+            <TableCell>
+              <TableLink url={`/clubs/${club._id}`} label={club ? club.commonName : '-'} />
+            </TableCell>
             <TableCell>{number}</TableCell>
             <TableCell>{position}</TableCell>
             <TableCell>{country}</TableCell>

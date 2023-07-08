@@ -4,7 +4,7 @@ import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import dayjs from 'dayjs';
 import { IClub } from '../../../../../features/clubs/types';
-import { RowActionButtons } from '../../ui/';
+import { RowActionButtons, TableLink } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
 import { deleteClub } from '../../../../../features/clubs/asyncActions';
 import { EssenseType } from '../../../../models/components';
@@ -29,7 +29,9 @@ const ClubsTableBody: React.FC<IClubsTableBodyProps> = ({ clubs, page, itemsPerP
       {
         clubs.map(({ _id, commonName, country, createdAt }) => (
           <TableRow key={uuid()}>
-            <TableCell>{commonName}</TableCell>
+            <TableCell>
+              <TableLink url={`/clubs/${_id}`} label={commonName} />
+            </TableCell>
             <TableCell>{country}</TableCell>
             <TableCell>{dayjs(createdAt).format('DD/MM/YYYY')}</TableCell>
             <TableCell>

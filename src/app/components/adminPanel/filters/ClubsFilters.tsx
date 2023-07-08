@@ -66,9 +66,9 @@ const ClubsFilters: React.FC = () => {
 
   const action = (
     <IconButton
-      size="small"
-      aria-label="close"
-      color="inherit"
+      size='small'
+      aria-label='close'
+      color='inherit'
       onClick={clearDateError}
     >
       <FontAwesomeIcon icon={faXmark} />

@@ -7,7 +7,7 @@ import { faPlus, faXmark } from '@fortawesome/free-solid-svg-icons';
 import dayjs from 'dayjs';
 import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../../../features/materials/types';
-import { RowActionButtons } from '../../ui/';
+import { RowActionButtons, TableLink } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
 import { deleteMaterial, updateMaterial } from '../../../../../features/materials/asyncActions';
 import { selectContentModeStatus, selectMaterialsToContent } from '../../../../../features/content/selectors';
@@ -52,7 +52,9 @@ const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials, page
           const { _id, title, labels, type, author, status, publicationDate } = material;
           return (
             <TableRow key={uuid()} sx={{ background: selectedMaterials.includes(_id) ? '#eeeeee' : '#ffffff' }}>
-              <TableCell>{title ? title : '-'}</TableCell>
+              <TableCell>
+                <TableLink url={`/materials/${_id}`} label={title ? title : '-'} />
+              </TableCell>
               <TableCell>{labels.length ? labels[0] : '-'}</TableCell>
               <TableCell>{type}</TableCell>
               <TableCell>{author.name}</TableCell>

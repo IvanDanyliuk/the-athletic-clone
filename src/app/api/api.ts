@@ -1,13 +1,16 @@
 import axios from 'axios';
+import { 
+  ClubModel, CompetitionModel, ContentSectionModel, 
+  MaterialModel, PlayerModel, ScheduleModel 
+} from '../models/components';
+import { UserModel } from '../models/users';
+import { IContentSectionToUpdate } from '../../features/content/types';
 import { IClub } from '../../features/clubs/types';
 import { ICompetition } from '../../features/competitions/types';
 import { IMaterial } from '../../features/materials/types';
 import { IPlayer } from '../../features/players/types';
 import { ISchedule } from '../../features/schedules/types';
 import { ILoginCredentials, IUser } from '../../features/users/types';
-import { ClubModel, CompetitionModel, ContentSectionModel, MaterialModel, PlayerModel, ScheduleModel } from '../models/components';
-import { UserModel } from '../models/users';
-import { IContentSectionToUpdate } from '../../features/content/types';
 
 
 const API = axios.create({ baseURL: process.env.REACT_APP_API_BASE_URL, withCredentials: true });

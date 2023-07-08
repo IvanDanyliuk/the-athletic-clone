@@ -4,7 +4,7 @@ import { TableBody, TableCell, TableRow } from '@mui/material';
 import { v4 as uuid } from 'uuid';
 import dayjs from 'dayjs';
 import { ICompetition } from '../../../../../features/competitions/types';
-import { RowActionButtons } from '../../ui/';
+import { RowActionButtons, TableLink } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
 import { deleteCompetition } from '../../../../../features/competitions/asyncActions';
 import { EssenseType } from '../../../../models/components';
@@ -29,7 +29,9 @@ const CompetitionsTableBody: React.FC<ICompetitionsTableBodyProps> = ({ competit
       {
         competitions.map(({ _id, fullName, type, country, createdAt }) => (
           <TableRow key={uuid()}>
-            <TableCell>{fullName}</TableCell>
+            <TableCell>
+              <TableLink url={`/competitions/${_id}`} label={fullName} />
+            </TableCell>
             <TableCell>{country}</TableCell>
             <TableCell>{type}</TableCell>
             <TableCell>{dayjs(createdAt).format('DD/MM/YYYY')}</TableCell>

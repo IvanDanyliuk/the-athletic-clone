@@ -14,10 +14,7 @@ const Container = styled(Grid)`
 `;
 
 
-const ContentSectionsList: React.FC<IContentSectionsListProps> = ({ 
-  sections
-}) => {
-
+const ContentSectionsList: React.FC<IContentSectionsListProps> = ({ sections }) => {
   return (
     <Container container spacing={3}>
       {sections.map(section => (
