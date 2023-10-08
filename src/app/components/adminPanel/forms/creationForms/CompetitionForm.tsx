@@ -66,23 +66,33 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
   const handleFormSubmit = async (data: any) => {
     if(competitionToUpdate) {
       setIsLoading(true);
-      const logoUrl = data.logoUrl.length > 0 ? await uploadImage(data.logoUrl[0]) : competitionToUpdate.logoUrl;
+
+      const logoUrl = data.logoUrl.length > 0 ? 
+        await uploadImage(data.logoUrl[0]) : 
+        competitionToUpdate.logoUrl;
 
       await dispatch(updateCompetition({
         ...data,
         _id: competitionToUpdate._id,
-        logoUrl
+        logoUrl,
+        clubs: selectedClubs
       }));
+      
       setIsLoading(false);
       navigate('/admin/competitions');
     } else {
       setIsLoading(true);
-      const logoUrl = data.logoUrl.length > 0 ? await uploadImage(data.logoUrl[0]) : '';
+
+      const logoUrl = data.logoUrl.length > 0 ? 
+        await uploadImage(data.logoUrl[0]) : 
+        '';
+
       await dispatch(createCompetition({
         ...data,
         logoUrl,
         clubs: selectedClubs
       }));
+
       setSelectedClubs([]);
       setIsLoading(false);
       navigate('/admin/competitions');
@@ -92,7 +102,8 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
 
   useEffect(() => {
     if(competitionToUpdate) {
-      console.log(competitionToUpdate)
+      const clubIds = competitionToUpdate.clubs.map(club => club._id);
+      setSelectedClubs(clubIds);
       reset({
         fullName: competitionToUpdate.fullName,
         shortName: competitionToUpdate.shortName,
