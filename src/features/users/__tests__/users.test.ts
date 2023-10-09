@@ -22,7 +22,6 @@ describe('Redux tests: users_success cases', () => {
     let state = store.getState().users;
     await store.dispatch(createUser(newUser));
     state = store.getState().users;
-    console.log('CREATE NEW USER', state.data.users)
     expect(state.data.users).toHaveLength(1);
   });
 

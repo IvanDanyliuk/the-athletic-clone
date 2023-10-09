@@ -52,8 +52,6 @@ const SearchFilters: React.FC<ISearchFiltersProps> = ({ authors, leagues, checke
     setIsMobileFiltersOpen(!isMobileFiltersOpen);
   };
 
-  console.log(authors)
-
   return (
     <Container>
       {isMobile ? (
