@@ -42,7 +42,7 @@ export const getClubs = (page: number, itemsPerPage: number, filterData?: any, s
 export const getClubsByCountry = (country?: string) => API.get('/clubs/country', { params: { country } });
 export const getClub = (id: string) => API.get(`/clubs/${id}`);
 export const updateClub = (clubToUpdate: IClub) => API.patch('/clubs', clubToUpdate);
-export const deleteClub = (id: string, page: number, itemsPerPage: number) => API.delete('/clubs', { params: { id, page, itemsPerPage } });
+export const deleteClub = (id: string) => API.delete('/clubs', { params: { id } });
 
 export const createCompetition = (competitionData: CompetitionModel) => API.post('/competitions', competitionData);
 export const getCompetitions = (page?: number, itemsPerPage?: number, filterData?: any, sortData?: any) => API.get('/competitions', { params: { page, itemsPerPage, filterData, sortData } });

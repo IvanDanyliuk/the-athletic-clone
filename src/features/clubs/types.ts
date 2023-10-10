@@ -22,8 +22,8 @@ export interface IClubFilters {
 export interface IClubsRequestData {
   page: number;
   itemsPerPage: number;
-  filterData: IClubFilters | null;
-  sortData: {
+  filterData?: IClubFilters | null;
+  sortData?: {
     indicator: string;
     order: string;
   } | null;
@@ -46,10 +46,4 @@ export interface IClubsTableHeadCell {
   isSortable: boolean;
   sortKey?: string;
   order?: Order;
-}
-
-export interface IDeleteClubData {
-  id: string;
-  page: number;
-  itemsPerPage: number;
 }
