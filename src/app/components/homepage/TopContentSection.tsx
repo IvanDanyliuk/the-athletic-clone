@@ -93,7 +93,7 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
                 {materials[0].preview}
               </TopMaterialPreview>
               <MaterialSecondaryInfo 
-                author={materials[0].author.name} 
+                author={`${materials[0].author.firstName} ${materials[0].author.lastName}`} 
                 commentsNum={materials[0].comments.length} 
               />
             </MaterialLink>
@@ -110,7 +110,7 @@ const TopContentSection: React.FC<ITopContentSectionProps> = ({ materials }) => 
                           {material.title}
                         </SecondaryMaterialTitle>
                         <MaterialSecondaryInfo 
-                          author={material.author.name} 
+                          author={`${material.author.firstName} ${material.author.lastName}`} 
                           commentsNum={material.comments.length} 
                         />
                       </Grid>

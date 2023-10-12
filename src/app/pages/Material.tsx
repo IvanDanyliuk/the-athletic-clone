@@ -150,7 +150,7 @@ const Material: React.FC = () => {
       <Image src={material?.image} alt={material?._id} />
       <AuthorInfo>
         <AuthorName variant='caption'>
-          {material?.author.name}
+          {`${material?.author.firstName} ${material?.author.lastName}`}
         </AuthorName>
         <PublicationDate variant='caption'>
           {dayjs(material?.publicationDate).format('DD/MM/YYYY')}

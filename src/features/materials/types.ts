@@ -1,4 +1,5 @@
-import { Order, StateStatus } from "../types";
+import { Order, StateStatus } from '../types';
+import { IUser } from '../users/types';
 
 export interface IMaterialsState {
   status: StateStatus;
@@ -56,13 +57,7 @@ export interface IHomepageSecondaryMaterialsRequestData {
 
 export interface IMaterial {
   _id: string;
-  author: { 
-    name: string;
-    userId: string;
-    photoUrl?: string;
-    organization: string;
-    position: string;
-  }; 
+  author: IUser, 
   type: string;
   title: string;
   content: string;

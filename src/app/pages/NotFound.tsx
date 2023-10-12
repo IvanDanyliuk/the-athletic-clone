@@ -141,7 +141,7 @@ const NotFound: React.FC = () => {
                     {article.title}
                   </Title>
                   <AuthorName variant='inherit'>
-                    {article.author.name}
+                    {`${article.author.firstName} ${article.author.lastName}`}
                   </AuthorName>
                   {
                     !isMobile && (

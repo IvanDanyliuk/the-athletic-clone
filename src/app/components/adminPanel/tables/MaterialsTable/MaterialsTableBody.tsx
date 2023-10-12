@@ -57,7 +57,7 @@ const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials, page
               </TableCell>
               <TableCell>{labels.length ? labels[0] : '-'}</TableCell>
               <TableCell>{type}</TableCell>
-              <TableCell>{author.name}</TableCell>
+              <TableCell>{`${author.firstName} ${author.lastName}`}</TableCell>
               <TableCell>{status}</TableCell>
               <TableCell>{dayjs(publicationDate).subtract(1, 'day').format('DD/MM/YYYY')}</TableCell>
               <TableCell>

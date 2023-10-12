@@ -68,7 +68,7 @@ const SearchResults: React.FC<ISearchResultsProps> = ({ materials }) => {
                 </MaterialTitle>
                 <MaterialSecondaryInfo>
                   <MaterialAuthorName>
-                    {material.author.name}
+                    {`${material.author.firstName} ${material.author.lastName}`}
                   </MaterialAuthorName>
                   <MaterialDate>
                     {dayjs(material.publicationDate).format('DD/MM/YYYY')}

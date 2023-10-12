@@ -98,7 +98,7 @@ const ContentSectionMaterials: React.FC<IContentSectionMaterialsProps> = ({ mate
                       {material.title}
                     </SecondaryMaterialTitle>
                     <MaterialSecondaryInfo 
-                      author={material.author.name} 
+                      author={`${material.author.firstName} ${material.author.lastName}`} 
                       commentsNum={material.comments.length} 
                     />
                   </Grid>

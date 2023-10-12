@@ -215,7 +215,7 @@ const UserMaterialsTab: React.FC = () => {
                     <Cell>{title ? title : '-'}</Cell>
                     <Cell>{labels.length ? labels[0] : '-'}</Cell>
                     <Cell>{type}</Cell>
-                    <Cell>{author.name}</Cell>
+                    <Cell>{`${author.firstName} ${author.lastName}`}</Cell>
                     <Cell>{status}</Cell>
                     <Cell>{dayjs(publicationDate).subtract(1, 'day').format('DD/MM/YYYY')}</Cell>
                     <Cell>

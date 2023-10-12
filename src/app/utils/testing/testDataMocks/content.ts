@@ -13,11 +13,17 @@ export const contentStateSuccessMock: IContentSectionsInitialState = {
       materials: [
         {
           author: {
-            name: 'John Doe',
-            userId: '63e8db447a8501b5b2a8428b',
-            photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+            _id: '63e8db447a8501b5b2a8428b',
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'j.doe@gmail.com',
+            password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+            userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+            role: 'admin',
+            location: 'United Kingdom',
             organization: 'The Athletic',
-            position: 'Website Administrator'
+            position: 'Website Administrator',
+            createdAt: '2023-02-12T12:27:48.640Z',
           },
           _id: '642d8710d4be15abd18e94ad',
           type: 'article',
@@ -38,11 +44,17 @@ export const contentStateSuccessMock: IContentSectionsInitialState = {
         },
         {
           author: {
-            name: 'John Doe',
-            userId: '63e8db447a8501b5b2a8428b',
-            photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+            _id: '63e8db447a8501b5b2a8428b',
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'j.doe@gmail.com',
+            password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+            userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+            role: 'admin',
+            location: 'United Kingdom',
             organization: 'The Athletic',
-            position: 'Website Administrator'
+            position: 'Website Administrator',
+            createdAt: '2023-02-12T12:27:48.640Z',
           },
           _id: '642d8711d4be15abd18e94ad',
           type: 'article',
@@ -71,11 +83,17 @@ export const contentStateSuccessMock: IContentSectionsInitialState = {
       materials: [
         {
           author: {
-            name: 'John Doe',
-            userId: '63e8db447a8501b5b2a8428b',
-            photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+            _id: '63e8db447a8501b5b2a8428b',
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'j.doe@gmail.com',
+            password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+            userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+            role: 'admin',
+            location: 'United Kingdom',
             organization: 'The Athletic',
-            position: 'Website Administrator'
+            position: 'Website Administrator',
+            createdAt: '2023-02-12T12:27:48.640Z',
           },
           _id: '642d8710d4be15abd18e94ad',
           type: 'article',
@@ -96,11 +114,17 @@ export const contentStateSuccessMock: IContentSectionsInitialState = {
         },
         {
           author: {
-            name: 'John Doe',
-            userId: '63e8db447a8501b5b2a8428b',
-            photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+            _id: '63e8db447a8501b5b2a8428b',
+            firstName: 'John',
+            lastName: 'Doe',
+            email: 'j.doe@gmail.com',
+            password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+            userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+            role: 'admin',
+            location: 'United Kingdom',
             organization: 'The Athletic',
-            position: 'Website Administrator'
+            position: 'Website Administrator',
+            createdAt: '2023-02-12T12:27:48.640Z',
           },
           _id: '642d8711d4be15abd18e94ad',
           type: 'article',
@@ -144,11 +168,17 @@ export const contentSection: IContentSection = {
   materials: [
     {
       author: {
-        name: 'John Doe',
-        userId: '63e8db447a8501b5b2a8428b',
-        photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+        _id: '63e8db447a8501b5b2a8428b',
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'j.doe@gmail.com',
+        password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+        userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+        role: 'admin',
+        location: 'United Kingdom',
         organization: 'The Athletic',
-        position: 'Website Administrator'
+        position: 'Website Administrator',
+        createdAt: '2023-02-12T12:27:48.640Z',
       },
       _id: '642d8710d4be15abd18e94ad',
       type: 'article',
@@ -169,11 +199,17 @@ export const contentSection: IContentSection = {
     },
     {
       author: {
-        name: 'John Doe',
-        userId: '63e8db447a8501b5b2a8428b',
-        photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+        _id: '63e8db447a8501b5b2a8428b',
+        firstName: 'John',
+        lastName: 'Doe',
+        email: 'j.doe@gmail.com',
+        password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+        userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+        role: 'admin',
+        location: 'United Kingdom',
         organization: 'The Athletic',
-        position: 'Website Administrator'
+        position: 'Website Administrator',
+        createdAt: '2023-02-12T12:27:48.640Z',
       },
       _id: '642d8711d4be15abd18e94ad',
       type: 'article',
@@ -255,11 +291,17 @@ export const realContentStateMock: IContentSectionsInitialState = {
         materials: [
           {
             author: {
-              name: 'Jack Dawson',
-              photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              _id: '63e8db447a8501b5b2a8428b',
+              firstName: 'John',
+              lastName: 'Doe',
+              email: 'j.doe@gmail.com',
+              password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+              userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              role: 'admin',
+              location: 'United Kingdom',
               organization: 'The Athletic',
               position: 'Website Administrator',
-              userId: '63e8db447a8501b5b2a8428b'
+              createdAt: '2023-02-12T12:27:48.640Z',
             },
             _id: '643d34582eb4f24a86c6c431',
             type: 'article',
@@ -282,11 +324,17 @@ export const realContentStateMock: IContentSectionsInitialState = {
           },
           {
             author: {
-              name: 'Chris Watford',
-              photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              _id: '63e8db447a8501b5b2a8428b',
+              firstName: 'John',
+              lastName: 'Doe',
+              email: 'j.doe@gmail.com',
+              password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+              userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              role: 'admin',
+              location: 'United Kingdom',
               organization: 'The Athletic',
               position: 'Website Administrator',
-              userId: '63e8db447a8501b5b2a8428b'
+              createdAt: '2023-02-12T12:27:48.640Z',
             },
             _id: '643d3b722eb4f24a86c6c451',
             type: 'note',
@@ -308,11 +356,17 @@ export const realContentStateMock: IContentSectionsInitialState = {
           },
           {
             author: {
-              name: 'John Doe',
-              photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              _id: '63e8db447a8501b5b2a8428b',
+              firstName: 'John',
+              lastName: 'Doe',
+              email: 'j.doe@gmail.com',
+              password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+              userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              role: 'admin',
+              location: 'United Kingdom',
               organization: 'The Athletic',
               position: 'Website Administrator',
-              userId: '63e8db447a8501b5b2a8428b'
+              createdAt: '2023-02-12T12:27:48.640Z',
             },
             _id: '643d55fd2eb4f24a86c6c471',
             type: 'article',
@@ -333,11 +387,17 @@ export const realContentStateMock: IContentSectionsInitialState = {
           },
           {
             author: {
-              name: 'John Doe',
-              photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              _id: '63e8db447a8501b5b2a8428b',
+              firstName: 'John',
+              lastName: 'Doe',
+              email: 'j.doe@gmail.com',
+              password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+              userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              role: 'admin',
+              location: 'United Kingdom',
               organization: 'The Athletic',
               position: 'Website Administrator',
-              userId: '63e8db447a8501b5b2a8428b'
+              createdAt: '2023-02-12T12:27:48.640Z',
             },
             _id: '643d57072eb4f24a86c6c47f',
             type: 'note',
@@ -367,11 +427,17 @@ export const realContentStateMock: IContentSectionsInitialState = {
         materials: [
           {
             author: {
-              name: 'Jack Dawson',
-              photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              _id: '63e8db447a8501b5b2a8428b',
+              firstName: 'John',
+              lastName: 'Doe',
+              email: 'j.doe@gmail.com',
+              password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+              userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              role: 'admin',
+              location: 'United Kingdom',
               organization: 'The Athletic',
               position: 'Website Administrator',
-              userId: '63e8db447a8501b5b2a8428b'
+              createdAt: '2023-02-12T12:27:48.640Z',
             },
             _id: '643d34582eb4f24a86c6c431',
             type: 'article',
@@ -394,11 +460,17 @@ export const realContentStateMock: IContentSectionsInitialState = {
           },
           {
             author: {
-              name: 'John Doe',
-              photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              _id: '63e8db447a8501b5b2a8428b',
+              firstName: 'John',
+              lastName: 'Doe',
+              email: 'j.doe@gmail.com',
+              password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+              userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              role: 'admin',
+              location: 'United Kingdom',
               organization: 'The Athletic',
               position: 'Website Administrator',
-              userId: '63e8db447a8501b5b2a8428b'
+              createdAt: '2023-02-12T12:27:48.640Z',
             },
             _id: '643d35da2eb4f24a86c6c439',
             type: 'article',
@@ -420,11 +492,17 @@ export const realContentStateMock: IContentSectionsInitialState = {
           },
           {
             author: {
-              name: 'Chris Watford',
-              photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              _id: '63e8db447a8501b5b2a8428b',
+              firstName: 'John',
+              lastName: 'Doe',
+              email: 'j.doe@gmail.com',
+              password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+              userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              role: 'admin',
+              location: 'United Kingdom',
               organization: 'The Athletic',
               position: 'Website Administrator',
-              userId: '63e8db447a8501b5b2a8428b'
+              createdAt: '2023-02-12T12:27:48.640Z',
             },
             _id: '643d3b722eb4f24a86c6c451',
             type: 'note',
@@ -454,11 +532,17 @@ export const realContentStateMock: IContentSectionsInitialState = {
         materials: [
           {
             author: {
-              name: 'Jack Dawson',
-              photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              _id: '63e8db447a8501b5b2a8428b',
+              firstName: 'John',
+              lastName: 'Doe',
+              email: 'j.doe@gmail.com',
+              password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+              userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              role: 'admin',
+              location: 'United Kingdom',
               organization: 'The Athletic',
               position: 'Website Administrator',
-              userId: '63e8db447a8501b5b2a8428b'
+              createdAt: '2023-02-12T12:27:48.640Z',
             },
             _id: '643d34582eb4f24a86c6c431',
             type: 'article',
@@ -481,11 +565,17 @@ export const realContentStateMock: IContentSectionsInitialState = {
           },
           {
             author: {
-              name: 'John Doe',
-              photoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              _id: '63e8db447a8501b5b2a8428b',
+              firstName: 'John',
+              lastName: 'Doe',
+              email: 'j.doe@gmail.com',
+              password: '$2b$10$ExFCWbpvyxkX502OleAlLOXEJczvCv8Hw65GkArU0Ds0IY6LF2.8C',
+              userPhotoUrl: 'https://images.fineartamerica.com/images/artworkimages/mediumlarge/2/surprised-cat-eric-hacke.jpg',
+              role: 'admin',
+              location: 'United Kingdom',
               organization: 'The Athletic',
               position: 'Website Administrator',
-              userId: '63e8db447a8501b5b2a8428b'
+              createdAt: '2023-02-12T12:27:48.640Z',
             },
             _id: '643d3a542eb4f24a86c6c449',
             type: 'note',
