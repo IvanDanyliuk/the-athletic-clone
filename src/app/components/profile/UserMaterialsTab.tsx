@@ -147,7 +147,7 @@ const UserMaterialsTab: React.FC = () => {
   };
 
   const handleMaterialDelete = (id: string) => {
-    dispatch(deleteMaterial({ id, page, itemsPerPage: 10, userId: user?._id }));
+    dispatch(deleteMaterial(id));
   };
 
   useEffect(() => {
@@ -155,7 +155,7 @@ const UserMaterialsTab: React.FC = () => {
       page, 
       itemsPerPage: 10, 
       filterData: {
-        author: user?._id
+        author: user?._id!
       },
       sortData: activeCell ? { 
         indicator: activeCell?.sortKey!, 

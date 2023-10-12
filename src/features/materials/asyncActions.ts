@@ -160,11 +160,14 @@ export const updateMaterial = createAsyncThunk(
 
 export const deleteMaterial = createAsyncThunk(
   'materials/deleteMaterial',
-  async (deleteData: IDeleteMaterialData, thunkAPI) => {
-    const { id, page, itemsPerPage, userId } = deleteData;
+  async (id: string, thunkAPI) => {
+    // const { id, page, itemsPerPage, userId } = deleteData;
+
     try {
-      const { data } = await api.deleteMaterial(id, page, itemsPerPage, userId );
-      return data;
+      // const { data } = await api.deleteMaterial(id, page, itemsPerPage, userId );
+      // return data;
+      await api.deleteMaterial(id);
+      return id;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
     }
