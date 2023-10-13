@@ -2,8 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
 import { MaterialModel } from '../../app/models/components';
 import { 
-  IDeleteMaterialData, IMaterial, IMaterialsRequestData, 
-  IHomepageSecondaryMaterialsRequestData, IRecentMaterialsRequestData, IMaterialSearchData, IGetLeagueMaterialsRequest
+  IMaterial, IMaterialsRequestData, IHomepageSecondaryMaterialsRequestData, 
+  IRecentMaterialsRequestData, IMaterialSearchData, IGetLeagueMaterialsRequest
 } from './types';
 import { IUser, UserRoles } from '../users/types';
 
@@ -161,11 +161,7 @@ export const updateMaterial = createAsyncThunk(
 export const deleteMaterial = createAsyncThunk(
   'materials/deleteMaterial',
   async (id: string, thunkAPI) => {
-    // const { id, page, itemsPerPage, userId } = deleteData;
-
     try {
-      // const { data } = await api.deleteMaterial(id, page, itemsPerPage, userId );
-      // return data;
       await api.deleteMaterial(id);
       return id;
     } catch (error: any) {
