@@ -63,7 +63,7 @@ export const getSchedulesByClub = (season: string, clubId: string) => API.get('/
 export const getSchedule = (season: string, leagueId: string) => API.get('/schedules/schedule', { params: { season, leagueId } });
 export const getRecentMatches = (season: string) => API.get('/schedules/recent-matches', { params: { season } });
 export const updateSchedule = (scheduleToUpdate: ISchedule) => API.patch('/schedules', scheduleToUpdate);
-export const deleteSchedule = (id: string, page: number, itemsPerPage: number) => API.delete('/schedules', { params: { id, page, itemsPerPage } });
+export const deleteSchedule = (id: string) => API.delete('/schedules', { params: { id } });
 
 export const createContentSection = (contentSectionData: ContentSectionModel) => API.post('/content', contentSectionData);
 export const getContentSections = () => API.get('/content');

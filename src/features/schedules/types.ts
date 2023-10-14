@@ -80,12 +80,6 @@ export interface ISchedulesRequestData {
   } | null;
 }
 
-export interface IDeleteScheduleData {
-  id: string;
-  page: number;
-  itemsPerPage: number;
-}
-
 export interface IGetScheduleQuery {
   season: string;
   leagueId: string;

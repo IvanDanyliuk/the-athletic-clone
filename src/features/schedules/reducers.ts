@@ -112,7 +112,10 @@ const schedulesSlice = createSlice({
       })
       .addCase(deleteSchedule.fulfilled, (state, action) => {
         state.status = StateStatus.Succeded;
-        state.data.main = action.payload;
+        state.data.main = {
+          schedules: state.data.main.schedules.filter(schedule => schedule._id !== action.payload),
+          schedulesCount: state.data.main.schedulesCount - 1
+        };
       })
       .addCase(deleteSchedule.rejected, (state, action: any) => {
         state.status = StateStatus.Failed;
