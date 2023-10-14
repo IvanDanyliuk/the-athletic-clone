@@ -55,7 +55,7 @@ export const createPlayer = (playerData: PlayerModel) => API.post('/players', pl
 export const getPlayers = (page?: number, itemsPerPage?: number, filterData?: any, sortData?: any) => API.get('/players', { params: { page, itemsPerPage, filterData, sortData } });
 export const getPlayer = (id: string) => API.get(`/players/${id}`);
 export const updatePlayer = (playerToUpdate: IPlayer) => API.patch('/players', playerToUpdate);
-export const deletePlayer = (id: string, page: number, itemsPerPage: number) => API.delete('/players', { params: { id, page, itemsPerPage } });
+export const deletePlayer = (id: string) => API.delete('/players', { params: { id } });
 
 export const createSchedule = (scheduleData: ScheduleModel) => API.post('/schedules', scheduleData);
 export const getSchedules = (page?: number, itemsPerPage?: number, filterData?: any, sortData?: any) => API.get('/schedules', { params: { page, itemsPerPage, filterData, sortData } });

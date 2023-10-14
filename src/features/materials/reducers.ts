@@ -192,7 +192,6 @@ const materialsSlice = createSlice({
       })
       .addCase(deleteMaterial.fulfilled, (state, action) => {
         state.status = StateStatus.Succeded;
-        // state.data.main = action.payload;
         state.data.main = {
           materials: state.data.main.materials.filter(material => material._id !== action.payload),
           materialsCount: state.data.main.materialsCount - 1

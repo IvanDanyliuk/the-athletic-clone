@@ -58,9 +58,3 @@ export interface IPlayersRequestData {
     order: string;
   } | null;
 }
-
-export interface IDeletePlayerData {
-  id: string;
-  page: number;
-  itemsPerPage: number;
-}

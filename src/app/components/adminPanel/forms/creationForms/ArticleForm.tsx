@@ -99,13 +99,6 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
       const imageUrl = data.image.length > 0 ? await uploadImage(data.image[0]) : '';
       await dispatch(createMaterial({
         ...data,
-        // author: {
-        //   name: `${user?.firstName} ${user?.lastName}`,
-        //   userId: user?._id,
-        //   photoUrl: user?.userPhotoUrl,
-        //   organization: user?.organization,
-        //   position: user?.position
-        // },
         author: user?._id,
         type: MaterialType.article,
         image: imageUrl,

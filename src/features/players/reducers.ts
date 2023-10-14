@@ -85,7 +85,10 @@ const playerSlice = createSlice({
       })
       .addCase(deletePlayer.fulfilled, (state, action) => {
         state.status = StateStatus.Succeded;
-        state.data.main = action.payload;
+        state.data.main = {
+          players: state.data.main.players.filter(player => player._id !== action.payload),
+          playersCount: state.data.main.playersCount - 1
+        }
       })
       .addCase(deletePlayer.rejected, (state, action: any) => {
         state.status = StateStatus.Failed;
