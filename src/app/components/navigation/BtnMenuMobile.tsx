@@ -49,27 +49,19 @@ const CommonListItem = styled(ListItem)`
   width: 100%;
 `;
 
-const DetailsList = styled(List)`
-
-`;
-
-const DetailsListItem = styled(ListItem)`
-
-`;
-
 const DetailsLink = styled(NavLink)`
   text-decoration: none;
   color: #ffffff;
 `;
 
-const CompetitionAccordion = styled(Accordion)`
+const MenuAccordion = styled(Accordion)`
   width: 100%;
   font-size: .9em;
   color: #c4c4bc;
   box-shadow: none;
 `;
 
-const CometitionSummary = styled(AccordionSummary)`
+const MenuAccordionSummary = styled(AccordionSummary)`
   width: 100%;
   color: #c4c4bc;
   div {
@@ -79,7 +71,7 @@ const CometitionSummary = styled(AccordionSummary)`
   }
 `;
 
-const CompetitionDetails = styled(AccordionDetails)`
+const MenuAccordionDetails = styled(AccordionDetails)`
   background: #000000;
 `;
 
@@ -159,50 +151,50 @@ const BtnMenuMobile: React.FC<IBtnMenuMobileProps> = ({ links }) => {
           {
             links.map((link, i) => (
               <CompetitionListItem key={uuid()}>
-                <CompetitionAccordion 
+                <MenuAccordion 
                   sx={{ background: '#222121' }}
                   disableGutters={true}
                   square={false}
                 >
-                  <CometitionSummary>
+                  <MenuAccordionSummary>
                     <Typography variant='inherit'>{link.fullName}</Typography>
                     <FontAwesomeIcon icon={faAngleDown} />
-                  </CometitionSummary>
-                  <CompetitionDetails>
-                    <DetailsList>
-                      <DetailsListItem>
+                  </MenuAccordionSummary>
+                  <MenuAccordionDetails>
+                    <List>
+                      <ListItem>
                         <DetailsLink to={`competitions/${link._id}`} onClick={handleMenuOpen}>
                           Home
                         </DetailsLink>
-                      </DetailsListItem>
-                      <DetailsListItem>
+                      </ListItem>
+                      <ListItem>
                         <DetailsLink to={`competitions/${link._id}/scores-and-schedules`} onClick={handleMenuOpen}>
                           Scores & Schedule
                         </DetailsLink>
-                      </DetailsListItem>
-                      <DetailsListItem>
+                      </ListItem>
+                      <ListItem>
                         <DetailsLink to={`competitions/${link._id}/standings`} onClick={handleMenuOpen}>
                           Standings
                         </DetailsLink>
-                      </DetailsListItem>
-                      <DetailsListItem>
+                      </ListItem>
+                      <ListItem>
                         <DetailsLink to={`competitions/${link._id}/news`} onClick={handleMenuOpen}>
                           News
                         </DetailsLink>
-                      </DetailsListItem>
-                    </DetailsList>
+                      </ListItem>
+                    </List>
                     {link.clubs.length > 0 && <ListDivider />}
-                    <DetailsList>
+                    <List>
                       {link.clubs.map(club => (
-                        <DetailsListItem key={uuid()}>
+                        <ListItem key={uuid()}>
                           <DetailsLink to={`clubs/${club._id}`} onClick={handleMenuOpen}>
                             {club.commonName}
                           </DetailsLink>
-                        </DetailsListItem>
+                        </ListItem>
                       ))}
-                    </DetailsList>
-                  </CompetitionDetails>
-                </CompetitionAccordion>
+                    </List>
+                  </MenuAccordionDetails>
+                </MenuAccordion>
                 {
                   i < (links.length - 1) && <BottomLine />
                 }
