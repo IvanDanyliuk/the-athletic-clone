@@ -77,6 +77,9 @@ const OtherMaterials = styled(Box)`
   margin-top: 1em;
   padding: 2em 1em;
   background: #f7f7f4;
+  @media (max-width: 768px) {
+    font-size: .8em;
+  }
 `;
 
 
@@ -154,7 +157,7 @@ const RecentMaterials: React.FC = () => {
         <OtherMaterials>
           <Grid container spacing={6}>
             {materials.slice(9).map(material => (
-              <Grid key={uuid()} item xs={4}>
+              <Grid key={uuid()} item xs={12} md={4}>
                 <Grid container spacing={3} sx={{ height: '100%' }}>
                   <Grid item xs={8}>
                     <LabelsContainer>
