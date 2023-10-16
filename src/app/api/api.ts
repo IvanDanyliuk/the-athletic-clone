@@ -25,7 +25,7 @@ export const getUsers = (page: number, itemsPerPage: number, filterData?: any, s
 export const getUsersLocations = () => API.get('/users/locations');
 export const updateUser = (userToUpdate: IUser) => API.patch('/users', userToUpdate);
 export const updatePassword = (id: string, newPassword: string, currPassword: string) => API.patch('/users/password', { id, newPassword, currPassword });
-export const deleteUser = (id: string, page: number, itemsPerPage: number) => API.delete('/users', { params: { id, page, itemsPerPage } });
+export const deleteUser = (id: string) => API.delete('/users', { params: { id } });
 
 export const createMaterial = (materialData: MaterialModel) => API.post('/materials', materialData);
 export const getMaterials = (page: number, itemsPerPage: number, filterData?: any, sortData?: any) => API.get('/materials', { params: { page, itemsPerPage, filterData, sortData } });
