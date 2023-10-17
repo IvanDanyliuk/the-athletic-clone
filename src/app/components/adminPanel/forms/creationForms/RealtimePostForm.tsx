@@ -72,13 +72,7 @@ const NewRealTimePostForm: React.FC<INewRealTimePostFormProps> = ({ postToUpdate
       setIsLoading(true);
       await dispatch(createMaterial({
         ...data,
-        author: {
-          name: `${user?.firstName} ${user?.lastName}`,
-          userId: user?._id,
-          photoUrl: user?.userPhotoUrl,
-          organization: user?.organization,
-          position: user?.position
-        },
+        author: user?._id,
         type: MaterialType.post,
         publicationDate: data.publicationDate ? dayjs(data.publicationDate).add(1, 'day') : new Date().toISOString(),
         content: data.content,
