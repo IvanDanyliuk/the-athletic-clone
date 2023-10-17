@@ -65,10 +65,11 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
   const handleFormSubmit = async (data: any) => {
     if(noteToUpdate) {
       setIsLoading(true);
+      const imageUrl = data.image.length > 0 ? await uploadImage(data.image[0]) : noteToUpdate.image;
       await dispatch(updateMaterial({
         ...noteToUpdate,
         title: data.title,
-        image: data.image,
+        image: imageUrl,
         publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
         status: data.status,
         content: data.content,

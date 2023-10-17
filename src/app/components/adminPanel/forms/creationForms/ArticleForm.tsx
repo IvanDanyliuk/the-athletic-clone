@@ -81,10 +81,11 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
   const handleFormSubmit = async (data: any) => {
     if(articleToUpdate) {
       setIsLoading(true);
+      const imageUrl = data.image.length > 0 ? await uploadImage(data.image[0]) : articleToUpdate.image;
       await dispatch(updateMaterial({
         ...articleToUpdate,
         title: data.title,
-        image: data.image,
+        image: imageUrl,
         isMain: data.isMain,
         publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
         status: data.status,
