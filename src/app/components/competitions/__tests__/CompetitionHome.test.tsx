@@ -4,6 +4,7 @@ import { setupCompetitionsSuccessHandlers } from '../../../utils/testing/serverM
 import { renderWithProviders } from '../../../utils/testing/customRenderMethod';
 import { materialsStateSuccessMock } from '../../../utils/testing/testDataMocks/materials';
 import { CompetitionHome } from '../';
+import { StateStatus } from '../../../../features/types';
 
 
 describe('CompetitionHome tests', () => {
@@ -28,7 +29,7 @@ describe('CompetitionHome tests', () => {
         preloadedState: {
           materials: {
             ...materialsStateSuccessMock,
-            status: 'loading',
+            status: StateStatus.Loading,
             data: {
               ...materialsStateSuccessMock.data,
               main: {

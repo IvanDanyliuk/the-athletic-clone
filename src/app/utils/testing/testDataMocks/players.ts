@@ -278,7 +278,7 @@ export const newPlayer: PlayerModel = {
 };
 
 export const playerToUpdate: IPlayer = {
-  _id: '641f36e462652c997e106e6a',
+  _id: '646f36e462652c997e106e6a',
   firstName: 'Mykhailo',
   lastName: 'Mudryk',
   birthDate: '2001-03-14T22:00:00.000Z',

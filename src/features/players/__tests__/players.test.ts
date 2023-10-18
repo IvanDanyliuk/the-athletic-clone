@@ -24,7 +24,7 @@ describe('Redux tests: players_success cases', () => {
 
   test('should delete player by dispatching the deletePlayer async action', async () => {
     let state = store.getState().players;
-    await store.dispatch(deletePlayer({ id: playerToUpdate._id, page: 0, itemsPerPage: 10 }));
+    await store.dispatch(deletePlayer(playerToUpdate._id));
     state = store.getState().players;
     expect(state.data.main.players).toHaveLength(playersStateSuccessMock.data.main.players.length);
   });
@@ -90,7 +90,7 @@ describe('Redux tests: players_error cases', () => {
 
   test('should not delete player by dispatching the deletePlayer async action', async () => {
     let state = store.getState().players;
-    await store.dispatch(deletePlayer({ id: playerToUpdate._id, page: 0, itemsPerPage: 10 }));
+    await store.dispatch(deletePlayer(playerToUpdate._id));
     state = store.getState().players;
     expect(state.error).toBe('Delete Player Error');
   });

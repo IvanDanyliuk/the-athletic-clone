@@ -17,6 +17,6 @@ describe('RealtimePosts tests', () => {
         <RealtimePosts materials={dataMock} />
       </MemoryRouter>
     );
-    expect(screen.getAllByText(postToUpdate.author.name)).toHaveLength(dataMock.length);
+    expect(screen.getAllByText(`${postToUpdate.author.firstName} ${postToUpdate.author.lastName}`)).toHaveLength(dataMock.length);
   });
 });

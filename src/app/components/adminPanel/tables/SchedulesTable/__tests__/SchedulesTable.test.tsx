@@ -3,10 +3,11 @@ import { renderWithProviders } from '../../../../../utils/testing/customRenderMe
 import { setupSchedulesErrorHandlers, setupSchedulesSuccessHandlers } from '../../../../../utils/testing/serverMocks/schedules';
 import { schedulesStateErrorMock, schedulesStateSuccessMock } from '../../../../../utils/testing/testDataMocks/schedules';
 import { SchedulesTable } from '../';
+import { StateStatus } from '../../../../../../features/types';
 
 
 const schedulesStateMock = {
-  status: 'loading',
+  status: StateStatus.Loading,
   data: {
     main: {
       schedules: [],

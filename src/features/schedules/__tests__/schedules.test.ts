@@ -26,7 +26,7 @@ describe('Redux tests: schedules_success cases', () => {
 
   test('should delete schedule by dispatching the deleteSchedule action', async () => {
     let state = store.getState().schedules;
-    await store.dispatch(deleteSchedule({ id: scheduleToUpdate._id!, page: 0, itemsPerPage: 10 }));
+    await store.dispatch(deleteSchedule(scheduleToUpdate._id!));
     state = store.getState().schedules;
     expect(state.data.main.schedules).toHaveLength(schedulesStateSuccessMock.data.main.schedules.length);
   });
@@ -106,7 +106,7 @@ describe('Redux tests: schedules_error cases', () => {
 
   test('should delete schedule by dispatching the deleteSchedule action', async () => {
     let state = store.getState().schedules;
-    await store.dispatch(deleteSchedule({ id: scheduleToUpdate._id!, page: 0, itemsPerPage: 10 }));
+    await store.dispatch(deleteSchedule(scheduleToUpdate._id!));
     state = store.getState().schedules;
     expect(state.error).toBe('Delete Schedule Error');
   });
