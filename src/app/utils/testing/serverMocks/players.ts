@@ -20,7 +20,7 @@ const playersSuccessHandlers = [
   }),
   rest.post(`${baseUrl}/players`, (req, res, ctx) => {
     return res(
-      ctx.status(200),
+      ctx.status(201),
       ctx.json(newPlayer)
     )
   }),

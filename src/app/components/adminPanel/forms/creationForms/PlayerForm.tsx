@@ -54,7 +54,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
 
   const countries = getCountries().map(country => ({ label: country, value: country }));
   const clubData = useSelector(selectClubsByCountry);
-  const clubs = clubData.map(club => ({ label: club.commonName, value: club._id }))
+  const clubs = clubData.map(club => ({ label: club.commonName, value: club._id }));
 
   const handleFormSubmit = async (data: any) => {
     if(playerToUpdate) {

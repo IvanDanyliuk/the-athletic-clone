@@ -4,7 +4,6 @@ import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMo
 import { setupPlayersSuccessHandlers } from '../../../../../utils/testing/serverMocks/players';
 import { playerToUpdate } from '../../../../../utils/testing/testDataMocks/players';
 import { PlayerForm } from '../';
-import userEvent from '@testing-library/user-event';
 
 
 const mockedUseNavigate = jest.fn();
@@ -32,11 +31,9 @@ describe('PlayerForm tests', () => {
     const selectFields = screen.getAllByTestId('selectField');
     const submitBtn = screen.getByRole('button', { name: 'Submit' });
 
-    // userEvent.type(textFields[0] as HTMLInputElement, 'Test First Name')
-    // userEvent.type(textFields[1] as HTMLInputElement, 'Test Last Name')
-
     fireEvent.change(textFields[0] as HTMLInputElement, { target: { value: 'Test First Name' } });
     fireEvent.change(textFields[1] as HTMLInputElement, { target: { value: 'Test Last Name' } });
+    // fireEvent.change(textFields[2] as HTMLInputElement, { target: { value: 5 } });
     
     //eslint-disable-next-line
     fireEvent.change(selectFields[0].querySelector('input')! as HTMLInputElement, { target: { value: 'United Kingdom' } });
@@ -46,7 +43,7 @@ describe('PlayerForm tests', () => {
     fireEvent.change(selectFields[2].querySelector('input')! as HTMLInputElement, { target: { value: 'Test Club' } });
     fireEvent.click(submitBtn);
 
-    screen.debug(undefined, 300000)
+    // screen.debug(undefined, 300000)
 
     await waitFor(() => {
       expect(mockedUseNavigate).toHaveBeenCalled();
