@@ -19,7 +19,7 @@ describe('CompetitionHome tests', () => {
 
   test('should render the materials data', async () => {
     renderWithProviders(<CompetitionHome />);
-    expect(screen.getAllByText(materialsStateSuccessMock.data.main.materials[0].author.name)).toHaveLength(6);
+    expect(screen.getAllByText(new RegExp(materialsStateSuccessMock.data.main.materials[0].author.firstName, 'i'))).toHaveLength(6);
   });
 
   test('should render the loader component when the status is loading', async () => {

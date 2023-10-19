@@ -5,10 +5,11 @@ import { materialsStateErrorMock, materialsStateSuccessMock } from '../../../../
 import { setupContentErrorHandlers, setupContentSuccessHandlers } from '../../../../../utils/testing/serverMocks/content';
 import { IMaterialsState } from '../../../../../../features/materials/types';
 import { MaterialsTable } from '../';
+import { StateStatus } from '../../../../../../features/types';
 
 
 const materialsStateMock: IMaterialsState = {
-  status: 'loading',
+  status: StateStatus.Loading,
   data: {
     main: {
       materials: [],

@@ -5,6 +5,7 @@ import { setupMaterialsErrorHandlers, setupMaterialsSuccessHandlers } from '../.
 import { renderWithProviders } from '../../../utils/testing/customRenderMethod';
 import { materialsStateErrorMock, materialsStateSuccessMock } from '../../../utils/testing/testDataMocks/materials';
 import { usersStateSuccessMock } from '../../../utils/testing/testDataMocks/users';
+import { StateStatus } from '../../../../features/types';
 
 
 const mockedUseDispatch = jest.fn();
@@ -69,7 +70,7 @@ describe('UserMaterialsTab tests: success cases', () => {
         preloadedState: {
           materials: {
             ...materialsStateSuccessMock,
-            status: 'loading'
+            status: StateStatus.Loading
           },
           users: usersStateSuccessMock
         }

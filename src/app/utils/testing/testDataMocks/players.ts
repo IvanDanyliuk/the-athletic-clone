@@ -265,7 +265,7 @@ export const newPlayer: PlayerModel = {
   number: '15',
   position: 'M',
   club: {
-    _id: '6419f57b1f12d2111b413f2c',
+    _id: '6419a26d6e0212a0462b4dd2',
     fullName: 'Chelsea FC',
     commonName: 'Chelsea',
     shortName: 'CHE',
@@ -287,7 +287,7 @@ export const playerToUpdate: IPlayer = {
   number: '15',
   position: 'M',
   club: {
-    _id: '6419f57b1f12d2111b413f2c',
+    _id: '6419a26d6e0212a0462b4dd2',
     fullName: 'Chelsea FC',
     commonName: 'Chelsea',
     shortName: 'CHE',

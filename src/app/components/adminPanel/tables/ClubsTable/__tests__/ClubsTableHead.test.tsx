@@ -1,7 +1,7 @@
 import { screen, fireEvent, cleanup } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
-import { Order } from '../../../../../../features/clubs/types';
+import { Order } from '../../../../../../features/types';
 import { ClubsTableHead } from '../';
 
 
