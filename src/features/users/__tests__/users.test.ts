@@ -27,9 +27,11 @@ describe('Redux tests: users_success cases', () => {
 
   test('should delete existing user by dispatching the deleteUser async action', async () => {
     let state = store.getState().users;
+    await store.dispatch(getUsers({ page: 0, itemsPerPage: 10 }));
     await store.dispatch(deleteUser(userToUpdate._id!));
     state = store.getState().users;
-    expect(state.data.users).toHaveLength(usersStateSuccessMock.data.users.length);
+    
+    expect(state.data.users).toHaveLength(usersStateSuccessMock.data.users.length - 1);
   });
 
   test('should get authenticated user by dispatching the getAuthenticatedUser async action', async () => {

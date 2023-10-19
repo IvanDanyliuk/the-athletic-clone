@@ -121,7 +121,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
     if(articleToUpdate) {
       reset({
         title: articleToUpdate.title,
-        image: articleToUpdate.image,
+        // image: articleToUpdate.image,
         isMain: articleToUpdate.isMain,
         publicationDate: dayjs(articleToUpdate.publicationDate).subtract(1, 'day'),
         status: articleToUpdate.status,

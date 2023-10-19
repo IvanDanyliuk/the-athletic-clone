@@ -26,9 +26,10 @@ describe('Redux tests: schedules_success cases', () => {
 
   test('should delete schedule by dispatching the deleteSchedule action', async () => {
     let state = store.getState().schedules;
+    await store.dispatch(getSchedules({ page: 0, itemsPerPage: 10 }));
     await store.dispatch(deleteSchedule(scheduleToUpdate._id!));
     state = store.getState().schedules;
-    expect(state.data.main.schedules).toHaveLength(schedulesStateSuccessMock.data.main.schedules.length);
+    expect(state.data.main.schedules).toHaveLength(schedulesStateSuccessMock.data.main.schedules.length - 1);
   });
 
   test('should get recent matches by dispatching the getRecentMatches action', async () => {

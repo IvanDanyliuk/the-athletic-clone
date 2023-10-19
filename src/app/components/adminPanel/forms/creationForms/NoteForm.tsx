@@ -104,7 +104,6 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
     if(noteToUpdate) {
       reset({
         title: noteToUpdate.title,
-        image: noteToUpdate.image,
         publicationDate: dayjs(noteToUpdate.publicationDate).subtract(1, 'day'),
         status: noteToUpdate.status,
         content: noteToUpdate.content,

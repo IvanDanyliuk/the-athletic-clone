@@ -24,9 +24,10 @@ describe('Redux tests: players_success cases', () => {
 
   test('should delete player by dispatching the deletePlayer async action', async () => {
     let state = store.getState().players;
+    await store.dispatch(getPlayers({ page: 0, itemsPerPage: 10 }));
     await store.dispatch(deletePlayer(playerToUpdate._id));
     state = store.getState().players;
-    expect(state.data.main.players).toHaveLength(playersStateSuccessMock.data.main.players.length);
+    expect(state.data.main.players).toHaveLength(playersStateSuccessMock.data.main.players.length - 1);
   });
 
   test('should get player data by dispatching the getPlayer async action', async () => {
