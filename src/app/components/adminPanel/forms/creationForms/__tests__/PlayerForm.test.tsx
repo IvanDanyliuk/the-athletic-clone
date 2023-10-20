@@ -28,12 +28,13 @@ describe('PlayerForm tests', () => {
     renderWithProviders(<PlayerForm />);
 
     const textFields = screen.getAllByTestId('textField');
+    const numberField = screen.getByTestId('numberField');
     const selectFields = screen.getAllByTestId('selectField');
     const submitBtn = screen.getByRole('button', { name: 'Submit' });
 
     fireEvent.change(textFields[0] as HTMLInputElement, { target: { value: 'Test First Name' } });
     fireEvent.change(textFields[1] as HTMLInputElement, { target: { value: 'Test Last Name' } });
-    // fireEvent.change(textFields[2] as HTMLInputElement, { target: { value: 5 } });
+    fireEvent.change(numberField as HTMLInputElement, { target: { value: 5 } });
     
     //eslint-disable-next-line
     fireEvent.change(selectFields[0].querySelector('input')! as HTMLInputElement, { target: { value: 'United Kingdom' } });
@@ -42,8 +43,6 @@ describe('PlayerForm tests', () => {
     //eslint-disable-next-line
     fireEvent.change(selectFields[2].querySelector('input')! as HTMLInputElement, { target: { value: 'Test Club' } });
     fireEvent.click(submitBtn);
-
-    // screen.debug(undefined, 300000)
 
     await waitFor(() => {
       expect(mockedUseNavigate).toHaveBeenCalled();

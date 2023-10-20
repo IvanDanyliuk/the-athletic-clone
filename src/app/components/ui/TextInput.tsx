@@ -46,6 +46,14 @@ const TextInput: React.FC<ITextInputProps> = ({
   error, 
   ...props 
 }) => {
+  const inputProps = props.type === 'number' ? {
+    'data-testid': 'numberField',
+    min: 1, 
+    max: 99
+  } : {
+    'data-testid': 'textField',
+  };
+  
   return (
     <Box>
       {error ? (
@@ -62,9 +70,7 @@ const TextInput: React.FC<ITextInputProps> = ({
       )}
       <Input 
         id={name} 
-        inputProps={{
-          'data-testid': 'textField',
-        }}
+        inputProps={inputProps}
         {...props} 
         {...register(name, registerOptions)}
       />

@@ -177,9 +177,6 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
               type='number' 
               register={register}
               registerOptions={{ required: 'Number is required!' }}
-              inputProps={{
-                min: 1, max: 99
-              }}
               error={errors.number}
             />
           </Grid>
