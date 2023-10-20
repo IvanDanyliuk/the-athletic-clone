@@ -28,26 +28,30 @@ const PlayersTableBody: React.FC<IPlayersTableBodyProps> = ({ players, page, ite
   return (
     <TableBody>
       {
-        players.map(({ _id, firstName, lastName, club, number, position, country, birthDate }) => (
+        players.map(player => (
           <TableRow key={uuid()}>
             <TableCell>
-              <TableLink url={`/players/${_id}`} label={firstName} />
+              <TableLink url={`/players/${player._id}`} label={player.firstName} />
             </TableCell>
             <TableCell>
-              <TableLink url={`/players/${_id}`} label={lastName} />
+              <TableLink url={`/players/${player._id}`} label={player.lastName} />
             </TableCell>
             <TableCell>
-              <TableLink url={`/clubs/${club._id}`} label={club ? club.commonName : '-'} />
+              {
+                player.club ? (
+                  <TableLink url={`/clubs/${player.club._id}`} label={player.club.commonName} />
+                ) : '-'
+              }
             </TableCell>
-            <TableCell>{number}</TableCell>
-            <TableCell>{position}</TableCell>
-            <TableCell>{country}</TableCell>
-            <TableCell>{dayjs(birthDate).format('DD/MM/YYYY')}</TableCell>
+            <TableCell>{player.number}</TableCell>
+            <TableCell>{player.position}</TableCell>
+            <TableCell>{player.country}</TableCell>
+            <TableCell>{dayjs(player.birthDate).format('DD/MM/YYYY')}</TableCell>
             <TableCell>
               <RowActionButtons 
-                id={_id} 
+                id={player._id} 
                 type={EssenseType.players}
-                onDelete={() => handleClubDelete(_id)} 
+                onDelete={() => handleClubDelete(player._id)} 
               />
             </TableCell>
           </TableRow>

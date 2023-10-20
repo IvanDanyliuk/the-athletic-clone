@@ -89,7 +89,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
         firstName: playerToUpdate.firstName,
         lastName: playerToUpdate.lastName,
         country: playerToUpdate.country,
-        club: playerToUpdate.club ? playerToUpdate.club._id : '-',
+        club: playerToUpdate.club && playerToUpdate.club._id,
         number: playerToUpdate.number,
         position: playerToUpdate.position,
         birthDate: dayjs(playerToUpdate.birthDate).subtract(1, 'day'),
