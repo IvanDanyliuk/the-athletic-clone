@@ -47,8 +47,8 @@ export interface IUsersTableHeadCell {
 export interface IUserRequestData {
   page: number;
   itemsPerPage: number;
-  filterData: any | null; 
-  sortData: {
+  filterData?: any | null; 
+  sortData?: {
     indicator: string;
     order: string;
   } | null;
@@ -65,10 +65,4 @@ export interface IUserPasswordUpdationData {
   id: string;
   newPassword: string;
   currPassword: string;
-}
-
-export interface IDeleteUserData {
-  id: string;
-  page: number;
-  itemsPerPage: number;
 }

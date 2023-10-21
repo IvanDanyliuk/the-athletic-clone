@@ -3,10 +3,11 @@ import { renderWithProviders } from '../../../../../utils/testing/customRenderMe
 import { setupPlayersErrorHandlers, setupPlayersSuccessHandlers } from '../../../../../utils/testing/serverMocks/players';
 import { playersStateErrorMock, playersStateSuccessMock } from '../../../../../utils/testing/testDataMocks/players';
 import { PlayersTable } from '../';
+import { StateStatus } from '../../../../../../features/types';
 
 
 const playersStateMock = {
-  status: 'loading',
+  status: StateStatus.Loading,
   data: {
     main: {
       players: [],

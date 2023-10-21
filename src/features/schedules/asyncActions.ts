@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
 import { ScheduleModel } from '../../app/models/components';
-import { IDeleteScheduleData, IGetScheduleQuery, IGetSchedulesByClubQuery, ISchedule, ISchedulesRequestData } from './types';
+import { IGetScheduleQuery, IGetSchedulesByClubQuery, ISchedule, ISchedulesRequestData } from './types';
 
 
 export const createSchedule = createAsyncThunk(
@@ -81,11 +81,10 @@ export const updateSchedule = createAsyncThunk(
 
 export const deleteSchedule = createAsyncThunk(
   'schedules/deleteSchedule',
-  async (deleteData: IDeleteScheduleData, thunkAPI) => {
-    const { id, page, itemsPerPage } = deleteData;
+  async (id: string, thunkAPI) => {
     try {
-      const { data } = await api.deleteSchedule(id, page, itemsPerPage);
-      return data;
+      await api.deleteSchedule(id);
+      return id;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
     }

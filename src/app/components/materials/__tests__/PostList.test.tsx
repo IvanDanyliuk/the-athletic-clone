@@ -26,7 +26,7 @@ describe('PostList tests', () => {
         }
       }
     );
-    expect(screen.getByText(postToUpdate.author.name)).toBeInTheDocument();
+    expect(screen.getByText(`${postToUpdate.author.firstName} ${postToUpdate.author.lastName}`)).toBeInTheDocument();
   });
 
   test('should render the the message if searched does not posts exist', async () => {

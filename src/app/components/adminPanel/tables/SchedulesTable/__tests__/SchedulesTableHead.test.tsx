@@ -1,7 +1,7 @@
 import { screen, fireEvent, cleanup } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupSchedulesSuccessHandlers } from '../../../../../utils/testing/serverMocks/schedules';
-import { Order } from '../../../../../../features/schedules/types';
+import { Order } from '../../../../../../features/types';
 import { SchedulesTableHead } from '../';
 
 

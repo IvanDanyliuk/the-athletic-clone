@@ -198,7 +198,7 @@ export const newUser: UserModel = {
 };
 
 export const userToUpdate: IUser = {
-  _id: '63e8db447a8501b5b2a8428b',
+  _id: '63e8db437a8501b5b2a8428b',
   firstName: 'John',
   lastName: 'Doe',
   email: 'j.doe@gmail.com',

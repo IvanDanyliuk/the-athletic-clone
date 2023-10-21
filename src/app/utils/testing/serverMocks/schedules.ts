@@ -44,8 +44,7 @@ const schedulesSuccessHandlers = [
   }),
   rest.delete(`${baseUrl}/schedules`, (req, res, ctx) => {
     return res(
-      ctx.status(200),
-      ctx.json(schedulesStateSuccessMock.data.main)
+      ctx.status(204),
     )
   }),
 ];

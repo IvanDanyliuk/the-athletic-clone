@@ -1,7 +1,7 @@
 import { screen, fireEvent, cleanup } from '@testing-library/react';
 import { renderWithProviders } from '../../../../../utils/testing/customRenderMethod'; 
 import { setupPlayersSuccessHandlers } from '../../../../../utils/testing/serverMocks/players';
-import { Order } from '../../../../../../features/players/types';
+import { Order } from '../../../../../../features/types';
 import { PlayersTableHead } from '../';
 
 

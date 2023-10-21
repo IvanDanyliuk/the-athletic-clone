@@ -141,7 +141,10 @@ const userSlice = createSlice({
       })
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.status = StateStatus.Succeded;
-        state.data = action.payload;
+        state.data = {
+          users: state.data.users.filter(user => user._id !== action.payload),
+          usersCount: state.data.usersCount - 1
+        }
       })
       .addCase(deleteUser.rejected, (state, action: any) => {
         state.status = StateStatus.Failed;

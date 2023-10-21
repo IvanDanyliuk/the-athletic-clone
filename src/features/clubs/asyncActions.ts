@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
 import { ClubModel } from '../../app/models/components';
-import { IClub, IClubsRequestData, IDeleteClubData } from './types';
+import { IClub, IClubsRequestData } from './types';
 
 
 export const createClub = createAsyncThunk(
@@ -67,11 +67,10 @@ export const updateClub = createAsyncThunk(
 
 export const deleteClub = createAsyncThunk(
   'clubs/deleteClubs',
-  async (deleteData: IDeleteClubData, thunkAPI) => {
-    const { id, page, itemsPerPage } = deleteData;
+  async (id: string, thunkAPI) => {
     try {
-      const { data } = await api.deleteClub(id, page, itemsPerPage);
-      return data;
+      await api.deleteClub(id)
+      return id;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
     }

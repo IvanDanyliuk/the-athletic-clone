@@ -65,10 +65,11 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
   const handleFormSubmit = async (data: any) => {
     if(noteToUpdate) {
       setIsLoading(true);
+      const imageUrl = data.image.length > 0 ? await uploadImage(data.image[0]) : noteToUpdate.image;
       await dispatch(updateMaterial({
         ...noteToUpdate,
         title: data.title,
-        image: data.image,
+        image: imageUrl,
         publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
         status: data.status,
         content: data.content,
@@ -82,13 +83,7 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
       const imageUrl = data.image.length > 0 ? await uploadImage(data.image[0]) : '';
       await dispatch(createMaterial({
         ...data,
-        author: {
-          name: `${user?.firstName} ${user?.lastName}`,
-          userId: user?._id,
-          photoUrl: user?.userPhotoUrl,
-          organization: user?.organization,
-          position: user?.position
-        },
+        author: user?._id,
         type: MaterialType.note,
         image: imageUrl,
         publicationDate: data.publicationDate ? dayjs(data.publicationDate).add(1, 'day') : new Date().toISOString(),
@@ -109,7 +104,6 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
     if(noteToUpdate) {
       reset({
         title: noteToUpdate.title,
-        image: noteToUpdate.image,
         publicationDate: dayjs(noteToUpdate.publicationDate).subtract(1, 'day'),
         status: noteToUpdate.status,
         content: noteToUpdate.content,

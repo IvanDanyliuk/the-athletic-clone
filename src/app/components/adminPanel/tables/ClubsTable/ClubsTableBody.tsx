@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { IClub } from '../../../../../features/clubs/types';
 import { RowActionButtons, TableLink } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
-import { deleteClub } from '../../../../../features/clubs/asyncActions';
+import { deleteClub, getClubs } from '../../../../../features/clubs/asyncActions';
 import { EssenseType } from '../../../../models/components';
 
 
@@ -21,7 +21,8 @@ const ClubsTableBody: React.FC<IClubsTableBodyProps> = ({ clubs, page, itemsPerP
   const dispatch = useDispatch<AppDispatch>();
 
   const handleClubDelete = (id: string) => {
-    dispatch(deleteClub({ id, page, itemsPerPage }));
+    dispatch(deleteClub(id));
+    dispatch(getClubs({ page, itemsPerPage }))
   };
 
   return (

@@ -81,7 +81,7 @@ const ContentSectionListItem: React.FC<IContentSectionListItem> = ({ data }) => 
                 <Text>{material.title}</Text>
               </Grid>
               <Grid item xs={2}>
-                <Text>by {material.author.name}</Text>
+                <Text>by {`${material.author.firstName} ${material.author.lastName}`}</Text>
               </Grid>
               <Grid item xs={2}>
                 <Avatar src={material.image} variant='square' />

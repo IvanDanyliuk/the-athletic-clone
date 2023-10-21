@@ -51,7 +51,7 @@ const ContentMainArticle: React.FC<IContentMainArticle> = ({ article }) => {
               <Text>{article.title}</Text>
             </Grid>
             <Grid item xs={2}>
-              <Text>by {article.author.name}</Text>
+              <Text>by {`${article.author.firstName} ${article.author.lastName}`}</Text>
             </Grid>
             <Grid item xs={1}>
               <Avatar src={article.image} variant='square' />

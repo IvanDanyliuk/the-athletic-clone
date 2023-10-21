@@ -55,7 +55,6 @@ describe('Redux tests: materials_success cases', () => {
     let state = store.getState().materials;
     await store.dispatch(getLeagueMaterials({ type: ['league'], value: 'Premier League' }));
     state = store.getState().materials;
-    console.log(state)
     expect(state.data.main.materials).toHaveLength(materialsStateSuccessMock.data.main.materials.length);
   });
 

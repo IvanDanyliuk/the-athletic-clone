@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { ICompetition } from '../../../../../features/competitions/types';
 import { RowActionButtons, TableLink } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
-import { deleteCompetition } from '../../../../../features/competitions/asyncActions';
+import { deleteCompetition, getCompetitions } from '../../../../../features/competitions/asyncActions';
 import { EssenseType } from '../../../../models/components';
 
 
@@ -21,7 +21,8 @@ const CompetitionsTableBody: React.FC<ICompetitionsTableBodyProps> = ({ competit
   const dispatch = useDispatch<AppDispatch>();
 
   const handleCompetitionDelete = (id: string) => {
-    dispatch(deleteCompetition({ id, page, itemsPerPage }));
+    dispatch(deleteCompetition(id));
+    dispatch(getCompetitions({ page, itemsPerPage }));
   };
 
   return (

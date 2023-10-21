@@ -67,8 +67,7 @@ const usersSuccessHandlers = [
   }),
   rest.delete(`${baseUrl}/users`, (req, res, ctx) => {
     return res(
-      ctx.status(200),
-      ctx.json(usersStateSuccessMock.data)
+      ctx.status(204),
     )
   }),
 ];

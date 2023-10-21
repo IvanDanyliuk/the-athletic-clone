@@ -9,7 +9,7 @@ import { v4 as uuid } from 'uuid';
 import { IMaterial } from '../../../../../features/materials/types';
 import { RowActionButtons, TableLink } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
-import { deleteMaterial, updateMaterial } from '../../../../../features/materials/asyncActions';
+import { deleteMaterial, getMaterials, updateMaterial } from '../../../../../features/materials/asyncActions';
 import { selectContentModeStatus, selectMaterialsToContent } from '../../../../../features/content/selectors';
 import { addMaterialToContent } from '../../../../../features/content/reducers';
 import { EssenseType } from '../../../../models/components';
@@ -42,7 +42,8 @@ const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials, page
   };
 
   const handleMaterialDelete = (id: string) => {
-    dispatch(deleteMaterial({ id, page, itemsPerPage }));
+    dispatch(deleteMaterial(id));
+    dispatch(getMaterials({ page, itemsPerPage }));
   };
 
   return (
@@ -57,7 +58,7 @@ const MaterialTableBody: React.FC<IMaterialsTableBodyProps> = ({ materials, page
               </TableCell>
               <TableCell>{labels.length ? labels[0] : '-'}</TableCell>
               <TableCell>{type}</TableCell>
-              <TableCell>{author.name}</TableCell>
+              <TableCell>{`${author.firstName} ${author.lastName}`}</TableCell>
               <TableCell>{status}</TableCell>
               <TableCell>{dayjs(publicationDate).subtract(1, 'day').format('DD/MM/YYYY')}</TableCell>
               <TableCell>

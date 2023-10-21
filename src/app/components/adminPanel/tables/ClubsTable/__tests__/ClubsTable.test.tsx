@@ -3,10 +3,11 @@ import { renderWithProviders } from '../../../../../utils/testing/customRenderMe
 import { setupClubsErrorHandlers, setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMocks/clubs';
 import { clubsStateErrorMock, clubsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/clubs';
 import { ClubsTable } from '../';
+import { StateStatus } from '../../../../../../features/types';
 
 
 const clubsStateMock = {
-  status: 'loading',
+  status: StateStatus.Loading,
   data: {
     main: {
       clubs: [],

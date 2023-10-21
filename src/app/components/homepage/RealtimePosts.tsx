@@ -109,8 +109,8 @@ const RealtimePosts: React.FC<IRealtimePostsProps> = ({ materials }) => {
                   <PostLink to={`/posts/${post._id}`}>
                     <Card sx={{ height: '100%' }}>
                       <CardHeader
-                        avatar={<Avatar src={post.author.photoUrl} />}
-                        title={<Typography variant='subtitle2'>{post.author.name}</Typography>}
+                        avatar={<Avatar src={post.author.userPhotoUrl} />}
+                        title={<Typography variant='subtitle2'>{`${post.author.firstName} ${post.author.lastName}`}</Typography>}
                         subheader={`${post.author.organization}, ${post.author.position}`}
                       />
                       <CardContent>

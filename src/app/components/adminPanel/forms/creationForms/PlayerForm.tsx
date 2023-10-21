@@ -54,7 +54,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
 
   const countries = getCountries().map(country => ({ label: country, value: country }));
   const clubData = useSelector(selectClubsByCountry);
-  const clubs = clubData.map(club => ({ label: club.commonName, value: club._id }))
+  const clubs = clubData.map(club => ({ label: club.commonName, value: club._id }));
 
   const handleFormSubmit = async (data: any) => {
     if(playerToUpdate) {
@@ -89,7 +89,7 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
         firstName: playerToUpdate.firstName,
         lastName: playerToUpdate.lastName,
         country: playerToUpdate.country,
-        club: playerToUpdate.club ? playerToUpdate.club._id : '-',
+        club: playerToUpdate.club && playerToUpdate.club._id,
         number: playerToUpdate.number,
         position: playerToUpdate.position,
         birthDate: dayjs(playerToUpdate.birthDate).subtract(1, 'day'),
@@ -177,9 +177,6 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
               type='number' 
               register={register}
               registerOptions={{ required: 'Number is required!' }}
-              inputProps={{
-                min: 1, max: 99
-              }}
               error={errors.number}
             />
           </Grid>

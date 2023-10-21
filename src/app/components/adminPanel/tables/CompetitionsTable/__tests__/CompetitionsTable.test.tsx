@@ -4,10 +4,11 @@ import { setupClubsSuccessHandlers } from '../../../../../utils/testing/serverMo
 import { competitionsStateErrorMock, competitionsStateSuccessMock } from '../../../../../utils/testing/testDataMocks/competitions';
 import { setupCompetitionsErrorHandlers, setupCompetitionsSuccessHandlers } from '../../../../../utils/testing/serverMocks/competitions';
 import { CompetitionsTable } from '../';
+import { StateStatus } from '../../../../../../features/types';
 
 
 const competitionsStateMock = {
-  status: 'loading',
+  status: StateStatus.Loading,
   data: {
     main: {
       competitions: [],

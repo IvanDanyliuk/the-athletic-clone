@@ -68,8 +68,8 @@ const PostCard: React.FC<IPostCardProps> = ({ post, user }) => {
   return (
     <CardContainer>
       <CardHeader 
-        avatar={<Avatar src={post.author.photoUrl} alt={post.author.name} />} 
-        title={post?.author.name}  
+        avatar={<Avatar src={post.author.userPhotoUrl} alt={`${post?.author.firstName} ${post?.author.lastName}`} />} 
+        title={`${post?.author.firstName} ${post?.author.lastName}`}  
       />
       <CardContent>
         <Box 

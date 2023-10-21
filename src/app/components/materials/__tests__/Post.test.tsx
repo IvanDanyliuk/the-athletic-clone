@@ -30,7 +30,7 @@ describe('Post tests', () => {
         users: usersStateSuccessMock
       } }
     );
-    expect(await screen.findAllByText(postToUpdate.author.name)).toHaveLength(postToUpdate.comments.length + 1);
+    expect(await screen.findAllByText(`${postToUpdate.author.firstName} ${postToUpdate.author.lastName}`)).toHaveLength(postToUpdate.comments.length + 1);
   });
 
   test('should render the loader if the post does not exist', async () => {

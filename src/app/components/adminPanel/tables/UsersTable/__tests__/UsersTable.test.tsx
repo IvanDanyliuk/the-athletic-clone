@@ -3,10 +3,11 @@ import { renderWithProviders } from '../../../../../utils/testing/customRenderMe
 import { setupUsersErrorHandlers, setupUsersSuccessHandlers } from '../../../../../utils/testing/serverMocks/users';
 import { usersStateErrorMock, usersStateSuccessMock } from '../../../../../utils/testing/testDataMocks/users';
 import { UsersTable } from '../';
+import { StateStatus } from '../../../../../../features/types';
 
 
 const usersStateMock = {
-  status: 'loading',
+  status: StateStatus.Loading,
   user: {
     _id: '63e8db447a8501b5b2a8428b',
     firstName: 'John',

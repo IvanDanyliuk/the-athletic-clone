@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import * as api from '../../app/api/api';
 import { UserModel } from '../../app/models/users';
-import { IDeleteUserData, ILoginCredentials, IUser, IUserPasswordUpdationData, IUserRequestData } from './types';
+import { ILoginCredentials, IUser, IUserPasswordUpdationData, IUserRequestData } from './types';
 
 
 export const login = createAsyncThunk(
@@ -115,11 +115,10 @@ export const updatePassword = createAsyncThunk(
 
 export const deleteUser = createAsyncThunk(
   'users/deleteUser',
-  async (deleteData: IDeleteUserData, thunkAPI) => {
-    const { id, page, itemsPerPage } = deleteData;
+  async (id: string, thunkAPI) => {
     try {
-      const { data } = await api.deleteUser(id, page, itemsPerPage);
-      return data;
+      await api.deleteUser(id);
+      return id;
     } catch (error: any) {
       return thunkAPI.rejectWithValue(error.response.data);
     }

@@ -5,7 +5,7 @@ import { v4 as uuid } from 'uuid';
 import dayjs from 'dayjs';
 import { RowActionButtons } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
-import { deleteSchedule } from '../../../../../features/schedules/asyncActions';
+import { deleteSchedule, getSchedules } from '../../../../../features/schedules/asyncActions';
 import { ISchedule } from '../../../../../features/schedules/types';
 import { EssenseType } from '../../../../models/components';
 
@@ -21,7 +21,8 @@ const SchedulesTableBody: React.FC<ISchedulesTableBodyProps> = ({ schedules, pag
   const dispatch = useDispatch<AppDispatch>();
 
   const handleScheduleDelete = (id: string) => {
-    dispatch(deleteSchedule({ id, page, itemsPerPage }));
+    dispatch(deleteSchedule(id));
+    dispatch(getSchedules({ page, itemsPerPage }))
   };
 
   return (

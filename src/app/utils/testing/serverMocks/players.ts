@@ -20,7 +20,7 @@ const playersSuccessHandlers = [
   }),
   rest.post(`${baseUrl}/players`, (req, res, ctx) => {
     return res(
-      ctx.status(200),
+      ctx.status(201),
       ctx.json(newPlayer)
     )
   }),
@@ -32,8 +32,7 @@ const playersSuccessHandlers = [
   }),
   rest.delete(`${baseUrl}/players`, (req, res, ctx) => {
     return res(
-      ctx.status(200),
-      ctx.json(playersStateSuccessMock.data.main)
+      ctx.status(204),
     )
   }),
 ];

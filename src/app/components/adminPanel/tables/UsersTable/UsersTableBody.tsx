@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { IUser } from '../../../../../features/users/types';
 import { RowActionButtons } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
-import { deleteUser } from '../../../../../features/users/asyncActions';
+import { deleteUser, getUsers } from '../../../../../features/users/asyncActions';
 import { EssenseType } from '../../../../models/components';
 
 
@@ -21,7 +21,8 @@ const UserTableBody: React.FC<IUserTableBodyProps> = ({ users, page, itemsPerPag
   const dispatch = useDispatch<AppDispatch>();
 
   const handleUserDelete = (id: string) => {
-    dispatch(deleteUser({ id, page, itemsPerPage }));
+    dispatch(deleteUser(id));
+    dispatch(getUsers({ page, itemsPerPage }))
   };
 
   return (

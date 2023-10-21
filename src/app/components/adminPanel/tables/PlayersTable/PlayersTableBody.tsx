@@ -6,7 +6,7 @@ import dayjs from 'dayjs';
 import { IPlayer } from '../../../../../features/players/types';
 import { RowActionButtons, TableLink } from '../../ui/';
 import { AppDispatch } from '../../../../../features/store';
-import { deletePlayer } from '../../../../../features/players/asyncActions';
+import { deletePlayer, getPlayers } from '../../../../../features/players/asyncActions';
 import { EssenseType } from '../../../../models/components';
 
 
@@ -21,32 +21,37 @@ const PlayersTableBody: React.FC<IPlayersTableBodyProps> = ({ players, page, ite
   const dispatch = useDispatch<AppDispatch>();
 
   const handleClubDelete = (id: string) => {
-    dispatch(deletePlayer({ id, page, itemsPerPage }));
+    dispatch(deletePlayer(id));
+    dispatch(getPlayers({ page, itemsPerPage }));
   };
 
   return (
     <TableBody>
       {
-        players.map(({ _id, firstName, lastName, club, number, position, country, birthDate }) => (
+        players.map(player => (
           <TableRow key={uuid()}>
             <TableCell>
-              <TableLink url={`/players/${_id}`} label={firstName} />
+              <TableLink url={`/players/${player._id}`} label={player.firstName} />
             </TableCell>
             <TableCell>
-              <TableLink url={`/players/${_id}`} label={lastName} />
+              <TableLink url={`/players/${player._id}`} label={player.lastName} />
             </TableCell>
             <TableCell>
-              <TableLink url={`/clubs/${club._id}`} label={club ? club.commonName : '-'} />
+              {
+                player.club ? (
+                  <TableLink url={`/clubs/${player.club._id}`} label={player.club.commonName} />
+                ) : '-'
+              }
             </TableCell>
-            <TableCell>{number}</TableCell>
-            <TableCell>{position}</TableCell>
-            <TableCell>{country}</TableCell>
-            <TableCell>{dayjs(birthDate).format('DD/MM/YYYY')}</TableCell>
+            <TableCell>{player.number}</TableCell>
+            <TableCell>{player.position}</TableCell>
+            <TableCell>{player.country}</TableCell>
+            <TableCell>{dayjs(player.birthDate).format('DD/MM/YYYY')}</TableCell>
             <TableCell>
               <RowActionButtons 
-                id={_id} 
+                id={player._id} 
                 type={EssenseType.players}
-                onDelete={() => handleClubDelete(_id)} 
+                onDelete={() => handleClubDelete(player._id)} 
               />
             </TableCell>
           </TableRow>

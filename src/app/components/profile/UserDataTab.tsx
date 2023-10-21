@@ -110,7 +110,7 @@ const UserDataTab: React.FC = () => {
 
   const deleteProfile = async () => {
     await dispatch(logout());
-    await dispatch(deleteUser({ id: user?._id!, page: 0, itemsPerPage: 0 }));
+    await dispatch(deleteUser(user?._id!));
     navigate('/');
   }
 

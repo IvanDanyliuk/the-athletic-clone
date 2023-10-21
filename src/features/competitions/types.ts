@@ -45,17 +45,11 @@ export interface ICompetitionsFilters {
 export interface ICompetitionsRequestData {
   page: number;
   itemsPerPage: number;
-  filterData: ICompetitionsFilters | null; 
-  sortData: {
+  filterData?: ICompetitionsFilters | null; 
+  sortData?: {
     indicator: string;
     order: string;
   } | null;
-}
-
-export interface ICompetitionDeleteQuery {
-  id: string;
-  page: number;
-  itemsPerPage: number;
 }
 
 export interface StandingItem {

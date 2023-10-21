@@ -14,6 +14,19 @@ export interface IPlayer {
   createdAt: string;
 }
 
+export interface INewPlayer {
+  _id: string;
+  firstName: string;
+  lastName: string;
+  birthDate: string | any;
+  country: string;
+  photoUrl: string;
+  number: string;
+  position: string;
+  club: string;
+  createdAt: string;
+}
+
 export interface IPlayerInitialState {
   status: StateStatus;
   data: {
@@ -57,10 +70,4 @@ export interface IPlayersRequestData {
     indicator: string;
     order: string;
   } | null;
-}
-
-export interface IDeletePlayerData {
-  id: string;
-  page: number;
-  itemsPerPage: number;
 }

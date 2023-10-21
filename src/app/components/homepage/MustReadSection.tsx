@@ -77,8 +77,8 @@ const MustReadSection: React.FC<IMustReadSectionProps> = ({ article }) => {
                 <ArticlePreview variant='subtitle1_custom'>{article.preview}</ArticlePreview>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center' }}>
-                <Avatar src={article.author.photoUrl} alt={article.author.name} />
-                <AuthorName variant='caption'>by {article.author.name}</AuthorName>
+                <Avatar src={article.author.userPhotoUrl} alt={`${article.author.firstName} ${article.author.lastName}`} />
+                <AuthorName variant='caption'>by {`${article.author.firstName} ${article.author.lastName}`}</AuthorName>
               </Box>
             </ArticleContent>
             <Grid item xs={12} md={6}>

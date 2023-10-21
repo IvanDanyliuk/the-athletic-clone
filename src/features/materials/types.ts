@@ -1,4 +1,6 @@
-import { Order, StateStatus } from "../types";
+import { Order, StateStatus } from '../types';
+import { IUser } from '../users/types';
+
 
 export interface IMaterialsState {
   status: StateStatus;
@@ -32,8 +34,8 @@ export interface IMaterialsState {
 export interface IMaterialsRequestData {
   page: number;
   itemsPerPage: number;
-  filterData: any | null; 
-  sortData: {
+  filterData?: any | null; 
+  sortData?: {
     indicator: string;
     order: string
   } | null
@@ -56,13 +58,26 @@ export interface IHomepageSecondaryMaterialsRequestData {
 
 export interface IMaterial {
   _id: string;
-  author: { 
-    name: string;
-    userId: string;
-    photoUrl?: string;
-    organization: string;
-    position: string;
-  }; 
+  author: IUser, 
+  type: string;
+  title: string;
+  content: string;
+  preview?: string;
+  image?: any;
+  isMain?: boolean;
+  status: string;
+  views: number;
+  likes: string[];
+  publicationDate: string | any;
+  comments: IComment[];
+  labels: string[];
+  createdAt: string;
+  updatedAt: string
+}
+
+export interface IMaterialToUpdate {
+  _id: string;
+  author: string, 
   type: string;
   title: string;
   content: string;

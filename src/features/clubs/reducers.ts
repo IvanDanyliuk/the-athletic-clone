@@ -98,7 +98,10 @@ const clubSlice = createSlice({
       })
       .addCase(deleteClub.fulfilled, (state, action) => {
         state.status = StateStatus.Succeded;
-        state.data.main = action.payload;
+        state.data.main = {
+          clubs: state.data.main.clubs.filter(club => club._id !== action.payload),
+          clubsCount: state.data.main.clubsCount - 1
+        };
       })
       .addCase(deleteClub.rejected, (state, action: any) => {
         state.status = StateStatus.Failed;

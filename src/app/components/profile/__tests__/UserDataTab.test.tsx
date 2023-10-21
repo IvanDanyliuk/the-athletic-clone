@@ -3,6 +3,7 @@ import { UserDataTab } from '../';
 import { setupUsersSuccessHandlers } from '../../../utils/testing/serverMocks/users';
 import { renderWithProviders } from '../../../utils/testing/customRenderMethod';
 import { usersStateSuccessMock } from '../../../utils/testing/testDataMocks/users';
+import { StateStatus } from '../../../../features/types';
 
 
 const mockedUseDispatch = jest.fn();
@@ -108,7 +109,7 @@ describe('UserDataTab tests', () => {
         preloadedState: {
           users: {
             ...usersStateSuccessMock,
-            status: 'loading'
+            status: StateStatus.Loading
           }
         }
       }
@@ -123,7 +124,7 @@ describe('UserDataTab tests', () => {
         preloadedState: {
           users: {
             ...usersStateSuccessMock,
-            status: 'error',
+            status: StateStatus.Failed,
             error: 'Passwords do not match'
           }
         }
