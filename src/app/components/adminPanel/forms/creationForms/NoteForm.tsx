@@ -8,7 +8,6 @@ import { AppDispatch } from '../../../../../features/store';
 import { MaterialModel, MaterialType } from '../../../../models/components';
 import { createMaterial, updateMaterial } from '../../../../../features/materials/asyncActions';
 import { selectUser } from '../../../../../features/users/selectors';
-import { uploadImage } from '../../../../services/uploadImage';
 import { BackLink, TextEditor } from '../../ui/';
 import { BackdropLoader, ControlledDatePicker, MultiSelect, SelectField, TextInput } from '../../../ui/';
 import { IMaterial, MaterialPublicationStatus } from '../../../../../features/materials/types';
@@ -16,6 +15,7 @@ import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
+import { convertFileToString } from '../../../../utils/helpers';
 
 
 interface INewNoteFormProps {
@@ -65,11 +65,11 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
   const handleFormSubmit = async (data: any) => {
     if(noteToUpdate) {
       setIsLoading(true);
-      const imageUrl = data.image.length > 0 ? await uploadImage(data.image[0]) : noteToUpdate.image;
+      const image = data.image.length > 0 ? await convertFileToString(data.image[0]) : noteToUpdate.image;
       await dispatch(updateMaterial({
         ...noteToUpdate,
         title: data.title,
-        image: imageUrl,
+        image,
         publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
         status: data.status,
         content: data.content,
@@ -80,12 +80,12 @@ const NewNoteForm: React.FC<INewNoteFormProps> = ({ noteToUpdate }) => {
       navigate(backPath);
     } else {
       setIsLoading(true);
-      const imageUrl = data.image.length > 0 ? await uploadImage(data.image[0]) : '';
+      const image = await convertFileToString(data.image[0]);
       await dispatch(createMaterial({
         ...data,
         author: user?._id,
         type: MaterialType.note,
-        image: imageUrl,
+        image,
         publicationDate: data.publicationDate ? dayjs(data.publicationDate).add(1, 'day') : new Date().toISOString(),
         views: 0,
         likes: [],

@@ -8,7 +8,6 @@ import { AppDispatch } from '../../../../../features/store';
 import { MaterialModel, MaterialType } from '../../../../models/components';
 import { createMaterial, updateMaterial } from '../../../../../features/materials/asyncActions';
 import { selectUser } from '../../../../../features/users/selectors';
-import { uploadImage } from '../../../../services/uploadImage';
 import { BackLink, TextEditor } from '../../ui/';
 import { 
   BackdropLoader, Checkbox, ControlledDatePicker, 
@@ -19,6 +18,7 @@ import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { getAllCompetitions } from '../../../../../features/competitions/asyncActions';
 import { selectAllCompetitions } from '../../../../../features/competitions/selectors';
+import { convertFileToString } from '../../../../utils/helpers';
 
 
 const Form = styled(Box)`
@@ -81,11 +81,11 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
   const handleFormSubmit = async (data: any) => {
     if(articleToUpdate) {
       setIsLoading(true);
-      const imageUrl = data.image.length > 0 ? await uploadImage(data.image[0]) : articleToUpdate.image;
+      const image = data.image.length > 0 ? await convertFileToString(data.image[0]) : articleToUpdate.image;
       await dispatch(updateMaterial({
         ...articleToUpdate,
         title: data.title,
-        image: imageUrl,
+        image,
         isMain: data.isMain,
         publicationDate: dayjs(data.publicationDate).add(1, 'day').toISOString(),
         status: data.status,
@@ -97,12 +97,12 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
       navigate(backPath);
     } else {
       setIsLoading(true);
-      const imageUrl = data.image.length > 0 ? await uploadImage(data.image[0]) : '';
+      const image = await convertFileToString(data.image[0]);
       await dispatch(createMaterial({
         ...data,
         author: user?._id,
         type: MaterialType.article,
-        image: imageUrl,
+        image,
         publicationDate: data.publicationDate ? dayjs(data.publicationDate).add(1, 'day') : new Date().toISOString(),
         views: 0,
         likes: [],
@@ -121,7 +121,7 @@ const NewArticleForm: React.FC<INewArticleFormProps> = ({ articleToUpdate }) => 
     if(articleToUpdate) {
       reset({
         title: articleToUpdate.title,
-        // image: articleToUpdate.image,
+        image: articleToUpdate.image,
         isMain: articleToUpdate.isMain,
         publicationDate: dayjs(articleToUpdate.publicationDate).subtract(1, 'day'),
         status: articleToUpdate.status,
