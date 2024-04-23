@@ -8,7 +8,8 @@ import { createUser, updateUser } from '../../../../../features/users/asyncActio
 import { BackdropLoader, SelectField, TextInput } from '../../../ui/';
 import { getCountries } from '../../../../services/countries';
 import { IUser, UserRoles } from '../../../../../features/users/types';
-import { uploadImage } from '../../../../services/uploadImage';
+import { convertFileToString } from '../../../../utils/helpers';
+import userPlaceholder from '../../../../../assets/img/user_placeholder.png';
 
 
 interface IUserFormProps {
@@ -39,9 +40,10 @@ const UserForm: React.FC<IUserFormProps> = ({ userToUpdate, onSetEditMode }) => 
   const submitRegisterForm = async (data: any) => {
     setIsLoading(true);
     if(userToUpdate) {
-      const userPhotoUrl = data.userPhotoUrl!.length > 0 ? 
-        await uploadImage(data.userPhotoUrl![0]) : 
-        userToUpdate?.userPhotoUrl;
+      const userPhotoUrl = data.userPhotoUrl.length > 0 ? 
+      await convertFileToString(data.userPhotoUrl[0]) : 
+      userToUpdate.userPhotoUrl;
+
       await dispatch(updateUser({
         ...data, 
         _id: userToUpdate._id, 
@@ -49,9 +51,8 @@ const UserForm: React.FC<IUserFormProps> = ({ userToUpdate, onSetEditMode }) => 
         password: userToUpdate.password
       }));
     } else {
-      const userPhotoUrl = data.userPhotoUrl!.length > 0 ? 
-        await uploadImage(data.userPhotoUrl![0]) : 
-        '';
+      const userPhotoUrl = data.userPhotoUrl && data.userPhotoUrl[0] ? await convertFileToString(data.userPhotoUrl[0]) : userPlaceholder;
+
       await dispatch(createUser({
         ...data, 
         userPhotoUrl
