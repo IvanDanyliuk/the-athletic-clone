@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -6,13 +6,13 @@ import { Box, Button, Grid, styled } from '@mui/material';
 import dayjs from 'dayjs';
 import { AppDispatch } from '../../../../../features/store';
 import { BackdropLoader, ControlledDatePicker, SelectField, TextInput } from '../../../ui/';
-import { uploadImage } from '../../../../services/uploadImage';
 import { BackLink } from '../../ui/';
 import { getCountries } from '../../../../services/countries';
 import { createPlayer, updatePlayer } from '../../../../../features/players/asyncActions';
 import { IPlayer, PlayerPosition } from '../../../../../features/players/types';
 import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
+import { convertFileToString } from '../../../../utils/helpers';
 
 
 interface IPlayerFormProps {
@@ -59,7 +59,11 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
   const handleFormSubmit = async (data: any) => {
     if(playerToUpdate) {
       setIsLoading(true);
-      const photoUrl = data.photoUrl.length > 0 ? await uploadImage(data.photoUrl[0]) : playerToUpdate.photoUrl;
+
+      const photoUrl = data.photoUrl.length > 0 ? 
+      await convertFileToString(data.photoUrl[0]) : 
+      playerToUpdate.photoUrl;
+
       await dispatch(updatePlayer({
         ...data,
         _id: playerToUpdate._id,
@@ -70,7 +74,9 @@ const PlayerForm: React.FC<IPlayerFormProps> = ({ playerToUpdate }) => {
       navigate('/admin/players');
     } else {
       setIsLoading(true);
-      const photoUrl = data.photoUrl.length > 0 ? await uploadImage(data.photoUrl[0]) : '';
+
+      const photoUrl = await convertFileToString(data.photoUrl[0]);
+
       await dispatch(createPlayer({
         ...data,
         birthDate: data.birthDate ? dayjs(data.birthDate).add(1, 'day') : new Date().toISOString(),

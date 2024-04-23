@@ -5,12 +5,12 @@ import { useForm } from 'react-hook-form';
 import { Box, Button, Grid, styled } from '@mui/material';
 import { AppDispatch } from '../../../../../features/store';
 import { ClubModel } from '../../../../models/components';
-import { uploadImage } from '../../../../services/uploadImage';
 import { BackLink } from '../../ui/';
 import { BackdropLoader, SelectField, TextInput } from '../../../ui/';
 import { getCountries } from '../../../../services/countries';
 import { createClub, updateClub } from '../../../../../features/clubs/asyncActions';
 import { IClub } from '../../../../../features/clubs/types';
+import { convertFileToString } from '../../../../utils/helpers';
 
 
 interface INewClubFormProps {
@@ -39,7 +39,7 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
       setIsLoading(true);
 
       const clubLogoUrl = data.clubLogoUrl.length > 0 ? 
-        await uploadImage(data.clubLogoUrl[0]) : 
+        await convertFileToString(data.clubLogoUrl[0]) : 
         clubToUpdate.clubLogoUrl;
 
       await dispatch(updateClub({
@@ -53,9 +53,7 @@ const NewClubForm: React.FC<INewClubFormProps> = ({ clubToUpdate }) => {
     } else {
       setIsLoading(true);
 
-      const clubLogoUrl = data.clubLogoUrl.length > 0 ? 
-        await uploadImage(data.clubLogoUrl[0]) : 
-        '';
+      const clubLogoUrl = await convertFileToString(data.clubLogoUrl[0]);
 
       await dispatch(createClub({
         ...data,

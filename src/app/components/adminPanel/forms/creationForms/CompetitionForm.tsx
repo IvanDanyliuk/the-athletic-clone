@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { Box, Button, Grid, styled } from '@mui/material';
 import { AppDispatch } from '../../../../../features/store';
-import { uploadImage } from '../../../../services/uploadImage';
 import { BackLink } from '../../ui/';
 import { BackdropLoader, MultiSelect, SelectField, TextInput } from '../../../ui/';
 import { getCountries } from '../../../../services/countries';
@@ -13,6 +12,7 @@ import { getClubsByCountry } from '../../../../../features/clubs/asyncActions';
 import { selectClubsByCountry } from '../../../../../features/clubs/selectors';
 import { createCompetition, updateCompetition } from '../../../../../features/competitions/asyncActions';
 import { IClub } from '../../../../../features/clubs/types';
+import { convertFileToString } from '../../../../utils/helpers';
 
 
 interface ICompetitionFormProps {
@@ -68,7 +68,7 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
       setIsLoading(true);
 
       const logoUrl = data.logoUrl.length > 0 ? 
-        await uploadImage(data.logoUrl[0]) : 
+        await convertFileToString(data.logoUrl[0]) : 
         competitionToUpdate.logoUrl;
 
       await dispatch(updateCompetition({
@@ -83,9 +83,7 @@ const CompetitionForm: React.FC<ICompetitionFormProps> = ({ competitionToUpdate 
     } else {
       setIsLoading(true);
 
-      const logoUrl = data.logoUrl.length > 0 ? 
-        await uploadImage(data.logoUrl[0]) : 
-        '';
+      const logoUrl = await convertFileToString(data.logoUrl[0]);
 
       await dispatch(createCompetition({
         ...data,
