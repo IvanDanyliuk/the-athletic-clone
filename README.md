@@ -33,3 +33,24 @@ I have developed a web application similar to the well-known sports media platfo
 - Secure authentication system for users, authors, and admins.
 - Efficient state management using Redux Toolkit for smooth user interactions.
 - Styled Components and Material UI for a modern and intuitive UI/UX.
+
+## How to run the project
+
+### How to run the backend
+- In your terminal, navigate to the `server` directory
+- Run `npm install` to install dependencies
+- Run `npm run start` to start the application
+
+### How to run the client
+- In your terminal, navigate to the `client` directory
+- Run `npm install` to install dependencies
+- Run `npm start` to start the application
+- Open your browser in [http://localhost:3000](http://localhost:3000)
+
+
+## Sign In Data
+To explore the project features you can use the following data to sign in as the admin role:
+- Email: j.doe@gmail.com
+- Password: 123456
+
+# This project was created for learning purposes only
